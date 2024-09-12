@@ -13,4 +13,5 @@ Currently, two official plugins are available:
 
 # To Do List
 * React Routing
-* Get 20% done with front-end for upcoming capstone audit 
+* Finish homepage, contact, sign-in, sign-up, dashboard
+* Optional (Invoices)
