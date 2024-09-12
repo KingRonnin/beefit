@@ -8,10 +8,9 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 # Changelog
-* Working Login page!!
-* Converted to typescript for an easier method
+* Routing finished based on the tutorial [here](https://clerk.com/docs/references/react/add-react-router)
 
 # To Do List
-* React Routing
 * Finish homepage, contact, sign-in, sign-up, dashboard
 * Optional (Invoices)
+* Personalize homepage
