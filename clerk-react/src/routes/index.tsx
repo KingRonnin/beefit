@@ -2,24 +2,11 @@ import { Link } from 'react-router-dom'
 
 export default function IndexPage() {
   return (
-    <div>
-      <h1>This is the index page</h1>
-      <div>
-        <ul>
-          <li>
-            <Link to="/sign-up">Sign Up</Link>
-          </li>
-          <li>
-            <Link to="/sign-in">Sign In</Link>
-          </li>
-          <li>
-            <Link to="/contact">Contact</Link>
-          </li>
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <>
+      <h1 className="text-2xl font-bolder mb-5">Welcome to Beefit</h1>
+      <p className="mb-5">
+      <b>Beefit</b> provides the minimalist's dream for fitness solutions, featuring an analytics dashboard, a weekly reminder of their upcoming workouts, and a writing tool for personal evaluations, shower-thoughts, many more.
+      </p>
+    </>
   )
 }

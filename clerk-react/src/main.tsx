@@ -14,6 +14,7 @@ import SignInPage from './routes/sign-in'
 import SignUpPage from './routes/sign-up'
 import DashboardPage from './routes/dashboard'
 import InvoicesPage from './routes/dashboard.invoices'
+import ProfilePage from './routes/profile'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
       { path: '/contact', element: <ContactPage /> },
       { path: '/sign-in/*', element: <SignInPage /> },
       { path: '/sign-up/*', element: <SignUpPage /> },
+      { path: '/profile/*', element: <ProfilePage /> },
       {
         element: <DashboardLayout />,
         path: 'dashboard',

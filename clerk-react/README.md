@@ -8,7 +8,10 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 # Changelog
-* Nothing much changed significantly, except visually
+* Implemented working sign-in page
+* Implemented working sign-up page
+* Implemented working dashboard page
+* Implemented working contacts page
 
 # To Do List
 * Finish homepage

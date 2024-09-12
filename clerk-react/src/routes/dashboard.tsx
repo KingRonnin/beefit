@@ -1,19 +1,12 @@
 import { Link } from 'react-router-dom'
 
 export default function DashboardPage() {
-  return (
-    <>
-      <h1>Dashboard page</h1>
-      <p>This is a protected page.</p>
-
-      <ul>
-        <li>
-          <Link to="/dashboard/invoices">Invoices</Link>
-        </li>
-        <li>
-          <Link to="/">Return to index</Link>
-        </li>
-      </ul>
-    </>
-  )
+    return (
+        <>
+        <h1 className="text2xl font-bold mb-5">
+            Dashboard
+        </h1>
+        <p className="mb-5">Welcome to the Dashboard</p>
+        </>
+    )
 }
