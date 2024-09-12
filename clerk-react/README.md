@@ -11,6 +11,5 @@ Currently, two official plugins are available:
 * Routing finished based on the tutorial [here](https://clerk.com/docs/references/react/add-react-router)
 
 # To Do List
-* Finish homepage, contact, sign-in, sign-up, dashboard
-* Optional (Invoices)
+* Finish homepage
 * Personalize homepage
