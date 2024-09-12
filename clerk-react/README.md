@@ -8,6 +8,9 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 # Changelog
-* Setup React
-* Installed the Clerk packages
-* Imported the Clerk publishable key
+* Working Login page!!
+* Converted to typescript for an easier method
+
+# To Do List
+* React Routing
+* Get 20% done with front-end for upcoming capstone audit 
