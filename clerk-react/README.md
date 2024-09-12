@@ -8,7 +8,8 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 # Changelog
-* Routing finished based on the tutorial [here](https://clerk.com/docs/references/react/add-react-router)
+* Working Login page!!
+* Converted to typescript for an easier method
 
 # To Do List
 * Finish homepage
