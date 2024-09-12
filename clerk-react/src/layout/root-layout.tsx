@@ -1,6 +1,7 @@
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { ClerkProvider, SignedIn, SignedOut, UserButton } from '@clerk/clerk-react'
 import '../global.css'
+import Header from '../component/header' 
 
 export const metadata = {
     title: 'Health and Fitness Website',
@@ -24,7 +25,8 @@ export default function RootLayout() {
     >
         <html lang='en'>
             <body>
-                <main className="container mx-auto">
+              <Header />
+                <main className="container">
                     <div className="flex items-start justify-center min-h-screen">
                         <div className='mt-20'>
                             <Outlet/>
