@@ -1,9 +1,10 @@
 import React from 'react';
+import FrontPage from './FrontPage.js'; 
 
 function App() {
   return (
     <div>
-      <h1>Welcome to Beefit!</h1>
+      <FrontPage /> {}
     </div>
   );
 }
