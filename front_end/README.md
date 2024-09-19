@@ -16,3 +16,5 @@ Currently, two official plugins are available:
 # To Do List
 * Finish homepage
 * Personalize homepage
+* Backend (Python)
+* Dattabase (SQLite)
