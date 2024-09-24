@@ -24,7 +24,7 @@ export default function RootLayout() {
       publishableKey={PUBLISHABLE_KEY}
     >
         <html lang='en'>
-            <body>
+            <body>  
               <Header />
                 <main className="container">
                     <div className="flex items-start justify-center min-h-screen">

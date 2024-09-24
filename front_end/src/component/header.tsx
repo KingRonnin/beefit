@@ -11,7 +11,12 @@ export default function Header() {
             <div className="flex items-center">
                 <Link to={'/'}>
                     <div className="text-lg uppercase font-bold text-white">
-                        Beefit
+                        BEEFIT
+                    </div>
+                </Link>
+                <Link to={'/dashboard'}>
+                    <div className="text-gray-300 hover:text-white ml-5">
+                        DASHBOARD
                     </div>
                 </Link>
             </div>
