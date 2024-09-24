@@ -15,6 +15,8 @@ import SignUpPage from './routes/sign-up'
 import DashboardPage from './routes/dashboard'
 import InvoicesPage from './routes/dashboard.invoices'
 import ProfilePage from './routes/profile'
+import MyPlanPage from './routes/myplan'
+import WeeklyReminderPage from './routes/weeklyreminder'
 
 const router = createBrowserRouter([
   {
@@ -25,6 +27,8 @@ const router = createBrowserRouter([
       { path: '/sign-in/*', element: <SignInPage /> },
       { path: '/sign-up/*', element: <SignUpPage /> },
       { path: '/profile/*', element: <ProfilePage /> },
+      { path: '/myplan/*', element: <MyPlanPage /> },
+      { path: '/weeklyreminder/*', element: <WeeklyReminderPage /> },
       {
         element: <DashboardLayout />,
         path: 'dashboard',

@@ -1,5 +1,5 @@
 import { useAuth, UserButton } from '@clerk/clerk-react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 export default function Header() {
     const { userId } = useAuth();
@@ -14,27 +14,27 @@ export default function Header() {
                         BEEFIT
                     </div>
                 </Link>
-                <Link to={'/dashboard'}>
-                    <div className="text-gray-300 hover:text-white ml-5">
-                        DASHBOARD
-                    </div>
-                </Link>
             </div>
             <div className="text-white flex items-center">
                 {!userId && (
                     <>
-                        <Link to='sign-in' className='text-gray-300 hover:text-white mr-3'>
+                        <Link to='sign-in' className='text-gray-300 hover:text-white'>
                             Sign In
                         </Link>
-                        <Link to='sign-up' className='text-gray-300 hover:text-white mr-3'>
+                        <Link to='sign-up' className='text-gray-300 hover:text-white'>
                             Sign Up
                         </Link>
                     </>
-                )}
-                {userId && (
+                )}{userId && (
                     <>
-                        <Link to='profile' className='text-gray-300 hover:text-white mr-5'>
-                            Profile
+                        <Link to={'/dashboard'} className='text-gray-300 hover:text-white mr-10'>
+                            Dashboard
+                        </Link>
+                        <Link to={'/myplan'} className='text-gray-300 hover:text-white mr-10'>
+                            My Plan
+                        </Link>
+                        <Link to={'/weeklyreminder'} className='text-gray-300 hover:text-white mr-10'>
+                            Weekly Reminder
                         </Link>
                     </>
                 )}
