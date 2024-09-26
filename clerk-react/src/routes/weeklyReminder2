@@ -1,0 +1,22 @@
+import React from 'react';
+import { ScheduleComponent, Inject, Day, Week, WorkWeek, Month, Agenda, EventSettingsModel } from '@syncfusion/ej2-react-schedule';
+
+const WeeklyReminder = () => {
+  const localData: EventSettingsModel = {
+    dataSource: [{
+      EndTime: new Date(2024, 9, 26, 6, 30), 
+      StartTime: new Date(2024, 9, 26, 4, 0),
+      Subject: 'Meeting' 
+    }]
+  };
+
+  return (
+    <ScheduleComponent currentView='Month'
+      eventSettings={localData} 
+      selectedDate={new Date()} >
+      <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
+    </ScheduleComponent>
+  );
+};
+
+export default WeeklyReminder;
