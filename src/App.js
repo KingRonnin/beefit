@@ -1,6 +1,7 @@
 import React from 'react';
 import FrontPage from './FrontPage.js'; 
 
+
 function App() {
   return (
     <div>

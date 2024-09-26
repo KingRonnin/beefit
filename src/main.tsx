@@ -15,6 +15,7 @@ import SignUpPage from './routes/sign-up'
 import DashboardPage from './routes/dashboard'
 import InvoicesPage from './routes/dashboard.invoices'
 import ProfilePage from './routes/profile'
+import myplan from './routes/myplan'
 
 const router = createBrowserRouter([
   {
