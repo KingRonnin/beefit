@@ -18,10 +18,10 @@ export default function Header() {
             <div className="text-white flex items-center">
                 {!userId && (
                     <>
-                        <Link to='sign-in' className='text-gray-300 hover:text-white'>
+                        <Link to='sign-in' className='text-gray-300 hover:text-white mr-5'>
                             Sign In
                         </Link>
-                        <Link to='sign-up' className='text-gray-300 hover:text-white'>
+                        <Link to='sign-up' className='text-gray-300 hover:text-white mr-5'>
                             Sign Up
                         </Link>
                     </>
