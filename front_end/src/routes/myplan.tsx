@@ -1,24 +1,23 @@
 import { useState } from "react"
 import axios from "axios"
 
-const [plan_name, set_plan_name] = useState('');
-const [exercises, set_exercises] = useState('');
-
-const create_plan = async () => {
-    await axios.post('api/beefit-user-exercise-plan', {
-        name: plan_name,
-        exercises: exercises,
-    });
-};
-
 export default function MyPlanPage() {
+    const [plan_name, set_plan_name] = useState('');
+    const [exercises, set_exercises] = useState('');
+
+    const create_plan = async () => {
+        try {
+            await axios.post('/api/beefit-user-exercise-plan', {
+                name: plan_name,
+                exercises: exercises,
+            });
+            alert('Plan created');
+        } catch (e) {
+            console.error('Error', e);
+        }
+    };
+
     return (
-        // <>
-        // <h1 className="text2xl font-bold mb-5">
-        //     My Plan
-        // </h1>
-        // <p className="mb-5">What is your plan today?</p>
-        // </>
         <>
             <div>
                 <h1>My Plan</h1>
