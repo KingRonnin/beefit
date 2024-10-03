@@ -27,8 +27,9 @@ export default function MyPlanPage() {
                 onChange={(e) => set_plan_name(e.target.value)}/>
             </div>
             <div>
+                <p>Enter exercises in JSON format</p>
                 <textarea
-                placeholder="Enter exercises as JSON format"
+                placeholder={`[{ "name": "Push Ups", "sets": 3, "reps": 12 }]`}
                 value={exercises}
                 onChange={(e) => set_exercises(e.target.value)}/>
                 <button onClick={create_plan}>Create Plan</button>

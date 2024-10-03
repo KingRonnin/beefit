@@ -17,10 +17,10 @@ def create_table():
 @app.route('api/records', methods=['GET', 'POST'])
 def manage_records():
     if request.method == 'POST':
-        data = request.json
-        new_record = beefit_user_exercise_plan(
+        data=request.json
+        new_record=beefit_user_exercise_plan(
             exercise=data['exercise'],
-            reps = data['reps'],
+            reps=data['reps'],
             sets=data['sets'],
             date=data['date'],
         )
