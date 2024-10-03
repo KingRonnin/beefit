@@ -1,28 +1,24 @@
-import React from 'react';
-import { ScheduleComponent, Inject, Day, Week, WorkWeek, Month, Agenda, EventSettingsModel } from '@syncfusion/ej2-react-schedule';
-import { DataManager, WebApiAdaptor } from '@syncfusion/ej2-data';
+import React from "react";
+import Fullcalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
 
-const WeeklyReminder = () => {
-  const localData: EventSettingsModel = {
-    dataSource: [{
-      EndTime: new Date(2019, 0, 11, 6, 30),
-      StartTime: new Date(2019, 0, 11, 4, 0)
-    }]
-  };
-
-  const remoteData = new DataManager({
-    url: 'https://js.syncfusion.com/demos/ejservices/api/Schedule/LoadData',
-    adaptor: new WebApiAdaptor(),
-    crossDomain: true
-  });
-
+function Calendar() {
   return (
-    <ScheduleComponent currentView='Month'
-      eventSettings={{ dataSource: remoteData }} 
-      selectedDate={new Date()} >
-      <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
-    </ScheduleComponent>
+    <div>
+      <Fullcalendar
+        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+        initialView={"dayGridMonth"}
+        headerToolbar={{
+          start: "today prev,next", 
+          center: "title",
+          end: "dayGridMonth,timeGridWeek,timeGridDay", 
+        }}
+        height={"90vh"}
+      />
+    </div>
   );
-};
+}
 
-export default WeeklyReminder;
+export default Calendar;
