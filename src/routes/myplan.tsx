@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './myplan.css';
 import logo from '../images/beefit-logo.png';
-import texture from '../images/texture.png'; // Ensure the path is correct
+import texture from '../images/texture.png';
 
 interface Exercise {
     id: number;
@@ -104,15 +105,13 @@ const MyPlan: React.FC = () => {
                 {showCategories && (
                     <div className="workout-grid">
                         <div className="workout-card" onClick={() => handleCategoryClick('fullBody')}>
-                            <img src="/images/full-body.webp" alt="Full Body" className="workout-image" />
+                            <img src="./images/full-body.webp" alt="Full Body" className="workout-image" />
                             <p className="workout-title">FULL BODY WORKOUT</p>
                         </div>
-
                         <div className="workout-card" onClick={() => handleCategoryClick('abs')}>
-                            <img src="../images/abs-beginner.jpg" alt="Abs Beginner" className="workout-image" />
+                            <img src="./images/abs-beginner.jpg" alt="Abs Beginner" className="workout-image" />
                             <p className="workout-title">ABS BEGINNER</p>
                         </div>
-
                         <div className="workout-card" onClick={() => handleCategoryClick('arm')}>
                             <img src="../images/arm-beginner.webp" alt="Arm Beginner" className="workout-image" />
                             <p className="workout-title">ARM BEGINNER</p>
@@ -171,14 +170,14 @@ const MyPlan: React.FC = () => {
                     )}
                 </div>
 
-                {/* Save Button */}
+                <Link to="/logfitness" className="log-fitness-link">Go to Log Fitness</Link>
+
                 {selectedExercises.length > 0 && (
                     <div className="action-buttons">
                         <button
                             className="save-btn"
                             onClick={() => {
-                                // Implement your save logic here
-                                alert('Exercises saved!'); // Placeholder action
+                                alert('Exercises saved!');
                             }}
                         >
                             Save
@@ -189,7 +188,5 @@ const MyPlan: React.FC = () => {
         </div>
     );
 };
-
-
 
 export default MyPlan;

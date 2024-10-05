@@ -2,11 +2,40 @@
   background-image: url('../images/texture.png');
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: right top;
-  height: 100vh;
+  background-position: center center;
+  position: relative;
+  height: auto;
+  min-height: 100vh;
   width: 100%;
-  display: flex;
-  justify-content: flex-end;
+  display: flex;  
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.myplan-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: inherit;
+  filter: blur(15px);
+  z-index: 0;
+}
+
+.myplan-content {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 800px;
+  z-index: 1;
 }
 
 .logo {
@@ -18,176 +47,67 @@
   z-index: 10;
 }
 
-.myplan-content {
-  position: relative;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 10px;
-  padding: 30px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  max-width: 900px;
-}
-
 .page-title {
   font-size: 2.5rem;
   text-align: center;
-  color: #333;
+  color: #2C3E50;
   margin-bottom: 20px;
-}
-
-.stats {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
-}
-
-.stat {
-  flex: 1;
-  text-align: center;
-  padding: 10px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  margin: 0 10px;
-}
-
-.create-plan-btn {
-  background-color: black;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.create-plan-btn:hover {
-  background-color: #218838;
-}
-
-.workout-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 15px;
-}
-
-.workout-card {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-
-.workout-card:hover {
-  transform: scale(1.05);
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
 .selected-exercises {
-  margin-top: 30px;
+  margin-top: 20px;
   padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  border: 1px solid #BDC3C7;
+  border-radius: 10px;
+  background-color: #F9F9F9;
+  width: 100%;
+  max-width: 800px;
 }
 
-.sub-exercise,
-.selected-exercise {
+.action-buttons {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #eee;
+  justify-content: space-around;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 800px;
 }
 
-.add-btn, .edit-btn, .remove-btn {
-  background-color: #007bff;
+.action-button {
+  background-color: #0d1a12;
   color: white;
   border: none;
   border-radius: 5px;
-  padding: 5px 10px;
+  padding: 10px 15px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.save-btn {
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  background-color: #2196F3;
-}
-
-.add-btn:hover, .edit-btn:hover, .remove-btn:hover {
-  background-color: #101111;
-}
-
-.zoom-in {
-  animation: zoomIn 0.5s forwards;
-}
-
-.zoom-out {
-  animation: zoomOut 0.5s forwards;
-}
-
-@keyframes zoomIn {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.1);
-  }
-}
-
-@keyframes zoomOut {
-  0% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.create-plan-btn, .add-btn, .edit-btn, .remove-btn {
-  display: block;
-  margin: 20px auto;
-  padding: 15px 30px;
-  font-size: 1.2rem;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s ease-out;
-}
-
-.create-plan-btn:hover, .add-btn:hover, .edit-btn:hover, .remove-btn:hover {
+.action-button:hover {
   background-color: #218838;
-  transform: scale(1.05);
 }
 
-.button-click-animate {
-  animation: clickEffect 0.4s forwards;
-}
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2rem;
+  }
 
-@keyframes clickEffect {
-  0% {
-    transform: scale(1);
+  .myplan-content {
+    padding: 15px;
   }
-  50% {
-    transform: scale(0.95);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
 
-@keyframes animateBackground {
-  0% {
-    background-position: 0% 0%;
+  .selected-exercises {
+    margin-top: 15px;
   }
-  50% {
-    background-position: 50% 50%;
+
+  .action-buttons {
+    flex-direction: column;
+    align-items: center;
   }
-  100% {
-    background-position: 0% 0%;
+
+  .action-button {
+    width: 80%;
+    margin: 5px 0;
   }
 }
