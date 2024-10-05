@@ -1,0 +1,193 @@
+.myplan-container {
+  background-image: url('../images/texture.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: right top;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 120px;
+  height: auto;
+  z-index: 10;
+}
+
+.myplan-content {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 900px;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.stat {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin: 0 10px;
+}
+
+.create-plan-btn {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.create-plan-btn:hover {
+  background-color: #218838;
+}
+
+.workout-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.workout-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.workout-card:hover {
+  transform: scale(1.05);
+}
+
+.selected-exercises {
+  margin-top: 30px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.sub-exercise,
+.selected-exercise {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.add-btn, .edit-btn, .remove-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.save-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #2196F3;
+}
+
+.add-btn:hover, .edit-btn:hover, .remove-btn:hover {
+  background-color: #101111;
+}
+
+.zoom-in {
+  animation: zoomIn 0.5s forwards;
+}
+
+.zoom-out {
+  animation: zoomOut 0.5s forwards;
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes zoomOut {
+  0% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.create-plan-btn, .add-btn, .edit-btn, .remove-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s ease-out;
+}
+
+.create-plan-btn:hover, .add-btn:hover, .edit-btn:hover, .remove-btn:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+.button-click-animate {
+  animation: clickEffect 0.4s forwards;
+}
+
+@keyframes clickEffect {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes animateBackground {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 50% 50%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
