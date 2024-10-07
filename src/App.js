@@ -5,6 +5,7 @@ import FrontPage from './FrontPage.js';
 import MyPlan from './routes/myplan.tsx';
 import LogFitness from './routes/Logfitness.tsx' ;
 
+
 function App() {
   return (
     <Router>
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<FrontPage />} />
           <Route path="/myplan" element={<MyPlan />} />
           <Route path="/logfitness" element={<LogFitness />} />
+        
         </Routes>
       </div>
     </Router>

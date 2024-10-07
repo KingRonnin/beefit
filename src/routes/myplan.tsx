@@ -2,13 +2,62 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './myplan.css';
 import logo from '../images/beefit-logo.png';
-import texture from '../images/texture.png';
+
+const ExerciseModal: React.FC<{
+    exercises: Exercise[];
+    onClose: () => void;
+    onSelectExercise: (exercise: Exercise) => void;
+}> = ({ exercises, onClose, onSelectExercise }) => {
+    const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(null);
+
+    return (
+        <div className="modal">
+            <div className="modal-content">
+                <h2>Select Exercise</h2>
+                {exercises.map((exercise) => (
+                    <div key={exercise.id} className="modal-exercise-item">
+                        <input
+                            type="radio"
+                            id={exercise.title}
+                            name="exercise"
+                            value={exercise.title}
+                            onChange={() => setSelectedExercise(exercise)}
+                        />
+                        <label htmlFor={exercise.title}>
+                            {exercise.title} - {exercise.kcal} KCAL - {exercise.mins} MINS
+                        </label>
+                    </div>
+                ))}
+                {selectedExercise && (
+                    <div className="exercise-gif-container">
+                        <img src={selectedExercise.gif} alt={selectedExercise.title} style={{ width: '100%', height: '500px', objectFit:'contain' }} />
+                    </div>
+                )}
+                <div className="modal-actions">
+                    <button
+                        disabled={!selectedExercise}
+                        onClick={() => {
+                            if (selectedExercise) {
+                                onSelectExercise(selectedExercise);
+                            }
+                            onClose();
+                        }}
+                    >
+                        Done
+                    </button>
+                    <button onClick={onClose}>Cancel</button>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 interface Exercise {
-    id: number;
+    id: string;
     title: string;
     kcal: number;
     mins: number;
+    gif: string;
 }
 
 const MyPlan: React.FC = () => {
@@ -16,174 +65,136 @@ const MyPlan: React.FC = () => {
     const [totalKcal, setTotalKcal] = useState<number>(0);
     const [totalMins, setTotalMins] = useState<number>(0);
     const [selectedExercises, setSelectedExercises] = useState<Exercise[]>([]);
-    const [subExercises, setSubExercises] = useState<Exercise[]>([]);
+    const [showModal, setShowModal] = useState<boolean>(false);
     const [activeCategory, setActiveCategory] = useState<string | null>(null);
-    const [showCategories, setShowCategories] = useState<boolean>(false);
+    const [categoryExercises, setCategoryExercises] = useState<Exercise[]>([]);
+    const [showLevels, setShowLevels] = useState<boolean>(false);
 
-    const workoutData: Record<string, Exercise[]> = {
-        fullBody: [
-            { id: 1, title: 'Push Ups', kcal: 50, mins: 10 },
-            { id: 2, title: 'Squats', kcal: 100, mins: 15 },
-            { id: 3, title: 'Burpees', kcal: 80, mins: 10 },
-        ],
-        abs: [
-            { id: 1, title: 'Planks', kcal: 30, mins: 5 },
-            { id: 2, title: 'Crunches', kcal: 50, mins: 10 },
-            { id: 3, title: 'Leg Raises', kcal: 40, mins: 8 },
-        ],
-        arm: [
-            { id: 1, title: 'Bicep Curls', kcal: 40, mins: 10 },
-            { id: 2, title: 'Tricep Dips', kcal: 60, mins: 15 },
-            { id: 3, title: 'Push Ups', kcal: 50, mins: 10 },
-        ],
+    const workoutData: Record<string, Record<string, Exercise[]>> = {
+        fullBody: {
+            beginner: [
+                { id: 'fullBody1', title: 'Push Ups', kcal: 50, mins: 10, gif: 'https://media.post.rvohealth.io/wp-content/uploads/sites/2/2019/05/PERFECT-PUSHUP.gif' },
+                { id: 'fullBody2', title: 'Squats', kcal: 100, mins: 15, gif: 'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcTZ3Zm0xM3Z5Nmgxdmh3ejg2NG84YmRlb3duOXRxY2Uwdm9zOWdsciZlcD12MV9naWZzX3NlYXJjaCZjdD1n/HIlZpE5TxLHVmfTTxe/giphy.webp' },
+            ],
+            intermediate: [
+                { id: 'fullBody3', title: 'Burpees', kcal: 80, mins: 10, gif: 'https://i.makeagif.com/media/1-27-2017/iKECQ7.gif' },
+                { id: 'fullBody4', title: 'Lunges', kcal: 90, mins: 12, gif: 'https://media.tenor.com/fWiC9Ze5eUMAAAAM/lunges-exercise.gif' },
+            ],
+            advanced: [
+                { id: 'fullBody5', title: 'Mountain Climbers', kcal: 100, mins: 15, gif: 'https://www.mitrecsports.com/assets/Mountain-Climbers-Gif.gif' },
+                { id: 'fullBody6', title: 'Deadlifts', kcal: 150, mins: 20, gif: 'https://www.journalmenu.com/wp-content/uploads/2018/03/deadlift-gif-side.gif' },
+            ],
+        },
+        abs: {
+            beginner: [
+                { id: 'abs1', title: 'Planks', kcal: 30, mins: 5, gif: 'https://media.tenor.com/6SOetkNbfakAAAAM/plank-abs.gif' },
+                { id: 'abs2', title: 'Crunches', kcal: 50, mins: 10, gif: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-HyWOI9XzwnOgJW3B4s2BPpI6diwr38stQQ&s' },
+            ],
+            intermediate: [
+                { id: 'abs3', title: 'Leg Raises', kcal: 40, mins: 8, gif: 'https://media.tenor.com/IDGUQ-6TBpEAAAAM/leg-lifts.gif' },
+                { id: 'abs4', title: 'Russian Twists', kcal: 60, mins: 12, gif: 'https://media2.giphy.com/media/cpKD9u3S25xYL8tcbr/200w.gif?cid=6c09b952982qc93qznei3hb7a8usnmmsroqq1z5stb1kfpgu&ep=v1_gifs_search&rid=200w.gif&ct=g' },
+            ],
+            advanced: [
+                { id: 'abs5', title: 'Bicycle Crunches', kcal: 70, mins: 10, gif: 'https://www.icegif.com/wp-content/uploads/2022/08/icegif-121.gif' },
+                { id: 'abs6', title: 'V-Ups', kcal: 90, mins: 15, gif: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKU3hzpo7bcI5C28-dZp5aez53kP2-iGwU7A&s' },
+            ],
+        },
+        arm: {
+            beginner: [
+                { id: 'arm1', title: 'Bicep Curls', kcal: 40, mins: 10, gif: 'https://media1.popsugar-assets.com/files/thumbor/LvmfizMv8KR6r7MkMR-TmOrs9ck/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2021/08/27/563/n/1922729/a776b229bf1e8e99_IMB_MUp4Uh/i/Bicep-Curl.GIF' },
+                { id: 'arm2', title: 'Tricep Dips', kcal: 60, mins: 15, gif: 'https://i0.wp.com/post.healthline.com/wp-content/uploads/2019/05/Chair-dip.gif?w=1155&h=840' },
+            ],
+            intermediate: [
+                { id: 'arm3', title: 'Hammer Curls', kcal: 50, mins: 12, gif: 'https://s3.amazonaws.com/photography.prod.demandstudios.com/642e896b-4ac7-44ba-84fd-4173ea4440e1.gif' },
+                { id: 'arm4', title: 'Overhead Press', kcal: 70, mins: 14, gif: 'https://post.healthline.com/wp-content/uploads/2019/06/Standing-dumbbell-military-press.gif' },
+            ],
+            advanced: [
+                { id: 'arm5', title: 'Arnold Press', kcal: 80, mins: 15, gif: 'https://dannyleejames.com/wp-content/uploads/2024/02/Single-Arm-Arnold-Press-Gif.gif' },
+                { id: 'arm6', title: 'Pull Ups', kcal: 100, mins: 20, gif: 'https://www.nerdfitness.com/wp-content/uploads/2019/03/chin-up-staci.gif' },
+            ],
+        },
     };
 
     const handleCategoryClick = (category: string) => {
         setActiveCategory(category);
-        setSubExercises(workoutData[category]);
+        setShowLevels(true);
     };
 
-    const handleExerciseClick = (exercise: Exercise) => {
-        setTotalExercises(totalExercises + 1);
-        setTotalKcal(totalKcal + exercise.kcal);
-        setTotalMins(totalMins + exercise.mins);
-        setSelectedExercises((prevExercises) => [...prevExercises, exercise]);
+    const handleLevelSelect = (level: string) => {
+        if (activeCategory) {
+            setCategoryExercises(workoutData[activeCategory][level]);
+            setShowModal(true);
+        }
+        setShowLevels(false);
     };
 
-    const handleRemoveExercise = (exercise: Exercise) => {
-        setTotalExercises(totalExercises - 1);
-        setTotalKcal(totalKcal - exercise.kcal);
-        setTotalMins(totalMins - exercise.mins);
-        setSelectedExercises((prevExercises) => prevExercises.filter(item => item.id !== exercise.id));
+    const handleSelectExercise = (exercise: Exercise) => {
+        setSelectedExercises((prev) => [...prev, exercise]);
+        setTotalKcal((prev) => prev + exercise.kcal);
+        setTotalMins((prev) => prev + exercise.mins);
+        setTotalExercises((prev) => prev + 1);
     };
 
-    const handleEditExercise = (exercise: Exercise, newKcal: number, newMins: number) => {
-        const updatedExercises = selectedExercises.map(item => {
-            if (item.id === exercise.id) {
-                const kcalDiff = newKcal - item.kcal;
-                const minsDiff = newMins - item.mins;
-                setTotalKcal(totalKcal + kcalDiff);
-                setTotalMins(totalMins + minsDiff);
-                return { ...item, kcal: newKcal, mins: newMins };
-            }
-            return item;
-        });
-        setSelectedExercises(updatedExercises);
+    const handleClearExercises = () => {
+        setSelectedExercises([]);
+        setTotalKcal(0);
+        setTotalMins(0);
+        setTotalExercises(0);
     };
 
-    const toggleCategories = () => {
-        setShowCategories((prevShow) => !prevShow);
+    const handleCloseModal = () => {
+        setShowModal(false);
+        setActiveCategory(null);
+        setCategoryExercises([]);
     };
 
     return (
         <div className="myplan-container">
+            <img src={logo} alt="Beefit Logo" className="beefit-logo" />
+            <h1>My Plan</h1>
             <div className="myplan-content">
-                <img src={logo} alt="Beefit Logo" className="logo" />
-                <h1 className="page-title">WORKOUT PLANS</h1>
-
-                <div className="stats">
-                    <div className="stat">
-                        <h2>{totalExercises}</h2>
-                        <p>EXERCISES</p>
-                    </div>
-                    <div className="stat">
-                        <h2>{totalKcal}</h2>
-                        <p>KCAL</p>
-                    </div>
-                    <div className="stat">
-                        <h2>{totalMins}</h2>
-                        <p>MINS</p>
-                    </div>
-                </div>
-
-                <p className="choose-workout">Choose your Workout!</p>
-
-                <button className="create-plan-btn" onClick={toggleCategories}>
-                    CREATE YOUR PLAN HERE!
-                </button>
-
-                {showCategories && (
-                    <div className="workout-grid">
-                        <div className="workout-card" onClick={() => handleCategoryClick('fullBody')}>
-                            <img src="./images/full-body.webp" alt="Full Body" className="workout-image" />
-                            <p className="workout-title">FULL BODY WORKOUT</p>
-                        </div>
-                        <div className="workout-card" onClick={() => handleCategoryClick('abs')}>
-                            <img src="./images/abs-beginner.jpg" alt="Abs Beginner" className="workout-image" />
-                            <p className="workout-title">ABS BEGINNER</p>
-                        </div>
-                        <div className="workout-card" onClick={() => handleCategoryClick('arm')}>
-                            <img src="../images/arm-beginner.webp" alt="Arm Beginner" className="workout-image" />
-                            <p className="workout-title">ARM BEGINNER</p>
-                        </div>
-                    </div>
-                )}
-
-                {activeCategory && (
-                    <div className="sub-exercises">
-                        <h2>{activeCategory.toUpperCase()} EXERCISES</h2>
-                        <ul>
-                            {subExercises.map((exercise) => (
-                                <li key={exercise.id} className="sub-exercise">
-                                    <span>{exercise.title} - {exercise.kcal} KCAL - {exercise.mins} MINS</span>
-                                    <button className="add-btn" onClick={() => handleExerciseClick(exercise)}>Add</button>
-                                    <button
-                                        className="edit-btn"
-                                        onClick={() => {
-                                            const newKcal = parseInt(prompt('Edit KCAL:', exercise.kcal.toString()) || '0', 10);
-                                            const newMins = parseInt(prompt('Edit MINS:', exercise.mins.toString()) || '0', 10);
-                                            handleEditExercise(exercise, newKcal, newMins);
-                                        }}
-                                    >
-                                        Edit
-                                    </button>
-                                    <button className="remove-btn" onClick={() => handleRemoveExercise(exercise)}>Remove</button>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                )}
-
-                <div className="selected-exercises">
-                    <h2>Selected Exercises</h2>
-                    {selectedExercises.length > 0 ? (
+                {selectedExercises.length > 0 && (
+                    <div className="summary">
+                        <h2>Selected Exercises</h2>
                         <ul>
                             {selectedExercises.map((exercise) => (
-                                <li key={exercise.id} className="selected-exercise">
-                                    <span>{exercise.title} - {exercise.kcal} KCAL - {exercise.mins} MINS</span>
-                                    <button
-                                        className="edit-btn"
-                                        onClick={() => {
-                                            const newKcal = parseInt(prompt('Edit KCAL:', exercise.kcal.toString()) || '0', 10);
-                                            const newMins = parseInt(prompt('Edit MINS:', exercise.mins.toString()) || '0', 10);
-                                            handleEditExercise(exercise, newKcal, newMins);
-                                        }}
-                                    >
-                                        Edit
-                                    </button>
-                                    <button className="remove-btn" onClick={() => handleRemoveExercise(exercise)}>Remove</button>
-                                </li>
+                                <li key={exercise.id}>{exercise.title}</li>
                             ))}
                         </ul>
-                    ) : (
-                        <p>No exercises selected yet.</p>
-                    )}
-                </div>
-
-                <Link to="/logfitness" className="log-fitness-link">Go to Log Fitness</Link>
-
-                {selectedExercises.length > 0 && (
-                    <div className="action-buttons">
-                        <button
-                            className="save-btn"
-                            onClick={() => {
-                                alert('Exercises saved!');
-                            }}
-                        >
-                            Save
-                        </button>
+                        <p>Total Exercises: {totalExercises}</p>
+                        <p>Total Calories: {totalKcal} KCAL</p>
+                        <p>Total Time: {totalMins} MINUTES</p>
+                        <button onClick={handleClearExercises} className="clear-button">Clear</button>
                     </div>
                 )}
+
+                <h2>Choose Your Workout Category:</h2>
+                <div className="categories">
+                    <button onClick={() => handleCategoryClick('fullBody')}>Full Body</button>
+                    <button onClick={() => handleCategoryClick('abs')}>Abs</button>
+                    <button onClick={() => handleCategoryClick('arm')}>Arms</button>
+                </div>
+
+                {showLevels && (
+                    <div className="levels">
+                        <h3>Select Difficulty Level:</h3>
+                        <button onClick={() => handleLevelSelect('beginner')}>Beginner</button>
+                        <button onClick={() => handleLevelSelect('intermediate')}>Intermediate</button>
+                        <button onClick={() => handleLevelSelect('advanced')}>Advanced</button>
+                    </div>
+                )}
+
+                {showModal && (
+                    <ExerciseModal
+                        exercises={categoryExercises}
+                        onClose={handleCloseModal}
+                        onSelectExercise={handleSelectExercise}
+                    />
+                )}
+
+                <Link to="/LogFitness">
+                    <button className="next-button">Next</button>
+                </Link>
             </div>
         </div>
     );
