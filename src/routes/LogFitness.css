@@ -1,3 +1,8 @@
+body {
+    margin: 0;
+    font-family:  'Roboto', sans-serif;
+}
+
 .log-fitness {
     position: relative;
     max-width: 200; 
@@ -7,6 +12,8 @@
     overflow: hidden;
     background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex; 
+    height: 100vh; 
 }
 
 .log-fitness::before {
@@ -33,6 +40,7 @@ h1 {
     color: #2C3E50;
     margin-bottom: 20px;
     font-weight: bold;
+    font-size: 2.5rem;
 }
 
 .success-message {
@@ -143,7 +151,6 @@ button:hover {
     background-color: #0056b3;
 }
 
-
 @media (max-width: 768px) {
     .log-fitness {
         margin: 10px;
@@ -162,4 +169,54 @@ button:hover {
         width: 100%; 
         margin-bottom: 10px; 
     }
+}
+
+.left-section {
+    flex: 1;
+    background: linear-gradient(45deg, #ffcccc, #ffe5cc, #ccffcc, #ccffff);
+    background-size: 300% 300%; 
+    animation: gradient 15s ease infinite; 
+    background-image: url('https://dlvkyia8i4zmz.cloudfront.net/NapSBFDSdKko02EP9Azi_q1.svg');
+    background-repeat: no-repeat;
+    background-position: absolute;
+    background-size: 500px auto; 
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.right-section {
+    flex: 1; 
+    padding: 2rem; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    background-color: white; 
+    border-left: 2px solid #ddd; 
+}
+
+.goal-section {
+    position: relative;
+    z-index: 1;
+}
+
+.goal-background {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    filter: blur(10px);
+    z-index: 0;
 }
