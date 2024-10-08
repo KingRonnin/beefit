@@ -6,9 +6,9 @@ Health and Fitness App/Website
 This app will track the end-user’s progress throughout their fitness journey. The app/website will provide an analytics dashboard to get a quick lookup of their progress (and get an option to export the charts to do their own analytics on raw data). The app/website will offer writing tools where they can record or type in whatever they desire; person blogs, shower thoughts, or diary. The app/website will also provide a weekly calendar so that the end-user will know what is going on in the up-coming days (These will be personally imputed by the end-user).
 
 ## Main Features
-* Dashboard
-* My Plan
-* Weekly Reminder
+Analytics Dashboard
+Weekly Calendar
+Writing Tool
 
 ## To-Do List
 * Figure out a layout for all pages moving forward
@@ -17,6 +17,7 @@ This app will track the end-user’s progress throughout their fitness journey. 
 * Take a look at examples for example... myfitnesspal // really good website to take some ideas off of.
 * Store user data into Docker environment
 
+<<<<<<< HEAD
 ## Questions/Problems
 * How is it going to be deployed?
 * Should clerk handle user management?
@@ -37,6 +38,8 @@ To run the back-end side of the web app:
 4. Install packages using pip ***pip install -r requirements.txt***
 5. Run the backend ***python3 manage.py runserver***
 
+=======
+>>>>>>> 3990824ef93ae26e720e00daa0daafb2f6ba12eb
 ## Front-End
 React Framework --Typescript
 
