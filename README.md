@@ -10,23 +10,35 @@ This app will track the end-user’s progress throughout their fitness journey. 
 * My Plan
 * Weekly Reminder
 
-## Audience
-Health & Fitness Starters who want minimal design
+## To-Do List
+* Figure out a layout for all pages moving forward
+* Figure out what stats to track for fitness
+* Security????? // Probably not...
+* Take a look at examples for example... myfitnesspal // really good website to take some ideas off of.
+* Store user data into Docker environment
 
-## How To Run
-To run the page, first do the following steps below:
+## Questions/Problems
+* How is it going to be deployed?
+* Should clerk handle user management?
 
-1. go to the terminal
-2. run: cd front_end
-3. run: npm install -- to install any dependencies
-4. run: npm audit fix -- if there are any vulnerabilities
-5. run: npm run dev -- to run website
+## How To Run / Front End
+To run the front-end side of the web app:
+
+1. Type in Terminal ***cd front_end***
+3. Install any dependencies ***npm install***
+4. Fix any vulnerabilites as suggested by npm ***npm audit fix***
+5. Run Website ***npm run dev***
+
+## How To Run / Back End
+To run the back-end side of the web app:
+1. Type in Terminal ***cd back_end***
+2. 
 
 ## Front-End
-ReactJS
+React Framework --Typescript
 
 ## Back-End
-Python
+Python -- Django
 
 ## Database
 SQLite
