@@ -1,4 +1,4 @@
-import React from 'react'
+^import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './global.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
