@@ -32,7 +32,10 @@ To run the front-end side of the web app:
 ## How To Run / Back End
 To run the back-end side of the web app:
 1. Type in Terminal ***cd back_end***
-2. 
+2. Create a virtual environment for python (Recommended). (Ronaldo: I will use Conda as an example)
+3. Install pip if virtual environment doesn't have one (***Conda install pip***)
+4. Install packages using pip ***pip install -r requirements.txt
+5. Run the backend ***python3 manage.py runserver***
 
 ## Front-End
 React Framework --Typescript
