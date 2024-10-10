@@ -3,7 +3,7 @@ body {
     font-family:  'Roboto', sans-serif;
 }
 
-.sign-in {
+.right-section {
     position: relative;
     max-width: 200; 
     margin: 20px auto;
@@ -17,7 +17,7 @@ body {
 }
 
 
-.sign-in::before {
+.right-section::before {
     content: '';
     position: absolute;
     top: 0;
@@ -31,8 +31,43 @@ body {
     z-index: 0;
 }
 
-.sign-in > * {
+.right-section > * {
     position: relative;
     z-index: 1;
 }
 
+.text {
+    color: #2C3E50;
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.underline {
+    width: 61px;
+    height: 6px;
+    background: #2C3E50;
+    border-radius: 9px;
+}
+
+.input-group {
+    margin-top: 55px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.input {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 480px;
+    height: 80px;
+    background: #eaeaea;
+    border-radius: 6px;
+}
+
+.input input {
+    height: 50px;
+    width: 400px;
+    background: transparent;
+}
