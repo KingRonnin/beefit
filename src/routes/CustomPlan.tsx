@@ -151,7 +151,7 @@ export default function CustomPlan() {
 
     const [currentQuestion, setCurrentQuestion] = useState<number>(0);
     const [showScore, setShowScore] = useState<boolean>(false);
-    const [score, setScore] = useState<number>(0); // Note: Adjust or remove score handling as it may not be relevant.
+    const [score, setScore] = useState<number>(0);
 
     const handleAnswerOptionClick = (isCorrect: boolean) => {
         if (isCorrect) {

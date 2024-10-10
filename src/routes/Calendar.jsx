@@ -6,14 +6,14 @@ import interactionPlugin from "@fullcalendar/interaction";
 
 function Calendar() {
   return (
-    <div>
+    <div style={{ background: 'pink', color: 'yellow', padding: '10px' }}>
       <Fullcalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView={"dayGridMonth"}
         headerToolbar={{
-          start: "today prev,next", // will normally be on the left. if RTL, will be on the right
+          start: "today prev,next", 
           center: "title",
-          end: "dayGridMonth,timeGridWeek,timeGridDay", // will normally be on the right. if RTL, will be on the left
+          end: "dayGridMonth,timeGridWeek,timeGridDay",
         }}
         height={"90vh"}
       />

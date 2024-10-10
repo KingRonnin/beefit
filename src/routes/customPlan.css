@@ -37,7 +37,7 @@ body {
   align-items: center;
 }
 
-/* QUESTION/TIMER/LEFT SECTION */
+
 .question-section {
   width: 100%;
   position: relative;
@@ -65,7 +65,7 @@ body {
   text-align: center;
 }
 
-/* ANSWERS/RIGHT SECTION */
+
 .answer-section {
   width: 100%;
   display: flex;
