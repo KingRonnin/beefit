@@ -113,12 +113,11 @@ const LogFitness: React.FC = () => {
 
                     <button type="submit">Continue</button>
                 </form>
-                <button className="back-btn" onClick={() => navigate('/')}>
-        Return to Home
-      </button>
-    </div>
+                    <button className="back-btn" onClick={() => navigate('/')}>
+                        Return to Home
+                    </button>
             </div>
-        
+        </div>
     );
 };
 

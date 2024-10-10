@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    font-family:  'Roboto', sans-serif;
+}
+
+.sign-in {
+    position: relative;
+    max-width: 200; 
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex; 
+    height: 100vh; 
+}
+
+
+.sign-in::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../images/texture.png');
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px);
+    z-index: 0;
+}
+
+.sign-in > * {
+    position: relative;
+    z-index: 1;
+}
+
