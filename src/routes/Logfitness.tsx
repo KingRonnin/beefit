@@ -10,6 +10,14 @@ const LogFitness: React.FC = () => {
     const [stretchDistance, setStretchDistance] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
 
+    const handleGoalClick = (goal: string) => {
+        setGoal(goal);
+        if (goal === 'weight loss') {
+            navigate('/WeightLossPage'); // Navigate to the WeightLossPage
+        }
+    };
+    
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -19,13 +27,18 @@ const LogFitness: React.FC = () => {
         }
 
         setSuccessMessage('Data logged successfully!');
-        setTimeout(() => setSuccessMessage(''), 3000);
 
+        // Clear the form and then navigate to the MyPlan page
+        setTimeout(() => {
+            setSuccessMessage('');
+            navigate('/myplan');
+        }, 3000);
+
+        // Clear the input fields
         setWeight('');
         setRunDistance('');
         setStretchDistance('');
     };
-    
 
     return (
         <div className="log-fitness">
@@ -33,7 +46,7 @@ const LogFitness: React.FC = () => {
             <div className="right-section">
                 <h1>Track Your Fitness</h1>
                 {successMessage && <p className="success-message">{successMessage}</p>}
-                
+
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>What is your primary fitness goal?</label>
@@ -41,21 +54,24 @@ const LogFitness: React.FC = () => {
                             <button
                                 type="button"
                                 className={goal === 'weight loss' ? 'active' : ''}
-                                onClick={() => setGoal('weight loss')}
+                                onClick={() => handleGoalClick('weight loss')} 
+                                
+                                
                             >
                                 Weight loss
+                                
                             </button>
                             <button
                                 type="button"
                                 className={goal === 'improving endurance' ? 'active' : ''}
-                                onClick={() => setGoal('improving endurance')}
+                                onClick={() => handleGoalClick('improving endurance')}
                             >
                                 Improving endurance
                             </button>
                             <button
                                 type="button"
                                 className={goal === 'enhancing flexibility' ? 'active' : ''}
-                                onClick={() => setGoal('enhancing flexibility')}
+                                onClick={() => handleGoalClick('enhancing flexibility')}
                             >
                                 Enhancing flexibility
                             </button>
@@ -97,12 +113,12 @@ const LogFitness: React.FC = () => {
 
                     <button type="submit">Continue</button>
                 </form>
-
-                <button className="back-btn" onClick={() => navigate('/')}>
-                    Return to Home
-                </button>
+                <button className="back-btn" onClick={() => navigate('/PlanFrontPage')}>
+        Return to Home
+      </button>
+    </div>
             </div>
-        </div>
+        
     );
 };
 

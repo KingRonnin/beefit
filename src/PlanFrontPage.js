@@ -9,7 +9,7 @@ function FrontPage() {
       <header className="header">
         <h1>Welcome to Beefit Plan</h1>
         <p>Your fitness journey starts here!</p>
-        <Link to="/myplan" className="get-started-button">Get Started</Link>
+        <Link to="/Logfitness" className="get-started-button">Get Started</Link> {/* Updated the path here */}
       </header>
 
       <section className="features">
