@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './myplan.css';
-import logo from '../images/beefit-logo.png';
 
 const ExerciseModal: React.FC<{
     exercises: Exercise[];
@@ -141,7 +140,6 @@ const MyPlan: React.FC = () => {
         setTotalMins(0);
         setTotalExercises(0);
     };
-
     const handleCloseModal = () => {
         setShowModal(false);
         setActiveCategory(null);
@@ -150,7 +148,8 @@ const MyPlan: React.FC = () => {
 
     return (
         <div className="myplan-container">
-            <img src={logo} alt="Beefit Logo" className="beefit-logo" />
+         
+
             <h1>My Plan</h1>
             <div className="myplan-content">
                 {selectedExercises.length > 0 && (
@@ -192,7 +191,7 @@ const MyPlan: React.FC = () => {
                     />
                 )}
 
-                <Link to="/LogFitness">
+                <Link to="/Calender">
                     <button className="next-button">Next</button>
                 </Link>
             </div>

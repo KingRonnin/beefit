@@ -113,7 +113,7 @@ const LogFitness: React.FC = () => {
 
                     <button type="submit">Continue</button>
                 </form>
-                <button className="back-btn" onClick={() => navigate('/PlanFrontPage')}>
+                <button className="back-btn" onClick={() => navigate('/')}>
         Return to Home
       </button>
     </div>
