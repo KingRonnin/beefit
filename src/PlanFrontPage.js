@@ -4,27 +4,46 @@ import './PlanFrontPage.css';
 import beefitLogo from './images/beefit-logo.png'; 
 import heroImage from './images/h1_hero.png'; 
 
+
+function scrollToJoinNow() {
+  const joinNowSection = document.getElementById("join-now");
+  if (joinNowSection) {
+    joinNowSection.scrollIntoView({ behavior: "smooth" });
+  }
+}
+
+
 function FrontPage() {
   return (
     <div className="front-page">
+      {/* Header Section */}
       <header className="header">
         <div className="navbar">
           <img src={beefitLogo} alt="Beefit Logo" className="logo" />
           <nav className="nav-links">
-        
+            {/* Add links here */}
+            <Link to="/home">Home</Link>
+            <Link to="/about">About</Link>
+            <Link to="/courses">Courses</Link>
+            <Link to="/pricing">Pricing</Link>
+            <Link to="/gallery">Gallery</Link>
+            <Link to="/blog">Blog</Link>
+            <Link to="/contact">Contact</Link>
           </nav>
           <div className="header-buttons">
             <Link to="/SignIn" className="signin-button">Sign In</Link>
-            <Link to="/SignUp" className="join-now-button">Join Now</Link>
+            <Link to="/" className="join-now-button">Join Now</Link>
           </div>
         </div>
+
+        {/* Hero Section */}
         <div
           className="hero-section"
           style={{ backgroundImage: `url(${heroImage})` }}
         >
           <div className="overlay">
             <h1>Welcome to BEEFIT</h1>
-            <h2>YOUR FITNESS PARTNER</h2>
+            <h2>Your Fitness Partner</h2>
             <Link to="/LogFitness" className="cta-button">
               Get Started
             </Link>
@@ -32,23 +51,29 @@ function FrontPage() {
         </div>
       </header>
 
-      <section className="training-section">
-        <div className="training-box">
-          <h3>Personal Training</h3>
-          <p>One-on-one coaching to push your limits.</p>
-          <Link to="/personal-training" className="training-link">
-            View Courses
-          </Link>
-        </div>
-        <div className="training-box">
-          <h3>Group Training</h3>
-          <p>Motivate yourself in a team environment.</p>
-          <Link to="/group-training" className="training-link">
-            View Courses
-          </Link>
+      {/* What I Offer Section */}
+      <section className="what-i-offer">
+        <h2>What I Offer</h2>
+        <div className="offerings">
+          <div className="offer">
+            <img src="images/bodybuilding.jpg" alt="Body Building" />
+            <h3>Body Building</h3>
+            <p>Build strength and mass through expert training plans.</p>
+          </div>
+          <div className="offer">
+            <img src="images/musclegain.jpg" alt="Muscle Gain" />
+            <h3>Muscle Gain</h3>
+            <p>Gain lean muscle with tailored workout routines.</p>
+          </div>
+          <div className="offer">
+            <img src="images/weightloss.jpg" alt="Weight Loss" />
+            <h3>Weight Loss</h3>
+            <p>Get fit and lose weight with our custom plans.</p>
+          </div>
         </div>
       </section>
 
+      {/* Testimonials Section */}
       <section className="testimonials">
         <h2>What Our Users Say</h2>
         <div className="testimonial">
@@ -61,6 +86,7 @@ function FrontPage() {
         </div>
       </section>
 
+      {/* Footer Section */}
       <footer className="footer">
         <div className="footer-features">
           <h2>Why Choose Beefit Plans?</h2>
@@ -101,5 +127,13 @@ function FrontPage() {
     </div>
   );
 }
+<section id="join-now" className="join-now-section">
+<h2>Join Now</h2>
+<p>Sign up to get access to personalized workout plans and track your fitness progress!</p>
+<button className="join-now-cta">Join the Fitness Journey</button>
+</section>
+
+
+
 
 export default FrontPage;
