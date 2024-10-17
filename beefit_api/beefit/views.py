@@ -7,7 +7,7 @@ def register_view(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("/")
+            return redirect("beefit:login")
     else:   
         form = UserCreationForm()
         
@@ -21,4 +21,4 @@ def login_view(request):
     else:
         form = AuthenticationForm()
     
-    return render(request, 'users/login.h.tml', { 'form': form })
+    return render(request, 'users/login.html', { 'form': form })
