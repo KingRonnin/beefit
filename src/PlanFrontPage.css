@@ -1,161 +1,112 @@
-.front-page {
-  background-image: url('./images/full-body.webp');
-  background-size: cover;
-  background-position: center;
-  color: #333;
-  font-family: 'Arial', sans-serif;
+/* General Styling */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Navbar Styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 20px;
-  min-height: 100vh;
+  background-color: #111;
+}
+
+.nav-links a {
+  color: #fff;
+  margin: 0 15px;
+  text-decoration: none;
+}
+
+.header-buttons a {
+  background-color: #e50914;
+  color: white;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  margin-left: 10px;
+  border-radius: 5px;
+}
+
+/* Hero Section Styling */
+.hero-section {
+  height: 600px;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  position: relative;
+  align-items: center;
+  justify-content: center;
 }
 
-.features {
-  position: relative;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-  max-width: 800px;
-  margin-top: 2rem; 
-  padding: 1rem;
-}
-
-.features ul {
-  list-style-type: none;
-  padding-left: 0;
-}
-
-.features li {
-  margin: 10px 0;
-  font-size: 1.2em;
-}
-
-.features h2 {
+.overlay h1, .overlay h2 {
+  color: #fff;
   text-align: center;
-  margin-bottom: 20px;
 }
 
-.logo {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 100px;
-  height: auto;
-}
-
-.header {
-  text-align: center;
-  margin-bottom: 10px; /* Reduced from 40px to 20px */
-  padding: 20px 10px; /* Reduced from 40px 20px to 20px 10px */
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-  color: #2C3E50;
-}
-
-p {
-  font-size: 1.2rem;
-  color: #34495E;
-}
-
-.get-started-button {
-  display: inline-block;
-  padding: 15px 30px;
-  background-color: #27AE60;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 1.2rem;
-  text-decoration: none;
+.cta-button {
   margin-top: 20px;
-  transition: background-color 0.3s, transform 0.3s;
+  background-color: #e50914;
+  padding: 15px 30px;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
 }
 
-.get-started-button:hover {
-  background-color: #218838;
-  transform: scale(1.05);
-}
-
-.features {
-  margin: 40px 0;
+/* What I Offer Section */
+.what-i-offer {
+  background-color: #111;
+  color: white;
+  padding: 50px 0;
   text-align: center;
 }
 
-.features h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #2C3E50;
+.offerings {
+  display: flex;
+  justify-content: space-around;
 }
 
-.features ul {
-  list-style-type: none;
-  padding: 0;
-  font-size: 1.1rem;
+.offer {
+  width: 30%;
 }
 
-.features li {
-  margin: 10px 0;
-  color: #34495E;
+.offer img {
+  width: 100%;
+  border-radius: 10px;
 }
 
-.testimonials {
-  margin: 40px 0;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+.offer h3 {
+  margin-top: 15px;
+  font-size: 24px;
 }
 
-.testimonials h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  text-align: center;
-  color: #2C3E50;
-}
-
-.testimonial {
-  margin: 20px 0;
-  text-align: center;
-  font-style: italic;
-  color: #555;
-}
-
-.testimonial span {
-  display: block;
-  margin-top: 5px;
-  font-weight: bold;
-  color: #2980B9;
-}
-
+/* Footer Section */
 .footer {
-  text-align: center;
-  margin-top: 40px;
-  padding: 20px;
-  color: #777;
+  background-color: #111;
+  color: white;
+  padding: 40px 0;
 }
 
-@media (max-width: 768px) {
-  .logo {
-    width: 80px;
-  }
+.footer-links a {
+  color: white;
+  margin: 0 15px;
+}
 
-  h1 {
-    font-size: 2rem;
-  }
-
-  .get-started-button {
-    font-size: 1rem;
-  }
-
-  .features h2,
-  .testimonials h2 {
-    font-size: 1.5rem;
-  }
+.social-media a {
+  color: white;
+  margin: 0 10px;
 }

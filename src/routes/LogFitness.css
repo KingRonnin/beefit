@@ -23,7 +23,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('../images/texture.png');
+    background-image: url('../images/h1_hero.png');
     background-size: cover;
     background-position: center;
     filter: blur(10px);

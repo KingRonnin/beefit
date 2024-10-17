@@ -1,0 +1,143 @@
+
+.sign-in-container {
+  background-image: url('../images/h1_hero.png'); 
+  background-size: cover;
+  background-position: center;
+  min-height: 150vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f9; 
+}
+
+.sign-in-box {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.sign-in-box:hover {
+  transform: scale(1.02);
+}
+
+.header-section h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #2C3E50;
+}
+
+.header-section p {
+  font-size: 1.1rem;
+  color: #34495E;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #2C3E50;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+.sign-in-button {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background-color: #27AE60;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+.sign-in-button:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+.alternative-action {
+  margin-top: 20px;
+}
+
+.alternative-action p {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+}
+
+.create-account-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #27AE60;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.create-account-link:hover {
+  background-color: #218838;
+  text-decoration: none;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+
+@media (max-width: 768px) {
+  .sign-in-box {
+    padding: 20px;
+  }
+
+  .header-section h1 {
+    font-size: 2rem;
+  }
+
+  .header-section p {
+    font-size: 1rem;
+  }
+
+  .create-account-link {
+    font-size: 0.9rem;
+  }
+
+  .sign-in-button {
+    padding: 12px;
+    font-size: 1rem;
+  }
+}
