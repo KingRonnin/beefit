@@ -6,7 +6,7 @@
 
 {% block content %}
     <h1> Register new user here! </h1>
-    <form action="/beefit/register" method="post">
+    <form action="/beefit/register/" method="post">
         {% csrf_token %}
         {{ form }}
         <button>Submit</button>
