@@ -1,19 +1,9 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Arial', sans-serif;
-  color: #333;
-  line-height: 1.6;
-}
-
 .front-page {
-  background-image: url('./images/h1_hero.png');
+  background-image: url('./images/full-body.webp');
   background-size: cover;
   background-position: center;
+  color: #333;
+  font-family: 'Arial', sans-serif;
   padding: 20px;
   min-height: 100vh;
   display: flex;
@@ -22,71 +12,29 @@ body {
   position: relative;
 }
 
-.header {
+.features {
+  position: relative;
   background-color: rgba(255, 255, 255, 0.8);
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  max-width: 800px;
+  margin-top: 2rem; 
+  padding: 1rem;
+}
+
+.features ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.features li {
+  margin: 10px 0;
+  font-size: 1.2em;
+}
+
+.features h2 {
   text-align: center;
   margin-bottom: 20px;
-}
-
-.header-buttons {
-  display: flex;
-  gap: 15px; 
-}
-
-.signin-button,
-.join-now-button {
-  padding: 10px 20px;
-  border-radius: 25px;
-  text-transform: uppercase;
-  font-size: 1.1rem;
-  text-decoration: none;
-  transition: background-color 0.3s ease, transform 0.3s;
-}
-
-.signin-button {
-  background-color: #fff;
-  border: 2px solid #007BFF;
-  color: #007BFF;
-}
-
-.signin-button:hover {
-  background-color: #007BFF;
-  color: #fff;
-  transform: scale(1.05);
-}
-
-.join-now-button {
-  background-color: #ff5722;
-  color: white;
-}
-
-.join-now-button:hover {
-  background-color: #e64a19;
-  transform: scale(1.05);
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.nav-links {
-  display: flex;
-  gap: 20px;
-}
-
-.nav-links a {
-  font-size: 1.1rem;
-  color: #333;
-  transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: #007BFF;
 }
 
 .logo {
@@ -94,272 +42,103 @@ body {
   top: 20px;
   right: 20px;
   width: 100px;
+  height: auto;
 }
 
-.hero-section {
-  background-size: cover;
-  height: 60vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.overlay {
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 60px; 
+.header {
   text-align: center;
-  color: #ffffff; 
-  border-radius: 10px; 
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); 
+  margin-bottom: 10px; /* Reduced from 40px to 20px */
+  padding: 20px 10px; /* Reduced from 40px 20px to 20px 10px */
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.overlay h1 {
-  font-size: 2.8rem;
-  margin-bottom: 15px; 
-  text-transform: uppercase; 
-  color: #ff5722; 
-}
-
-.overlay h2 {
-  font-size: 2rem; 
-  margin-bottom: 25px; 
-  font-weight: 300; 
-}
-
-.overlay p {
-  font-size: 1.2rem; 
-  line-height: 1.5;
-  margin-top: 10px; 
-}
-
-.cta-button {
-  background-color: #ff5722;
-  color: white;
-  padding: 15px 30px;
-  border-radius: 30px;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  transition: background-color 0.3s ease;
-}
-
-.cta-button:hover {
-  background-color: #e64a19;
-  transform: scale(1.05);
-}
-
-.features,
-.testimonials {
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 20px;
-  text-align: center;
-}
-
-.features h2,
-.testimonials h2 {
-  font-size: 2rem;
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
   color: #2C3E50;
-  margin-bottom: 20px;
 }
 
-.features ul,
-.testimonials .testimonial {
-  list-style-type: none;
-  padding: 0;
-  font-size: 1.1rem;
+p {
+  font-size: 1.2rem;
   color: #34495E;
 }
 
-.training-section {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+.get-started-button {
+  display: inline-block;
+  padding: 15px 30px;
+  background-color: #27AE60;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  text-decoration: none;
+  margin-top: 20px;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
-.training-item {
-  position: relative;
-  width: 48%; 
-  height: 400px;  
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
+.get-started-button:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+.features {
+  margin: 40px 0;
   text-align: center;
-  overflow: hidden; 
 }
 
-
-
-.group-training {
-  background: url('./images/group-training.png') no-repeat center center/cover;
-}
-
-.training-item .content {
-  background: rgba(0, 0, 0, 0.5);  
-  padding: 20px;
-  border-radius: 10px;
-  backdrop-filter: blur(10px); 
-}
-
-.training-item h2 {
-  font-size: 2.5em;
+.features h2 {
+  font-size: 2rem;
   margin-bottom: 20px;
+  color: #2C3E50;
 }
 
-.training-item p {
-  font-size: 1.2em;
-  margin-bottom: 20px;
-}
-
-.view-courses-btn {
-  background-color: rgba(255, 0, 0, 0.8); 
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 1em;
-  cursor: pointer;
-}
-
-.view-courses-btn:hover {
-  background-color: rgba(255, 0, 0, 1); 
-}
-
-
-
-
-.training-box {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin: 20px 0; 
-}
-
-.training-box h3 {
-  font-size: 1.8rem;
-  margin-bottom: 10px;
-  color: white; 
-  font-family: 'Montserrat', sans-serif; 
-}
-
-.training-box p {
+.features ul {
+  list-style-type: none;
+  padding: 0;
   font-size: 1.1rem;
-  margin-bottom: 20px;
-  color: white; 
-  font-family: 'Roboto', sans-serif; 
 }
 
-.training-link {
-  background-color: rgba(0, 123, 255, 0.8); 
-  color: white;
-  padding: 10px 20px;
-  border-radius: 25px;
-  text-transform: uppercase;
-  transition: background-color 0.3s ease;
+.features li {
+  margin: 10px 0;
+  color: #34495E;
 }
 
-.training-link:hover {
-  background-color: rgba(0, 123, 255, 1); 
-}
-
-
-.training-item .content {
-  background: rgba(0, 0, 0, 0.6);  
+.testimonials {
+  margin: 40px 0;
   padding: 20px;
-  border-radius: 10px;
-  color: white; 
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.training-link {
-  background-color: rgba(0, 123, 255, 0.8); 
-  color: white;
-  padding: 10px 20px;
-  border-radius: 25px;
-  text-transform: uppercase;
-  transition: background-color 0.3s ease;
-}
-
-.training-link:hover {
-  background-color: rgba(0, 123, 255, 1);
-}
-
-
-
-
-.group-training {
-  background: url('./images/group-training.png') no-repeat center center/cover;
-}
-
-.training-item .content {
-  background: rgba(0, 0, 0, 0.6);  
-  padding: 20px;
-  border-radius: 10px;
-}
-
-.training-item h2 {
-  font-size: 2.5em;
+.testimonials h2 {
+  font-size: 2rem;
   margin-bottom: 20px;
+  text-align: center;
+  color: #2C3E50;
 }
 
-.training-item p {
-  font-size: 1.2em;
-  margin-bottom: 20px;
+.testimonial {
+  margin: 20px 0;
+  text-align: center;
+  font-style: italic;
+  color: #555;
 }
 
-.view-courses-btn {
-  background-color: #f00;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 1em;
-  cursor: pointer;
-}
-
-.view-courses-btn:hover {
-  background-color: #d00;
+.testimonial span {
+  display: block;
+  margin-top: 5px;
+  font-weight: bold;
+  color: #2980B9;
 }
 
 .footer {
-  background-color: #2c3e50;
-  color: #ffffff;
-  padding: 40px 20px;
   text-align: center;
-}
-
-.footer-links a,
-.social-media a {
-  color: #ffffff;
-  margin: 0 10px;
-  text-decoration: none;
-}
-
-.footer-links a:hover,
-.social-media a:hover {
-  color: #007BFF;
-}
-
-.footer-bottom {
-  margin-top: 20px;
-}
-
-.back-to-top {
-  background-color: #007BFF;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s;
-}
-
-.back-to-top:hover {
-  background-color: #0056b3;
-  transform: scale(1.05);
+  margin-top: 40px;
+  padding: 20px;
+  color: #777;
 }
 
 @media (max-width: 768px) {
@@ -367,26 +146,12 @@ body {
     width: 80px;
   }
 
-  .hero-section {
-    height: 60vh; 
+  h1 {
+    font-size: 2rem;
   }
 
-  .overlay h1 {
-    font-size: 2.5rem;
-  }
-
-  .overlay h2 {
-    font-size: 1.5rem;
-  }
-
-  .cta-button {
+  .get-started-button {
     font-size: 1rem;
-    padding: 12px 30px;
-  }
-
-  .training-box {
-    width: 100%;
-    margin-bottom: 20px;
   }
 
   .features h2,

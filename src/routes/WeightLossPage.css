@@ -1,3 +1,4 @@
+
 .weight-loss-page {
     font-family: 'Roboto', sans-serif;
     color: #2c3e50;
@@ -89,14 +90,13 @@
     transform: translateY(-3px);
 }
 
+
 .courses-section {
     display: flex;
     justify-content: space-around;
     padding: 60px 20px;
     background: white;
     flex-wrap: wrap;
-    z-index: 10; 
-    position: relative; 
 }
 
 .course {
@@ -139,20 +139,6 @@
 .course:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.group-training, .tips-section, .group-sessions-section {
-    padding: 60px 20px;
-    background: white;
-    z-index: 10; 
-    position: relative; 
-    margin: 20px 0; 
-}
-
-.group-training h2, .tips-section h2, .group-sessions-section h2 {
-    text-align: center;
-    font-size: 28px;
-    margin-bottom: 30px;
 }
 
 .back-btn {

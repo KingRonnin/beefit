@@ -11,7 +11,7 @@ Weekly Calendar
 Writing Tool
 
 ## Audience
-Health & Fitness Starters who want to track their fitness journey and visualize their progress on a chart.
+Health & Fitness Starters who want minimal design
 
 ## Front-End
 ReactJS
