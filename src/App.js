@@ -5,9 +5,10 @@ import PlanFrontPage from './PlanFrontPage.js';
 import MyPlan from './routes/myplan.tsx';
 import LogFitness from './routes/Logfitness.tsx';
 import WeightLossPage from './routes/WeightLossPage.tsx'
-import SignInPage from './routes/SignIn.tsx';
+import SignIn from './routes/SignIn.tsx';
 import Calender from './routes/Calendar.jsx';
 import Contacts from './routes/Contacts.jsx';
+
 
 function App() {
   return (
@@ -21,8 +22,8 @@ function App() {
           <Route path="/WeightLossPage" element={<WeightLossPage />} />
           <Route path="/Calender" element={<Calender />} />
           <Route path="/Contacts" element={<Contacts />} />
-          <Route path="/Contacts" element={<Contacts />} />
-          <Route path="/SignIn" element={<SignInPage />} />
+          <Route path="/SignIn" element={<SignIn />} />
+   
         </Routes>
       </div>
     </Router>

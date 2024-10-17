@@ -10,6 +10,7 @@ body {
     padding: 20px;
     border-radius: 8px;
     overflow: hidden;
+   
     background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     display: flex; 
@@ -23,7 +24,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('../images/texture.png');
+    background-image: url('../images/h1_hero.png');
     background-size: cover;
     background-position: center;
     filter: blur(10px);
@@ -31,7 +32,7 @@ body {
 }
 
 .log-fitness > * {
-    position: relative;
+  
     z-index: 1;
 }
 
@@ -52,6 +53,7 @@ h1 {
 
 .form-group {
     margin-bottom: 15px;
+
 }
 
 label {
@@ -85,6 +87,11 @@ button {
     cursor: pointer;
     font-size: 1rem;
     transition: background-color 0.3s;
+}
+.button-group{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 button:hover {
@@ -173,12 +180,7 @@ button:hover {
 
 .left-section {
     flex: 1;
-    background: linear-gradient(45deg, #ffcccc, #ffe5cc, #ccffcc, #ccffff);
-    background-size: 300% 300%; 
-    animation: gradient 15s ease infinite; 
-    background-image: url('https://dlvkyia8i4zmz.cloudfront.net/NapSBFDSdKko02EP9Azi_q1.svg');
-    background-repeat: no-repeat;
-    background-position: absolute;
+ 
     background-size: 500px auto; 
 }
 
@@ -202,6 +204,7 @@ button:hover {
     justify-content: center; 
     background-color: white; 
     border-left: 2px solid #ddd; 
+  
 }
 
 .goal-section {

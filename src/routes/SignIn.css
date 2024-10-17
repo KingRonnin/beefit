@@ -111,3 +111,21 @@ body {
     background: #eaeaea;
     color: #2C3E50;
 }
+.next-button-container {
+    margin-top: 20px;
+  }
+  
+  .next-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    text-decoration: none; /* No underline */
+    border-radius: 5px; /* Rounded corners */
+    text-align: center;
+  }
+  
+  .next-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+  

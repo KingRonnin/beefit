@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import 'src\routes\customPlan.css';
+import './customPlan.css';
 
 
 type AnswerOption = {
