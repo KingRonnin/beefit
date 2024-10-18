@@ -1,43 +1,75 @@
-
+/* PlanFrontPage.css */
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: #f4f4f4; /* Light background for better contrast */
 }
 
-
-.navbar {
+.front-page {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
+}
+
+.side-navbar {
+  width: 250px; /* Fixed width for the sidebar */
   background-color: #111;
+  padding: 20px;
+  position: fixed; /* Fixed positioning for side nav */
+  height: 100%;
+  overflow-y: auto; /* Enable scrolling if content exceeds viewport */
+}
+
+.logo-container {
+  margin-bottom: 30px; /* More space below the logo */
 }
 
 .nav-links a {
   color: #fff;
-  margin: 0 15px;
+  margin: 15px 0; /* Add margin for vertical spacing */
+  display: block; /* Make links block-level elements */
   text-decoration: none;
+  transition: color 0.3s ease; /* Smooth color transition */
 }
 
-.header-buttons a {
+.nav-links a:hover {
+  color: #e50914; /* Change color on hover */
+}
+
+.header-buttons {
+  margin-top: 30px; /* Increased margin for better spacing */
+}
+
+.header-buttons a,
+.header-buttons button {
   background-color: #e50914;
   color: white;
-  padding: 10px 20px;
+  padding: 12px 15px; /* Adjusted padding */
   text-transform: uppercase;
-  margin-left: 10px;
+  margin-top: 10px;
   border-radius: 5px;
+  display: block; /* Make buttons block-level elements */
+  width: 100%; /* Full width for buttons */
+  font-size: 16px; /* Font size for buttons */
 }
 
+.main-content {
+  margin-left: 270px; /* Adjust margin to the right of the sidebar */
+  padding: 20px;
+  flex-grow: 1; /* Allow content to grow and take available space */
+  background-color: #fff; /* White background for main content */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
 
 .hero-section {
-  height: 600px;
+  height: 300px; /* Increased height for better visual impact */
   background-size: cover;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 30px; /* Space below hero section */
 }
 
 .overlay {
@@ -53,9 +85,11 @@ body {
   justify-content: center;
 }
 
-.overlay h1, .overlay h2 {
+.overlay h1,
+.overlay h2 {
   color: #fff;
   text-align: center;
+  margin: 0; /* Remove default margin */
 }
 
 .cta-button {
@@ -65,61 +99,62 @@ body {
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
+  font-size: 16px; /* Consistent button size */
 }
 
+.testimonials {
+  margin: 40px 0; /* Margin for spacing above and below */
+  padding: 20px;
+  background-color: #f9f9f9; /* Light background for testimonials */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
 
-.what-i-offer {
-  background-color: #111;
-  color: white;
-  padding: 50px 0;
+.testimonials h2 {
   text-align: center;
-  position: relative; 
-  z-index: 10; 
+  margin-bottom: 20px; /* Space below the title */
+}
+
+.testimonial {
+  margin-bottom: 20px; /* Space between testimonials */
+  padding: 15px; /* Padding inside each testimonial */
+  background-color: #fff; /* White background for each testimonial */
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .footer {
   background-color: #111;
   color: white;
-  padding: 100px 0; 
+  padding: 60px 20px; /* Padding top and bottom */
   position: relative;
   z-index: 10;
+  margin-top: 40px; /* Space above footer */
 }
 
-.offerings {
-  display: flex;
-  justify-content: space-around;
-}
-
-.offer {
-  width: 30%;
-}
-
-.offer img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-.offer h3 {
-  margin-top: 15px;
-  font-size: 24px;
-}
-
-/* Footer Links and Social Media */
 .footer-links a {
   color: white;
   margin: 0 15px;
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.footer-links a:hover {
+  color: #e50914; /* Change color on hover */
 }
 
 .social-media a {
   color: white;
   margin: 0 10px;
+  font-size: 18px; /* Increased size for social media icons */
 }
+
 .join-now-section {
   background-color: #1a1a1a;
-  padding: 50px;
+  padding: 60px; /* Increased padding for join section */
   text-align: center;
   color: white;
   margin-top: 50px;
+  border-radius: 8px; /* Rounded corners */
 }
 
 .join-now-section h2 {
@@ -145,4 +180,30 @@ body {
 
 .join-now-cta:hover {
   background-color: darkred;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.loading-spinner {
+  width: 100px; 
+  height: auto;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
