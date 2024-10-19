@@ -1,4 +1,3 @@
-// FrontPage.jsx
 import React, { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './PlanFrontPage.css'; 
@@ -10,9 +9,11 @@ function FrontPage() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  
+  const aboutSectionRef = useRef(null);
+  const coursesSectionRef = useRef(null);
+  const pricingSectionRef = useRef(null);
   const joinNowSectionRef = useRef(null);
-
+  const offersSectionRef = useRef(null);
 
   const handleGetStartedClick = () => {
     setLoading(true);
@@ -22,15 +23,9 @@ function FrontPage() {
     }, 2000);
   };
 
-  const handleJoinNowClick = () => {
-    if (joinNowSectionRef.current) {
-      joinNowSectionRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleOffersClick = () => {
-    if (offersSectionRef.current) {
-      offersSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+  const handleScrollToSection = (sectionRef) => {
+    if (sectionRef.current) {
+      sectionRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -42,29 +37,21 @@ function FrontPage() {
           <img src={beefitLogo} alt="Beefit Logo" className="logo" />
         </div>
         <div className="nav-links">
-          <Link to="/home">Home</Link>
-          <Link to="/about">About</Link>
-          <Link to="/courses">Courses</Link>
-          <Link to="/pricing">Pricing</Link>
-          <Link to="/gallery">Gallery</Link>
-          <Link to="/contact">Contact</Link>
+          <button onClick={() => handleScrollToSection(aboutSectionRef)}>About</button>
+          <button onClick={() => handleScrollToSection(coursesSectionRef)}>Courses</button>
+          <button onClick={() => handleScrollToSection(pricingSectionRef)}>Pricing</button>
+          <button onClick={() => handleScrollToSection(offersSectionRef)}>Offers</button>
+          <button onClick={() => handleScrollToSection(joinNowSectionRef)}>Join Now</button>
         </div>
         <div className="header-buttons">
           <Link to="/SignIn" className="signin-button">Sign In</Link>
-          <button onClick={handleJoinNowClick} className="join-now-section">
-            Join Now
-          </button>
         </div>
       </nav>
 
       {/* Main Content */}
       <div className="main-content">
         <header className="header">
-          {/* Hero Section */}
-          <div
-            className="hero-section"
-            style={{ backgroundImage: `url(${heroImage})` }}
-          >
+          <div className="hero-section" style={{ backgroundImage: `url(${heroImage})` }}>
             <div className="overlay">
               <h1>Welcome to BEEFIT</h1>
               <h2>Your Fitness Partner</h2>
@@ -75,67 +62,37 @@ function FrontPage() {
           </div>
         </header>
 
-        {/* Loading Overlay */}
         {loading && (
-          <div className="loading-overlay" id="loadingOverlay">
+          <div className="loading-overlay">
             <img src={loadingGif} alt="Loading..." className="loading-spinner" />
             <p>Loading...</p>
           </div>
         )}
 
-        {/* Testimonials Section */}
-        <section className="testimonials">
-          <h2>What Our Users Say</h2>
-          <div className="testimonial">
-            <p>"Beefit has transformed my approach to fitness. The tracking features keep me accountable!"</p>
-            <span>- Alex, Fitness Enthusiast</span>
-          </div>
-          <div className="testimonial">
-            <p>"I love the personalized recommendations. It's like having a coach in my pocket!"</p>
-            <span>- Jamie, Beginner</span>
-          </div>
+        {/* About Section */}
+        <section id="about" className="about-section" ref={aboutSectionRef}>
+          <h2>About Beefit</h2>
+          <p>Beefit is your ultimate fitness companion, helping you achieve your health goals with personalized plans, progress tracking, and a supportive community.</p>
         </section>
 
-        {/* Footer Section */}
-        <footer className="footer">
-          <div className="footer-features">
-            <h2>Why Choose Beefit Plans?</h2>
-            <ul>
-              <li>Track your fitness progress</li>
-              <li>Analyze your performance with interactive charts</li>
-              <li>Get personalized recommendations</li>
-              <li>Join a community of fitness enthusiasts</li>
-              <li>Access workout plans tailored to your goals</li>
-            </ul>
-          </div>
-          
-    
+        {/* Courses Section */}
+        <section id="courses" className="courses-section" ref={coursesSectionRef}>
+          <h2>Courses We Offer</h2>
+          <p>Explore our range of fitness courses, from beginner to advanced, designed to suit all fitness levels and help you reach your personal goals.</p>
+        </section>
 
-          <div className="footer-links">
-            <Link to="/privacy-policy">Privacy Policy</Link>
-            <Link to="/terms-of-service">Terms of Service</Link>
-            <Link to="/contact">Contact Us</Link>
-          </div>
+        {/* Pricing Section */}
+        <section id="pricing" className="pricing-section" ref={pricingSectionRef}>
+          <h2>Our Pricing Plans</h2>
+          <p>Choose a plan that fits your needs. We offer affordable pricing options, whether you’re just starting or looking for premium features.</p>
+        </section>
 
-          <div className="social-media">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-twitter"></i>
-            </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-instagram"></i>
-            </a>
-          </div>
-
-          <div className="footer-bottom">
-            <p>&copy; 2024 Beefit. All rights reserved.</p>
-            <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="back-to-top">
-              Back to Top
-            </button>
-          </div>
-        </footer>
+        {/* Offers Section */}
+        <section id="offers" className="offers-section" ref={offersSectionRef}>
+          <h2>Special Offers</h2>
+          <p>Sign up today and get 30% off on all premium plans!</p>
+          <button className="offers-cta-button">Check Our Plans</button>
+        </section>
 
         {/* Join Now Section */}
         <section id="join-now" className="join-now-section" ref={joinNowSectionRef}>

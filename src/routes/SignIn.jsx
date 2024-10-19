@@ -189,6 +189,10 @@ export default function SignInPage() {
                 Already have an account?{' '}
                 <span onClick={() => setIsSignUp(false)} className="toggle-link">
                   Sign in
+
+                 
+                  
+            
                 </span>
               </p>
             </div>

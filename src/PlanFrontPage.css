@@ -4,72 +4,82 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #f4f4f4; /* Light background for better contrast */
+  background-color: #f4f4f4;
 }
 
 .front-page {
   display: flex;
+  position: relative; /* Ensure sections are stackable */
+  z-index: 1;
 }
 
 .side-navbar {
-  width: 250px; /* Fixed width for the sidebar */
+  width: 250px;
   background-color: #111;
   padding: 20px;
-  position: fixed; /* Fixed positioning for side nav */
+  position: fixed;
   height: 100%;
-  overflow-y: auto; /* Enable scrolling if content exceeds viewport */
+  overflow-y: auto;
+  z-index: 10; /* Sidebar on top */
 }
 
 .logo-container {
-  margin-bottom: 30px; /* More space below the logo */
+  margin-bottom: 30px;
 }
 
-.nav-links a {
+.nav-links a, .nav-links button {
   color: #fff;
-  margin: 15px 0; /* Add margin for vertical spacing */
-  display: block; /* Make links block-level elements */
+  margin: 15px 0;
+  display: block;
   text-decoration: none;
-  transition: color 0.3s ease; /* Smooth color transition */
+  transition: color 0.3s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: left;
 }
 
-.nav-links a:hover {
-  color: #e50914; /* Change color on hover */
+.nav-links a:hover, .nav-links button:hover {
+  color: #e50914;
 }
 
 .header-buttons {
-  margin-top: 30px; /* Increased margin for better spacing */
+  margin-top: 30px;
 }
 
-.header-buttons a,
-.header-buttons button {
+.header-buttons a, .header-buttons button {
   background-color: #e50914;
   color: white;
-  padding: 12px 15px; /* Adjusted padding */
+  padding: 12px 15px;
   text-transform: uppercase;
   margin-top: 10px;
   border-radius: 5px;
-  display: block; /* Make buttons block-level elements */
-  width: 100%; /* Full width for buttons */
-  font-size: 16px; /* Font size for buttons */
+  display: block;
+  width: 100%;
+  font-size: 16px;
 }
 
 .main-content {
-  margin-left: 270px; /* Adjust margin to the right of the sidebar */
+  margin-left: 270px;
   padding: 20px;
-  flex-grow: 1; /* Allow content to grow and take available space */
-  background-color: #fff; /* White background for main content */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  flex-grow: 1;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
 }
 
 .hero-section {
-  height: 300px; /* Increased height for better visual impact */
+  height: 300px;
   background-size: cover;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 30px; /* Space below hero section */
+  margin-bottom: 30px;
+  z-index: 1; /* Ensure it appears on top of other content */
 }
 
 .overlay {
@@ -83,13 +93,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.overlay h1,
-.overlay h2 {
-  color: #fff;
-  text-align: center;
-  margin: 0; /* Remove default margin */
+  z-index: 5; /* Ensure overlay is visible over background */
 }
 
 .cta-button {
@@ -97,64 +101,58 @@ body {
   background-color: #e50914;
   padding: 15px 30px;
   color: #fff;
-  text-decoration: none;
   border-radius: 5px;
-  font-size: 16px; /* Consistent button size */
+  font-size: 16px;
 }
 
-.testimonials {
-  margin: 40px 0; /* Margin for spacing above and below */
-  padding: 20px;
-  background-color: #f9f9f9; /* Light background for testimonials */
+.testimonials, .about-section, .courses-section, .pricing-section {
+  background-color: #f9f9f9;
+  padding: 60px;
+  margin: 40px 0;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1; /* Regular content sections */
 }
 
-.testimonials h2 {
+.testimonials h2, .about-section h2, .courses-section h2, .pricing-section h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
   text-align: center;
-  margin-bottom: 20px; /* Space below the title */
-}
-
-.testimonial {
-  margin-bottom: 20px; /* Space between testimonials */
-  padding: 15px; /* Padding inside each testimonial */
-  background-color: #fff; /* White background for each testimonial */
-  border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .footer {
   background-color: #111;
   color: white;
-  padding: 60px 20px; /* Padding top and bottom */
+  padding: 60px 20px;
+  margin-top: 40px;
   position: relative;
-  z-index: 10;
-  margin-top: 40px; /* Space above footer */
+  z-index: 1;
 }
 
 .footer-links a {
   color: white;
   margin: 0 15px;
-  transition: color 0.3s ease; /* Smooth color transition */
+  transition: color 0.3s ease;
 }
 
 .footer-links a:hover {
-  color: #e50914; /* Change color on hover */
+  color: #e50914;
 }
 
 .social-media a {
   color: white;
   margin: 0 10px;
-  font-size: 18px; /* Increased size for social media icons */
+  font-size: 18px;
 }
 
 .join-now-section {
   background-color: #1a1a1a;
-  padding: 60px; /* Increased padding for join section */
+  padding: 60px;
   text-align: center;
   color: white;
   margin-top: 50px;
-  border-radius: 8px; /* Rounded corners */
+  border-radius: 8px;
+  z-index: 1;
 }
 
 .join-now-section h2 {
@@ -182,6 +180,7 @@ body {
   background-color: darkred;
 }
 
+/* Loading Overlay */
 .loading-overlay {
   position: fixed;
   top: 0;
@@ -194,16 +193,11 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 1000; /* Ensure loading overlay is on top of everything */
 }
 
 .loading-spinner {
-  width: 100px; 
+  width: 100px;
   height: auto;
   margin-bottom: 20px;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
 }
