@@ -2,6 +2,7 @@ import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { ClerkProvider, SignedIn, SignedOut, UserButton } from '@clerk/clerk-react'
 import '../global.css'
 import Header from '../component/header' 
+import react from 'react'
 
 export const metadata = {
     title: 'Health and Fitness Website',
@@ -22,7 +23,6 @@ export default function RootLayout() {
       routerPush={(to) => navigate(to)}
       routerReplace={(to) => navigate(to, { replace: true })}
       publishableKey={PUBLISHABLE_KEY}
-    >
         <html lang='en'>
             <body>
               <Header />
