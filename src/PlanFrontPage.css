@@ -286,23 +286,20 @@ body {
 
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
-  .side-navbar {
-    width: 200px;
-  }
-
-  .main-content {
-    margin-left: 220px;
-  }
-
   .hero-section {
-    height: 250px;
+    height: 200px; /* Adjust for smaller screens */
   }
 
-  .loading-spinner {
-    width: 70px;
+  .slider-slide {
+    height: 200px; /* Adjust for smaller screens */
   }
 
-  .join-now-section {
-    padding: 40px;
+  .slider-overlay h2 {
+    font-size: 1.5em; /* Adjust title size */
+  }
+
+  .slider-overlay p {
+    font-size: 1em; /* Adjust description size */
   }
 }
+

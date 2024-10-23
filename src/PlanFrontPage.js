@@ -5,6 +5,7 @@ import beefitLogo from './images/beefit-logo.png';
 import heroImage from './images/h1_hero.png'; 
 import loadingGif from './images/loading-gif.gif'; 
 
+
 function FrontPage() {
   const [loading, setLoading] = useState(false);
   const [showPricing, setShowPricing] = useState(false);
