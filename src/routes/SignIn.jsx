@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Assuming you're using react-router for navigation
 import './SignIn.css';
+import loadingGif from '../images/loading-gif.gif'; // Make sure to adjust the path to your loading GIF
 
 export default function SignInPage() {
   const [email, setEmail] = useState('');
@@ -7,114 +9,117 @@ export default function SignInPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [isSignUp, setIsSignUp] = useState(false); 
+  const [isSignUp, setIsSignUp] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [loggedInUser, setLoggedInUser] = useState(null);
+  const [loading, setLoading] = useState(false); // Track loading state
 
-  const handleSignIn = async (e) => {
+  const navigate = useNavigate(); // For navigation
+
+  // Simplified password validation function
+  const validatePassword = (password) => {
+    return password.length >= 8 && password.length <= 16;
+  };
+
+  const handleSignIn = (e) => {
     e.preventDefault();
-    const apiUrl = 'https://your-backend-api.com/sign-in';
-
-    const userData = {
-      email,
-      password
-    };
-
-    try {
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData),
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        console.log('Logged in successfully:', data);
-      } else {
-        setErrorMessage(data.message || 'Invalid credentials');
-      }
-    } catch (error) {
-      setErrorMessage('An error occurred during sign-in. Please try again.');
+    const existingUser = users.find((user) => user.email === email && user.password === password);
+    if (existingUser) {
+      setLoggedInUser(existingUser);
+      setErrorMessage('');
+      console.log('Logged in successfully:', existingUser);
+    } else {
+      setErrorMessage('Invalid credentials');
     }
   };
 
-  const handleSignUp = async (e) => {
+  const handleSignUp = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       setErrorMessage('Passwords do not match');
       return;
     }
 
-    const apiUrl = 'https://your-backend-api.com/sign-up';
+    if (!validatePassword(password)) {
+      setErrorMessage('Password must be between 8-16 characters.');
+      return;
+    }
 
-    const userData = {
+    const newUser = {
       email,
       password,
-      phone: phoneNumber
+      phone: phoneNumber,
     };
 
-    try {
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData),
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        console.log('Account created successfully:', data);
-        setErrorMessage('');
-        setIsSignUp(false);
-      } else {
-        setErrorMessage(data.message || 'Error creating account');
-      }
-    } catch (error) {
-      setErrorMessage('An error occurred during sign-up. Please try again.');
+    const userExists = users.some((user) => user.email === email);
+    if (userExists) {
+      setErrorMessage('User already exists');
+    } else {
+      setUsers([...users, newUser]);
+      setErrorMessage('');
+      setIsSignUp(false);
+      console.log('Account created successfully:', newUser);
     }
+  };
+
+  const handleGetStartedClick = () => {
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+      navigate('/logfitness'); // Redirect to the "LogFitness" page
+    }, 2000); // Simulate a 2-second loading delay
   };
 
   return (
     <div className={`sign-in-container ${isSignUp ? 'flip' : ''}`}>
       <div className="sign-in-box">
         <div className="sign-in-box-inner">
-        
           <div className="sign-in-form">
             <div className="header-section">
               <h1>Welcome To Beefit!</h1>
-              <p>Sign in to Get Started.</p>
+              <p>{loggedInUser ? `Logged in as ${loggedInUser.email}` : 'Sign in to Get Started.'}</p>
             </div>
 
             {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-            <form onSubmit={handleSignIn}>
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  placeholder="Enter your email"
-                />
+            {!loggedInUser && (
+              <form onSubmit={handleSignIn}>
+                <div className="form-group">
+                  <label htmlFor="email">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    placeholder="Enter your email"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="password">Password</label>
+                  <input
+                    type="password"
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    placeholder="Enter your password"
+                  />
+                </div>
+                <button type="submit" className="sign-in-button">
+                  Sign In
+                </button>
+              </form>
+            )}
+
+            {loggedInUser && (
+              <div>
+                <button className="cta-button" onClick={handleGetStartedClick}>
+                  Get Started
+                </button>
               </div>
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  placeholder="Enter your password"
-                />
-              </div>
-              <button type="submit" className="sign-in-button">
-                Sign In
-              </button>
-            </form>
+            )}
 
             <div className="alternative-action">
               <p>
@@ -189,16 +194,20 @@ export default function SignInPage() {
                 Already have an account?{' '}
                 <span onClick={() => setIsSignUp(false)} className="toggle-link">
                   Sign in
-
-                 
-                  
-            
                 </span>
               </p>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Loading overlay */}
+      {loading && (
+        <div className="loading-overlay">
+          <img src={loadingGif} alt="Loading..." className="loading-spinner" />
+          <p>Loading...</p>
+        </div>
+      )}
     </div>
   );
 }

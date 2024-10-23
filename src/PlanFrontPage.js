@@ -31,7 +31,7 @@ function FrontPage() {
 
   return (
     <div className="front-page">
-      {/* Side Navigation Bar */}
+    
       <nav className="side-navbar">
         <div className="logo-container">
           <img src={beefitLogo} alt="Beefit Logo" className="logo" />
@@ -69,7 +69,6 @@ function FrontPage() {
           </div>
         )}
 
-        {/* About Section */}
         <section id="about" className="about-section" ref={aboutSectionRef}>
           <h2>About Beefit</h2>
           <p>Beefit is your ultimate fitness companion, helping you achieve your health goals with personalized plans, progress tracking, and a supportive community.</p>

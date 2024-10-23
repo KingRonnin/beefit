@@ -27,10 +27,8 @@ const WeightLossPage: React.FC = () => {
       <header className="header">
         <nav>
           <ul>
-            <li><Link to="/">Home</Link></li> {/* Update this */}
-            <li><Link to="/about">About</Link></li>
+            <li><Link to="/">Home</Link></li> 
             <li><Link to="/myplan">My Plan</Link></li>
-            <li><Link to="/Contacts">Contacts</Link></li> {/* Update this */}
           </ul>
         </nav>
       </header>

@@ -9,6 +9,9 @@ import Calender from './routes/Calendar.jsx';
 import Contacts from './routes/Contacts.jsx';
 import SignIn from './routes/SignIn.jsx';
 
+
+
+
 function App() {
   return (
     <Router>
@@ -20,8 +23,11 @@ function App() {
           <Route path="/PlanFrontPage" element={<PlanFrontPage />} />
           <Route path="/WeightLossPage" element={<WeightLossPage />} />
           <Route path="/Calender" element={<Calender />} />
-          <Route path="/Contacts" element={<Contacts />} />
           <Route path="/SignIn" element={<SignIn />} />
+      
+          
+         
+          
         </Routes>
       </div>
     </Router>
