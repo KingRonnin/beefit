@@ -47,21 +47,7 @@ function FrontPage() {
 
   return (
     <div className="front-page">
-      <nav className="side-navbar">
-        <div className="logo-container">
-          <img src={beefitLogo} alt="Beefit Logo" className="logo" />
-        </div>
-        <div className="nav-links">
-          <button onClick={() => handleScrollToSection(coursesSectionRef)}>Courses</button>
-          <button onClick={() => handleScrollToSection(pricingSectionRef)}>Pricing</button>
-          <button onClick={() => handleScrollToSection(joinNowSectionRef)}>Join Now</button>
-          <button onClick={() => handleScrollToSection(aboutSectionRef)}>About</button>
-        </div>
-        <div className="header-buttons">
-          <Link to="/SignIn" className="signin-button">Sign In</Link>
-          <Link to="/myplan" className="myplan-button">Workout Category</Link>
-        </div>
-      </nav>
+     
 
       <div className="main-content">
         <header className="header">
