@@ -36,7 +36,7 @@ class Exercise(models.Model):
             self.slug = self.exercise
         super(Exercise, self).save(*args, **kwargs)
     
-class StrengthExercise(models.Model):
+class Strength(models.Model):
     exercise = models.ForeignKey(Exercise, on_delete=models.SET_NULL, null=True, related_name='strength_exercises')
     set = models.PositiveIntegerField()
     rep = models.PositiveIntegerField()
@@ -49,6 +49,20 @@ class StrengthExercise(models.Model):
     def save(self, *args, **kwargs):
         if self.slug == "" or self.slug is None:
             self.slug = f"{slugify(self.exercise)}-{shortuuid.uuid()[:2]}"
-        super(StrengthExercise, self).save(*args, **kwargs)
+        super(Strength, self).save(*args, **kwargs)
     
+class Cardiovascular(models.Model):
+    exercise = models.ForeignKey(Exercise, on_delete=models.SET_NULL, null=True, related_name='cardiovascular_exercises')
+    step = models.PositiveIntegerField(blank=True)
+    time = models.PositiveIntegerField()
+    calories_burnt = models.PositiveIntegerField(blank=True)
+    slug = models.SlugField(unique=True, null=True, blank=True)
     
+    def __str__(self):
+        return self.exercise
+    
+    def save(self, *args, **kwargs):
+        if self.slug == "" or self.slug is None:
+            self.slug = f"{slugify(self.exercise)}-{shortuuid.uuid()[:2]}"
+        super(Cardiovascular, self).save(*args, **kwargs)
+
