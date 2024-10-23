@@ -109,17 +109,6 @@ function FrontPage() {
           </button>
         </section>
 
-        {/* Join Now Section */}
-        <section id="join-now" className="join-now-section" ref={joinNowSectionRef}>
-          <h2>Join Now</h2>
-          <p>Sign up to get access to personalized workout plans and track your fitness progress!</p>
-        </section>
-
-        {/* About Section */}
-        <section id="about" className="about-section">
-          <h2>About Beefit</h2>
-          <p>Beefit is your ultimate fitness companion, helping you achieve your health goals with personalized plans, progress tracking, and a supportive community.</p>
-        </section>
       </div>
     </div>
   );
