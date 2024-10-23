@@ -53,12 +53,12 @@ function FrontPage() {
         <div className="nav-links">
           <button onClick={() => handleScrollToSection(coursesSectionRef)}>Courses</button>
           <button onClick={() => handleScrollToSection(pricingSectionRef)}>Pricing</button>
-          <button onClick={() => handleScrollToSection(offersSectionRef)}>Offers</button>
           <button onClick={() => handleScrollToSection(joinNowSectionRef)}>Join Now</button>
           <button onClick={() => handleScrollToSection(aboutSectionRef)}>About</button>
         </div>
         <div className="header-buttons">
           <Link to="/SignIn" className="signin-button">Sign In</Link>
+          <Link to="/myplan" className="myplan-button">Workout Category</Link>
         </div>
       </nav>
 

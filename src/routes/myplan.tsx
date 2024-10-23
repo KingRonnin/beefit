@@ -140,6 +140,7 @@ const MyPlan: React.FC = () => {
         setTotalMins(0);
         setTotalExercises(0);
     };
+    
     const handleCloseModal = () => {
         setShowModal(false);
         setActiveCategory(null);
@@ -148,9 +149,7 @@ const MyPlan: React.FC = () => {
 
     return (
         <div className="myplan-container">
-         
-
-            <h1>My Plan</h1>
+            <h1>Workout Options</h1>
             <div className="myplan-content">
                 {selectedExercises.length > 0 && (
                     <div className="summary">
@@ -169,9 +168,9 @@ const MyPlan: React.FC = () => {
 
                 <h2>Choose Your Workout Category:</h2>
                 <div className="categories">
-                    <button onClick={() => handleCategoryClick('fullBody')}>Full Body</button>
-                    <button onClick={() => handleCategoryClick('abs')}>Abs</button>
-                    <button onClick={() => handleCategoryClick('arm')}>Arms</button>
+                    <button className={`category-button full-body-button`} onClick={() => handleCategoryClick('fullBody')}>Full Body</button>
+                    <button className={`category-button abs-button`} onClick={() => handleCategoryClick('abs')}>Abs</button>
+                    <button className={`category-button arm-button`} onClick={() => handleCategoryClick('arm')}>Arms</button>
                 </div>
 
                 {showLevels && (

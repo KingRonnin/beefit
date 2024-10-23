@@ -6,7 +6,6 @@ import MyPlan from './routes/myplan.tsx';
 import LogFitness from './routes/Logfitness.tsx';
 import WeightLossPage from './routes/WeightLossPage.tsx';
 import Calender from './routes/Calendar.jsx';
-import Contacts from './routes/Contacts.jsx';
 import SignIn from './routes/SignIn.jsx';
 
 
@@ -24,7 +23,7 @@ function App() {
           <Route path="/WeightLossPage" element={<WeightLossPage />} />
           <Route path="/Calender" element={<Calender />} />
           <Route path="/SignIn" element={<SignIn />} />
-      
+         
           
          
           
