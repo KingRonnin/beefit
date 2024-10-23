@@ -176,7 +176,6 @@ function FrontPage() {
         <section id="join-now" className="join-now-section" ref={joinNowSectionRef}>
           <h2>Join Now</h2>
           <p>Sign up to get access to personalized workout plans and track your fitness progress!</p>
-          <button className="join-now-cta">Join the Fitness Journey</button>
         </section>
 
         <section id="about" className="about-section" ref={aboutSectionRef}>

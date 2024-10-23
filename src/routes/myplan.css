@@ -47,12 +47,12 @@ body {
 /* Animation for Modal */
 @keyframes slideIn {
   from {
-      transform: translateY(-50px);
-      opacity: 0;
+    transform: translateY(-50px) rotate(-10deg);
+    opacity: 0;
   }
   to {
-      transform: translateY(0);
-      opacity: 1;
+    transform: translateY(0) rotate(0);
+    opacity: 1;
   }
 }
 
@@ -70,12 +70,13 @@ button {
   padding: 10px 15px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 button:hover {
   background-color: #e64a19;
   transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 button:disabled {
@@ -95,10 +96,10 @@ button:disabled {
 /* Animation for Summary */
 @keyframes fadeIn {
   from {
-      opacity: 0;
+    opacity: 0;
   }
   to {
-      opacity: 1;
+    opacity: 1;
   }
 }
 
@@ -110,33 +111,44 @@ button:disabled {
   background-color: #d32f2f;
 }
 
-/* Categories and Levels */
+/* Categories and Levels with Transparent Box */
 .categories, .levels {
   display: flex;
   flex-direction: column; 
-  gap: 15px; 
+  gap: 20px; /* Increased gap for larger boxes */
   margin: 20px 0;
+  background: rgba(255, 255, 255, 0.1); /* Transparent background */
+  backdrop-filter: blur(10px); /* Blurred background */
+  padding: 25px; /* Increased padding */
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .levels h3 {
   margin: 10px 0;
+  color: #fff;
 }
 
+/* Larger and More Dynamic Category Buttons */
 .category-button {
   width: 100%;
-  padding: 30px;
+  padding: 50px; /* Increased padding for larger buttons */
   border: none; 
-  border-radius: 8px;
+  border-radius: 12px; /* More rounded corners for modern look */
   color: white; 
-  font-size: 20px; 
+  font-size: 22px; /* Slightly larger font */
   cursor: pointer; 
   background-size: cover; 
   background-position: center;
-  transition: transform 0.3s ease; 
+  transition: transform 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease; 
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Softer shadow for professional look */
 }
 
 .category-button:hover {
-  transform: scale(1.05); 
+  transform: scale(1.12) rotate(2deg); /* Slightly more exaggerated hover effect */
+  opacity: 0.9;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
 }
 
 /* Specific backgrounds for each category */
@@ -165,12 +177,11 @@ button:disabled {
   margin-top: 20px; /* Add some space above the button */
 }
 
-/* Animation for Next Button on Hover */
 .next-button:hover {
   background-color: #d32f2f; /* Darker red on hover */
-  transform: translateY(-3px); /* Move up slightly on hover */
+  transform: translateY(-3px) scale(1.05); 
 }
 
 .next-button:active {
-  transform: translateY(1px); /* Move down slightly on click */
+  transform: translateY(1px) scale(0.95); 
 }
