@@ -60,8 +60,29 @@ class StrengthSerializer(serializers.ModelSerializer):
     class Meta:
         model = api_models.Strength
         fields = "__all__"
+    
+    def __init__(self, *args, **kwargs):
+        super(StrengthSerializer, self).__init__(*args, **kwargs)
+        request = self.context.get('request')
+        self.Meta.depth = 0 if request and request.method == "POST" else 1
         
 class CardiovascularSerializer(serializers.ModelSerializer):
     class Meta:
         model = api_models.Cardiovascular
         fields = "__all__"
+    
+    def __init__(self, *args, **kwargs):
+        super(CardiovascularSerializer, self).__init__(*args, **kwargs)
+        request = self.context.get('request')
+        self.Meta.depth = 0 if request and request.method == "POST" else 1
+
+class StatsSerializer(serializers.Serializer):
+    # Strength
+    set = serializers.IntegerField(default=0)
+    rep = serializers.IntegerField(default=0)
+    weight = serializers.IntegerField(default=0)
+    
+    # Cardio
+    step = serializers.IntegerField(default=0)
+    time = serializers.IntegerField(default=0)
+    calories_burnt = serializers.IntegerField(default=0)

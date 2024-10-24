@@ -44,9 +44,9 @@ class Exercise(models.Model):
     
 class Strength(models.Model):
     exercise = models.ForeignKey(Exercise, on_delete=models.SET_NULL, null=True, related_name='strength_exercises')
-    set = models.PositiveIntegerField()
-    rep = models.PositiveIntegerField()
-    weight = models.PositiveIntegerField(blank=True)
+    set = models.PositiveIntegerField(default=0)
+    rep = models.PositiveIntegerField(default=0)
+    weight = models.PositiveIntegerField(default=0)
     slug = models.SlugField(unique=True, null=True, blank=True)
     
     def __str__(self):
@@ -59,9 +59,9 @@ class Strength(models.Model):
     
 class Cardiovascular(models.Model):
     exercise = models.ForeignKey(Exercise, on_delete=models.SET_NULL, null=True, related_name='cardiovascular_exercises')
-    step = models.PositiveIntegerField(blank=True)
-    time = models.PositiveIntegerField()
-    calories_burnt = models.PositiveIntegerField(blank=True)
+    step = models.PositiveIntegerField(default=0)
+    time = models.PositiveIntegerField(default=0)
+    calories_burnt = models.PositiveIntegerField(default=0)
     slug = models.SlugField(unique=True, null=True, blank=True)
     
     def __str__(self):
