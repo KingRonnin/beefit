@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Register New User Here
+{% endblock %}
+
+{% block content %}
+    <h1> Registration Page! </h1>
+    <form action="/beefit/register/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button>Submit</button>
+    </form>
+{% endblock %}
