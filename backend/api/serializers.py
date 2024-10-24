@@ -19,7 +19,7 @@ class RegisterSerializer(serializers.ModelSerializer):
     # Provides extra instructors or settings to your class
     # Tells the class that it is associated to the User class inside models.py
     class Meta:
-        models = api_models.User
+        model = api_models.User
         fields = ['email', 'password', 'password2']
         
     def validate(self, attrs):
@@ -36,7 +36,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         email_username, mobile = user.email.split("@")
         user.username = email_username
         
-        user.set_password(validate_password['password'])
+        user.set_password(validated_data['password'])
         user.save()
         
         return user
