@@ -51,6 +51,7 @@ const ExerciseModal: React.FC<{
     );
 };
 
+
 interface Exercise {
     id: string;
     title: string;
@@ -69,6 +70,7 @@ const MyPlan: React.FC = () => {
     const [categoryExercises, setCategoryExercises] = useState<Exercise[]>([]);
     const [showLevels, setShowLevels] = useState<boolean>(false);
 
+ 
     const workoutData: Record<string, Record<string, Exercise[]>> = {
         fullBody: {
             beginner: [
@@ -189,6 +191,7 @@ const MyPlan: React.FC = () => {
                         onSelectExercise={handleSelectExercise}
                     />
                 )}
+                
 
                 <Link to="/Calender">
                     <button className="next-button">Next</button>

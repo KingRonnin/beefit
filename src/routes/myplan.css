@@ -18,6 +18,7 @@ body {
   color: #fff;
   position: relative;
   overflow: hidden;
+  z-index: 1; /* Ensure the container stays behind */
 }
 
 /* Modal Styles */
@@ -31,7 +32,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 1000; /* Ensures modal is on top */
 }
 
 .modal-content {
@@ -42,6 +43,7 @@ body {
   max-width: 600px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   animation: slideIn 0.3s ease;
+  z-index: 1001; /* Ensures modal content is on top */
 }
 
 /* Animation for Modal */
@@ -71,6 +73,7 @@ button {
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  z-index: 10; /* Make sure buttons are clickable over content */
 }
 
 button:hover {
@@ -91,6 +94,7 @@ button:disabled {
   border-radius: 10px;
   margin: 20px 0;
   animation: fadeIn 0.5s ease;
+  z-index: 1;
 }
 
 /* Animation for Summary */
@@ -122,6 +126,7 @@ button:disabled {
   padding: 25px; /* Increased padding */
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  z-index: 5; /* Ensure it's on top of the background */
 }
 
 .levels h3 {
@@ -143,6 +148,7 @@ button:disabled {
   transition: transform 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease; 
   position: relative;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Softer shadow for professional look */
+  z-index: 5; /* Ensure the buttons are clickable */
 }
 
 .category-button:hover {
@@ -175,6 +181,7 @@ button:disabled {
   cursor: pointer; 
   transition: transform 0.3s ease, background-color 0.3s ease; 
   margin-top: 20px; /* Add some space above the button */
+  z-index: 10; /* Ensure next button is clickable */
 }
 
 .next-button:hover {
@@ -184,4 +191,135 @@ button:disabled {
 
 .next-button:active {
   transform: translateY(1px) scale(0.95); 
+}
+
+/* Ensuring level selection and modals are always on top */
+.levels, .modal {
+  z-index: 100; /* Making sure levels and modal stay on top of other elements */
+}
+
+/* Additional Z-Index for Arm Workout Levels */
+.arm-beginner, .arm-intermediate, .arm-advanced {
+  z-index: 101; /* Ensuring these sections display on top when selected */
+  position: relative;
+}
+
+/* Arm Workout Levels Styling Inspired by Fit&Less */
+
+/* Beginner Level */
+.arm-beginner {
+  background: linear-gradient(to right, #FF8C42, #FF3C00); /* Warm gradient background */
+  color: #fff; /* White text for contrast */
+  padding: 40px; /* Spacious padding */
+  border-radius: 12px; /* Softly rounded corners */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+  margin-bottom: 20px; /* Space between other levels */
+  font-size: 18px; /* Clear and readable font size */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  z-index: 101; /* Ensure it's on top when clicked */
+  position: relative;
+}
+
+.arm-beginner:hover {
+  transform: scale(1.05); /* Slight zoom-in on hover */
+  background: linear-gradient(to right, #FF6F3F, #FF2500); /* Darker shade on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+/* Intermediate Level */
+.arm-intermediate {
+  background: linear-gradient(to right, #4CA1AF, #2C3E50); /* Cool gradient background */
+  color: #fff; /* White text for contrast */
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+  font-size: 18px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  z-index: 101;
+  position: relative;
+}
+
+.arm-intermediate:hover {
+  transform: scale(1.05);
+  background: linear-gradient(to right, #3D6D7F, #1F3544); /* Darker shade on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Advanced Level */
+.arm-advanced {
+  background: linear-gradient(to right, #8E2DE2, #4A00E0); /* Vivid purple gradient */
+  color: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+  font-size: 18px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  z-index: 101;
+  position: relative;
+}
+
+.arm-advanced:hover {
+  transform: scale(1.05);
+  background: linear-gradient(to right, #7224B5, #360E78); /* Darker purple shade */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Common Button Styling for Each Level */
+.arm-beginner button, 
+.arm-intermediate button, 
+.arm-advanced button {
+  background-color: #fff; /* White button for contrast */
+  color: #333; /* Dark text for contrast */
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  margin-top: 20px; /* Space above button */
+}
+
+.arm-beginner button:hover, 
+.arm-intermediate button:hover, 
+.arm-advanced button:hover {
+  background-color: #333; /* Darker background on hover */
+  color: #fff; /* White text on hover */
+  transform: scale(1.08); /* Button zoom effect */
+}
+
+/* Shared Styles for Consistent Spacing */
+.arm-beginner, .arm-intermediate, .arm-advanced {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center text and content */
+  text-align: center; /* Center text alignment */
+  line-height: 1.6; /* Space between text lines */
+}
+
+.summary,
+.selected-exercises,
+.view-data {
+    margin-bottom: 20px;
+}
+
+.view-data {
+    display: flex;
+    flex-direction: column;
+}
+
+.logged-data {
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.selected-exercises {
+    margin-right: auto; /* Align to the left */
+}
+
+.logged-data {
+    margin-left: auto; /* Align to the right */
 }
