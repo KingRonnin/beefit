@@ -78,11 +78,12 @@ class CardiovascularSerializer(serializers.ModelSerializer):
 
 class StatsSerializer(serializers.Serializer):
     # Strength
-    set = serializers.IntegerField(default=0)
-    rep = serializers.IntegerField(default=0)
+    sets = serializers.IntegerField(default=0)
+    reps = serializers.IntegerField(default=0)
     weight = serializers.IntegerField(default=0)
+    strength_exercises = serializers.IntegerField(default=0)
     
     # Cardio
-    step = serializers.IntegerField(default=0)
-    time = serializers.IntegerField(default=0)
-    calories_burnt = serializers.IntegerField(default=0)
+    steps = serializers.IntegerField(default=0)
+    time_minutes = serializers.IntegerField(default=0)
+    cardio_exercises = serializers.IntegerField(default=0)

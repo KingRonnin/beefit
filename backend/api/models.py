@@ -24,8 +24,14 @@ class User(AbstractUser):
         super(User, self).save(*args, **kwargs)
         
 class Exercise(models.Model):
+    TYPE = (
+        ('Strength', 'Strength'),
+        ('Cardiovascular', 'Cardiovascular')
+    )
+    
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     exercise = models.CharField(max_length=255)
-    type = models.CharField(max_length=255)
+    type = models.CharField(max_length=255, choices=TYPE, default='Strength')
     slug = models.SlugField(unique=True, null=True, blank=True)
     
     def __str__(self):
@@ -43,32 +49,19 @@ class Exercise(models.Model):
         return Cardiovascular.objects.filter(category=self).count()
     
 class Strength(models.Model):
-    exercise = models.ForeignKey(Exercise, on_delete=models.SET_NULL, null=True, related_name='strength_exercises')
+    exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE, null=True, related_name='strength_exercise')
     set = models.PositiveIntegerField(default=0)
     rep = models.PositiveIntegerField(default=0)
     weight = models.PositiveIntegerField(default=0)
-    slug = models.SlugField(unique=True, null=True, blank=True)
     
     def __str__(self):
-        return self.exercise
-    
-    def save(self, *args, **kwargs):
-        if self.slug == "" or self.slug is None:
-            self.slug = f"{slugify(self.exercise)}-{shortuuid.uuid()[:2]}"
-        super(Strength, self).save(*args, **kwargs)
+        return self.exercise.exercise
     
 class Cardiovascular(models.Model):
-    exercise = models.ForeignKey(Exercise, on_delete=models.SET_NULL, null=True, related_name='cardiovascular_exercises')
+    exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE, null=True, related_name='cardiovascular_exercise')
     step = models.PositiveIntegerField(default=0)
     time = models.PositiveIntegerField(default=0)
-    calories_burnt = models.PositiveIntegerField(default=0)
-    slug = models.SlugField(unique=True, null=True, blank=True)
     
     def __str__(self):
-        return self.exercise
-    
-    def save(self, *args, **kwargs):
-        if self.slug == "" or self.slug is None:
-            self.slug = f"{slugify(self.exercise)}-{shortuuid.uuid()[:2]}"
-        super(Cardiovascular, self).save(*args, **kwargs)
+        return self.exercise.exercise
 
