@@ -8,59 +8,12 @@ body {
 
 .front-page {
   display: flex;
-  position: relative;
+  flex-direction: column; /* Stack header and content vertically */
   z-index: 1;
-}
-
-.side-navbar {
-  width: 250px;
-  background-color: #111;
-  padding: 20px;
-  position: fixed;
-  height: 100%;
-  overflow-y: auto;
-  z-index: 10;
-}
-
-.logo-container {
-  margin-bottom: 30px;
-}
-
-.nav-links a, .nav-links button {
-  color: #fff;
-  margin: 15px 0;
-  display: block;
-  text-decoration: none;
-  transition: color 0.3s ease;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  text-align: left;
-}
-
-.nav-links a:hover, .nav-links button:hover {
-  color: #e50914;
-}
-
-.header-buttons {
-  margin-top: 30px;
-}
-
-.header-buttons a, .header-buttons button {
-  background-color: #e50914;
-  color: white;
-  padding: 12px 15px;
-  text-transform: uppercase;
-  margin-top: 10px;
-  border-radius: 5px;
-  display: block;
   width: 100%;
-  font-size: 16px;
 }
 
 .main-content {
-  margin-left: 270px;
   padding: 20px;
   flex-grow: 1;
   background-color: #fff;
@@ -74,6 +27,7 @@ body {
   color: #f4f4f4;
   height: 300px;
   background-size: cover;
+  background-position: center;
   position: relative;
   display: flex;
   align-items: center;
@@ -94,7 +48,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 5;
+  z-index: 2;
 }
 
 .cta-button {
@@ -116,13 +70,13 @@ body {
 }
 
 .testimonials, .about-section, .courses-section, .pricing-section {
-  background-image: url('./images/hdd.png');
+  background-image: url('./images/hdd.png'); /* Make sure the path is correct */
   background-color: #f9f9f9;
   padding: 60px;
   margin: 40px 0;
   border-radius: 8px;
   box-shadow: 0 0 10px rgb(201, 198, 198);
-  z-index: 10;
+  z-index: 2;
 }
 
 .testimonials h2, .about-section h2, .courses-section h2, .pricing-section h2 {
@@ -287,19 +241,22 @@ body {
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   .hero-section {
-    height: 200px; /* Adjust for smaller screens */
+    height: 200px;
   }
 
   .slider-slide {
-    height: 200px; /* Adjust for smaller screens */
+    height: 200px;
   }
 
   .slider-overlay h2 {
-    font-size: 1.5em; /* Adjust title size */
+    font-size: 1.5em;
   }
 
   .slider-overlay p {
-    font-size: 1em; /* Adjust description size */
+    font-size: 1em;
+  }
+
+  .pricing-plan {
+    margin: 10px;
   }
 }
-
