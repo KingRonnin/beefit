@@ -35,6 +35,12 @@ class Exercise(models.Model):
         if self.slug == "" or self.slug is None:
             self.slug = self.exercise
         super(Exercise, self).save(*args, **kwargs)
+        
+    def strength_exercise_count(self):
+        return Strength.objects.filter(exercise=self).count()
+    
+    def cardio_exercise_count(self):
+        return Cardiovascular.objects.filter(category=self).count()
     
 class Strength(models.Model):
     exercise = models.ForeignKey(Exercise, on_delete=models.SET_NULL, null=True, related_name='strength_exercises')
