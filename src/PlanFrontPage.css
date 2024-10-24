@@ -264,3 +264,53 @@ body {
     margin: 10px 0;
   }
 }
+/* Social Media Icons Styles */
+.social-media-container {
+  display: flex;
+  align-items: center; /* Center icons vertically */
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+  padding: 10px; /* Padding around the icons */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+}
+
+.social-icon {
+  margin: 0 10px; /* Space between icons */
+  color: #333; /* Default color */
+  font-size: 24px; /* Size of the icons */
+  transition: color 0.3s ease; /* Transition for color change */
+}
+
+.social-icon:hover {
+  color: #ff7b00; /* Color change on hover */
+}
+
+
+.instagram-icon:hover {
+  color: #e1306c;  /* Instagram specific color */
+}
+
+.twitter-icon:hover {
+  color: #1da1f2;  /* Twitter specific color */
+}
+
+.email-icon:hover {
+  color: #ea4335;  /* Gmail specific color */
+}
+
+/* Other styling for contact section */
+
+.contact-button {
+  background-color: #ff7b00;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact-button:hover {
+  background-color: #e66f00;
+}

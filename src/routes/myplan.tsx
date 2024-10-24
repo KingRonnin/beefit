@@ -166,6 +166,7 @@ const MyPlan: React.FC = () => {
                         <p>Total Time: {totalMins} MINUTES</p>
                         <button onClick={handleClearExercises} className="clear-button">Clear</button>
                     </div>
+                    
                 )}
 
                 <h2>Choose Your Workout Category:</h2>
