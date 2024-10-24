@@ -1,24 +1,31 @@
-import React from "react";
-import Fullcalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
-import interactionPlugin from "@fullcalendar/interaction";
+import React, { useState, useContext, useEffect } from "react";
+import "./App.css";
+import { getMonth } from "./util";
+import CalendarHeader from "./components/CalendarHeader";
+import Sidebar from "./components/Sidebar";
+import Month from "./components/Month";
+import GlobalContext from "./context/GlobalContext";
+import EventModal from "./components/EventModal";
+function calendar() {
+  const [currenMonth, setCurrentMonth] = useState(getMonth());
+  const { monthIndex, showEventModal } = useContext(GlobalContext);
 
-function Calendar() {
+  useEffect(() => {
+    setCurrentMonth(getMonth(monthIndex));
+  }, [monthIndex]);
+
   return (
-    <div style={{ background: 'pink', color: 'yellow', padding: '10px' }}>
-      <Fullcalendar
-        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-        initialView={"dayGridMonth"}
-        headerToolbar={{
-          start: "today prev,next", 
-          center: "title",
-          end: "dayGridMonth,timeGridWeek,timeGridDay",
-        }}
-        height={"90vh"}
-      />
-    </div>
+    <React.Fragment>
+      {showEventModal && <EventModal />}
+
+      <div className="h-screen flex flex-col light-blue-bg">
+        <div className="flex flex-1">
+          <Sidebar />
+          <Month month={currenMonth} />
+        </div>
+      </div>
+    </React.Fragment>
   );
 }
 
-export default Calendar;
+export default calendar;
