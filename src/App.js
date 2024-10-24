@@ -7,7 +7,7 @@ import LogFitness from './routes/Logfitness.tsx';
 import Calender from './routes/Calendar.jsx';
 import SignIn from './routes/SignIn.jsx';
 import Header from './component/layout/Header.jsx';
-
+import About from './routes/About.jsx'; 
 
 
 
@@ -23,6 +23,7 @@ function App() {
           <Route path="/Calender" element={<Calender />} />
           <Route path="/SignIn" element={<SignIn />} />
           <Route path="/Header" element={<Header />} />
+          <Route path="/About" element={<About />} />
         </Routes>
       </div>
     </Router>
