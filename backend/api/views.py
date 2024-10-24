@@ -24,4 +24,10 @@ from api import serializers as api_serializers
 from api import models as api_models
 
 # Create your views here.
-
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = api_serializers.MyTokenObtainPairSerializer
+    
+class RegisterView(generics.CreateAPIView):
+    queryset = api_models.User.objects.all()
+    permission_classes = [AllowAny]
+    serializer_class = api_serializers.RegisterSerializer
