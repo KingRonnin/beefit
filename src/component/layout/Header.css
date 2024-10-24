@@ -90,3 +90,59 @@
     margin: 10px 0;
   }
 }
+.header {
+  position: fixed;
+  width: 100%;
+  background-color: #1f1f1f;
+  color: white;
+  padding: 20px 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.navbar-left .brand-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-menu .nav-link {
+  color: white;
+  font-size: 18px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-menu .nav-link:hover {
+  color: #ff7b00;
+}
+
+.navbar-right .login-link {
+  color: white;
+  font-size: 18px;
+  text-decoration: none;
+  padding: 10px 20px;
+  background-color: #ff7b00;
+  border-radius: 20px;
+  transition: background-color 0.3s;
+}
+
+.navbar-right .login-link:hover {
+  background-color: #e66f00;
+}
