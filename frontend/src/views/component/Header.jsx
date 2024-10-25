@@ -1,6 +1,7 @@
 import React from 'react';
 import './Header.css';  // Import the CSS file for styling
 
+
 const Header = ({ handleScrollToSection, sections }) => {
   return (
     <header className="header">
@@ -19,6 +20,7 @@ const Header = ({ handleScrollToSection, sections }) => {
           <a href="/SignIn" className="nav-link login-link">Login</a>  {/* External Login link */}
         </div>
       </nav>
+     
     </header>
   );
 };
