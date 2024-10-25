@@ -7,7 +7,7 @@ body {
   
   /* Background Image */
   .myplan-container {
-    background-image: url(../images/h1_hero.png); /* Replace with your image URL */
+    background-image: url(../../images/h1_hero.png); /* Replace with your image URL */
     background-size: cover;
     background-position: center;
     height: 100vh;
