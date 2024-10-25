@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './LogFitness.css';
-import loadingGif from '../../images/loading-gif.gif';
+
 
 
 const LogFitness: React.FC = () => {
@@ -113,7 +113,7 @@ const LogFitness: React.FC = () => {
 
                 {loading && (
                     <div className="loading-overlay">
-                        <img src={loadingGif} alt="Loading..." className="loading-spinner" />
+
                         <p>Loading...</p>
                     </div>
                 )}
