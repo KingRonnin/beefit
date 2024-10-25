@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import "./calrndar.css";
+import "./calendar.css";
 import { getMonth } from "./util";
 import CalendarHeader from "./components/CalendarHeader";
 import Sidebar from "./components/Sidebar";

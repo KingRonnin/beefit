@@ -5,7 +5,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { Link, useNavigate } from "react-router-dom"; 
-import './Calendar.css';
+import './calendar.css';
 
 function Calendar() {
   const [events, setEvents] = useState([]);
