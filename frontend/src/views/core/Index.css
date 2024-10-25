@@ -124,7 +124,7 @@ body {
 }
 
 .about-section {
-  background-image: url(./images/bhnncd.jpg);
+  background-image: url('../../images/bhnncd.jpg');
   background-size: 70%; /* Adjust size of the background image */
   background-repeat: no-repeat; /* Prevents the image from repeating */
   background-position: center; /* Center the image */
@@ -132,7 +132,7 @@ body {
 }
 
 .courses-section {
-  background-image: url(./images/cutt.jpg);
+  background-image: url('../../images/bhnncd.jpg');
   background-size: 70%; /* Adjust size of the background image */
   background-repeat: no-repeat; /* Prevents the image from repeating */
   background-position: center; /* Center the image */
@@ -146,7 +146,7 @@ body {
 }
 
 .services-section {
-  background-image: url(./images/services.jpg);
+  background-image: url('../../images/services.jpg');
   background-color: #1f1f1f;
 }
 

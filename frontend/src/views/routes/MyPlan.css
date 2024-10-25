@@ -159,15 +159,15 @@ body {
   
   /* Specific backgrounds for each category */
   .full-body-button {
-    background-image: url('../images/full-body.webp'); 
+    background-image: url('../../images/full-body.webp'); 
   }
   
   .abs-button {
-    background-image: url('../images/abs-bg.jpg'); 
+    background-image: url('../../images/abs-bg.jpg'); 
   }
   
   .arm-button {
-    background-image: url('../images/arm-bg.jpg'); 
+    background-image: url('../../images/arm-bg.jpg'); 
   }
   
   /* Next Button Styles */
