@@ -6,7 +6,11 @@ body {
   font-family: 'Roboto', sans-serif; /* Using a modern sans-serif font */
   margin: 0;
   padding: 0;
+<<<<<<< HEAD:frontend/src/views/routes/Calendar.css
   background: url('../../images/h1_hero.png') no-repeat center center fixed; /* Replace with your image URL */
+=======
+  background: url('../images/h1_hero.png') no-repeat center center fixed; /* Replace with your image URL */
+>>>>>>> c1f93a5b010a40d06a996e5f502e12d6948fb707:src/routes/Calendar.css
   background-size: cover; /* Ensuring the background image covers the entire viewport */
   z-index: 10;
 }

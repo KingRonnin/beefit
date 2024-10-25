@@ -1,0 +1,285 @@
+
+body {
+    margin: 0;
+   font-family: 'Roboto', 'Raleway' ,sans-serif;
+    background-color: #f0f0f0; 
+}
+
+
+
+.log-fitness {
+    position: relative;
+    max-width: 200; 
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: rgba(255, 0, 0, 0.9);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column; 
+}
+
+
+.log-fitness::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../images/h1_hero.png'); /* Background image */
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+    opacity: 0.3; /* Set opacity for background image */
+}
+
+/* Ensure Content Stays on Top */
+.log-fitness > * {
+    position: relative;
+    z-index: 1; /* Ensure content is on top */
+}
+
+/* Headings */
+h1 {
+    text-align: center;
+    color: #ffffff; /* White text for headings */
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 2.5rem;
+}
+
+h2 {
+    color: #ffffff; /* White text for subheadings */
+    padding: 10px;
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 4px;
+    font-size: 1.5rem; /* Slightly larger for emphasis */
+    margin-bottom: 15px;
+}
+
+/* Messages */
+.success-message,
+.goal-saved-message {
+    color: #28a745; /* Green success messages */
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Form Styles */
+.form-group {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    margin-bottom: 15px;
+    background-color: rgba(255, 255, 255, 0.8); /* Light background for form */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #ffffff; /* White labels */
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    background-color: #fff; /* White input background */
+}
+
+input:focus {
+    border-color: #28a745; /* Green border on focus */
+    outline: none;
+}
+
+/* Button Styles */
+button {
+    padding: 15px;
+    background-color: #28a745; /* Green button background */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem; /* Increased font size for readability */
+    transition: background-color 0.3s, transform 0.3s ease;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #218838; /* Darker green on hover */
+    transform: scale(1.05);
+}
+
+/* Log List Styles */
+.log-list {
+    margin-top: 20px;
+}
+
+.log-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.log-list li {
+    background: white; /* White background for logs */
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Delete Button */
+.delete-btn {
+    background-color: #e74c3c; /* Red delete button */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s ease;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b; /* Darker red on hover */
+    transform: scale(1.05);
+}
+
+/* Action Button Group */
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 10px; 
+}
+
+.action-buttons button {
+    flex: 1;
+}
+
+/* Back Button Styles */
+.back-btn {
+    background-color: #d9534f; /* Red back button */
+}
+
+.back-btn:hover {
+    background-color: #c9302c; /* Darker red on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .log-fitness {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.8rem; /* Smaller heading on mobile */
+    }
+
+    input, button {
+        font-size: 0.9rem; /* Smaller inputs and buttons on mobile */
+    }
+
+    .next-btn, .back-btn, .save-btn {
+        width: 100%; 
+        margin-bottom: 10px; 
+    }
+}
+
+/* Section Styles */
+.left-section {
+    flex: 1;
+}
+
+.right-section {
+    h1 {
+        text-align: center;
+        color: #ffffff; /* White headings */
+        margin-bottom: 20px;
+        font-weight: bold;
+        font-size: 2.5rem;
+        margin-top: 50px; /* Margin to move down */
+    }
+      
+        
+    }
+
+
+.additional-section {
+    margin-top: 50px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8); /* Light section background */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+/* Animation Styles */
+.weight-loss,
+.endurance,
+.flexibility {
+    opacity: 1;
+    transform: translateY(0);
+    animation: slideIn 0.5s forwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* User Info Style */
+.user-info {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff; /* White user info */
+}
+
+/* Additional Animations */
+@keyframes buttonShake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+.action-buttons button:active {
+    animation: buttonShake 0.3s ease; /* Button shake animation */
+}
+
+/* Save Goal Button */
+.save-goal-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #28a745; /* Green save button */
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.save-goal-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+}

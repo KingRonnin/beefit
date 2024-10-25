@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Assuming you're using react-router for navigation
 import './SignIn.css';
+<<<<<<< HEAD:frontend/src/views/routes/SignIn.jsx
 import loadingGif from '../../images/loading-gif.gif'; // Make sure to adjust the path to your loading GIF
+=======
+import loadingGif from '../images/loading-gif.gif'; // Make sure to adjust the path to your loading GIF
+>>>>>>> c1f93a5b010a40d06a996e5f502e12d6948fb707:src/routes/SignIn.jsx
 
 export default function SignInPage() {
   const [email, setEmail] = useState('');
