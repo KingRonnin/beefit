@@ -2,10 +2,11 @@ import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Index.css';  
 import heroImage from '../../images/h1_hero.png';  
-import loadingGif from '../../images/loading-gif.gif';
+import loadingGif from '../../images/loading-gif.gif';  
+import { FaInstagram, FaTwitter, FaEnvelope } from 'react-icons/fa';  // Importing Font Awesome icons
 import Header from '../component/Header.jsx';  
 
-function Index() {
+function FrontPage() {
   const [loading, setLoading] = useState(false);
   const [showPricing, setShowPricing] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
@@ -146,10 +147,23 @@ function Index() {
           <h2>Contact Us</h2>
           <p>Get in touch for any inquiries or support. We’re here to help you succeed in your fitness journey.</p>
           <button className="contact-button">Contact Us</button>
+          
+          {/* Social Media Icons */}
+          <div className="social-media-icons">
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+              <FaInstagram className="social-icon instagram-icon" />
+            </a>
+            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+              <FaTwitter className="social-icon twitter-icon" />
+            </a>
+            <a href="mailto:example@gmail.com">
+              <FaEnvelope className="social-icon email-icon" />
+            </a>
+          </div>
         </div>
       </section>
     </div>
   );
 }
 
-export default Index;
+export default FrontPage;
