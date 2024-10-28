@@ -84,7 +84,7 @@ export default function SignInPage() {
             {errorMessage && <p className="error-message">{errorMessage}</p>}
 
             {!loggedInUser && (
-              <form onSubmit={handleSignIn}>
+              <form onSubmit={handleSignIn} className='form'>
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
                   <input

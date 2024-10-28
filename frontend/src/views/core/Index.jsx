@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Index.css';  
-import heroImage from '../../images/h1_hero.png';  
-import loadingGif from '../../images/loading-gif.gif';  
+import './Index.css';
+import heroImage from '../../images/h1_hero.png';
+import loadingGif from '../../images/loading-gif.gif';
 import { FaInstagram, FaTwitter, FaEnvelope } from 'react-icons/fa';  // Importing Font Awesome icons
-import Header from '../component/Header.jsx';  
+import Header from '../component/Header.jsx';
 
 function FrontPage() {
   const [loading, setLoading] = useState(false);
@@ -45,7 +45,7 @@ function FrontPage() {
     setSuccessMessage('Successfully added plan!');
     setTimeout(() => {
       setSuccessMessage('');
-      navigate('/SignIn');
+      navigate('/register');
     }, 2000);
   };
 
