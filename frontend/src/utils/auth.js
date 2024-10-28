@@ -30,10 +30,12 @@ export const login = async (email, password) => {
 
         return { data, error: null };
     } catch (error) {
-        return {
-            data: null,
-            error: error.response.data?.detail || "Something went wrong",
-        };
+        if (error.response && error.response.status === 401) {
+            return {
+                data: null,
+                error: "Invalid email or password",
+            };
+        }
     }
 };
 
@@ -56,7 +58,7 @@ export const register = async (email, password, password2) => {
     } catch (error) {
         return {
             data: null,
-            error: error.response.data || "Something went wrong",
+            error: "Something went wrong",
         };
     }
 };

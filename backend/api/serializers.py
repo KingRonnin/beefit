@@ -41,8 +41,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         
         return user
     
-class LoginSerializer(serializers.ModelSerializer):
-    
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
