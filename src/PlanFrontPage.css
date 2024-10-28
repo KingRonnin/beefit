@@ -1,90 +1,55 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #f4f4f4;
+  background-color: #eef2f5;
 }
 
 .front-page {
+  background-image: url(./images//h1_hero.png);
   display: flex;
-  position: relative;
+  flex-direction: column;
   z-index: 1;
-}
-
-.side-navbar {
-  width: 250px;
-  background-color: #111;
-  padding: 20px;
-  position: fixed;
-  height: 100%;
-  overflow-y: auto;
-  z-index: 10;
-}
-
-.logo-container {
-  margin-bottom: 30px;
-}
-
-.nav-links a, .nav-links button {
-  color: #fff;
-  margin: 15px 0;
-  display: block;
-  text-decoration: none;
-  transition: color 0.3s ease;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  text-align: left;
-}
-
-.nav-links a:hover, .nav-links button:hover {
-  color: #e50914;
-}
-
-.header-buttons {
-  margin-top: 30px;
-}
-
-.header-buttons a, .header-buttons button {
-  background-color: #e50914;
-  color: white;
-  padding: 12px 15px;
-  text-transform: uppercase;
-  margin-top: 10px;
-  border-radius: 5px;
-  display: block;
   width: 100%;
-  font-size: 16px;
 }
 
 .main-content {
-  margin-left: 270px;
-  padding: 20px;
+  padding: 30px;
   flex-grow: 1;
   background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 1;
 }
 
+/* Hero Section */
 .hero-section {
-  color: #f4f4f4;
-  height: 300px;
+  color: #fff;
+  height: 90vh;
   background-size: cover;
+  background-position: center;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   z-index: 1;
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .overlay {
-  background: rgba(0, 0, 0, 0.6);
-  color: #f4f4f4;
+  background: rgba(0, 0, 0, 0.7); /* Darker for better contrast */
+  color: #fff;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -94,7 +59,34 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 5;
+  z-index: 2;
+  backdrop-filter: blur(10px); /* Adds a blur effect behind the overlay */
+}
+
+.overlay-content {
+  background: rgba(255, 255, 255, 0.2); /* Soft white background for the box */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  text-align: center; /* Center align the text */
+  transition: transform 0.3s; /* Add a hover effect */
+}
+
+.overlay-content:hover {
+  transform: scale(1.05); /* Slightly enlarge the box on hover */
+}
+
+.overlay h1 {
+  background: rgba(255, 255, 255, 0.2);
+  font-size: 3em; /* Larger title font */
+  margin: 0 0 10px; /* Space below the title */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Subtle shadow for better readability */
+}
+
+.overlay h2 {
+  font-size: 1.5em; /* Slightly smaller subtitle font */
+  margin-bottom: 20px; /* Space below the subtitle */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Subtle shadow for better readability */
 }
 
 .cta-button {
@@ -102,95 +94,123 @@ body {
   background-color: #e50914;
   padding: 15px 30px;
   color: #fff;
-  border-radius: 5px;
-  font-size: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .cta-button:hover {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  background-color: #c40612;
+  transform: translateY(-2px);
 }
 
-.about-section, .courses-section, .pricing-section, .offers-section, .join-now-section {
-  color: white;
-}
-
-.testimonials, .about-section, .courses-section, .pricing-section {
-  background-image: url('./images/hdd.png');
-  background-color: #f9f9f9;
-  padding: 60px;
-  margin: 40px 0;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgb(201, 198, 198);
-  z-index: 10;
-}
-
-.testimonials h2, .about-section h2, .courses-section h2, .pricing-section h2 {
-  font-size: 2.5em;
-  margin-bottom: 20px;
+/* Section Styles */
+.section {
+  padding: 80px 20px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  color: #fff;
+  animation: slideIn 0.5s ease-out forwards;
+  margin-bottom: 40px; /* Add gap between sections */
 }
 
-.footer {
-  background-color: #111;
-  color: white;
-  padding: 60px 20px;
-  margin-top: 40px;
-  position: relative;
-  z-index: 1;
+@keyframes slideIn {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
-.footer-links a {
-  color: white;
-  margin: 0 15px;
-  transition: color 0.3s ease;
+.about-section {
+  background-image: url(./images/bhnncd.jpg);
+  background-size: 70%; /* Adjust size of the background image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  background-position: center; /* Center the image */
+  background-color: #282c34;
 }
 
-.footer-links a:hover {
-  color: #e50914;
+.courses-section {
+  background-image: url(./images/cutt.jpg);
+  background-size: 70%; /* Adjust size of the background image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  background-position: center; /* Center the image */
+  background-color: #333;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
-.social-media a {
-  color: white;
-  margin: 0 10px;
-  font-size: 18px;
+.services-section {
+  background-image: url(./images/services.jpg);
+  background-color: #1f1f1f;
 }
 
-.join-now-section {
-  background-color: #1a1a1a;
-  padding: 60px;
-  text-align: center;
-  color: white;
-  margin-top: 50px;
-  border-radius: 8px;
-  z-index: 1;
+.pricing-section {
+  background-color: #444;
+  color: #333;
 }
 
-.join-now-section h2 {
-  font-size: 2.5em;
-  margin-bottom: 20px;
+.pricing-plan {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px;
+  transition: transform 0.3s;
 }
 
-.join-now-section p {
-  font-size: 1.2em;
-  margin-bottom: 30px;
+.pricing-plan:hover {
+  transform: translateY(-5px);
 }
 
 .join-now-cta {
-  padding: 15px 30px;
-  font-size: 1.1em;
-  background-color: red;
+  background-color: #28a745;
   color: white;
   border: none;
+  padding: 12px 25px;
+  font-size: 1em;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .join-now-cta:hover {
-  background-color: darkred;
+  background-color: #218838;
+  transform: scale(1.05);
 }
 
+/* Offers Section */
+.offers-section {
+  background-color: #e50914;
+  padding: 60px 20px;
+  color: white;
+  border-radius: 12px;
+  margin-top: 30px;
+  transition: transform 0.3s;
+}
+
+.offers-cta-button {
+  background-color: #fff;
+  color: #e50914;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.offers-cta-button:hover {
+  background-color: #f4f4f4;
+  transform: scale(1.05);
+}
+
+/* Loading Overlay */
 .loading-overlay {
   position: fixed;
   top: 0;
@@ -212,94 +232,86 @@ body {
   margin-bottom: 20px;
 }
 
-/* Pricing Section Styles */
-.pricing-section {
-  background-color: #f4f4f4;
-  padding: 60px 20px;
-  text-align: center;
-  color: #333;
-}
-
-.pricing-plan {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin: 20px;
-  transition: transform 0.3s;
-}
-
-.pricing-plan:hover {
-  transform: translateY(-5px);
-}
-
-.plan-icon img {
-  width: 50px;
-  height: auto;
-}
-
-.price {
-  font-size: 1.5em;
-  font-weight: bold;
-  color: #e50914;
-}
-
-.join-now-cta {
-  background-color: #28a745;
+/* Success Message */
+.success-message {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4caf50;
   color: white;
-  border: none;
   padding: 10px 20px;
-  font-size: 1em;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.join-now-cta:hover {
-  background-color: #218838;
-}
-
-/* Offers Section Styles */
-.offers-section {
-  background-color: #e50914;
-  padding: 60px 20px;
-  color: white;
-  text-align: center;
   border-radius: 8px;
-  margin-top: 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  animation: slideDown 0.5s ease-in;
 }
 
-.offers-cta-button {
-  background-color: #fff;
-  color: #e50914;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1em;
-  transition: background-color 0.3s ease;
-}
-
-.offers-cta-button:hover {
-  background-color: #f4f4f4;
+@keyframes slideDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   .hero-section {
-    height: 200px; /* Adjust for smaller screens */
+    height: 60vh;
   }
 
-  .slider-slide {
-    height: 200px; /* Adjust for smaller screens */
+  .cta-button {
+    padding: 10px 20px;
   }
 
-  .slider-overlay h2 {
-    font-size: 1.5em; /* Adjust title size */
-  }
-
-  .slider-overlay p {
-    font-size: 1em; /* Adjust description size */
+  .pricing-plan {
+    margin: 10px 0;
   }
 }
+/* Social Media Icons Styles */
+.social-media-container {
+  display: flex;
+  align-items: center; /* Center icons vertically */
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+  padding: 10px; /* Padding around the icons */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+}
 
+.social-icon {
+  margin: 0 10px; /* Space between icons */
+  color: #333; /* Default color */
+  font-size: 24px; /* Size of the icons */
+  transition: color 0.3s ease; /* Transition for color change */
+}
+
+.social-icon:hover {
+  color: #ff7b00; /* Color change on hover */
+}
+
+
+.instagram-icon:hover {
+  color: #e1306c;  /* Instagram specific color */
+}
+
+.twitter-icon:hover {
+  color: #1da1f2;  /* Twitter specific color */
+}
+
+.email-icon:hover {
+  color: #ea4335;  /* Gmail specific color */
+}
+
+/* Other styling for contact section */
+
+.contact-button {
+  background-color: #ff7b00;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact-button:hover {
+  background-color: #e66f00;
+}

@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import './PlanFrontPage.css'; 
-import beefitLogo from './images/beefit-logo.png'; 
-import heroImage from './images/h1_hero.png'; 
-import loadingGif from './images/loading-gif.gif'; 
-
+import { useNavigate } from 'react-router-dom';
+import './PlanFrontPage.css';  
+import heroImage from './images/h1_hero.png';  
+import loadingGif from './images/loading-gif.gif';  
+import { FaInstagram, FaTwitter, FaEnvelope } from 'react-icons/fa';  // Importing Font Awesome icons
+import Header from './component/layout/Header.jsx';  
 
 function FrontPage() {
   const [loading, setLoading] = useState(false);
@@ -12,11 +12,21 @@ function FrontPage() {
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
+  // Create references for all sections
+  const homeSectionRef = useRef(null);
   const aboutSectionRef = useRef(null);
-  const coursesSectionRef = useRef(null);
+  const servicesSectionRef = useRef(null);
+  const contactSectionRef = useRef(null);
   const pricingSectionRef = useRef(null);
-  const joinNowSectionRef = useRef(null);
+  const coursesSectionRef = useRef(null);
   const offersSectionRef = useRef(null);
+
+  // Function to handle scrolling to specific sections
+  const handleScrollToSection = (sectionRef) => {
+    if (sectionRef.current) {
+      sectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const handleGetStartedClick = () => {
     setLoading(true);
@@ -24,12 +34,6 @@ function FrontPage() {
       setLoading(false);
       navigate("/LogFitness");
     }, 2000);
-  };
-
-  const handleScrollToSection = (sectionRef) => {
-    if (sectionRef.current) {
-      sectionRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
   };
 
   const handleCheckOurPlansClick = () => {
@@ -45,145 +49,119 @@ function FrontPage() {
     }, 2000);
   };
 
+  // Define the sections object
+  const sections = {
+    home: homeSectionRef,
+    about: aboutSectionRef,
+    services: servicesSectionRef,
+    courses: coursesSectionRef,
+    contact: contactSectionRef,
+  };
+
   return (
     <div className="front-page">
-      <nav className="side-navbar">
-        <div className="logo-container">
-          <img src={beefitLogo} alt="Beefit Logo" className="logo" />
-        </div>
-        <div className="nav-links">
-          <button onClick={() => handleScrollToSection(coursesSectionRef)}>Courses</button>
-          <button onClick={() => handleScrollToSection(pricingSectionRef)}>Pricing</button>
-          <button onClick={() => handleScrollToSection(joinNowSectionRef)}>Join Now</button>
-          <button onClick={() => handleScrollToSection(aboutSectionRef)}>About</button>
-        </div>
-        <div className="header-buttons">
-          <Link to="/SignIn" className="signin-button">Sign In</Link>
-          <Link to="/myplan" className="myplan-button">Workout Category</Link>
-        </div>
-      </nav>
+      <Header handleScrollToSection={handleScrollToSection} sections={sections} />
 
-      <div className="main-content">
-        <header className="header">
-          <div className="hero-section" style={{ backgroundImage: `url(${heroImage})` }}>
-            <div className="overlay">
-              <h1>Welcome to BEEFIT</h1>
-              <h2>Your Fitness Partner</h2>
-              <button className="cta-button" onClick={handleGetStartedClick}>
-                Get Started
-              </button>
-            </div>
+      {/* Home Section */}
+      <section id="home" className="section home-section" ref={homeSectionRef}>
+        <header className="hero-section" style={{ backgroundImage: `url(${heroImage})` }}>
+          <div className="overlay">
+            <h1>Welcome TO BEEFIT</h1>
+            <h2>Your Fitness Partner</h2>
+            <button className="cta-button" onClick={handleGetStartedClick}>
+              Get Started
+            </button>
           </div>
         </header>
+      </section>
 
-        {loading && (
-          <div className="loading-overlay">
-            <img src={loadingGif} alt="Loading..." className="loading-spinner" />
-            <p>Loading...</p>
+      {/* Loading Overlay */}
+      {loading && (
+        <div className="loading-overlay">
+          <img src={loadingGif} alt="Loading..." className="loading-spinner" />
+          <p>Loading...</p>
+        </div>
+      )}
+
+      {/* Success Message */}
+      {successMessage && (
+        <div className="success-message">
+          <p>{successMessage}</p>
+        </div>
+      )}
+
+      {/* About Section */}
+      <section id="about" className="section about-section" ref={aboutSectionRef}>
+        <div className="content">
+          <h2>About Us</h2>
+          <p>Beefit is dedicated to empowering fitness starters. We help you discover the joy of fitness with easy-to-follow plans and a supportive community.</p>
+        </div>
+      </section>
+
+      {/* Courses Section */}
+      <section id="courses" className="section courses-section" ref={coursesSectionRef}>
+        <h2>Courses We Offer</h2>
+        <p>Explore our range of fitness courses, from beginner to advanced, designed to suit all fitness levels and help you reach your personal goals.</p>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="section services-section" ref={servicesSectionRef}>
+        <div className="content">
+          <h2>Our Services</h2>
+          <p>Explore personalized workout plans, nutritional guidance, and a range of classes designed to keep you motivated and on track.</p>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      {showPricing && (
+        <section id="pricing" className="section pricing-section" ref={pricingSectionRef}>
+          <h2>Our Pricing Plans</h2>
+          <div className="pricing-plan">
+            <div className="plan-details">
+              <h3>6 MONTH</h3>
+              <p className="price">$30/M <span>(SINGLE CLASS)</span></p>
+              <ul>
+                <li>✔ Free Riding</li>
+                <li>✔ Unlimited Equipment</li>
+                <li>✔ Personal Trainer</li>
+                <li>✔ Weight Loss Classes</li>
+              </ul>
+              <button className="join-now-cta" onClick={handleJoinNowClick}>JOIN NOW</button>
+            </div>
           </div>
-        )}
+        </section>
+      )}
 
-       
-        {successMessage && (
-          <div className="success-message">
-            <p>{successMessage}</p>
+      {/* Offers Section */}
+      <section id="offers" className="section offers-section" ref={offersSectionRef}>
+        <h2>Special Offers</h2>
+        <p>Sign up today and get 30% off on all premium plans!</p>
+        <button className="offers-cta-button" onClick={handleCheckOurPlansClick}>
+          Check Our Plans
+        </button>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="section contact-section" ref={contactSectionRef}>
+        <div className="content">
+          <h2>Contact Us</h2>
+          <p>Get in touch for any inquiries or support. We’re here to help you succeed in your fitness journey.</p>
+          <button className="contact-button">Contact Us</button>
+          
+          {/* Social Media Icons */}
+          <div className="social-media-icons">
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+              <FaInstagram className="social-icon instagram-icon" />
+            </a>
+            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+              <FaTwitter className="social-icon twitter-icon" />
+            </a>
+            <a href="mailto:example@gmail.com">
+              <FaEnvelope className="social-icon email-icon" />
+            </a>
           </div>
-        )}
-
-        <section id="courses" className="courses-section" ref={coursesSectionRef}>
-          <h2>Courses We Offer</h2>
-          <p>Explore our range of fitness courses, from beginner to advanced, designed to suit all fitness levels and help you reach your personal goals.</p>
-        </section>
-
-        {showPricing && (
-          <section id="pricing" className="pricing-section" ref={pricingSectionRef}>
-            <h2>Our Pricing Plans</h2>
-
-            
-            <div className="pricing-plan">
-              <div className="plan-details">
-                <h3>6 MONTH</h3>
-                <p className="price">$30/M <span>(SINGLE CLASS)</span></p>
-                <ul>
-                  <li>✔ Free Riding</li>
-                  <li>✔ Unlimited Equipments</li>
-                  <li>✔ Personal Trainer</li>
-                  <li>✔ Weight Losing Classes</li>
-                  <li>✔ Month To Month</li>
-                </ul>
-                <button className="join-now-cta" onClick={handleJoinNowClick}>JOIN NOW</button>
-              </div>
-            </div>
-
-            
-            <div className="pricing-plan">
-              <div className="plan-details">
-                <h3>12 MONTH</h3>
-                <p className="price">$25/M <span>(BILLED ANNUALLY)</span></p>
-                <ul>
-                  <li>✔ Free Riding</li>
-                  <li>✔ Unlimited Equipments</li>
-                  <li>✔ 2 Personal Training Sessions/month</li>
-                  <li>✔ Weight Loss and Nutrition Classes</li>
-                  <li>✔ 24/7 Gym Access</li>
-                </ul>
-                <button className="join-now-cta" onClick={handleJoinNowClick}>JOIN NOW</button>
-              </div>
-            </div>
-
-            <div className="pricing-plan">
-              <div className="plan-details">
-                <h3>3 MONTH</h3>
-                <p className="price">$40/M <span>(GROUP CLASSES)</span></p>
-                <ul>
-                  <li>✔ Free Riding</li>
-                  <li>✔ Group Classes</li>
-                  <li>✔ Monthly Nutrition Workshop</li>
-                  <li>✔ Weight Losing Classes</li>
-                  <li>✔ Access to Online Portal</li>
-                </ul>
-                <button className="join-now-cta" onClick={handleJoinNowClick}>JOIN NOW</button>
-              </div>
-            </div>
-
-            {/* Pricing Plan 4 */}
-            <div className="pricing-plan">
-              <div className="plan-details">
-                <h3>1 MONTH</h3>
-                <p className="price">$50 <span>(PREMIUM)</span></p>
-                <ul>
-                  <li>✔ Free Riding</li>
-                  <li>✔ Unlimited Equipments</li>
-                  <li>✔ Personal Trainer Anytime</li>
-                  <li>✔ One-on-One Consultations</li>
-                  <li>✔ Access to Premium Classes</li>
-                </ul>
-                <button className="join-now-cta" onClick={handleJoinNowClick}>JOIN NOW</button>
-              </div>
-            </div>
-
-            <p>Choose a plan that fits your needs. We offer affordable pricing options, whether you’re just starting or looking for premium features.</p>
-          </section>
-        )}
-
-        <section id="offers" className="offers-section" ref={offersSectionRef}>
-          <h2>Special Offers</h2>
-          <p>Sign up today and get 30% off on all premium plans!</p>
-          <button className="offers-cta-button" onClick={handleCheckOurPlansClick}>
-            Check Our Plans
-          </button>
-        </section>
-
-        <section id="join-now" className="join-now-section" ref={joinNowSectionRef}>
-          <h2>Join Now</h2>
-          <p>Sign up to get access to personalized workout plans and track your fitness progress!</p>
-        </section>
-
-        <section id="about" className="about-section" ref={aboutSectionRef}>
-          <h2>About Beefit</h2>
-          <p>Beefit is your ultimate fitness companion, helping you achieve your health goals with personalized plans, progress tracking, and a supportive community.</p>
-        </section>
-      </div>
+        </div>
+      </section>
     </div>
   );
 }

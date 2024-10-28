@@ -1,17 +1,18 @@
+
 import React, { useState, useEffect } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { Link } from "react-router-dom"; 
-import './Calendar.css';
+import { Link, useNavigate } from "react-router-dom"; 
+import './calendar.css';
 
 function Calendar() {
   const [events, setEvents] = useState([]);
+  const navigate = useNavigate(); // Hook to navigate to other pages
 
   useEffect(() => {
     const fetchEvents = async () => {
- 
       const response = await fetch("/api/user/events"); 
       const data = await response.json();
       setEvents(data); 
@@ -23,15 +24,19 @@ function Calendar() {
   const handleDateClick = (arg) => {
     const eventTitle = prompt("Enter Event Title");
     if (eventTitle) {
-      setEvents((prevEvents) => [
-        ...prevEvents,
-        {
-          title: eventTitle,
-          date: arg.date,
-          allDay: true,
-        },
-      ]);
-     
+      
+      if (eventTitle.toLowerCase() === "fullbody", "ARMS" , "ABS") {
+        navigate("/myplan");
+      } else {
+        setEvents((prevEvents) => [
+          ...prevEvents,
+          {
+            title: eventTitle,
+            date: arg.date,
+            allDay: true,
+          },
+        ]);
+      }
     }
   };
 
@@ -60,7 +65,6 @@ function Calendar() {
             setEvents((prevEvents) =>
               prevEvents.filter((event) => event !== info.event)
             );
-          
           }
         }}
       />

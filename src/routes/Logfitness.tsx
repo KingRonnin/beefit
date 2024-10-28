@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import './LogFitness.css';
 import loadingGif from '../images/loading-gif.gif';
 
+
 const LogFitness: React.FC = () => {
     const navigate = useNavigate();
     const location = useLocation();
@@ -16,7 +17,8 @@ const LogFitness: React.FC = () => {
     const [successMessage, setSuccessMessage] = useState('');
     const [goalSavedMessage, setGoalSavedMessage] = useState('');
     const [loading, setLoading] = useState(false);
-    const [goalSelected, setGoalSelected] = useState(false); // New state variable
+    const [goalSelected, setGoalSelected] = useState(false);
+    const [showFormContent, setShowFormContent] = useState(false);
 
     const weightLossRef = useRef<HTMLDivElement>(null);
     const enduranceRef = useRef<HTMLDivElement>(null);
@@ -25,7 +27,7 @@ const LogFitness: React.FC = () => {
     const handleGoalClick = (goal: string) => {
         setGoal(goal);
         setGoalSavedMessage('');
-        setGoalSelected(true); // Mark goal as selected
+        setGoalSelected(true);
 
         if (goal === 'weight loss' && weightLossRef.current) {
             weightLossRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -44,6 +46,17 @@ const LogFitness: React.FC = () => {
             return;
         }
 
+        const loggedData = {
+            weight: +weight,
+            runDistance: +runDistance,
+            stretchDistance: +stretchDistance,
+            date: new Date().toISOString(),
+        };
+
+        const previousData = JSON.parse(localStorage.getItem('fitnessData') || '[]');
+        previousData.push(loggedData);
+        localStorage.setItem('fitnessData', JSON.stringify(previousData));
+
         setSuccessMessage('Data logged successfully!');
         setLoading(true);
 
@@ -61,17 +74,19 @@ const LogFitness: React.FC = () => {
     const handleSaveGoal = () => {
         setSavedGoal(goal);
         setGoalSavedMessage('Goal saved!');
+        setShowFormContent(true);
     };
 
     const handleDeleteGoal = () => {
         setSavedGoal(null);
         setGoal('');
         setGoalSavedMessage('Goal removed!');
-        setGoalSelected(false); // Reset goal selection
+        setGoalSelected(false);
+        setShowFormContent(false);
     };
 
     const handleBack = () => {
-        // Reset state variables when navigating back
+        
         setSavedGoal(null);
         setGoal('');
         setWeight('');
@@ -80,7 +95,8 @@ const LogFitness: React.FC = () => {
         setGoalSavedMessage('');
         setSuccessMessage('');
         setGoalSelected(false);
-        navigate('/LogFitness'); // Navigate back to LogFitness page
+        setShowFormContent(false);
+        navigate('/LogFitness'); 
     };
 
     return (
@@ -104,7 +120,8 @@ const LogFitness: React.FC = () => {
 
                 {!loading && (
                     <>
-                        {savedGoal && (
+                       
+                        {savedGoal && showFormContent && (
                             <div className="form-group">
                                 <h2>Your Saved Goal: {savedGoal}</h2>
                                 <button onClick={handleDeleteGoal} className="delete-goal-btn">
@@ -113,44 +130,48 @@ const LogFitness: React.FC = () => {
                             </div>
                         )}
 
-                        {!savedGoal && (
+                        {(!savedGoal || (savedGoal && showFormContent)) && (
                             <form onSubmit={handleSubmit}>
                                 <div className="form-group">
-                                    <label>What is your primary fitness goal?</label>
-                                    <div className="button-group">
-                                        <button
-                                            type="button"
-                                            className={goal === 'weight loss' ? 'active' : ''}
-                                            onClick={() => handleGoalClick('weight loss')}
-                                        >
-                                            Weight loss
-                                        </button>
-                                        <button
-                                            type="button"
-                                            className={goal === 'improving endurance' ? 'active' : ''}
-                                            onClick={() => handleGoalClick('improving endurance')}
-                                        >
-                                            Improving endurance
-                                        </button>
-                                        <button
-                                            type="button"
-                                            className={goal === 'enhancing flexibility' ? 'active' : ''}
-                                            onClick={() => handleGoalClick('enhancing flexibility')}
-                                        >
-                                            Enhancing flexibility
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="weight">Current Weight (kg):</label>
-                                    <input
-                                        type="number"
-                                        id="weight"
-                                        value={weight}
-                                        onChange={(e) => setWeight(e.target.value)}
-                                        required
-                                    />
+                                    {savedGoal ? (
+                                        <>
+                                            <label>Your Current Weight (kg):</label>
+                                            <input
+                                                type="number"
+                                                id="weight"
+                                                value={weight}
+                                                onChange={(e) => setWeight(e.target.value)}
+                                                required
+                                            />
+                                        </>
+                                    ) : (
+                                        <>
+                                            <label>What is your primary fitness goal?</label>
+                                            <div className="button-group">
+                                                <button
+                                                    type="button"
+                                                    className={goal === 'weight loss' ? 'active' : ''}
+                                                    onClick={() => handleGoalClick('weight loss')}
+                                                >
+                                                    Weight loss
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    className={goal === 'improving endurance' ? 'active' : ''}
+                                                    onClick={() => handleGoalClick('improving endurance')}
+                                                >
+                                                    Improving endurance
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    className={goal === 'enhancing flexibility' ? 'active' : ''}
+                                                    onClick={() => handleGoalClick('enhancing flexibility')}
+                                                >
+                                                    Enhancing flexibility
+                                                </button>
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
 
                                 <div className="form-group">
