@@ -45,7 +45,7 @@ function FrontPage() {
     setSuccessMessage('Successfully added plan!');
     setTimeout(() => {
       setSuccessMessage('');
-      navigate('/SignIn');
+      navigate('/register');
     }, 2000);
   };
 

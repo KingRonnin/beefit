@@ -17,7 +17,7 @@ const Header = ({ handleScrollToSection, sections }) => {
           <li onClick={() => handleScrollToSection(sections.contact)} className="nav-link">Contact</li>
         </ul>
         <div className="navbar-right">
-          <a href="/SignIn" className="nav-link login-link">Login</a>  {/* External Login link */}
+          <a href="/login" className="nav-link login-link">Login</a>  {/* External Login link */}
         </div>
       </nav>
      
