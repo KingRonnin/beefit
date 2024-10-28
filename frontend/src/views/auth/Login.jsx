@@ -45,50 +45,48 @@ function Login() {
             <section className="container">
                 <div className="box">
                     <div className="box-inner">
-                        <div className="form">
-                            <div className="header-section">
-                                <h1>Welcome to Beefit</h1>
-                                <p>Sign In to Get Started</p>
-                            </div>
-                            <div className="form">
-                                <form className='needs-validation' onSubmit={handleLogin} noValidate>
-                                    {/* username */}
-                                    <label htmlFor="email" className='form-label'>
-                                        Email Address
-                                    </label>
-                                    <input type="email" onChange={handleBioDataChange} value={bioData.email} id='email' className='form-control' name='email' placeholder='Email' required />
-                                    {/* password */}
-                                    <label htmlFor="password" className='form-label'>
-                                        Password
-                                    </label>
-                                    <input type="password" onChange={handleBioDataChange} value={bioData.password} id='password' className='form-control' name='password' placeholder='Password' required />
-                                    <div>
-                                        {/* Forgot Password */}
-                                    </div>
-                                    <button type='submit' disabled={isLoading}>
-                                        {isLoading ? (
-                                            <>
-                                                <span>Processing...</span>
-                                                <i className='fas fa-spinner fa-spin' />
-                                            </>
-                                        ) : (
-                                            <>
-                                                <span>
-                                                    Sign In
-                                                </span>
-                                                <i className='fas fa-sign-in-alt' />
-                                            </>
-                                        )}
-                                    </button>
-                                </form>
-                            </div>
-                            <span>
-                                Don't have an account? {' '}
-                                <Link to='/register/'>
-                                    Sign Up
-                                </Link>
-                            </span>
+                        <div className="header-section">
+                            <h1>Welcome to Beefit</h1>
+                            <p>Sign In to Get Started</p>
                         </div>
+                        <div className="form">
+                            <form className='needs-validation' onSubmit={handleLogin} noValidate>
+                                {/* username */}
+                                <label htmlFor="email" className='form-label'>
+                                    Email Address
+                                </label>
+                                <input type="email" onChange={handleBioDataChange} value={bioData.email} id='email' className='form-control' name='email' placeholder='Email' required />
+                                {/* password */}
+                                <label htmlFor="password" className='form-label'>
+                                    Password
+                                </label>
+                                <input type="password" onChange={handleBioDataChange} value={bioData.password} id='password' className='form-control' name='password' placeholder='Password' required />
+                                <div>
+                                    {/* Forgot Password */}
+                                </div>
+                                <button type='submit' disabled={isLoading}>
+                                    {isLoading ? (
+                                        <>
+                                            <span>Processing...</span>
+                                            <i className='fas fa-spinner fa-spin' />
+                                        </>
+                                    ) : (
+                                        <>
+                                            <span>
+                                                Sign In
+                                            </span>
+                                            <i className='fas fa-sign-in-alt' />
+                                        </>
+                                    )}
+                                </button>
+                            </form>
+                        </div>
+                        <span>
+                            Don't have an account? {' '}
+                            <Link to='/register/'>
+                                Sign Up
+                            </Link>
+                        </span>
                     </div>
                 </div>
             </section>

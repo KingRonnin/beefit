@@ -38,33 +38,34 @@
     color: #2C3E50;
 }
 
-.header-section p {
+.redirect-signin {
     font-size: 1rem;
     color: #34495E;
-    margin-bottom: 15px;
+    margin-top: 15px;
     text-align: center;
 }
 
 .form {
+    margin-top: 25px;
     margin-bottom: 15px;
     text-align: left;
     display: flex;
     flex-direction: column;
+    gap: 15px;
 }
 
 .form-label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     font-size: 14px;
     font-weight: bold;
     color: #2C3E50;
     width: 100%;
-    line-height: 20px;
 }
 
 .form-control {
     width: 100%;
-    padding: 12px 4px 15px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem;
