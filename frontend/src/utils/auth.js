@@ -1,5 +1,5 @@
-import { useAuthStore } from "../store/auth";
-import axios from "./axios";
+import { useAuthStore } from "../store/auth.js";
+import axios from "./axios.js";
 import jwt_decode from "jwt-decode";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
@@ -12,10 +12,8 @@ const Toast = Swal.mixin({
     timerProgressBar: true,
 });
 
-// Function to handle user login
 export const login = async (email, password) => {
     try {
-        // Making a POST request to obtain user tokens
         const { data, status } = await axios.post("user/token/", {
             email,
             password,
@@ -39,10 +37,9 @@ export const login = async (email, password) => {
     }
 };
 
-export const register = async (full_name, email, password, password2) => {
+export const register = async (email, password, password2) => {
     try {
         const { data } = await axios.post("user/register/", {
-            full_name,
             email,
             password,
             password2,

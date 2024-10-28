@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { getRefreshToken, isAccessTokenExpired, setAuthUser } from './auth'; // Import authentication-related functions
-import { API_BASE_URL } from './constants';
+import { getRefreshToken, isAccessTokenExpired, setAuthUser } from './auth.js'; // Import authentication-related functions
+import { API_BASE_URL } from './constants.js';
 import Cookies from 'js-cookie';
 
 const useAxios = () => {
