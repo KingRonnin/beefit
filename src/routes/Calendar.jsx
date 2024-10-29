@@ -1,81 +1,34 @@
-
-import React, { useState, useEffect } from "react";
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
-import interactionPlugin from "@fullcalendar/interaction";
-import { Link, useNavigate } from "react-router-dom"; 
-import './Calendar.css';
+import React, { useState, useContext, useEffect } from "react";
+import "./App.css";
+import { getMonth } from "./util";
+import Sidebar from "./components/Sidebar";
+import Month from "./components/Month";
+import GlobalContext from "./context/GlobalContext";
+import EventModal from "./components/EventModal";
 
 function Calendar() {
-  const [events, setEvents] = useState([]);
-  const navigate = useNavigate(); // Hook to navigate to other pages
+  const [currentMonth, setCurrentMonth] = useState(getMonth());
+  const { monthIndex, showEventModal } = useContext(GlobalContext);
 
   useEffect(() => {
-    const fetchEvents = async () => {
-      const response = await fetch("/api/user/events"); 
-      const data = await response.json();
-      setEvents(data); 
-    };
-
-    fetchEvents();
-  }, []);
-
-  const handleDateClick = (arg) => {
-    const eventTitle = prompt("Enter Event Title");
-    if (eventTitle) {
-      
-      if (eventTitle.toLowerCase() === "fullbody", "ARMS" , "ABS") {
-        navigate("/myplan");
-      } else {
-        setEvents((prevEvents) => [
-          ...prevEvents,
-          {
-            title: eventTitle,
-            date: arg.date,
-            allDay: true,
-          },
-        ]);
-      }
-    }
-  };
+    setCurrentMonth(getMonth(monthIndex));
+  }, [monthIndex]);
 
   return (
-    <div className="calendar-container">
-      <div className="calendar-header">
-        <h1>My Fitness Calendar</h1>
-      </div>
+    <React.Fragment>
+      {showEventModal && <EventModal />}
 
-      <FullCalendar
-        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-        initialView={"dayGridMonth"}
-        headerToolbar={{
-          start: "today prev,next",
-          center: "title",
-          end: "dayGridMonth,timeGridWeek,timeGridDay",
-        }}
-        height={"90vh"}
-        className="fullcalendar"
-        events={events} 
-        dateClick={handleDateClick} 
-        editable={true} 
-        eventClick={(info) => {
-          const confirmed = window.confirm("Do you want to delete this event?");
-          if (confirmed) {
-            setEvents((prevEvents) =>
-              prevEvents.filter((event) => event !== info.event)
-            );
-          }
-        }}
-      />
-
-      <div className="button-container">
-        <Link to="/PlanFrontPage">
-          <button className="Return-button">Return to Home</button>
-        </Link>
+      <div className="h-screen flex flex-col light-blue-bg">
+        <div className="flex flex-1">
+          <Sidebar />
+          <Month month={currentMonth} />
+        </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 }
 
 export default Calendar;
+
+
+
