@@ -8,6 +8,7 @@ import Calender from './views/routes/Calendar.jsx';
 import SignIn from './views/routes/SignIn.jsx';
 import Register from './views/auth/Register.jsx';
 import Login from './views/auth/Login.jsx';
+import About from './views/routes/About.jsx';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
                 <Route path="/Calender" element={<Calender />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/About" element={<About />} />
 
 
               </Routes>
