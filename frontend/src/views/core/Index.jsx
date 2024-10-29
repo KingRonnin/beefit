@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Index.css';
-import heroImage from '../../images/h1_hero.png';
 import loadingGif from '../../images/loading-gif.gif';
 import { FaInstagram, FaTwitter, FaEnvelope } from 'react-icons/fa';  // Importing Font Awesome icons
 import Header from '../component/Header.jsx';
+import hbdImage from '../../images/hbd.jpg';
 
 function FrontPage() {
   const [loading, setLoading] = useState(false);
@@ -64,16 +64,16 @@ function FrontPage() {
 
       {/* Home Section */}
       <section id="home" className="section home-section" ref={homeSectionRef}>
-        <header className="hero-section" style={{ backgroundImage: `url(${heroImage})` }}>
-          <div className="overlay">
-            <h1>Welcome TO BEEFIT</h1>
-            <h2>Your Fitness Partner</h2>
-            <button className="cta-button" onClick={handleGetStartedClick}>
-              Get Started
-            </button>
-          </div>
-        </header>
-      </section>
+  <header className="hero-section" style={{ backgroundImage: `url(${hbdImage})` }}>
+    <div className="overlay">
+      <h1>Welcome TO BEEFIT</h1>
+      <h2>Your Fitness Partner</h2>
+      <button className="cta-button" onClick={handleGetStartedClick}>
+        Get Started
+      </button>
+    </div>
+  </header>
+</section>
 
       {/* Loading Overlay */}
       {loading && (

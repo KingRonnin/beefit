@@ -10,7 +10,7 @@ body {
 }
 
 .front-page {
-  background-image: url('../../images//h1_hero.png');
+  background-image: url('../../images//hbd.jpg');
   display: flex;
   flex-direction: column;
   z-index: 1;
