@@ -1,8 +1,6 @@
 import React from 'react';
 import './Header.css';  // Import the CSS file for styling
 import About from '../routes/About';
-import LogFitness from '../routes/LogFitness';
-
 
 const Header = ({ handleScrollToSection, sections }) => {
   return (
