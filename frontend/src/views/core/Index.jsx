@@ -91,7 +91,7 @@ function FrontPage() {
       )}
 
       {/* About Section */}
-      <section id="about" className="section about-section" ref={aboutSectionRef}>
+      <section id="About" className="section about-section" ref={aboutSectionRef}>
         <div className="content">
           <h2>About Us</h2>
           <p>Beefit is dedicated to empowering fitness starters. We help you discover the joy of fitness with easy-to-follow plans and a supportive community.</p>

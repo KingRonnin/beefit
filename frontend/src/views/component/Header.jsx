@@ -1,5 +1,7 @@
 import React from 'react';
 import './Header.css';  // Import the CSS file for styling
+import About from '../routes/About';
+import LogFitness from '../routes/LogFitness';
 
 
 const Header = ({ handleScrollToSection, sections }) => {
@@ -14,7 +16,8 @@ const Header = ({ handleScrollToSection, sections }) => {
           <li onClick={() => handleScrollToSection(sections.about)} className="nav-link">About</li>
           <li onClick={() => handleScrollToSection(sections.courses)} className="nav-link">Courses</li>
           <li onClick={() => handleScrollToSection(sections.services)} className="nav-link">Services</li>
-          <li onClick={() => handleScrollToSection(sections.contact)} className="nav-link">Contact</li>
+          <li onClick={() => handleScrollToSection(sections.about)} className="nav-link">Contact</li>
+          <li onClick={() => handleScrollToSection(sections.LogFitness)} className="nav-link">Log Fitness</li>
         </ul>
         <div className="navbar-right">
           <a href="/login" className="nav-link login-link">Login</a>  {/* External Login link */}
