@@ -10,6 +10,7 @@ body {
 }
 
 .front-page {
+  background-image: url(./images//h1_hero.png);
   display: flex;
   flex-direction: column;
   z-index: 1;
