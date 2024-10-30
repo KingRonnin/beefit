@@ -66,8 +66,7 @@ function FrontPage() {
       <section id="home" className="section home-section" ref={homeSectionRef}>
   <header className="hero-section" style={{ backgroundImage: `url(${hbdImage})` }}>
     <div className="overlay">
-      <h1>Welcome TO BEEFIT</h1>
-      <h2>Your Fitness Partner</h2>
+      <h1 className='hero-text'>Welcome TO BEEFIT</h1>
       <button className="cta-button" onClick={handleGetStartedClick}>
         Get Started
       </button>
