@@ -1,5 +1,6 @@
 import React from 'react';
 import WorkoutLogForm from './WorkoutLogForm';
+import './WorkoutLog.css';
 
 const WorkoutLog = () => {
     const handleWorkoutSubmit = (workoutData) => {
@@ -7,8 +8,8 @@ const WorkoutLog = () => {
     };
 
     return (
-        <div>
-            <h1>Log Your Workout</h1>
+        <div className="workout-log-container">
+            <h1>Workout Log</h1>
             <WorkoutLogForm onSubmit={handleWorkoutSubmit} />
         </div>
     );
