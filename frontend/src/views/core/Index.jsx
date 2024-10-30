@@ -62,14 +62,13 @@ function FrontPage() {
     <div className="front-page">
       <Header handleScrollToSection={handleScrollToSection} sections={sections} />
 
-      {/* Home Section */}
-      <section id="home" className="section home-section" ref={homeSectionRef}>
+<section id="home" className="section home-section" ref={homeSectionRef}>
   <header className="hero-section" style={{ backgroundImage: `url(${hbdImage})` }}>
     <div className="overlay">
-      <h1 className='hero-text'>Welcome TO BEEFIT</h1>
-      <button className="cta-button" onClick={handleGetStartedClick}>
-        Get Started
-      </button>
+      <h1 className="hero-main-text">TRAIN THE</h1>
+      <h1 className="hero-main-text">FIGHTER IN YOU</h1>
+      <p className="sub-text">WELCOME TO BEEFIT</p> 
+      <button className="cta-button" onClick={handleGetStartedClick}>Get Started</button>
     </div>
   </header>
 </section>
