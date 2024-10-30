@@ -22,8 +22,8 @@ const Header = () => {
           <li>
             <Link to="/services" className="nav-link">Services</Link>
           </li>
-          <li>
-            <Link to="/contact" className="nav-link">Contact</Link>
+          <li> 
+            <Link to="/WorkoutLog" className="nav-link">Workout Log</Link>
           </li>
           <li>
             <Link to="/LogFitness" className="nav-link">Log Fitness</Link> {/* Link to Log Fitness */}
