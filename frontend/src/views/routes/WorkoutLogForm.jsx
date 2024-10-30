@@ -1,101 +1,96 @@
 import React, { useState } from 'react';
-import './WorkoutLog.css';
+import WorkoutAnalysis from './WorkoutAnalysis'; // Make sure the path is correct
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from "recharts"; // if not already imported
 
-const WorkoutLogForm = ({ onSubmit }) => {
-    const [caloriesBurned, setCaloriesBurned] = useState('');
-    const [duration, setDuration] = useState('');
-    const [workoutType, setWorkoutType] = useState('Cardio');
-    const [exercises, setExercises] = useState([]);
-    const [successMessage, setSuccessMessage] = useState('');
+const WorkoutLogForm = () => {
+    const [date, setDate] = useState('');
+    const [exercise, setExercise] = useState('');
+    const [reps, setReps] = useState('');
+    const [sets, setSets] = useState('');
+    const [weight, setWeight] = useState('');
+    const [workoutData, setWorkoutData] = useState([]); // Store each workout log
 
-    const handleAddExercise = () => {
-        setExercises([...exercises, { name: '', reps: 0, sets: 0, weight: 0 }]);
-    };
+    const exerciseOptions = [
+        { name: 'Running', type: 'Cardio', caloriesPerMinute: 10 },
+        { name: 'Squats', type: 'Strength', caloriesPerRep: 0.5 },
+        { name: 'Push-ups', type: 'Strength', caloriesPerRep: 0.3 },
+        // Add more exercises as needed
+    ];
 
-    const handleExerciseChange = (index, field, value) => {
-        const newExercises = [...exercises];
-        newExercises[index][field] = value;
-        setExercises(newExercises);
-    };
+    const handleAddWorkout = () => {
+        const selectedExercise = exerciseOptions.find((e) => e.name === exercise);
+        const caloriesBurned = selectedExercise.type === 'Cardio'
+            ? selectedExercise.caloriesPerMinute * (reps * sets) // reps in this case is treated as minutes for cardio
+            : selectedExercise.caloriesPerRep * reps * sets;
 
-    const handleRemoveExercise = (index) => {
-        setExercises(exercises.filter((_, i) => i !== index));
-    };
+        const newWorkout = {
+            date,
+            exercise,
+            reps: Number(reps),
+            sets: Number(sets),
+            weight: Number(weight),
+            caloriesBurned,
+        };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (!caloriesBurned || !duration) {
-            alert("Please fill in all required fields.");
-            return;
-        }
-        onSubmit({
-            date: new Date().toISOString(),
-            workoutType,
-            caloriesBurned: Number(caloriesBurned),
-            duration: Number(duration),
-            exercises,
-        });
-        setSuccessMessage("Workout logged successfully!");
+        setWorkoutData([...workoutData, newWorkout]);
+        setDate('');
+        setExercise('');
+        setReps('');
+        setSets('');
+        setWeight('');
     };
 
     return (
-        <div>
-            {successMessage && <p className="success-message">{successMessage}</p>}
-            <form onSubmit={handleSubmit}>
-                <label>Workout Type:</label>
-                <select value={workoutType} onChange={(e) => setWorkoutType(e.target.value)}>
-                    <option value="Cardio">Cardio</option>
-                    <option value="Strength">Strength</option>
-                    <option value="Flexibility">Flexibility</option>
+        <div className="workout-logger">
+            <h2>Log Your Workout</h2>
+            <div className="workout-form">
+                <label>Date:</label>
+                <input
+                    type="date"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                />
+
+                <label>Exercise:</label>
+                <select value={exercise} onChange={(e) => setExercise(e.target.value)}>
+                    <option value="">Select Exercise</option>
+                    {exerciseOptions.map((ex) => (
+                        <option key={ex.name} value={ex.name}>
+                            {ex.name} ({ex.type})
+                        </option>
+                    ))}
                 </select>
 
-                <label>Calories Burned:</label>
+                <label>Reps:</label>
                 <input
                     type="number"
-                    value={caloriesBurned}
-                    onChange={(e) => setCaloriesBurned(e.target.value)}
+                    value={reps}
+                    onChange={(e) => setReps(e.target.value)}
                 />
 
-                <label>Duration (mins):</label>
+                <label>Sets:</label>
                 <input
                     type="number"
-                    value={duration}
-                    onChange={(e) => setDuration(e.target.value)}
+                    value={sets}
+                    onChange={(e) => setSets(e.target.value)}
                 />
 
-                <h3>Exercises</h3>
-                {exercises.map((exercise, index) => (
-                    <div key={index} className="exercise-input-group">
-                        <input
-                            type="text"
-                            placeholder="Exercise Name"
-                            value={exercise.name}
-                            onChange={(e) => handleExerciseChange(index, 'name', e.target.value)}
-                        />
+                {exerciseOptions.find((ex) => ex.name === exercise)?.type === 'Strength' && (
+                    <>
+                        <label>Weight (kg):</label>
                         <input
                             type="number"
-                            placeholder="Reps"
-                            value={exercise.reps}
-                            onChange={(e) => handleExerciseChange(index, 'reps', e.target.value)}
+                            value={weight}
+                            onChange={(e) => setWeight(e.target.value)}
                         />
-                        <input
-                            type="number"
-                            placeholder="Sets"
-                            value={exercise.sets}
-                            onChange={(e) => handleExerciseChange(index, 'sets', e.target.value)}
-                        />
-                        <input
-                            type="number"
-                            placeholder="Weight (if any)"
-                            value={exercise.weight}
-                            onChange={(e) => handleExerciseChange(index, 'weight', e.target.value)}
-                        />
-                        <button type="button" onClick={() => handleRemoveExercise(index)}>Remove</button>
-                    </div>
-                ))}
-                <button type="button" onClick={handleAddExercise} className="add-exercise-button">Add Exercise</button>
-                <button type="submit">Log Workout</button>
-            </form>
+                    </>
+                )}
+
+                <button onClick={handleAddWorkout}>Continue</button>
+            </div>
+
+            {/* Render WorkoutAnalysis and pass workoutData as prop */}
+            <WorkoutAnalysis data={workoutData} />
         </div>
     );
 };
