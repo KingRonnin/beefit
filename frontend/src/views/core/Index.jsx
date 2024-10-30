@@ -88,7 +88,7 @@ function FrontPage() {
         </div>
       )}
 
-      {/* About Section */}
+
       <section id="About" className="section about-section" ref={aboutSectionRef}>
         <div className="content">
           <h2>About Us</h2>
@@ -96,13 +96,13 @@ function FrontPage() {
         </div>
       </section>
 
-      {/* Courses Section */}
+     
       <section id="courses" className="section courses-section" ref={coursesSectionRef}>
         <h2>Courses We Offer</h2>
         <p>Explore our range of fitness courses, from beginner to advanced, designed to suit all fitness levels and help you reach your personal goals.</p>
       </section>
 
-      {/* Services Section */}
+      
       <section id="services" className="section services-section" ref={servicesSectionRef}>
         <div className="content">
           <h2>Our Services</h2>
@@ -110,7 +110,7 @@ function FrontPage() {
         </div>
       </section>
 
-      {/* Pricing Section */}
+   
       {showPricing && (
         <section id="pricing" className="section pricing-section" ref={pricingSectionRef}>
           <h2>Our Pricing Plans</h2>
@@ -130,7 +130,7 @@ function FrontPage() {
         </section>
       )}
 
-      {/* Offers Section */}
+ ]
       <section id="offers" className="section offers-section" ref={offersSectionRef}>
         <h2>Special Offers</h2>
         <p>Sign up today and get 30% off on all premium plans!</p>
@@ -139,14 +139,14 @@ function FrontPage() {
         </button>
       </section>
 
-      {/* Contact Section */}
+    
       <section id="contact" className="section contact-section" ref={contactSectionRef}>
         <div className="content">
           <h2>Contact Us</h2>
           <p>Get in touch for any inquiries or support. We’re here to help you succeed in your fitness journey.</p>
           <button className="contact-button">Contact Us</button>
           
-          {/* Social Media Icons */}
+         
           <div className="social-media-icons">
             <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
               <FaInstagram className="social-icon instagram-icon" />
@@ -163,5 +163,6 @@ function FrontPage() {
     </div>
   );
 }
+
 
 export default FrontPage;
