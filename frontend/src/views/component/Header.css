@@ -1,148 +1,87 @@
-/* Header.css */
-
 /* General Header and Navbar Styles */
 .header {
-    background-color: #fff;
-    padding: 10px 0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-  }
-  
+  background-color: transparent; /* Set transparent background */
+  padding: 15px 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: none; /* Remove shadow */
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.navbar-left .brand-name {
+  font-size: 32px;
+  font-weight: bold;
+  color: red; /* Maintain contrast with the background */
+  text-decoration: none;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+}
+
+.nav-menu li {
+  margin: 0 20px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: white; /* Change this color based on the front page’s background */
+  font-size: 20px;
+  text-decoration: none;
+  padding: 10px 15px;
+  transition: color 0.3s ease,
+}
+
+.nav-link:hover {
+  color: #007bff;
+}
+
+.login-link {
+  font-weight: bold;
+  color: white;
+  padding: 10px 20px;
+  background-color: red;
+  border-radius: 5px;
+  transition: color 0.3s, background-color 0.3s;
+  font-size: 20px;
+}
+
+.login-link:hover {
+  background-color: #f0f0f0;
+}
+
+@media (max-width: 768px) {
   .navbar {
-    display: flex;
-    justify-content: space-between;  /* Align items to both ends */
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-  
-  .navbar-left {
-    flex-grow: 1;  /* Push "Beefit" to the left */
-  }
-  
-  .navbar-right {
-    flex-grow: 1;  /* Push "Login" to the right */
-    text-align: right;  /* Align "Login" link to the right */
-  }
-  
-  .nav-menu {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    justify-content: center;  /* Center the middle menu items */
-    flex-grow: 2;  /* Ensure this section grows between left and right */
-  }
-  
-  .nav-menu li {
-    margin: 0 20px;
-  }
-  
-  .brand-name {
-    font-size: 24px;
-    font-weight: bold;
-    color: red;  /* Red color for Beefit */
-    text-decoration: none;
-  }
-  
-  .nav-link {
-    text-decoration: none;
-    color: #333;
-    font-size: 16px;
-    font-weight: normal;
-    padding: 5px 10px;
-    transition: color 0.3s ease, border 0.3s ease;  /* Smooth transition */
-  }
-  
-  .nav-link:hover {
-    color: #007bff;  /* Change text color on hover */
-    border: 2px solid #007bff;  /* Add blue border around the link on hover */
-    border-radius: 5px;  /* Optional: Rounded corners for the border */
-  }
-  
-  .login-link {
-    font-weight: bold;  /* Bold for Login */
-  }
-  
-  @media (max-width: 768px) {
-    .navbar {
       flex-direction: column;
       padding: 20px;
-    }
-  
-    .navbar-left,
-    .navbar-right {
-      text-align: center;  /* Align both left and right sections to center for mobile */
-      flex-grow: 0;
-    }
-  
-    .nav-menu {
+  }
+
+  .navbar-left,
+  .navbar-right {
+      text-align: center;
+  }
+
+  .nav-menu {
       flex-direction: column;
       align-items: center;
-    }
-  
-    .nav-menu li {
+  }
+
+  .nav-menu li {
       margin: 10px 0;
-    }
   }
-  .header {
-    position: fixed;
-    width: 100%;
-    background-color: #1f1f1f;
-    color: white;
-    padding: 20px 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-  
-  .navbar-left .brand-name {
-    font-size: 24px;
-    font-weight: bold;
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  .nav-menu {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-  }
-  
-  .nav-menu .nav-link {
-    color: white;
-    font-size: 18px;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  
-  .nav-menu .nav-link:hover {
-    color: #ff7b00;
-  }
-  
-  .navbar-right .login-link {
-    color: white;
-    font-size: 18px;
-    text-decoration: none;
-    padding: 10px 20px;
-    background-color: #ff7b00;
-    border-radius: 20px;
-    transition: background-color 0.3s;
-  }
-  
-  .navbar-right .login-link:hover {
-    background-color: #e66f00;
-  }
+}
