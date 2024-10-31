@@ -1,56 +1,97 @@
-
 /* Main container */
-.workout-log-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+body {
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+        url('../../images/hbd.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
 }
 
-/* Form styling */
-form {
+.workout-log-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Form Card */
+.form-card {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.form-card h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.workout-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
+/* Labels and Inputs */
 label {
     font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+    text-align: left;
 }
 
-input, select, button {
+input, select {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ddd;
     font-size: 16px;
+    color: #333;
 }
 
-.exercise-input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+input:focus, select:focus {
+    outline: none;
+    border-color: #007bff;
 }
 
-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-/* Add Exercise Button */
+/* Button Styling */
 .add-exercise-button {
+    padding: 12px;
+    font-size: 16px;
+    color: #ffffff;
     background-color: #28a745;
-    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .add-exercise-button:hover {
     background-color: #218838;
+}
+
+/* Analysis Section */
+.workout-analysis {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.workout-analysis h2 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.chart-container {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }

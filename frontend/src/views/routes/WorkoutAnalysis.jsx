@@ -1,9 +1,14 @@
+import React from 'react';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+
 const WorkoutAnalysis = ({ data }) => {
     if (data.length === 0) return <p>No workouts logged yet.</p>;
 
+    // Calculate total calories and average per workout
     const totalCalories = data.reduce((sum, workout) => sum + workout.caloriesBurned, 0);
-    const averageCalories = totalCalories / data.length;
+    const averageCalories = (totalCalories / data.length).toFixed(1);
 
+    // Prepare data for the bar chart
     const chartData = data.map((workout, index) => ({
         name: workout.date,
         Calories: workout.caloriesBurned,
@@ -12,8 +17,8 @@ const WorkoutAnalysis = ({ data }) => {
     return (
         <div className="workout-analysis">
             <h2>Workout Analysis</h2>
-            <p>Total Calories Burned: {totalCalories}</p>
-            <p>Average Calories per Workout: {averageCalories.toFixed(1)}</p>
+            <p><strong>Total Calories Burned:</strong> {totalCalories} kcal</p>
+            <p><strong>Average Calories per Workout:</strong> {averageCalories} kcal</p>
 
             <h3>Calories Burned per Workout</h3>
             <ResponsiveContainer width="100%" height={300}>
