@@ -9,6 +9,9 @@ const courses = [
         price: '$11.99',
         imageUrl: '/images/strength-cardio.jpg', // Ensure this path is correct
         description: 'Strength Training with a Twist of Cardio',
+        bodyFocus: 'Upper Body',
+        trainingType: 'Strength',
+        equipment: 'Dumbbell',
         specialtyProgram: '5 Day Trainer Series'
     },
     {
@@ -18,32 +21,37 @@ const courses = [
         price: '$11.99',
         imageUrl: '/images/powerful-tasha.jpg', // Ensure this path is correct
         description: 'Lifting & Power Training for Improved Strength and Speed',
+        bodyFocus: 'Lower Body',
+        trainingType: 'Cardio',
+        equipment: 'Mat',
         specialtyProgram: 'Pregnancy and Postpartum'
     },
     // Additional courses...
 ];
 
 const CoursesPage = () => {
-    const [filters, setFilters] = useState({
-        bodyFocus: [],
-        trainingType: [],
-        equipment: [],
-        specialtyPrograms: []
+    const [activeFilter, setActiveFilter] = useState({
+        bodyFocus: null,
+        trainingType: null,
+        equipment: null,
+        specialtyProgram: null
     });
 
-    const handleCheckboxChange = (filterName, value) => {
-        setFilters(prevFilters => {
-            const currentValues = prevFilters[filterName];
-            const newValues = currentValues.includes(value)
-                ? currentValues.filter(item => item !== value) // Remove if already selected
-                : [...currentValues, value]; // Add if not selected
-
-            return {
-                ...prevFilters,
-                [filterName]: newValues
-            };
-        });
+    const handleFilterClick = (category, value) => {
+        setActiveFilter((prev) => ({
+            ...prev,
+            [category]: prev[category] === value ? null : value
+        }));
     };
+
+    const filteredCourses = courses.filter((course) => {
+        return (
+            (!activeFilter.bodyFocus || course.bodyFocus === activeFilter.bodyFocus) &&
+            (!activeFilter.trainingType || course.trainingType === activeFilter.trainingType) &&
+            (!activeFilter.equipment || course.equipment === activeFilter.equipment) &&
+            (!activeFilter.specialtyProgram || course.specialtyProgram === activeFilter.specialtyProgram)
+        );
+    });
 
     return (
         <div className="courses-page">
@@ -54,94 +62,64 @@ const CoursesPage = () => {
                 <div className="filter-group">
                     <h4>Body Focus</h4>
                     <div className="filter-options">
-                        <label>
-                            <input
-                                type="checkbox"
-                                onChange={() => handleCheckboxChange('bodyFocus', 'Upper Body')}
-                                checked={filters.bodyFocus.includes('Upper Body')}
-                            /> Upper Body
-                        </label>
-                        <label>
-                            <input
-                                type="checkbox"
-                                onChange={() => handleCheckboxChange('bodyFocus', 'Lower Body')}
-                                checked={filters.bodyFocus.includes('Lower Body')}
-                            /> Lower Body
-                        </label>
+                        <p onClick={() => handleFilterClick('bodyFocus', 'Upper Body')}
+                           className={activeFilter.bodyFocus === 'Upper Body' ? 'active-filter' : ''}>
+                            Upper Body
+                        </p>
+                        <p onClick={() => handleFilterClick('bodyFocus', 'Lower Body')}
+                           className={activeFilter.bodyFocus === 'Lower Body' ? 'active-filter' : ''}>
+                            Lower Body
+                        </p>
                     </div>
                 </div>
 
                 <div className="filter-group">
                     <h4>Training Type</h4>
                     <div className="filter-options">
-                        <label>
-                            <input
-                                type="checkbox"
-                                onChange={() => handleCheckboxChange('trainingType', 'Strength')}
-                                checked={filters.trainingType.includes('Strength')}
-                            /> Strength
-                        </label>
-                        <label>
-                            <input
-                                type="checkbox"
-                                onChange={() => handleCheckboxChange('trainingType', 'Cardio')}
-                                checked={filters.trainingType.includes('Cardio')}
-                            /> Cardio
-                        </label>
+                        <p onClick={() => handleFilterClick('trainingType', 'Strength')}
+                           className={activeFilter.trainingType === 'Strength' ? 'active-filter' : ''}>
+                            Strength
+                        </p>
+                        <p onClick={() => handleFilterClick('trainingType', 'Cardio')}
+                           className={activeFilter.trainingType === 'Cardio' ? 'active-filter' : ''}>
+                            Cardio
+                        </p>
                     </div>
                 </div>
 
                 <div className="filter-group">
                     <h4>Equipment</h4>
                     <div className="filter-options">
-                        <label>
-                            <input
-                                type="checkbox"
-                                onChange={() => handleCheckboxChange('equipment', 'No Equipment')}
-                                checked={filters.equipment.includes('No Equipment')}
-                            /> No Equipment
-                        </label>
-                        <label>
-                            <input
-                                type="checkbox"
-                                onChange={() => handleCheckboxChange('equipment', 'Dumbbell')}
-                                checked={filters.equipment.includes('Dumbbell')}
-                            /> Dumbbell
-                        </label>
-                        <label>
-                            <input
-                                type="checkbox"
-                                onChange={() => handleCheckboxChange('equipment', 'Mat')}
-                                checked={filters.equipment.includes('Mat')}
-                            /> Mat
-                        </label>
+                        <p onClick={() => handleFilterClick('equipment', 'No Equipment')}
+                           className={activeFilter.equipment === 'No Equipment' ? 'active-filter' : ''}>
+                            No Equipment
+                        </p>
+                        <p onClick={() => handleFilterClick('equipment', 'Dumbbell')}
+                           className={activeFilter.equipment === 'Dumbbell' ? 'active-filter' : ''}>
+                            Dumbbell
+                        </p>
+                        <p onClick={() => handleFilterClick('equipment', 'Mat')}
+                           className={activeFilter.equipment === 'Mat' ? 'active-filter' : ''}>
+                            Mat
+                        </p>
                     </div>
                 </div>
 
                 <div className="filter-group">
                     <h4>Specialty Programs</h4>
                     <div className="filter-options">
-                        <label>
-                            <input
-                                type="checkbox"
-                                onChange={() => handleCheckboxChange('specialtyPrograms', '5 Day Trainer Series')}
-                                checked={filters.specialtyPrograms.includes('5 Day Trainer Series')}
-                            /> 5 Day Trainer Series
-                        </label>
-                        <label>
-                            <input
-                                type="checkbox"
-                                onChange={() => handleCheckboxChange('specialtyPrograms', '10 Day Trainer Series')}
-                                checked={filters.specialtyPrograms.includes('10 Day Trainer Series')}
-                            /> 10 Day Trainer Series
-                        </label>
-                        <label>
-                            <input
-                                type="checkbox"
-                                onChange={() => handleCheckboxChange('specialtyPrograms', 'Pregnancy and Postpartum')}
-                                checked={filters.specialtyPrograms.includes('Pregnancy and Postpartum')}
-                            /> Pregnancy and Postpartum
-                        </label>
+                        <p onClick={() => handleFilterClick('specialtyProgram', '5 Day Trainer Series')}
+                           className={activeFilter.specialtyProgram === '5 Day Trainer Series' ? 'active-filter' : ''}>
+                            5 Day Trainer Series
+                        </p>
+                        <p onClick={() => handleFilterClick('specialtyProgram', '10 Day Trainer Series')}
+                           className={activeFilter.specialtyProgram === '10 Day Trainer Series' ? 'active-filter' : ''}>
+                            10 Day Trainer Series
+                        </p>
+                        <p onClick={() => handleFilterClick('specialtyProgram', 'Pregnancy and Postpartum')}
+                           className={activeFilter.specialtyProgram === 'Pregnancy and Postpartum' ? 'active-filter' : ''}>
+                            Pregnancy and Postpartum
+                        </p>
                     </div>
                 </div>
             </aside>
@@ -150,18 +128,22 @@ const CoursesPage = () => {
             <section className="course-grid">
                 <h2>Workout Programs</h2>
                 <div className="course-cards">
-                    {courses.map((course) => (
-                        <div key={course.id} className="course-card">
-                            <img src={course.imageUrl} alt={course.title} className="course-image" />
-                            <div className="course-info">
-                                <h3>{course.title}</h3>
-                                <p>{course.description}</p>
-                                <p><strong>{course.duration}</strong></p>
-                                <p><strong>{course.price}</strong></p>
-                                <button className="add-to-cart-button">Add to Cart</button>
+                    {filteredCourses.length > 0 ? (
+                        filteredCourses.map((course) => (
+                            <div key={course.id} className="course-card">
+                                <img src={course.imageUrl} alt={course.title} className="course-image" />
+                                <div className="course-info">
+                                    <h3>{course.title}</h3>
+                                    <p>{course.description}</p>
+                                    <p><strong>{course.duration}</strong></p>
+                                    <p><strong>{course.price}</strong></p>
+                                    <button className="add-to-cart-button">Add to Cart</button>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ))
+                    ) : (
+                        <p>No courses available for the selected filters.</p>
+                    )}
                 </div>
             </section>
         </div>
