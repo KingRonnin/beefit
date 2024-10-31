@@ -3,19 +3,31 @@ import WorkoutAnalysis from './WorkoutAnalysis';
 import './WorkoutLog.css';
 import '../../images/hbd.jpg';
 
+import apiInstance from '../../utils/axios';
+import useUserData from '../../plugin/useUserData';
+import Toast from '../../plugin/Toast.js'
+
 const WorkoutLogPage = () => {
-    const [date, setDate] = useState('');
-    const [exercise, setExercise] = useState('');
-    const [reps, setReps] = useState('');
-    const [sets, setSets] = useState('');
-    const [weight, setWeight] = useState('');
-    const [workoutData, setWorkoutData] = useState([]);
+    const [strength, setStrength] = useState([]);
+    const [cardiovascular, setCardiovascular] = useState([]);
+    // const [date, setDate] = useState('');
+    // const [exercise, setExercise] = useState('');
+    // const [reps, setReps] = useState('');
+    // const [sets, setSets] = useState('');
+    // const [weight, setWeight] = useState('');
+    // const [workoutData, setWorkoutData] = useState([]);
 
     const exerciseOptions = [
         { name: 'Running', type: 'Cardio', caloriesPerMinute: 10 },
         { name: 'Squats', type: 'Strength', caloriesPerRep: 0.5 },
         { name: 'Push-ups', type: 'Strength', caloriesPerRep: 0.3 },
     ];
+
+    const userId = useUserData()?.user_id;
+
+    const fetchExerciseData = async () => {
+        const strength_response = await apiInstance.get('')
+    }
 
     const handleAddWorkout = () => {
         const selectedExercise = exerciseOptions.find((e) => e.name === exercise);

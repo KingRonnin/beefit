@@ -53,8 +53,8 @@ class CardiovascularListAPIView(generics.ListAPIView):
     def get_queryset(self):
         return api_models.Cardiovascular.objects.filter(exercise__type__exact='Cardiovascular')
 
-class Dashboard(generics.ListAPIView):
-    serializer_class = api_serializers.StatsSerializer
+class UserExercise(generics.ListAPIView):
+    serializer_class = api_serializers.UserExerciseSerializer
     permission_classes = [AllowAny]
     
     def get_queryset(self):
@@ -68,7 +68,7 @@ class Dashboard(generics.ListAPIView):
         steps = api_models.Cardiovascular.objects.filter(exercise__user=user).aggregate(total_steps = Sum("step"))['total_steps']
         time_minutes = api_models.Cardiovascular.objects.filter(exercise__user=user).aggregate(personal_best_time = Max("time"))['personal_best_time']
         cardio_exercises = api_models.Cardiovascular.objects.filter(exercise__user=user).count()
-        
+
         return [{
             "sets": sets,
             "reps": reps,
@@ -78,7 +78,36 @@ class Dashboard(generics.ListAPIView):
             "time_minutes": time_minutes,
             "cardio_exercises": cardio_exercises,
         }]
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = self.serializer_class(queryset, many = True)
+        return Response(serializer.data)
     
+class UserStrengthExercise(generics.ListAPIView):
+    serializer_class = api_serializers.UserStrengthExerciseSerializer
+    permission_classes = [AllowAny]
+    
+    def get_queryset(self):
+        user_id = self.kwargs['user_id']
+        user = api_models.User.objects.get(id=user_id)
+
+        queryset = api_models.Strength.objects.filter(exercise__user=user) \
+            .annotate(total_sets=Sum("set"), total_reps=Sum("rep"), max_weight=Max("weight")) \
+            .order_by('-date')
+
+        data = [
+            {
+                "sets": item.total_sets,
+                "reps": item.total_reps,
+                "weight": item.max_weight,
+                "date": item.date.strftime('%Y-%m-%d')
+            }
+            for item in queryset
+        ]
+
+        return data
+        
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
         serializer = self.serializer_class(queryset, many = True)

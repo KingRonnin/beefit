@@ -11,9 +11,6 @@ urlpatterns = [
     path('post/exercise/strength/', api_views.StrengthListAPIView.as_view()),
     path('post/exercise/cardio/', api_views.CardiovascularListAPIView.as_view()),
     
-    path('account/dashboard/stats/<user_id>/', api_views.Dashboard.as_view()),
+    path('get/exercise/<user_id>/', api_views.UserExercise.as_view()),
+    path('get/strength/<user_id>/', api_views.UserStrengthExercise.as_view()),
 ]
-
-{
-    "user_id": "1",
-}

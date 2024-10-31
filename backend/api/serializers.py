@@ -77,7 +77,7 @@ class CardiovascularSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         self.Meta.depth = 0 if request and request.method == "POST" else 1
 
-class StatsSerializer(serializers.Serializer):
+class UserExerciseSerializer(serializers.Serializer):
     # Strength
     sets = serializers.IntegerField(default=0)
     reps = serializers.IntegerField(default=0)
@@ -86,5 +86,18 @@ class StatsSerializer(serializers.Serializer):
     
     # Cardio
     steps = serializers.IntegerField(default=0)
-    time_minutes = serializers.IntegerField(default=0)
+    duration_mins = serializers.IntegerField(default=0)
     cardio_exercises = serializers.IntegerField(default=0)
+
+class UserStrengthExerciseSerializer(serializers.Serializer):
+    # Strength
+    sets = serializers.IntegerField(default=0)
+    reps = serializers.IntegerField(default=0)
+    weight = serializers.IntegerField(default=0)
+    
+    # Date
+    date = serializers.DateField(format='%Y-%m-%d')
+    
+    class Meta:
+        model = None
+        fields = ('sets', 'reps', 'weight', 'date')
