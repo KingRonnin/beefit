@@ -89,7 +89,7 @@ class UserExerciseSerializer(serializers.Serializer):
     duration_mins = serializers.IntegerField(default=0)
     cardio_exercises = serializers.IntegerField(default=0)
 
-class UserStrengthExerciseSerializer(serializers.Serializer):
+class UserStrengthSerializer(serializers.Serializer):
     # Strength
     sets = serializers.IntegerField(default=0)
     reps = serializers.IntegerField(default=0)
@@ -101,3 +101,15 @@ class UserStrengthExerciseSerializer(serializers.Serializer):
     class Meta:
         model = None
         fields = ('sets', 'reps', 'weight', 'date')
+
+class UserCardiovascularSerializer(serializers.Serializer):
+    # Cardiovascular
+    steps = serializers.IntegerField(default=0)
+    time = serializers.IntegerField(default=0)
+    
+    # Date
+    date = serializers.DateField(format='%Y-%m-%d')
+    
+    class Meta:
+        model = None
+        fields = ('steps', 'time', 'date')

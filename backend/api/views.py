@@ -53,7 +53,7 @@ class CardiovascularListAPIView(generics.ListAPIView):
     def get_queryset(self):
         return api_models.Cardiovascular.objects.filter(exercise__type__exact='Cardiovascular')
 
-class UserExercise(generics.ListAPIView):
+class UserExerciseView(generics.ListAPIView):
     serializer_class = api_serializers.UserExerciseSerializer
     permission_classes = [AllowAny]
     
@@ -84,8 +84,8 @@ class UserExercise(generics.ListAPIView):
         serializer = self.serializer_class(queryset, many = True)
         return Response(serializer.data)
     
-class UserStrengthExercise(generics.ListAPIView):
-    serializer_class = api_serializers.UserStrengthExerciseSerializer
+class UserStrengthExerciseView(generics.ListAPIView):
+    serializer_class = api_serializers.UserStrengthSerializer
     permission_classes = [AllowAny]
     
     def get_queryset(self):
@@ -101,6 +101,34 @@ class UserStrengthExercise(generics.ListAPIView):
                 "sets": item.total_sets,
                 "reps": item.total_reps,
                 "weight": item.max_weight,
+                "date": item.date.strftime('%Y-%m-%d')
+            }
+            for item in queryset
+        ]
+
+        return data
+        
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = self.serializer_class(queryset, many = True)
+        return Response(serializer.data)
+    
+class UserCardiovascularView(generics.ListAPIView):
+    serializer_class = api_serializers.UserCardiovascularSerializer
+    permission_classes = [AllowAny]
+    
+    def get_queryset(self):
+        user_id = self.kwargs['user_id']
+        user = api_models.User.objects.get(id=user_id)
+
+        queryset = api_models.Cardiovascular.objects.filter(exercise__user=user) \
+            .annotate(total_steps=Sum("step"), total_duration=Sum("time")) \
+            .order_by('-date')
+
+        data = [
+            {
+                "steps": item.total_steps,
+                "time": item.total_duration,
                 "date": item.date.strftime('%Y-%m-%d')
             }
             for item in queryset
