@@ -7,7 +7,7 @@ const courses = [
         title: 'Strength and Cardio with Brian',
         duration: '39 Min/Day • 2 Weeks',
         price: '$11.99',
-        imageUrl: '/images/strength-cardio.jpg', // Ensure this path is correct
+        youtubeId: 'https://www.youtube.com/watch?v=6FyHoo4Vfxg',
         description: 'Strength Training with a Twist of Cardio',
         bodyFocus: 'Upper Body',
         trainingType: 'Strength',
