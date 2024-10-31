@@ -39,11 +39,11 @@ const WorkoutLogPage = () => {
         });
     };
 
-    const handleStrength = async (e) => {
+    const handleAddStrengthWorkout = async (e) => {
         e.preventDefault();
         setIsLoading(true);
         if(!strength.sets || !strength.reps || !strength.date) {
-            Toast("error", "Sets, Reps, and Date are required to be greater than 0 to log workout");
+            Toast("error", "Sets, Reps, and Date are required to fill in");
             setIsLoading(false);
             return;
         }
@@ -62,7 +62,7 @@ const WorkoutLogPage = () => {
         formData.append("weight", strength.weight);
         formData.append("date", strength.date);
         try {
-            const response = await apiInstance.post("post/exercise/strength", formData, {
+            const response = await apiInstance.post("post/exercise/strength/", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -73,21 +73,47 @@ const WorkoutLogPage = () => {
                 title: "Workout Logged"
             });
         } catch (error) {
+            Toast("error", "Failed to log strength workout. Please try again")
             setIsLoading(false);
         }
     };
 
-    // const fetchExerciseData = async () => {
-    //     const strength_request = await apiInstance.get(`get/strength/${userId}`);
-    //     setStrength(strength_request.data[0]);
+    const handleAddCardioWorkout = async (e) => {
+        e.preventDefault();
+        setIsLoading(true);
+        if(!cardiovascular.steps || !cardiovascular.time || !cardiovascular.date) {
+            Toast("error", "Steps, Time, and Date are required to fill in");
+            setIsLoading(false);
+            return;
+        }
 
-    //     const cardiovascular_request = await apiInstance.get(`get/cardio/${userId}`);
-    //     setCardiovascular(cardiovascular_request.data[0]);
-    // };
+        const JSON = {
+            steps: cardiovascular.steps,
+            time: cardiovascular.time,
+            date: cardiovascular.date,
+        };
 
-    // useEffect(() => {
-    //     fetchExerciseData();
-    // }, []);
+        const formData = new FormData();
+
+        formData.append("steps", cardiovascular.steps);
+        formData.append("time", cardiovascular.time);
+        formData.append("date", cardiovascular.date);
+        try {
+            const response = await apiInstance.post("post/exercise/cardio/", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+            console.log("Workout Logged")
+            Swal.fire({
+                icon: "success",
+                title: "Workout Logged"
+            });
+        } catch (error) {
+            Toast("error", "Failed to log strength workout. Please try again")
+            setIsLoading(false);
+        }
+    };
 
     const handleAddWorkout = () => {
         const selectedExercise = exerciseOptions.find((e) => e.name === exercise);
@@ -120,8 +146,8 @@ const WorkoutLogPage = () => {
                     <label>Date:</label>
                     <input
                         type="date"
+                        onChange={}
                         value={date}
-                        onChange={(e) => setDate(e.target.value)}
                     />
 
                     <label>Exercise:</label>
