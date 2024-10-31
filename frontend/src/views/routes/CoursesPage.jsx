@@ -64,6 +64,13 @@ const CoursesPage = () => {
         }));
     };
 
+
+    const [cart, setCart] = useState([]); // State for cart items
+
+    const handleAddToCart = (course) => {
+        setCart([...cart, course]); // Add selected course to cart
+
+    };
     const filteredCourses = courses.filter((course) => {
         return (
             (!activeFilter.bodyFocus || course.bodyFocus === activeFilter.bodyFocus) &&
