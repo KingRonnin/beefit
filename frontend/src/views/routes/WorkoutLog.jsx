@@ -13,7 +13,6 @@ const WorkoutLog = () => {
 
     return (
         <div className="workout-log-container">
-            <h1>Workout Log</h1>
             
             {/* Form for logging workouts */}
             <WorkoutLogForm onSubmit={handleWorkoutSubmit} />

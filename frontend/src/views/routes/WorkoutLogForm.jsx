@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import WorkoutAnalysis from './WorkoutAnalysis';
 import './WorkoutLog.css';
+import '../../images/hbd.jpg';
 
 const WorkoutLogPage = () => {
     const [date, setDate] = useState('');
@@ -39,25 +40,8 @@ const WorkoutLogPage = () => {
         setWeight('');
     };
 
-    const totalCalories = workoutData.reduce((sum, workout) => sum + workout.caloriesBurned, 0);
-    const totalWorkouts = workoutData.length;
-
     return (
         <div className="workout-log-container">
-            {/* Header Section */}
-            <header className="workout-header">
-                <h1>Welcome to Your Workout Log</h1>
-                <p>Track your exercises, log calories burned, and monitor your progress.</p>
-            </header>
-
-            {/* Progress Overview Section */}
-            <div className="progress-overview">
-                <h3>Overview</h3>
-                <p><strong>Total Workouts:</strong> {totalWorkouts}</p>
-                <p><strong>Total Calories Burned:</strong> {totalCalories} kcal</p>
-            </div>
-
-            {/* Form Card */}
             <div className="form-card">
                 <h2>Log Your Workout</h2>
                 <form className="workout-form">
@@ -105,22 +89,6 @@ const WorkoutLogPage = () => {
 
                     <button type="button" className="add-exercise-button" onClick={handleAddWorkout}>Add Exercise</button>
                 </form>
-            </div>
-
-            {/* Exercise List */}
-            <div className="exercise-list">
-                <h3>Logged Exercises</h3>
-                {workoutData.length === 0 ? (
-                    <p>No exercises logged yet.</p>
-                ) : (
-                    <ul>
-                        {workoutData.map((workout, index) => (
-                            <li key={index}>
-                                {workout.date}: {workout.exercise} - {workout.reps} reps, {workout.sets} sets, {workout.caloriesBurned} kcal burned
-                            </li>
-                        ))}
-                    </ul>
-                )}
             </div>
 
             {/* Analysis Section */}
