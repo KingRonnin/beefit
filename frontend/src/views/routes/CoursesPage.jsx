@@ -7,7 +7,7 @@ const courses = [
         title: 'Strength and Cardio with Brian',
         duration: '39 Min/Day • 2 Weeks',
         price: '$11.99',
-        youtubeId: 'https://www.youtube.com/watch?v=6FyHoo4Vfxg',
+        youtubeId: '6FyHoo4Vfxg',
         description: 'Strength Training with a Twist of Cardio',
         bodyFocus: 'Upper Body',
         trainingType: 'Strength',
@@ -131,7 +131,17 @@ const CoursesPage = () => {
                     {filteredCourses.length > 0 ? (
                         filteredCourses.map((course) => (
                             <div key={course.id} className="course-card">
-                                <img src={course.imageUrl} alt={course.title} className="course-image" />
+                                <div className="course-video">
+                                    <iframe
+                                        width="100%"
+                                        height="180"
+                                        src={`https://www.youtube.com/embed/${course.youtubeId}`}
+                                        title={course.title}
+                                        frameBorder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                    ></iframe>
+                                </div>
                                 <div className="course-info">
                                     <h3>{course.title}</h3>
                                     <p>{course.description}</p>
