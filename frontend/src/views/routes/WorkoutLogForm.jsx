@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import WorkoutAnalysis from './WorkoutAnalysis';
 import './WorkoutLog.css';
 import '../../images/hbd.jpg';
@@ -6,10 +6,12 @@ import '../../images/hbd.jpg';
 import apiInstance from '../../utils/axios';
 import useUserData from '../../plugin/useUserData';
 import Toast from '../../plugin/Toast.js'
+import Swal from 'sweetalert2';
 
 const WorkoutLogPage = () => {
-    const [strength, setStrength] = useState([]);
-    const [cardiovascular, setCardiovascular] = useState([]);
+    const [strength, setStrength] = useState({sets: 0, reps : 0, weight : 0, date : ""});
+    const [cardiovascular, setCardiovascular] = useState({steps: 0, time : 0, date : ""});
+    const [isLoading, setIsLoading] = useState(false);
     // const [date, setDate] = useState('');
     // const [exercise, setExercise] = useState('');
     // const [reps, setReps] = useState('');
@@ -23,11 +25,69 @@ const WorkoutLogPage = () => {
         { name: 'Push-ups', type: 'Strength', caloriesPerRep: 0.3 },
     ];
 
-    const userId = useUserData()?.user_id;
+    const handleStrengthChange = (event) => {
+        setStrength({
+            ...strength,
+            [event.target.name]: event.target.value,
+        });
+    };
 
-    const fetchExerciseData = async () => {
-        const strength_response = await apiInstance.get('')
-    }
+    const handleCardioChange = (event) => {
+        setCardiovascular({
+            ...cardiovascular,
+            [event.target.name]: event.target.value,
+        });
+    };
+
+    const handleStrength = async (e) => {
+        e.preventDefault();
+        setIsLoading(true);
+        if(!strength.sets || !strength.reps || !strength.date) {
+            Toast("error", "Sets, Reps, and Date are required to be greater than 0 to log workout");
+            setIsLoading(false);
+            return;
+        }
+
+        const JSON = {
+            sets: strength.sets,
+            reps: strength.reps,
+            weight: strength.weight,
+            date: strength.date,
+        };
+
+        const formData = new FormData();
+
+        formData.append("sets", strength.sets);
+        formData.append("reps", strength.reps);
+        formData.append("weight", strength.weight);
+        formData.append("date", strength.date);
+        try {
+            const response = await apiInstance.post("post/exercise/strength", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+            console.log("Workout Logged")
+            Swal.fire({
+                icon: "success",
+                title: "Workout Logged"
+            });
+        } catch (error) {
+            setIsLoading(false);
+        }
+    };
+
+    // const fetchExerciseData = async () => {
+    //     const strength_request = await apiInstance.get(`get/strength/${userId}`);
+    //     setStrength(strength_request.data[0]);
+
+    //     const cardiovascular_request = await apiInstance.get(`get/cardio/${userId}`);
+    //     setCardiovascular(cardiovascular_request.data[0]);
+    // };
+
+    // useEffect(() => {
+    //     fetchExerciseData();
+    // }, []);
 
     const handleAddWorkout = () => {
         const selectedExercise = exerciseOptions.find((e) => e.name === exercise);
