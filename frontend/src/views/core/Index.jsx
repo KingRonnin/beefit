@@ -89,26 +89,6 @@ function FrontPage() {
       )}
 
 
-      <section id="About" className="section about-section" ref={aboutSectionRef}>
-        <div className="content">
-          <h2>About Us</h2>
-          <p>Beefit is dedicated to empowering fitness starters. We help you discover the joy of fitness with easy-to-follow plans and a supportive community.</p>
-        </div>
-      </section>
-
-     
-      <section id="courses" className="section courses-section" ref={coursesSectionRef}>
-        <h2>Courses We Offer</h2>
-        <p>Explore our range of fitness courses, from beginner to advanced, designed to suit all fitness levels and help you reach your personal goals.</p>
-      </section>
-
-      
-      <section id="services" className="section services-section" ref={servicesSectionRef}>
-        <div className="content">
-          <h2>Our Services</h2>
-          <p>Explore personalized workout plans, nutritional guidance, and a range of classes designed to keep you motivated and on track.</p>
-        </div>
-      </section>
 
    
       {showPricing && (
