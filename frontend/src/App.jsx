@@ -10,6 +10,7 @@ import Login from './views/auth/Login.jsx';
 import About from './views/routes/About.jsx';
 import WorkoutLog from './views/routes/WorkoutLog.jsx';
 import CoursesPage from './views/routes/CoursesPage.jsx';
+import PrivateRoute from './layouts/PrivateRoute.jsx';
 
 function App() {
   return (
@@ -18,16 +19,26 @@ function App() {
         <MainWrapper>
               <Routes>
                 <Route path="/" element={<PlanFrontPage />} />
-                <Route path="/myplan" element={<MyPlan />} />
-                <Route path="/logfitness" element={<LogFitness />} />
+                <Route path="/myplan" element={
+                  <PrivateRoute>
+                    <MyPlan />
+                  </PrivateRoute>
+                } />
+                <Route path="/logfitness" element={
+                  <PrivateRoute>
+                    <LogFitness />
+                  </PrivateRoute>
+                } />
                 <Route path="/Calender" element={<Calender />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/About" element={<About />} />
-                <Route path="/WorkoutLog" element={<WorkoutLog />} />
+                <Route path="/WorkoutLog" element={
+                  <PrivateRoute>
+                    <WorkoutLog />
+                  </PrivateRoute>
+                  } />
                 <Route path="/CoursesPage" element={<CoursesPage />} />
-
-
               </Routes>
         </MainWrapper>
       </Router>

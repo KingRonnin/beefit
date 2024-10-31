@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Header.css'; 
+import { useAuthStore } from '../../store/auth.js'
+import './Header.css';
+import { logout } from '../../utils/auth.js';
 
 const Header = () => {
+  const[isLoggedIn, user] = useAuthStore((state) => [state.isLoggedIn, state.user]);
+  console.log(isLoggedIn());
   return (
     <header className="header">
       <nav className="navbar">
@@ -29,9 +33,18 @@ const Header = () => {
             <Link to="/LogFitness" className="nav-link">Log Fitness</Link> {/* Link to Log Fitness */}
           </li>
         </ul>
-        <div className="navbar-right">
-          <Link to="/login" className="nav-link login-link">Login</Link>
-        </div>
+          {isLoggedIn() ? (
+          <>
+            <div className="navbar-right">
+              <Link to="/" className="nav-link login-link">Dashboard</Link>
+              <Link to="/" className='nav-link logout-link' onClick={logout}>Logout</Link>
+            </div>
+          </>) : (
+          <>
+            <div className="navbar-right">
+              <Link to="/login" className="nav-link login-link">Login</Link>
+            </div>
+          </>)}
       </nav>
     </header>
   );
