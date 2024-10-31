@@ -2,33 +2,53 @@ import React, { useState } from 'react';
 import './CoursesPage.css';
 
 const courses = [
-    {
-        id: 1,
-        title: 'Strength and Cardio with Brian',
-        duration: '39 Min/Day • 2 Weeks',
-        price: '$11.99',
-        youtubeId: '6FyHoo4Vfxg',
-        description: 'Strength Training with a Twist of Cardio',
-        bodyFocus: 'Upper Body',
-        trainingType: 'Strength',
-        equipment: 'Dumbbell',
-        specialtyProgram: '5 Day Trainer Series'
-    },
-    {
-        id: 2,
-        title: 'Powerful with Tasha',
-        duration: '41 Min/Day • 2 Weeks',
-        price: '$11.99',
-        imageUrl: '/images/powerful-tasha.jpg', // Ensure this path is correct
-        description: 'Lifting & Power Training for Improved Strength and Speed',
-        bodyFocus: 'Lower Body',
-        trainingType: 'Cardio',
-        equipment: 'Mat',
-        specialtyProgram: 'Pregnancy and Postpartum'
-    },
-    // Additional courses...
-];
+    { id: 1, title: 'Upper Body Strength', duration: '30 Min', price: '$10.99', youtubeId: '6FyHoo4Vfxg', description: 'Upper body strength workout', bodyFocus: 'Upper Body', trainingType: 'Strength', equipment: 'Dumbbell', specialtyProgram: '5 Day Trainer Series' },
+    { id: 2, title: 'Upper Body Cardio Blast', duration: '25 Min', price: '$9.99', youtubeId: 'ESkI_WR1qqc', description: 'Upper body cardio', bodyFocus: 'Upper Body', trainingType: 'Cardio', equipment: 'No Equipment', specialtyProgram: 'Upper Body' },
+    { id: 3, title: 'Upper Body Workout Without Weights', duration: '33 Min', price: '$12.99', youtubeId: '3yw5y1DN2pI', description: 'Upper body without weights', bodyFocus: 'Upper Body', trainingType: 'Strength', equipment: 'No Equipment', specialtyProgram: 'Upper Body' },
+    { id: 4, title: 'Upper Body Yoga Flow', duration: '20 Min', price: '$8.99', youtubeId: 'cbKkB3POqaY', description: 'Upper body yoga session', bodyFocus: 'Upper Body', trainingType: 'Flexibility', equipment: 'Mat', specialtyProgram: 'Yoga Series' },
+    { id: 5, title: 'Upper Body Circuit', duration: '40 Min', price: '$11.99', youtubeId: 'W4eKVKwf3rQ', description: 'Circuit workout for upper body', bodyFocus: 'Upper Body', trainingType: 'Strength', equipment: 'Dumbbell', specialtyProgram: 'Strength Series' },
 
+
+    { id: 6, title: 'Lower Body Burn', duration: '35 Min', price: '$11.99', youtubeId: 'GViX8riaHX4', description: 'Lower body strength workout', bodyFocus: 'Lower Body', trainingType: 'Strength', equipment: 'Dumbbell', specialtyProgram: '5 Day Trainer Series' },
+    { id: 7, title: 'Lower Body Cardio Challenge', duration: '20 Min', price: '$8.99', youtubeId: 'nardrbgqZ00', description: 'Lower body cardio', bodyFocus: 'Lower Body', trainingType: 'Cardio', equipment: 'No Equipment', specialtyProgram: 'Pregnancy and Postpartum' },
+    { id: 8, title: 'Lower Body Yoga Flow', duration: '25 Min', price: '$9.99', youtubeId: '0XBcrjkkwQo', description: 'Yoga flow for lower body flexibility', bodyFocus: 'Lower Body', trainingType: 'Flexibility', equipment: 'Mat', specialtyProgram: 'Yoga Series' },
+    { id: 9, title: 'Lower Body Strength Circuit', duration: '45 Min', price: '$14.99', youtubeId: 'FeR-4_Opt-g', description: 'Strength circuit for lower body', bodyFocus: 'Lower Body', trainingType: 'Strength', equipment: 'Dumbbell', specialtyProgram: '10 Day Trainer Series' },
+    { id: 10, title: 'Lower Body Pilates', duration: '30 Min', price: '$10.99', youtubeId: 'nKzZLE6s1cs', description: 'Pilates routine for lower body', bodyFocus: 'Lower Body', trainingType: 'Strength', equipment: 'No Equipment', specialtyProgram: 'Pilates Series' },
+
+    { id: 11, title: 'Core Strength Builder', duration: '30 Min', price: '$10.99', youtubeId: '9FHdGb5hvZs', description: 'Core strength training', bodyFocus: 'Core', trainingType: 'Strength', equipment: 'Mat', specialtyProgram: 'Core Series' },
+    { id: 12, title: 'Total Body Strength', duration: '35 Min', price: '$12.99', youtubeId: '3BC6Zbs-Kk0', description: 'Total body strength', bodyFocus: 'Full Body', trainingType: 'Strength', equipment: 'Dumbbell', specialtyProgram: 'Strength Program' },
+    { id: 13, title: 'Strength Circuit', duration: '40 Min', price: '$13.99', youtubeId: '5CwOg_L9IOE', description: 'Strength workout circuit', bodyFocus: 'Upper Body', trainingType: 'Strength', equipment: 'Dumbbell', specialtyProgram: '5 Day Trainer Series' },
+    { id: 14, title: 'Strength Without Equipment', duration: '20 Min', price: '$8.99', youtubeId: '9dq2eo1kTlk', description: 'Strength exercises without equipment', bodyFocus: 'Lower Body', trainingType: 'Strength', equipment: 'No Equipment', specialtyProgram: 'Bodyweight Series' },
+    { id: 15, title: 'Strength Training for Legs', duration: '25 Min', price: '$9.99', youtubeId: 'S7FwlVuVBm8', description: 'Lower body strength workout', bodyFocus: 'Lower Body', trainingType: 'Strength', equipment: 'Dumbbell', specialtyProgram: 'Leg Day' },
+
+
+    { id: 16, title: 'Full Body Cardio', duration: '45 Min', price: '$14.99', youtubeId: 'NiB19KOLOP8', description: 'High-intensity cardio', bodyFocus: 'Full Body', trainingType: 'Cardio', equipment: 'No Equipment', specialtyProgram: 'HIIT' },
+    { id: 17, title: 'Upper Body Cardio', duration: '30 Min', price: '$10.99', youtubeId: 'T93cYM3JQGs', description: 'Upper body cardio session', bodyFocus: 'Upper Body', trainingType: 'Cardio', equipment: 'Dumbbell', specialtyProgram: 'Upper Body Cardio' },
+    { id: 18, title: 'Cardio Without Weights', duration: '20 Min', price: '$7.99', youtubeId: 'XyHib0M2PiU', description: 'Cardio workout without equipment', bodyFocus: 'Lower Body', trainingType: 'Cardio', equipment: 'No Equipment', specialtyProgram: 'Bodyweight Cardio' },
+    { id: 19, title: 'Core Cardio Blast', duration: '25 Min', price: '$8.99', youtubeId: 'c4jNKLRnwnY', description: 'Core cardio session', bodyFocus: 'Core', trainingType: 'Cardio', equipment: 'Mat', specialtyProgram: 'Core Cardio' },
+    { id: 20, title: 'Advanced Cardio Challenge', duration: '40 Min', price: '$13.99', youtubeId: 'a6kuU8KOiIM', description: 'Advanced cardio workout', bodyFocus: 'Full Body', trainingType: 'Cardio', equipment: 'No Equipment', specialtyProgram: 'Advanced Cardio' },
+
+
+    { id: 21, title: 'No Equipment Strength', duration: '25 Min', price: '$9.99', youtubeId: 'LP97TjEID6s', description: 'Strength workout with no equipment', bodyFocus: 'Full Body', trainingType: 'Strength', equipment: 'No Equipment', specialtyProgram: 'Bodyweight Strength' },
+    { id: 22, title: 'Cardio Without Weights', duration: '20 Min', price: '$8.99', youtubeId: 'jRZ4A4li4rs', description: 'Cardio workout without weights', bodyFocus: 'Upper Body', trainingType: 'Cardio', equipment: 'No Equipment', specialtyProgram: 'Upper Body Cardio' },
+    { id: 23, title: 'Core Stability', duration: '30 Min', price: '$9.99', youtubeId: 't5e9sZIjBfU', description: 'Core workout without equipment', bodyFocus: 'Core', trainingType: 'Strength', equipment: 'No Equipment', specialtyProgram: 'Core Stability' },
+    { id: 24, title: 'Bodyweight HIIT', duration: '30 Min', price: '$10.99', youtubeId: 'M8hZp0XX9gY', description: 'HIIT workout using bodyweight', bodyFocus: 'Full Body', trainingType: 'Cardio', equipment: 'No Equipment', specialtyProgram: 'HIIT Series' },
+    { id: 25, title: 'Lower Body Bodyweight', duration: '25 Min', price: '$8.99', youtubeId: 'xy7u2l_rk4A', description: 'Lower body workout with no equipment', bodyFocus: 'Lower Body', trainingType: 'Strength', equipment: 'No Equipment', specialtyProgram: 'Bodyweight Lower Body' },
+
+
+    { id: 26, title: 'Dumbbell Full Body Strength', duration: '40 Min', price: '$12.99', youtubeId: 'lG6-Jv8fSa4', description: 'Strength workout with dumbbells', bodyFocus: 'Full Body', trainingType: 'Strength', equipment: 'Dumbbell', specialtyProgram: 'Strength Circuit' },
+    { id: 27, title: 'Upper Body Dumbbell Workout', duration: '30 Min', price: '$10.99', youtubeId: 'cZ9gWzGjVvk', description: 'Upper body dumbbell workout', bodyFocus: 'Upper Body', trainingType: 'Strength', equipment: 'Dumbbell', specialtyProgram: 'Upper Body Strength' },
+    { id: 28, title: 'Dumbbell Lower Body', duration: '35 Min', price: '$11.99', youtubeId: 'Zh37ZZsdC8Q', description: 'Lower body dumbbell workout', bodyFocus: 'Lower Body', trainingType: 'Strength', equipment: 'Dumbbell', specialtyProgram: 'Lower Body Dumbbell' },
+    { id: 29, title: 'Core Dumbbell Challenge', duration: '25 Min', price: '$9.99', youtubeId: 'jF2h3y9yzUo', description: 'Core strength with dumbbells', bodyFocus: 'Core', trainingType: 'Strength', equipment: 'Dumbbell', specialtyProgram: 'Core Strength' },
+    { id: 30, title: 'Total Body Dumbbell HIIT', duration: '45 Min', price: '$13.99', youtubeId: 'MfhTrUvOUpA', description: 'Full body HIIT with dumbbells', bodyFocus: 'Full Body', trainingType: 'Cardio', equipment: 'Dumbbell', specialtyProgram: 'HIIT Dumbbell' },
+
+
+    { id: 31, title: 'Core Workout on Mat', duration: '25 Min', price: '$8.99', youtubeId: 'bV3rtmvUP3k', description: 'Core exercises on mat', bodyFocus: 'Core', trainingType: 'Strength', equipment: 'Mat', specialtyProgram: 'Core Mat Series' },
+    { id: 32, title: 'Mat Cardio Flow', duration: '30 Min', price: '$9.99', youtubeId: 'T9kVWxVsPF0', description: 'Cardio on mat', bodyFocus: 'Full Body', trainingType: 'Cardio', equipment: 'Mat', specialtyProgram: 'Mat Cardio' },
+    { id: 33, title: 'Strength Workout on Mat', duration: '20 Min', price: '$7.99', youtubeId: 'nFz0ZYKE5yM', description: 'Strength on mat', bodyFocus: 'Upper Body', trainingType: 'Strength', equipment: 'Mat', specialtyProgram: 'Upper Body Mat' },
+    { id: 34, title: 'Full Body Stretch on Mat', duration: '15 Min', price: '$5.99', youtubeId: 'wZVcZFlZce4', description: 'Full body stretch session', bodyFocus: 'Full Body', trainingType: 'Flexibility', equipment: 'Mat', specialtyProgram: 'Flexibility Series' },
+    { id: 35, title: 'Lower Body Stretch on Mat', duration: '20 Min', price: '$6.99', youtubeId: 'uSR6h1W2rCc', description: 'Lower body stretch on mat', bodyFocus: 'Lower Body', trainingType: 'Flexibility', equipment: 'Mat', specialtyProgram: 'Lower Body Flexibility' },
+];
 const CoursesPage = () => {
     const [activeFilter, setActiveFilter] = useState({
         bodyFocus: null,
