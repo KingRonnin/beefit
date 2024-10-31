@@ -29,11 +29,9 @@ function FrontPage() {
   };
 
   const handleGetStartedClick = () => {
-    setLoading(true);
     setTimeout(() => {
-      setLoading(false);
       navigate("/LogFitness");
-    }, 2000);
+    });
   };
 
   const handleCheckOurPlansClick = () => {
@@ -72,22 +70,6 @@ function FrontPage() {
     </div>
   </header>
 </section>
-
-      {/* Loading Overlay */}
-      {loading && (
-        <div className="loading-overlay">
-          <img src={loadingGif} alt="Loading..." className="loading-spinner" />
-          <p>Loading...</p>
-        </div>
-      )}
-
-      {/* Success Message */}
-      {successMessage && (
-        <div className="success-message">
-          <p>{successMessage}</p>
-        </div>
-      )}
-
 
       <section id="About" className="section about-section" ref={aboutSectionRef}>
         <div className="content">
