@@ -7,7 +7,7 @@ const courses = [
         title: 'Strength and Cardio with Brian',
         duration: '39 Min/Day • 2 Weeks',
         price: '$11.99',
-        youtubeUrl: 'https://www.youtube.com/embed/2xkPjgjCk2w', // Real YouTube embed URL
+        youtubeUrl: 'https://ca.video.search.yahoo.com/yhs/search;_ylt=Awr93yPeCSNnasMDeZQXFwx.;_ylu=Y29sbwNncTEEcG9zAzEEdnRpZAMEc2VjA3BpdnM-?p=fitness+youtube+channels&type=fc_AC934C13286_s58_g_e_d081423_n9998_c999&param1=7&param2=eJwtj9tugzAMhl8ll63UgHOEhCs22geYdrWqF1lIacRR0IlpTz%2FDJvvis%2F3b8t%2FE%2Blrc3ioGwHPQ19NtwNoYkyNuI8iZ5AIL%2F9dHihMiB2BWaWczCZm9A1ipArPGKGel1LX1ulYobsKIau8QvxxSP%2F7ErnOpSoAc1jjU47qQ4UkYJFAQbGhZkG8tj8RNUxfW8NnGZ6pElghNDu3j2Xcn0sU2kCb4djwS%2F5jHPqRM4IEtyOLubo7%2FK9u7y%2B5xe2AJ884ly86XqgKam9eKMna%2B0LLSGTVCmpcSU%2BRs0%2Ft6d8olZUCZfEfLklslE67Exy9KNlmM&hsimp=yhs-2461&hspart=fc&ei=UTF-8&fr=yhs-fc-2461#id=7&vid=0b1fc2043c6f3c6494fbe25c62ce1831&action=view', // Real YouTube embed URL
         description: 'Strength Training with a Twist of Cardio',
         bodyFocus: 'Upper Body',
         trainingType: 'Strength',
