@@ -70,7 +70,7 @@ function Calendar() {
       />
 
       <div className="button-container">
-        <Link to="/PlanFrontPage">
+        <Link to="/LogFitness">
           <button className="Return-button">Return to Home</button>
         </Link>
       </div>

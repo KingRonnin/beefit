@@ -13,19 +13,19 @@ const About = () => {
         
         <div className="services-grid">
           <div className="service-card">
-            <img src="/path-to-icon.png" alt="Personal Training" />
+            
             <h3>Personal Training</h3>
             <p>Tailored workouts with expert guidance for optimal results.</p>
           </div>
 
           <div className="service-card">
-            <img src="/path-to-icon.png" alt="Group Classes" />
+            alt="Group Classes" 
             <h3>Group Classes</h3>
             <p>Dynamic fitness sessions for all skill levels and interests.</p>
           </div>
 
           <div className="service-card">
-            <img src="/path-to-icon.png" alt="Nutritional Counseling" />
+             alt="Nutritional Counseling" 
             <h3>Nutritional Counseling</h3>
             <p>Personalized diet plans to complement your fitness goals.</p>
           </div>
@@ -37,13 +37,13 @@ const About = () => {
           </div>
 
           <div className="service-card">
-            <img src="/path-to-icon.png" alt="Fitness Assessments" />
+             alt="Fitness Assessments" 
             <h3>Fitness Assessments</h3>
             <p>Detailed evaluations to track and improve performance.</p>
           </div>
 
           <div className="service-card">
-            <img src="/path-to-icon.png" alt="Spa Services" />
+           alt="Spa Services" 
             <h3>Spa Services</h3>
             <p>Relaxing treatments to aid recovery and rejuvenation.</p>
           </div>
