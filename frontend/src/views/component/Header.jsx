@@ -28,6 +28,7 @@ const Header = () => {
           <li>
             <Link to="/LogFitness" className="nav-link">Log Fitness</Link> {/* Link to Log Fitness */}
           </li>
+          <Link to="/HabitChallenges" className="nav-link">HabitChallenges</Link>
         </ul>
         <div className="navbar-right">
           <Link to="/login" className="nav-link login-link">Login</Link>

@@ -1,0 +1,248 @@
+/* Define CSS variables for light and dark modes */
+:root {
+    --bg-color: rgba(255, 255, 255, 0.95); /* Light mode background */
+    --text-color: #333; /* Light mode text color */
+    --card-bg-color: #ffffff; /* Card background color in light mode */
+    --card-shadow: rgba(0, 0, 0, 0.15); /* Light mode shadow */
+    --button-bg: linear-gradient(45deg, #4caf50, #8bc34a); /* Button background gradient */
+    --button-hover-bg: linear-gradient(45deg, #45a049, #7cb342); /* Button hover gradient */
+    --border-radius: 10px; /* General border radius */
+    --transition-speed: 0.4s; /* Transition speed for hover effects */
+}
+
+/* Dark mode styles */
+[data-theme='dark'] {
+    --bg-color: rgba(30, 30, 30, 0.95); /* Dark mode background */
+    --text-color: #f0f0f0; /* Dark mode text color */
+    --card-bg-color: #424242; /* Card background color in dark mode */
+    --card-shadow: rgba(255, 255, 255, 0.1); /* Dark mode shadow */
+}
+
+/* Global Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif; /* More modern font */
+    background: var(--bg-color);
+    background-image: url('../../images/hbd.jpg'); /* Background image */
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Main Container Styles */
+.habit-challenges {
+    position: relative;
+    max-width: 900px; /* Added 'px' for proper width definition */
+    margin: 40px auto; /* Center the content with a margin */
+    padding: 40px; /* Reduced padding for better layout */
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9); /* White background with 90% opacity */
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 16px var(--card-shadow); /* Use variable for shadow */
+    z-index: 50; /* Ensure the content is above the background */
+    animation: fadeIn 1s ease-in-out;
+    transition: opacity var(--transition-speed) ease; 
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.habit-challenges h2 {
+    color: var(--text-color); /* Use variable for text color */
+    font-size: 2.5rem; /* Larger heading */
+    margin-bottom: 20px;
+    text-transform: uppercase; /* Uppercase for a bold look */
+    letter-spacing: 2px; /* Increase spacing for better readability */
+}
+
+/* Challenge List Styles */
+.challenge-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 5; /* Set z-index for the challenge list */
+}
+
+/* General Card Styles */
+.challenge-card, .recommendation-card {
+    background: var(--card-bg-color); /* Use variable for card background */
+    padding: 20px;
+    border-radius: var(--border-radius); /* Slightly rounded corners */
+    box-shadow: 0 6px 12px var(--card-shadow); /* Use variable for shadow */
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed) ease, background-color var(--transition-speed) ease;
+    position: relative;
+    overflow: hidden; /* To clip inner animations */
+    z-index: 5; /* Ensure cards are above the list */
+}
+
+/* Hover effect for challenge and recommendation cards */
+.challenge-card:hover, .recommendation-card:hover {
+    transform: translateY(-5px) scale(1.02); /* Slight scaling effect */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.95); /* Slight change on hover */
+}
+
+/* Level Indicators */
+.level-beginner { border-left: 5px solid #3B82F6; }
+.level-intermediate { border-left: 5px solid #F97316; }
+.level-advanced { border-left: 5px solid #EC4899; }
+.level-expert { border-left: 5px solid #10B981; }
+
+.challenge-card h3, .recommendation-card h3 {
+    color: var(--text-color); /* Use variable for text color */
+    font-size: 1.8rem; /* Increased font size */
+    margin-bottom: 5px; /* Space below title */
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1); /* Soft shadow for text */
+}
+
+.challenge-level {
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.challenge-description {
+    color: #555;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    transition: color var(--transition-speed) ease;
+}
+
+/* Progress Bar Styles */
+.progress-bar-container {
+    margin: 10px 0;
+    height: 12px; /* Slightly taller for visibility */
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #ffafbd, #ffc3a0);
+    transition: width 0.5s ease-in-out;
+}
+
+.progress-text {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Streak Text */
+.streak-text {
+    font-size: 1.2rem; /* Increased font size */
+    color: #F97316;
+    font-weight: bold;
+}
+
+/* Button Styles */
+.join-btn, .level-up-btn, .share-btn, .reminder-btn {
+    margin-top: 10px;
+    padding: 12px 25px; /* Increased padding for better appearance */
+    font-size: 1rem; /* Larger font size for buttons */
+    color: #fff;
+    background: var(--button-bg); /* Gradient background */
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background var(--transition-speed) ease, transform var(--transition-speed) ease;
+    z-index: 6; /* Ensure buttons are above other elements */
+    position: relative; /* Required for z-index to work */
+}
+
+/* Hover effect for buttons */
+.join-btn:hover, .level-up-btn:hover, .share-btn:hover, .reminder-btn:hover {
+    background: var(--button-hover-bg); /* Darker gradient on hover */
+    transform: translateY(-2px);
+}
+
+/* Joined Text Styles */
+.joined-text {
+    font-size: 1rem;
+    color: #4caf50;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Recommendation List Styles */
+.recommendation-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 40px; /* Space from the challenge list */
+}
+
+/* Recommendation Card Styles */
+.recommendation-card {
+    background-image: url('../../images/cutt.jpg');
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: var(--border-radius); /* Slightly rounded corners */
+    box-shadow: 0 6px 12px var(--card-shadow); /* Use variable for shadow */
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed) ease, background-color var(--transition-speed) ease;
+}
+
+/* Recommendation Description Styles */
+.recommendation-description {
+    color: var(--text-color); /* Use variable for text color */
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+/* Exercise Image Styles */
+.exercise-image {
+    width: 100%; /* Adjust as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin: 10px 0;
+    border-radius: var(--border-radius); /* Rounded corners for images */
+}
+
+/* Current Exercise Styles */
+.current-exercise {
+    text-align: center;
+}
+
+/* Timer Display Styles */
+.timer-display {
+    font-size: 1.5rem; /* Larger font size for timer */
+    color: var(--text-color); /* Use variable for text color */
+    font-weight: bold;
+    margin: 20px 0; /* Space around timer */
+}
+
+/* Notification Container */
+.notification-container {
+    position: fixed; /* Positioned fixed to remain in view */
+    top: 20px; /* Space from the top of the viewport */
+    right: 20px; /* Space from the right side */
+    max-width: 300px; /* Maximum width for notifications */
+    z-index: 100; /* Ensure notifications are above other content */
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between notifications */
+}
+
+/* Individual Notification Styles */
+.notification {
+    background: #f0f8ff; /* Soft light background for notifications */
+    border: 1px solid #87ceeb; /* Soft border */
+    border-radius: var(--border-radius);
+    padding: 10px;
+    transition: opacity 0.3s ease;
+}
+
+/* Close Button Styles */
+.close-btn {
+    color: #ff0000; /* Red color for close button */
+    cursor: pointer; /* Pointer cursor */
+    float: right; /* Position to the right */
+}

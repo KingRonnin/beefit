@@ -10,6 +10,7 @@ import Login from './views/auth/Login.jsx';
 import About from './views/routes/About.jsx';
 import WorkoutLog from './views/routes/WorkoutLog.jsx';
 import CoursesPage from './views/routes/CoursesPage.jsx';
+import HabitChallenges from './views/routes/HabitChallenges.jsx';
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
                 <Route path="/About" element={<About />} />
                 <Route path="/WorkoutLog" element={<WorkoutLog />} />
                 <Route path="/CoursesPage" element={<CoursesPage />} />
-
+                <Route path="/HabitChallenges" element={<HabitChallenges />} />
 
               </Routes>
         </MainWrapper>
