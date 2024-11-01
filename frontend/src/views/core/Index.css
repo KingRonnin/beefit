@@ -19,7 +19,7 @@ body {
 
 .main-content {
   padding: 30px;
-  background-color: #783333;
+  background-color: #334978;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
@@ -36,7 +36,7 @@ body {
 }
 
 .hero-text {
-  color: red;
+  color: blue;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
@@ -66,7 +66,7 @@ body {
   all: unset; /* Resets all inherited styles */
   display: inline-block;
   background-color: white;
-  color: red;
+  color: rgb(0, 81, 255);
   padding: 15px 30px;
   font-size: 18px;
   font-weight: 600;
@@ -89,15 +89,6 @@ body {
   margin: 0;
   line-height: 1.2;
   color: white;
-}
-
-.sub-text {
-  font-size: 16px;
-  font-weight: 300;
-  max-width: 600px;
-  margin: 20px;
-  color: red;
-  line-height: 1.5;
 }
 
 /* Section Styles */
@@ -123,21 +114,103 @@ body {
   background-position: center;
 }
 
+.pricing-section {
+  background: linear-gradient(135deg, #f0f4f8, #e3e6eb); /* Soft gradient background */
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.pricing-section h2 {
+  font-size: 2.5em;
+  margin-bottom: 30px;
+  color: #333;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.pricing-plans-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+}
+
 .pricing-plan {
-  background-color: #ffffff;
+  background-color: white;
   border-radius: 12px;
-  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
   margin: 20px;
-  transition: transform 0.3s;
+  width: 300px; /* Set a fixed width for cards */
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .pricing-plan:hover {
   transform: translateY(-5px);
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+}
+
+.plan-details h3 {
+  font-size: 2em;
+  margin: 0 0 15px;
+  color: #007bff; /* Bright color for headings */
+}
+
+.price {
+  font-size: 1.5em;
+  color: #28a745; /* Green for price */
+  margin: 10px 0;
+}
+
+.price span {
+  font-size: 0.8em;
+  color: #6c757d; /* Gray for subtext */
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  text-align: left; /* Aligns text to the left */
+}
+
+li {
+  margin: 10px 0;
+  font-size: 1em;
+  color: #333; /* Dark text color */
+}
+
+.join-now-cta {
+  background-color: #007bff; /* Blue button */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.join-now-cta:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: scale(1.05); /* Slightly scale up on hover */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .pricing-plans-container {
+      flex-direction: column; /* Stack plans vertically on smaller screens */
+      align-items: center; /* Center the items */
+  }
+
+  .pricing-plan {
+      width: 90%; /* Full width on small screens */
+      margin: 10px 0; /* Adjust margin */
+  }
 }
 
 /* Offers Section */
 .offers-section {
-  background-color: #e50914;
+  background-color: #094fe5;
   padding: 60px 20px;
   color: white;
   border-radius: 12px;
@@ -145,11 +218,19 @@ body {
 }
 
 .offers-cta-button {
-  background-color: #fff;
-  color: #e50914;
+  all: unset; /* Resets all inherited styles */
+  display: inline-block;
+  background-color: white;
+  color: rgb(0, 81, 255);
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: 600;
   border-radius: 30px;
-  padding: 12px 25px;
   cursor: pointer;
+  text-align: center;
+  line-height: 1; /* Ensures consistent text alignment */
+  box-sizing: border-box;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s, transform 0.3s;
 }
 

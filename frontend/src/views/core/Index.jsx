@@ -67,7 +67,6 @@ function FrontPage() {
     <div className="overlay">
       <h1 className="hero-main-text">TRAIN THE</h1>
       <h1 className="hero-main-text">FIGHTER IN YOU</h1>
-      <p className="sub-text">WELCOME TO BEEFIT</p> 
       <button className="cta-button" onClick={handleGetStartedClick}>Get Started</button>
     </div>
   </header>
@@ -90,25 +89,55 @@ function FrontPage() {
 
 
 
-   
-      {showPricing && (
-        <section id="pricing" className="section pricing-section" ref={pricingSectionRef}>
-          <h2>Our Pricing Plans</h2>
-          <div className="pricing-plan">
-            <div className="plan-details">
-              <h3>6 MONTH</h3>
-              <p className="price">$30/M <span>(SINGLE CLASS)</span></p>
-              <ul>
-                <li>✔ Free Riding</li>
-                <li>✔ Unlimited Equipment</li>
-                <li>✔ Personal Trainer</li>
-                <li>✔ Weight Loss Classes</li>
-              </ul>
-              <button className="join-now-cta" onClick={handleJoinNowClick}>JOIN NOW</button>
-            </div>
-          </div>
-        </section>
-      )}
+{showPricing && (
+  <section id="pricing" className="section pricing-section" ref={pricingSectionRef}>
+    <h2>Our Pricing Plans</h2>
+    <div className="pricing-plans-container">
+      <div className="pricing-plan">
+        <div className="plan-details">
+          <h3>6 MONTH</h3>
+          <p className="price">$30/M <span>(SINGLE CLASS)</span></p>
+          <ul>
+            <li>✔ Free Riding</li>
+            <li>✔ Unlimited Equipment</li>
+            <li>✔ Personal Trainer</li>
+            <li>✔ Weight Loss Classes</li>
+          </ul>
+          <button className="join-now-cta" onClick={handleJoinNowClick}>JOIN NOW</button>
+        </div>
+      </div>
+      
+      <div className="pricing-plan">
+        <div className="plan-details">
+          <h3>12 MONTH</h3>
+          <p className="price">$50/M <span>(BEST VALUE)</span></p>
+          <ul>
+            <li>✔ Free Riding</li>
+            <li>✔ Unlimited Equipment</li>
+            <li>✔ Personal Trainer</li>
+            <li>✔ Weight Loss Classes</li>
+            <li>✔ Nutrition Guide</li>
+          </ul>
+          <button className="join-now-cta" onClick={handleJoinNowClick}>JOIN NOW</button>
+        </div>
+      </div>
+
+      <div className="pricing-plan">
+        <div className="plan-details">
+          <h3>1 MONTH</h3>
+          <p className="price">$40/M <span>(BASIC CLASS)</span></p>
+          <ul>
+            <li>✔ Free Riding</li>
+            <li>✔ Unlimited Equipment</li>
+            <li>✔ Personal Trainer</li>
+          </ul>
+          <button className="join-now-cta" onClick={handleJoinNowClick}>JOIN NOW</button>
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
 
  ]
       <section id="offers" className="section offers-section" ref={offersSectionRef}>
