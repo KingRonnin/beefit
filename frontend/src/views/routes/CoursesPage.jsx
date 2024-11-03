@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './CoursesPage.css';
+import CheckoutForm from './CheckoutForm';
 
 const courses = [
     { id: 1, title: 'Upper Body Strength', duration: '30 Min', price: '$10.99', youtubeId: '6FyHoo4Vfxg', description: 'Upper body strength workout', bodyFocus: 'Upper Body', trainingType: 'Strength', equipment: 'Dumbbell', specialtyProgram: '5 Day Trainer Series' },
@@ -50,6 +51,13 @@ const courses = [
     { id: 35, title: 'Lower Body Stretch on Mat', duration: '20 Min', price: '$6.99', youtubeId: 'uSR6h1W2rCc', description: 'Lower body stretch on mat', bodyFocus: 'Lower Body', trainingType: 'Flexibility', equipment: 'Mat', specialtyProgram: 'Lower Body Flexibility' },
 ];
 const CoursesPage = () => {
+    const [cart, setCart] = useState([]); // State for cart items
+
+    const handleAddToCart = (course) => {
+        setCart((prevCart) => [...prevCart, course]);// Add selected course to cart
+
+    };
+
     const [activeFilter, setActiveFilter] = useState({
         bodyFocus: null,
         trainingType: null,
@@ -65,12 +73,6 @@ const CoursesPage = () => {
     };
 
 
-    const [cart, setCart] = useState([]); // State for cart items
-
-    const handleAddToCart = (course) => {
-        setCart([...cart, course]); // Add selected course to cart
-
-    };
     const filteredCourses = courses.filter((course) => {
         return (
             (!activeFilter.bodyFocus || course.bodyFocus === activeFilter.bodyFocus) &&
@@ -174,7 +176,7 @@ const CoursesPage = () => {
                                     <p>{course.description}</p>
                                     <p><strong>{course.duration}</strong></p>
                                     <p><strong>{course.price}</strong></p>
-                                    <button className="add-to-cart-button">Add to Cart</button>
+                                     <button onClick={() => handleAddToCart(course)}>Add to Cart</button>
                                 </div>
                             </div>
                         ))
@@ -183,8 +185,19 @@ const CoursesPage = () => {
                     )}
                 </div>
             </section>
-        </div>
-    );
+            {cart.length > 0 && (
+        <section className="cart-section">
+          <h2>Cart</h2>
+          <ul>
+            {cart.map((item, index) => (
+              <li key={index}>{item.title} - {item.price}</li>
+            ))}
+          </ul>
+          <CheckoutForm cartItems={cart} />  {/* Adjust to StripeCheckout if needed */}
+        </section>
+      )}
+    </div>
+  );
 };
 
 export default CoursesPage;

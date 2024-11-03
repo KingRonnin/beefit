@@ -1,59 +1,47 @@
-// src/components/CheckoutForm.jsx
-import React, { useState } from 'react';
-import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
+import React, { useEffect, useState } from 'react';
+import { PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ course }) => {
   const stripe = useStripe();
   const elements = useElements();
-  const [error, setError] = useState(null);
-  const [processing, setProcessing] = useState(false);
-  const [succeeded, setSucceeded] = useState(false);
+  const [clientSecret, setClientSecret] = useState('');
+
+  useEffect(() => {
+    // Fetch the client secret from your backend
+    fetch('http://127.0.0.1:8000/api/create-payment-intent/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ amount: course.price }),
+    })
+      .then((res) => res.json())
+      .then((data) => setClientSecret(data.client_secret));
+  }, [course.price]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setProcessing(true);
 
     if (!stripe || !elements) {
       return;
     }
 
-    const card = elements.getElement(CardElement);
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: 'card',
-      card,
+    const { error } = await stripe.confirmPayment({
+      elements,
+      confirmParams: {
+        return_url: 'http://localhost:3000/payment-success',
+      },
     });
 
     if (error) {
-      setError(error.message);
-      setProcessing(false);
-    } else {
-      // Send paymentMethod.id to your server for further processing
-      const response = await fetch('/create-payment-intent', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ paymentMethodId: paymentMethod.id }),
-      });
-
-      const paymentResult = await response.json();
-
-      if (paymentResult.error) {
-        setError(paymentResult.error);
-        setProcessing(false);
-      } else {
-        setSucceeded(true);
-        setProcessing(false);
-      }
+      console.error(error.message);
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <CardElement />
-      <button type="submit" disabled={!stripe || processing || succeeded}>
-        {processing ? 'Processing...' : 'Pay'}
+      {clientSecret && <PaymentElement />}
+      <button type="submit" disabled={!stripe}>
+        Pay ${course.price}
       </button>
-      {error && <div>{error}</div>}
-      {succeeded && <div>Payment succeeded!</div>}
     </form>
   );
 };
