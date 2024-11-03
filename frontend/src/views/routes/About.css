@@ -40,6 +40,7 @@ body {
 /* Services Grid */
 .services-grid {
   display: grid;
+  color: #e8ecf0;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
   gap: 20px; /* Space between cards */
   max-width: 1200px; /* Max width for grid */
@@ -75,7 +76,7 @@ body {
 
 .service-card p {
   font-size: 1em; /* Description size */
-  color: #333; /* Description text color */
+  color: #f0eded; /* Description text color */
 }
 
 .service-card:nth-child(1) {
@@ -83,24 +84,21 @@ body {
 }
 
 .service-card:nth-child(2) {
-  background-image: url('/path-to-background2.jpg');
+  background-image: url('../../images/group.png');
 }
 
 .service-card:nth-child(3) {
-  background-image: url('/path-to-background3.jpg');
+  background-image: url('../../images/nut.png');
 }
 
 .service-card:nth-child(4) {
-  background-image: url('/path-to-background4.jpg');
+  background-image: url('../../images/welness.png');
 }
 
 .service-card:nth-child(5) {
-  background-image: url('/path-to-background5.jpg');
+  background-image: url('../../images/asses.png');
 }
 
-.service-card:nth-child(6) {
-  background-image: url('/path-to-background6.jpg');
-}
 /* Footer Styles */
 .footer {
   background-color: #333; /* Dark footer background */

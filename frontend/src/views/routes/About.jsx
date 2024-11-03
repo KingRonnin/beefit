@@ -19,34 +19,30 @@ const About = () => {
           </div>
 
           <div className="service-card">
-            alt="Group Classes" 
+    
             <h3>Group Classes</h3>
             <p>Dynamic fitness sessions for all skill levels and interests.</p>
           </div>
 
           <div className="service-card">
-             alt="Nutritional Counseling" 
+             
             <h3>Nutritional Counseling</h3>
             <p>Personalized diet plans to complement your fitness goals.</p>
           </div>
 
           <div className="service-card">
-            <img src="/path-to-icon.png" alt="Wellness Programs" />
+            
             <h3>Wellness Programs</h3>
             <p>Comprehensive plans for overall health and well-being.</p>
           </div>
 
           <div className="service-card">
-             alt="Fitness Assessments" 
+      
             <h3>Fitness Assessments</h3>
             <p>Detailed evaluations to track and improve performance.</p>
           </div>
 
-          <div className="service-card">
-           alt="Spa Services" 
-            <h3>Spa Services</h3>
-            <p>Relaxing treatments to aid recovery and rejuvenation.</p>
-          </div>
+       
         </div>
       </section>
 
