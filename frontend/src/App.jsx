@@ -11,12 +11,18 @@ import About from './views/routes/About.jsx';
 import WorkoutLog from './views/routes/WorkoutLog.jsx';
 import CoursesPage from './views/routes/CoursesPage.jsx';
 import HabitChallenges from './views/routes/HabitChallenges.jsx';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
+
+
+const stripePromise = loadStripe('pk_test_51QFzYyHH43Q0yRB555Wz4VOQnfH1JdDeazmNBOOfG9s53j6NOuIC9RTreaFe2lGGh31C7opLoYomj8du5EFbqr7B00zQZR4LS1');
 function App() {
   return (
     <>
       <Router>
         <MainWrapper>
+        <Elements stripe={stripePromise}>
               <Routes>
                 <Route path="/" element={<PlanFrontPage />} />
                 <Route path="/myplan" element={<MyPlan />} />
@@ -30,6 +36,7 @@ function App() {
                 <Route path="/HabitChallenges" element={<HabitChallenges />} />
 
               </Routes>
+              </Elements>
         </MainWrapper>
       </Router>
     </>
