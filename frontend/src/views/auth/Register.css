@@ -1,86 +1,102 @@
+/* General styles */
+body {
+    background-color: #f4f4f4; /* Light background for contrast */
+    font-family: 'Arial', sans-serif; /* Clean font */
+    margin: 0;
+    padding: 0;
+}
+
+/* Container styles */
 .container {
-    background-image: url('../../images/h1_hero.png');
-    background-size: cover;
-    background-position: center;
-    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
+    height: 100vh; /* Full height of the viewport */
 }
 
 .box {
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 350px;
-    text-align: center;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-    position: relative;
-    background: linear-gradient(to bottom, #f4f4f9, #fff);
+    background-color: white; /* White background for the box */
+    padding: 2rem;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 300px; /* Fixed width for the registration box */
+    animation: flipIn 0.5s ease; /* Animation on load */
 }
 
-.box-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.6s ease-in-out;
-    transform-style: preserve-3d;
+/* Header styles */
+.header-section {
+    margin-bottom: 1.5rem; /* Space below the header */
 }
 
 .header-section h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #2C3E50;
+    font-size: 1.5rem; /* Header font size */
+    color: #333; /* Darker color for text */
+    text-align: center; /* Center aligned */
 }
 
+/* Redirect sign-in styles */
+.redirect-signin {
+    margin-bottom: 1rem; /* Space below the redirect text */
+    text-align: center; /* Center align */
+}
+
+.redirect-signin span {
+    color: #666; /* Grey color for text */
+}
+
+/* Form styles */
 .form {
-    margin-top: 25px;
-    margin-bottom: 15px;
-    text-align: left;
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    flex-direction: column; /* Stack inputs vertically */
 }
 
 .form-label {
-    display: block;
-    margin-bottom: 15px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #2C3E50;
-    width: 100%;
+    margin-bottom: 0.5rem; /* Space below labels */
+    font-weight: bold; /* Bold labels */
 }
 
 .form-control {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-    background-color: #f9f9f9;
-    transition: border-color 0.3s;
-    margin-bottom: 15px;
+    padding: 0.75rem; /* Padding inside inputs */
+    margin-bottom: 1rem; /* Space below inputs */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded borders */
+    transition: border-color 0.3s; /* Smooth transition on focus */
 }
 
-button {
-    display: block;
-    width: 100%;
-    padding: 15px 25px;
-    background-color: #333;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s ease-in-out, box-shadow 0.3s;
+.form-control:focus {
+    border-color: #007bff; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+}
 
-    &:hover {
-        background-color: #555;
-        transform: translateY(-2px);
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+/* Button styles */
+button {
+    background-color: #007bff; /* Primary button color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    padding: 0.75rem; /* Padding */
+    border-radius: 5px; /* Rounded borders */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 1rem; /* Font size */
+    transition: background-color 0.3s; /* Smooth background transition */
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+button:disabled {
+    background-color: #ccc; /* Disabled button color */
+    cursor: not-allowed; /* Not allowed cursor */
+}
+
+/* Animation */
+@keyframes flipIn {
+    from {
+        transform: rotateY(-180deg); /* Start flipped */
+        opacity: 0; /* Invisible */
+    }
+    to {
+        transform: rotateY(0deg); /* End normal */
+        opacity: 1; /* Fully visible */
     }
 }
