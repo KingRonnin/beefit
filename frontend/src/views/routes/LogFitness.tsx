@@ -9,7 +9,7 @@ const LogFitness: React.FC = () => {
     const location = useLocation();
     const user = location.state?.user || {};
 
-    const [goal, setGoal] = useState('weight loss');
+    const [goal, setGoal] = useState();
     const [savedGoal, setSavedGoal] = useState<string | null>(null);
     const [weight, setWeight] = useState('');
     const [runDistance, setRunDistance] = useState('');
