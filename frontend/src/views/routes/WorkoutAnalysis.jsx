@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 import apiInstance from '../../utils/axios';
@@ -8,6 +8,31 @@ import Swal from 'sweetalert2';
 
 const colors = ["#8884d8", "#82ca9d", "#ffc658"]; // Colors for the pie chart
 
+const WorkoutLogPage = () => {
+    const [strengthData, setStrengthData] = useState([]);
+    const [cardioData, setCardioData] = useState([]);
+
+    const userId = useUserData()?.user_id;
+
+    const fetchDashboardData = async () => {
+        try {
+            const strengthData_resp = await apiInstance.get(`dashboard/strength/${userId}/`);
+            setStrengthData(strengthData_resp.data);
+    
+            const cardioData_resp = await apiInstance.get(`dashboard/strength/${userId}/`);
+            setCardioData(cardioData_resp.data);
+        } catch (error) {
+            Toast("error", "Error fetching dashboard data");
+            console.error(error);
+        }
+    }
+
+    useEffect(() => {
+        fetchDashboardData();
+    }, []);
+
+    
+}
 
 // const WorkoutAnalysis = ({ data, weightData, macroData }) => {
 //     if (data.length === 0) return <p>No workouts logged yet.</p>;

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import WorkoutAnalysis from './WorkoutAnalysis';
 import './WorkoutLog.css';
 import '../../images/hbd.jpg';
 
