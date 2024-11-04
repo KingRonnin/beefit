@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import './Register.css'
+import './Register.css';
 
 import apiInstance from '../../utils/axios.js';
 import { useAuthStore } from '../../store/auth.js';
@@ -21,6 +21,7 @@ function Register() {
 
     const resetForm = () => {
         setBioData({
+            email: "",
             password: "",
             password2: "",
         });
@@ -40,59 +41,44 @@ function Register() {
         setIsLoading(false);
     };
 
-
     return (
-        <>
-            <section className="container">
-                <div className="box">
-                    <div className="header-section">
-                        <h1>Registration</h1>
-                    </div>
-                    <div className="redirect-signin">
-                        <span>
-                            Already have an account? {' '}
-                            <Link to='/login/'>
-                                Sign In
-                            </Link>
-                        </span>
-                    </div>
-                    <div className="form">
-                        <form className='needs-validation' onSubmit={handleRegister} noValidate>
-                            <label htmlFor='email' className='form-label'>
-                                Email Address
-                            </label>
-                            <input type="email" onChange={handleBioDataChange} value={bioData.email} id='email' className='form-control' name='email' placeholder='johndoe@gmail.com' required/>
-                            <label htmlFor="password" children className='form-label'>
-                                Password
-                            </label>
-                            <input type="password" onChange={handleBioDataChange} value={bioData.password} className='form-control' name='password' placeholder='********' required />
-                            <label htmlFor="password" className='form-label'>
-                                Confirm Password
-                            </label>
-                            <input type="password" onChange={handleBioDataChange} value={bioData.password2} className='form-control' name='password2' placeholder='********' required />
-                            <button type='submit' disabled={isLoading}>
-                                {isLoading ? (
-                                    <>
-                                        <span>
-                                            Processing...
-                                        </span>
-                                        <i className='fas fa-spinner fa-spin' />
-                                    </>
-                                ) : (
-                                    <>
-                                        <span>
-                                            Sign Up
-                                        </span>
-                                        <i className='fas fa-user-plus' />
-                                    </>
-                                )}
-                            </button>
-                        </form>
-                    </div>
+        <section className="container">
+            <div className="box">
+                <div className="header-section">
+                    <h1>Registration</h1>
                 </div>
-            </section>
-        </>
-    )
+                <div className="redirect-signin">
+                    <span>
+                        Already have an account? {' '}
+                        <Link to='/login/'>Sign In</Link>
+                    </span>
+                </div>
+                <div className="form">
+                    <form className='needs-validation' onSubmit={handleRegister} noValidate>
+                        <label htmlFor='email' className='form-label'>Email Address</label>
+                        <input type="email" onChange={handleBioDataChange} value={bioData.email} id='email' className='form-control' name='email' placeholder='johndoe@gmail.com' required/>
+                        <label htmlFor="password" className='form-label'>Password</label>
+                        <input type="password" onChange={handleBioDataChange} value={bioData.password} className='form-control' name='password' placeholder='********' required />
+                        <label htmlFor="password2" className='form-label'>Confirm Password</label>
+                        <input type="password" onChange={handleBioDataChange} value={bioData.password2} className='form-control' name='password2' placeholder='********' required />
+                        <button type='submit' disabled={isLoading}>
+                            {isLoading ? (
+                                <>
+                                    <span>Processing...</span>
+                                    <i className='fas fa-spinner fa-spin' />
+                                </>
+                            ) : (
+                                <>
+                                    <span>Sign Up</span>
+                                    <i className='fas fa-user-plus' />
+                                </>
+                            )}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    );
 }
 
 export default Register;
