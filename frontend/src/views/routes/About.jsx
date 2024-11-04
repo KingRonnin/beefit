@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import './About.css';
+import { FaInstagram, FaTwitter, FaEnvelope } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+
 
 const About = () => {
+  const navigate = useNavigate();
   const [selectedService, setSelectedService] = useState(null);
 
   const services = {
@@ -16,6 +20,7 @@ const About = () => {
             <li>Weekly progress checks with data-driven insights</li>
           </ul>
           <p><strong>Testimonials:</strong> "Thanks to Beefit, I've achieved more in three months than I have in years on my own!" – <em>James P.</em></p>
+          <button className="join-now-button"onClick={() => navigate('/Login')}>Join Now</button>
         </>
       ),
     },
@@ -30,6 +35,7 @@ const About = () => {
             <li>Inclusive environment for all fitness levels</li>
           </ul>
           <p><strong>Special Features:</strong> Exclusive access to class recordings and extra tips to perfect your form.</p>
+          <button className="join-now-button"onClick={() => navigate('/Login')}>Join Now</button>
         </>
       ),
     },
@@ -44,6 +50,7 @@ const About = () => {
             <li>Regular adjustments based on progress and dietary preferences</li>
           </ul>
           <p><strong>Client Success Story:</strong> "The meal plans have been a game-changer! I feel energized and more focused." – <em>Lisa T.</em></p>
+          <button className="join-now-button"onClick={() => navigate('/Login')}>Join Now</button>
         </>
       ),
     },
@@ -58,6 +65,7 @@ const About = () => {
             <li>Sleep tracking and wellness insights</li>
           </ul>
           <p><strong>Community Feedback:</strong> "These programs helped me feel more balanced, both physically and mentally." – <em>Chris M.</em></p>
+          <button className="join-now-button"onClick={() => navigate('/Login')}>Join Now</button>
         </>
       ),
     },
@@ -72,10 +80,12 @@ const About = () => {
             <li>Advanced metrics with tracking over time</li>
           </ul>
           <p><strong>What Our Users Say:</strong> "The assessment gave me insight into my strengths and areas to improve. Very motivating!" – <em>Alex J.</em></p>
+          <button className="join-now-button"onClick={() => navigate('/Login')}>Join Now</button>
+          
         </>
       ),
     },
-  };
+  }
 
   const handleServiceClick = (serviceKey) => {
     setSelectedService(services[serviceKey]);
@@ -84,8 +94,8 @@ const About = () => {
   return (
     <div className="about-page">
       <section className="about-section">
-        <h1 className="section-title">Features</h1>
-        <h2 className="section-subtitle">Services you will get</h2>
+        <h1 className="section-title">Services You Can Explore</h1>
+    
 
         
         
@@ -152,9 +162,15 @@ const About = () => {
           <div className="footer-section">
             <h3>Social Media</h3>
             <div className="social-media-icons">
-              <a href="#"><i className="fab fa-facebook"></i></a>
-              <a href="#"><i className="fab fa-twitter"></i></a>
-              <a href="#"><i className="fab fa-instagram"></i></a>
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+              <FaInstagram className="social-icon instagram-icon" />
+            </a>
+            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+              <FaTwitter className="social-icon twitter-icon" />
+            </a>
+            <a href="mailto:example@gmail.com">
+              <FaEnvelope className="social-icon email-icon" />
+            </a>
             </div>
           </div>
         </div>

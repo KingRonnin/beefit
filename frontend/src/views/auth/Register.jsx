@@ -56,7 +56,7 @@ function Register() {
                 <div className="form">
                     <form className='needs-validation' onSubmit={handleRegister} noValidate>
                         <label htmlFor='email' className='form-label'>Email Address</label>
-                        <input type="email" onChange={handleBioDataChange} value={bioData.email} id='email' className='form-control' name='email' placeholder='johndoe@gmail.com' required/>
+                        <input type="email" onChange={handleBioDataChange} value={bioData.email} id='email' className='form-control' name='email' placeholder='johndoe@gmail.com' required />
                         <label htmlFor="password" className='form-label'>Password</label>
                         <input type="password" onChange={handleBioDataChange} value={bioData.password} className='form-control' name='password' placeholder='********' required />
                         <label htmlFor="password2" className='form-label'>Confirm Password</label>
@@ -76,9 +76,16 @@ function Register() {
                         </button>
                     </form>
                 </div>
+                <div className="forgot-password">
+                    <span>
+                        <Link to='/forgot-password/'>Forgot Password?</Link>
+                    </span>
+                </div>
             </div>
         </section>
     );
+    
+
 }
 
 export default Register;

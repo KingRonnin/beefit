@@ -254,3 +254,44 @@ li {
     font-size: 16px;
   }
 }
+.social-media-icons {
+  display: flex;
+  justify-content: center; /* Center icons horizontally */
+  gap: 15px; /* Space between icons */
+  padding: 20px 0; /* Space around icons */
+}
+
+.social-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px; /* Icon size */
+  height: 40px; /* Icon size */
+  border-radius: 50%; /* Circular background */
+  background-color: #f0f0f0; /* Background color */
+  color: #333; /* Icon color */
+  font-size: 20px; /* Icon size */
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+}
+
+.social-icon:hover {
+  background-color: #333; /* Change background on hover */
+  color: #fff; /* Change icon color on hover */
+  transform: scale(1.1); /* Slightly enlarge the icon on hover */
+}
+
+.social-icon.facebook:hover {
+  background-color: #3b5998; /* Facebook color on hover */
+}
+
+.social-icon.twitter:hover {
+  background-color: #1da1f2; /* Twitter color on hover */
+}
+
+.social-icon.instagram:hover {
+  background-color: #e1306c; /* Instagram color on hover */
+}
+
+.social-icon.linkedin:hover {
+  background-color: #0077b5; /* LinkedIn color on hover */
+}
