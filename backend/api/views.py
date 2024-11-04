@@ -92,25 +92,44 @@ class UserStrengthExerciseView(generics.ListAPIView):
         user_id = self.kwargs['user_id']
         user = api_models.User.objects.get(id=user_id)
 
-        queryset = api_models.Strength.objects.filter(exercise__user=user) \
-            .annotate(total_sets=Sum("set"), total_reps=Sum("rep"), max_weight=Max("weight")) \
-            .order_by('-date')
-
-        data = [
-            {
-                "sets": item.total_sets,
-                "reps": item.total_reps,
-                "weight": item.max_weight,
-                "date": item.date.strftime('%Y-%m-%d')
-            }
-            for item in queryset
-        ]
-
-        return data
+        return (
+            api_models.Strength.objects.filter(exercise__user=user) \
+            .values('date') \
+            .annotate(
+                total_sets=Sum("set"),
+                total_reps=Sum("rep"),
+                max_weight=Max("weight"),
+            ) \
+            .order_by('date')
+        )
         
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
-        serializer = self.serializer_class(queryset, many = True)
+
+        cumulative_values = {}
+
+        for item in queryset:
+            date = item['date']
+            if date not in cumulative_values:
+                cumulative_values[date] = {
+                    'sets': 0,
+                    'reps': 0,
+                    'weight': 0,
+                }
+            cumulative_values[date]['sets'] += item['total_sets']
+            cumulative_values[date]['reps'] += item['total_reps']
+            cumulative_values[date]['weight'] += item['max_weight']
+
+        incremented_data = [
+            {
+                'date': date,
+                'sets': values['sets'],
+                'reps': values['reps'],
+                'weight': values['weight'],
+            }
+            for date, values in cumulative_values.items()
+        ]
+        serializer = self.serializer_class(incremented_data, many = True)
         return Response(serializer.data)
     
 class UserCardiovascularView(generics.ListAPIView):
@@ -152,12 +171,6 @@ class LogStrengthView(generics.CreateAPIView):
         rep = request.data.get('rep')
         weight = request.data.get('weight')
         date = request.data.get('date')
-        
-        print(exercise_id)
-        print(set)
-        print(rep)
-        print(weight)
-        print(date)
         
         exercise = api_models.Exercise.objects.get(id=exercise_id)
         

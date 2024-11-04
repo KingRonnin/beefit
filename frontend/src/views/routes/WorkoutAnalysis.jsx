@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { AreaChart, Area, BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, CartesianGrid } from 'recharts';
+import { format, parseISO } from 'date-fns';
 
 import apiInstance from '../../utils/axios';
 import useUserData from '../../plugin/useUserData';
 import Toast from '../../plugin/Toast.js'
 import Swal from 'sweetalert2';
+import './WorkoutAnalysis.css';
 
 const colors = ["#8884d8", "#82ca9d", "#ffc658"]; // Colors for the pie chart
 
@@ -35,13 +37,23 @@ const WorkoutLogPage = () => {
 
     return (
         <>
-        <div className="dashboard-container">
+        <div className="workout-analysis">
             <h2>Workout Analysis</h2>
-            <div className="strength-box">
-                <h3>Strength Exercise</h3>
-                <ResponsiveContainer width='100%' height={400}>
-                    <AreaChart data={strengthData}>
-                        <Area dataKey='sets' />
+            <div>
+                <h3>Sets</h3>
+                <ResponsiveContainer width='100%' height={300}>
+                    <AreaChart data={strengthData} label='Sets'>
+                    <defs>
+                        <linearGradient id='color' x1='0' y1='0' x2='0' y2='1'>
+                            <stop offset='0%' stopColor='#8884d8' stopOpacity={0.4} />
+                            <stop offset='75%' stopColor='#8884d8' stopOpacity={0.5} />
+                        </linearGradient>
+                    </defs>
+                        <Area dataKey='sets' stroke='#8884d8' fill='url(#color)' />
+                        <XAxis dataKey='date' axisLine={false} tickFormatter={str => {const date = parseISO(str); if (date.getDate() % 1 === 0) { return format(date, 'MMM, d'); } return ""; }} />
+                        <YAxis dataKey='sets' axisLine={false} tickLine={false} />
+                        <Tooltip/>
+                        <CartesianGrid opacity={0.5} vertical={false} />
                     </AreaChart>
                     <AreaChart data={strengthData}>
                         <Area dataKey='reps' />
@@ -51,14 +63,14 @@ const WorkoutLogPage = () => {
                     </AreaChart>
                 </ResponsiveContainer>
             </div>
-            <div className="cardio-box">
+            {/* <div className="cardio-box">
                 <h3>Cardio Exercise</h3>
                 <ResponsiveContainer width='100%' height={400}>
                     <AreaChart data={cardioData}>
                         <Area dataKey='steps' />
                     </AreaChart>
                 </ResponsiveContainer>
-            </div>
+            </div> */}
         </div>
         </>
     )
