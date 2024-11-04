@@ -76,7 +76,7 @@ const WorkoutLogPage = () => {
         formData.append("weight", strength.weight);
         formData.append("date", strength.date);
         try {
-            const response = await apiInstance.post("post/strength/log/", formData, {
+            const response = await apiInstance.post("post/log/strength/", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -111,11 +111,11 @@ const WorkoutLogPage = () => {
         const formData = new FormData();
 
         formData.append("exercise_id", selectedExercise.id)
-        formData.append("steps", cardiovascular.step);
+        formData.append("step", cardiovascular.step);
         formData.append("time", cardiovascular.time);
         formData.append("date", cardiovascular.date);
         try {
-            const response = await apiInstance.post("post/exercise/cardio/", formData, {
+            const response = await apiInstance.post("post/log/cardiovascular/", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -167,7 +167,7 @@ return (
                             <label htmlFor="date" className='form-label'>Date:</label>
                             <input type="date" name="date" id="date" className='form-control' value={cardiovascular.date} onChange={handleCardioChange}/>
                             <label htmlFor="step" className='form-label'>Steps:</label>
-                            <input type="number" id="step" name="steps" className='form-control' value={cardiovascular.step} onChange={handleCardioChange} />
+                            <input type="number" id="step" name="step" className='form-control' value={cardiovascular.step} onChange={handleCardioChange} />
                             <label htmlFor="time" className='form-label'>Duration</label>
                             <input type="number" name="time" id="time"className='form-control' value={cardiovascular.time} onChange={handleCardioChange} />
                             <button type="submit">Log Workout</button>
