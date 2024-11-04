@@ -170,3 +170,30 @@ class LogStrengthView(generics.CreateAPIView):
         )
         
         return Response({"message":"Workout Logged"}, status=status.HTTP_201_CREATED)
+    
+class LogCardioView(generics.CreateAPIView):
+    serializer_class = api_serializers.CardiovascularSerializer
+    permission_classes = [AllowAny]
+    
+    def create(self, request, *args, **kwargs):
+        print(request.data)
+        exercise_id = request.data.get('exercise_id')
+        step = request.data.get('step')
+        time = request.data.get('time')
+        date = request.data.get('date')
+        
+        print(exercise_id)
+        print(step)
+        print(time)
+        print(date)
+        
+        exercise = api_models.Exercise.objects.get(id=exercise_id)
+        
+        strength_exercise = api_models.Cardiovascular.objects.create(
+            exercise=exercise,
+            step=step,
+            time=time,
+            date=date
+        )
+        
+        return Response({"message":"Workout Logged"}, status=status.HTTP_201_CREATED)

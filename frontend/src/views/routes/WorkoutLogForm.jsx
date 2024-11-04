@@ -70,7 +70,7 @@ const WorkoutLogPage = () => {
 
         const formData = new FormData();
         
-        formData.append("exercise_id", selectedExercise.id)
+        formData.append("exercise_id", selectedExercise.id);
         formData.append("set", strength.set);
         formData.append("rep", strength.rep);
         formData.append("weight", strength.weight);
@@ -102,6 +102,7 @@ const WorkoutLogPage = () => {
         }
 
         const JSON = {
+            exercise_id: selectedExercise.id,
             step: cardiovascular.step,
             time: cardiovascular.time,
             date: cardiovascular.date,
@@ -109,6 +110,7 @@ const WorkoutLogPage = () => {
 
         const formData = new FormData();
 
+        formData.append("exercise_id", selectedExercise.id)
         formData.append("steps", cardiovascular.step);
         formData.append("time", cardiovascular.time);
         formData.append("date", cardiovascular.date);
@@ -162,10 +164,12 @@ return (
                         )}
                         {selectedExercise.type === 'Cardiovascular' && (
                         <form onSubmit={handleAddCardioWorkout}>
-                            <label htmlFor="date" className='form-label'>Steps:</label>
-                            <input type="date" name="date" id="date" className='form-control'/>
-                            <label htmlFor="step"></label>
-                            <input type="number" id="step" name="steps" value={cardiovascular.step} onChange={handleCardioChange} />
+                            <label htmlFor="date" className='form-label'>Date:</label>
+                            <input type="date" name="date" id="date" className='form-control' value={cardiovascular.date} onChange={handleCardioChange}/>
+                            <label htmlFor="step" className='form-label'>Steps:</label>
+                            <input type="number" id="step" name="steps" className='form-control' value={cardiovascular.step} onChange={handleCardioChange} />
+                            <label htmlFor="time" className='form-label'>Duration</label>
+                            <input type="number" name="time" id="time"className='form-control' value={cardiovascular.time} onChange={handleCardioChange} />
                             <button type="submit">Log Workout</button>
                         </form>
                         )}
