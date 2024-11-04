@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 import apiInstance from '../../utils/axios';
 import useUserData from '../../plugin/useUserData';
@@ -18,9 +18,11 @@ const WorkoutLogPage = () => {
         try {
             const strengthData_resp = await apiInstance.get(`dashboard/strength/${userId}/`);
             setStrengthData(strengthData_resp.data);
+            console.log(strengthData_resp.data);
     
-            const cardioData_resp = await apiInstance.get(`dashboard/strength/${userId}/`);
+            const cardioData_resp = await apiInstance.get(`dashboard/cardio/${userId}/`);
             setCardioData(cardioData_resp.data);
+            console.log(cardioData_resp.data);
         } catch (error) {
             Toast("error", "Error fetching dashboard data");
             console.error(error);
@@ -31,8 +33,38 @@ const WorkoutLogPage = () => {
         fetchDashboardData();
     }, []);
 
-    
+    return (
+        <>
+        <div className="dashboard-container">
+            <h2>Workout Analysis</h2>
+            <div className="strength-box">
+                <h3>Strength Exercise</h3>
+                <ResponsiveContainer width='100%' height={400}>
+                    <AreaChart data={strengthData}>
+                        <Area dataKey='sets' />
+                    </AreaChart>
+                    <AreaChart data={strengthData}>
+                        <Area dataKey='reps' />
+                    </AreaChart>
+                    <AreaChart data={strengthData}>
+                        <Area dataKey='weight' />
+                    </AreaChart>
+                </ResponsiveContainer>
+            </div>
+            <div className="cardio-box">
+                <h3>Cardio Exercise</h3>
+                <ResponsiveContainer width='100%' height={400}>
+                    <AreaChart data={cardioData}>
+                        <Area dataKey='steps' />
+                    </AreaChart>
+                </ResponsiveContainer>
+            </div>
+        </div>
+        </>
+    )
 }
+
+export default WorkoutLogPage;
 
 // const WorkoutAnalysis = ({ data, weightData, macroData }) => {
 //     if (data.length === 0) return <p>No workouts logged yet.</p>;
