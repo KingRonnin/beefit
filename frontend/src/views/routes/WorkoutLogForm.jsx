@@ -12,18 +12,24 @@ const WorkoutLogPage = () => {
     const [strength, setStrength] = useState({sets: 0, reps : 0, weight : 0, date : ""});
     const [cardiovascular, setCardiovascular] = useState({steps: 0, time : 0, date : ""});
     const [isLoading, setIsLoading] = useState(false);
-    // const [date, setDate] = useState('');
-    // const [exercise, setExercise] = useState('');
-    // const [reps, setReps] = useState('');
-    // const [sets, setSets] = useState('');
-    // const [weight, setWeight] = useState('');
-    // const [workoutData, setWorkoutData] = useState([]);
+    const [exerciseList, setExerciseList] = useState([]);
+    const [selectedExercise, setSelectedExercise]= useState(null);
 
-    const exerciseOptions = [
-        { name: 'Running', type: 'Cardio', caloriesPerMinute: 10 },
-        { name: 'Squats', type: 'Strength', caloriesPerRep: 0.5 },
-        { name: 'Push-ups', type: 'Strength', caloriesPerRep: 0.3 },
-    ];
+    const userId = useUserData()?.user_id;
+
+    const fetchExerciseData = async () => {
+        const response = await apiInstance.get('post/exercise/list');
+        const filterData = response.data.map(exercise => {
+            const { user, ...rest } = exercise;
+            return rest;
+        })
+        setExerciseList(filterData);
+        console.log(filterData);
+    };
+
+    useEffect(() => {
+        fetchExerciseData();
+    }, []);
 
     const handleStrengthChange = (event) => {
         setStrength({
@@ -62,7 +68,7 @@ const WorkoutLogPage = () => {
         formData.append("weight", strength.weight);
         formData.append("date", strength.date);
         try {
-            const response = await apiInstance.post("post/exercise/strength/", formData, {
+            const response = await apiInstance.post("post/exercise/strength", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -86,11 +92,15 @@ const WorkoutLogPage = () => {
             setIsLoading(false);
             return;
         }
+        
+        const selectedExercise = exerciseOptions.find((e) => e.name === exercise);
+        const caloriesBurned = selectedExercise.caloriesPerMinute * (time * steps);
 
         const JSON = {
             steps: cardiovascular.steps,
             time: cardiovascular.time,
             date: cardiovascular.date,
+            caloriesBurned: caloriesBurned
         };
 
         const formData = new FormData();
@@ -99,7 +109,7 @@ const WorkoutLogPage = () => {
         formData.append("time", cardiovascular.time);
         formData.append("date", cardiovascular.date);
         try {
-            const response = await apiInstance.post("post/exercise/cardio/", formData, {
+            const response = await apiInstance.post("post/exercise/cardio", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -115,84 +125,46 @@ const WorkoutLogPage = () => {
         }
     };
 
-    const handleAddWorkout = () => {
-        const selectedExercise = exerciseOptions.find((e) => e.name === exercise);
-        const caloriesBurned = selectedExercise.type === 'Cardio'
-            ? selectedExercise.caloriesPerMinute * (reps * sets)
-            : selectedExercise.caloriesPerRep * reps * sets;
-
-        const newWorkout = {
-            date,
-            exercise,
-            reps: Number(reps),
-            sets: Number(sets),
-            weight: Number(weight),
-            caloriesBurned,
-        };
-
-        setWorkoutData([...workoutData, newWorkout]);
-        setDate('');
-        setExercise('');
-        setReps('');
-        setSets('');
-        setWeight('');
-    };
-
-    return (
+return (
+    <>
         <div className="workout-log-container">
             <div className="form-card">
                 <h2>Log Your Workout</h2>
-                <form className="workout-form">
-                    <label>Date:</label>
-                    <input
-                        type="date"
-                        onChange={}
-                        value={date}
-                    />
-
-                    <label>Exercise:</label>
-                    <select value={exercise} onChange={(e) => setExercise(e.target.value)}>
+                <div className="form-group">
+                    <label htmlFor="exercise-selector" className='form-label'>Exercise</label>
+                    <select name="exercise-selector" id="exercise-selector" onChange={(e) => setSelectedExercise(e.target.value)}>
                         <option value="">Select Exercise</option>
-                        {exerciseOptions.map((ex) => (
-                            <option key={ex.name} value={ex.name}>
-                                {ex.name} ({ex.type})
+                        {exerciseList.map(exercise => (
+                            <option key={exercise.id}>
+                                {exercise.exercise} ({exercise.type})
                             </option>
                         ))}
                     </select>
+                </div>
+                {selectedExercise && (
+                    <div className="form-box">
+                        {selectedExercise === 'Strength' && (
+                            <>
+                                <form onSubmit={handleAddStrengthWorkout}>
 
-                    <label>Reps:</label>
-                    <input
-                        type="number"
-                        value={reps}
-                        onChange={(e) => setReps(e.target.value)}
-                    />
-
-                    <label>Sets:</label>
-                    <input
-                        type="number"
-                        value={sets}
-                        onChange={(e) => setSets(e.target.value)}
-                    />
-
-                    {exerciseOptions.find((ex) => ex.name === exercise)?.type === 'Strength' && (
-                        <>
-                            <label>Weight (kg):</label>
-                            <input
-                                type="number"
-                                value={weight}
-                                onChange={(e) => setWeight(e.target.value)}
-                            />
-                        </>
-                    )}
-
-                    <button type="button" className="add-exercise-button" onClick={handleAddWorkout}>Add Exercise</button>
-                </form>
+                                </form>
+                            </>
+                        )};
+                        {selectedExercise === 'Cardiovascular' && (
+                            <>
+                                <form onSubmit={handleAddCardioWorkout}>
+                                    
+                                </form>
+                            </>
+                        )}}
+                    </div>
+                )}
             </div>
-
-            {/* Analysis Section */}
-            <WorkoutAnalysis data={workoutData} />
         </div>
+    </>
     );
 };
 
 export default WorkoutLogPage;
+
+
