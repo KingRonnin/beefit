@@ -17,5 +17,3 @@ requests==2.31.0
 shortuuid==1.0.11
 sqlparse==0.4.4
 tzdata==2023.3
-stripe
-setuptools

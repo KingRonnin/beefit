@@ -4,7 +4,8 @@ from django.views.decorators.csrf import csrf_exempt
 import stripe
 import json
 
-stripe.api_key = settings.sk_test_51QFzYyHH43Q0yRB5xize8IyB4kBr1GC5GZjAHlhGm2IW4p7Jdt9obxWl8p92PB5DCJx5y80kVMG7SrUUEnSj7KYW00VtuuYUT9
+# stripe.api_key = settings.sk_test_51QFzYyHH43Q0yRB5xize8IyB4kBr1GC5GZjAHlhGm2IW4p7Jdt9obxWl8p92PB5DCJx5y80kVMG7SrUUEnSj7KYW00VtuuYUT9
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 @csrf_exempt
 def create_payment_intent(request):
