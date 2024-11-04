@@ -12,6 +12,9 @@ urlpatterns = [
     path('post/exercise/cardio/', api_views.CardiovascularListAPIView.as_view()),
     
     path('account/dashboard/stats/<user_id>/', api_views.Dashboard.as_view()),
+    path('create-payment-intent/', api_views.create_payment_intent, name='create_payment_intent'),
+    path('create-checkout-session/', api_views.create_checkout_session, name='create-checkout-session'),
+
 ]
 
 {

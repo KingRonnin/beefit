@@ -16,12 +16,17 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from datetime import datetime
+from django.views.decorators.csrf import csrf_exempt
+import stripe
 
 import json
 import random
 
 from api import serializers as api_serializers
 from api import models as api_models
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
 
 # Create your views here.
 class MyTokenObtainPairView(TokenObtainPairView):
@@ -83,3 +88,44 @@ class Dashboard(generics.ListAPIView):
         queryset = self.get_queryset()
         serializer = self.serializer_class(queryset, many = True)
         return Response(serializer.data)
+    
+
+@csrf_exempt
+def create_payment_intent(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            amount = int(float(data['amount']) * 100)  # Convert dollars to cents
+            intent = stripe.PaymentIntent.create(
+                amount=amount,
+                currency='usd',
+                automatic_payment_methods={
+                    'enabled': True,
+                },
+            )
+            return JsonResponse({'client_secret': intent.client_secret})
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
+    else:
+        return JsonResponse({'error': 'Invalid request method.'}, status=400)
+    
+@csrf_exempt
+def create_checkout_session(req):
+    data = json.loads(req.body)
+    session = stripe.checkout.Session.create(
+        payment_method_types=['card'],
+        line_items=[{
+                'price_data': {
+                'currency': 'usd',
+                'product_data': {
+                    'name': data['name'],
+                },
+                'unit_amount': int(float(data['amount']) * 100),  # Amount in cents
+            },
+            'quantity': 1,
+        }],
+        mode='payment',
+        success_url='http://localhost:5173/success',
+        cancel_url='http://localhost:5173/',
+    )
+    return JsonResponse({'id': session.id})
