@@ -140,3 +140,33 @@ class UserCardiovascularView(generics.ListAPIView):
         queryset = self.get_queryset()
         serializer = self.serializer_class(queryset, many = True)
         return Response(serializer.data)
+
+class LogStrengthView(generics.CreateAPIView):
+    serializer_class = api_serializers.StrengthSerializer
+    permission_classes = [AllowAny]
+    
+    def create(self, request, *args, **kwargs):
+        print(request.data)
+        exercise_id = request.data.get('exercise_id')
+        set = request.data.get('set')
+        rep = request.data.get('rep')
+        weight = request.data.get('weight')
+        date = request.data.get('date')
+        
+        print(exercise_id)
+        print(set)
+        print(rep)
+        print(weight)
+        print(date)
+        
+        exercise = api_models.Exercise.objects.get(id=exercise_id)
+        
+        strength_exercise = api_models.Strength.objects.create(
+            exercise=exercise,
+            set=set,
+            rep=rep,
+            weight=weight,
+            date=date
+        )
+        
+        return Response({"message":"Workout Logged"}, status=status.HTTP_201_CREATED)
