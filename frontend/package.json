@@ -20,12 +20,7 @@
     "@stripe/react-stripe-js": "^2.8.1",
     "@stripe/stripe-js": "^4.9.0",
     "axios": "^1.5.1",
-<<<<<<< HEAD
-    "chart.js": "^4.4.0",
     "date-fns": "^4.1.0",
-=======
-    "chart.js": "^4.4.6",
->>>>>>> 2512d12794a0950081126b35a68378f2036b59f7
     "dayjs": "^1.11.10",
     "js-cookie": "^3.0.5",
     "jwt-decode": "^3.1.2",

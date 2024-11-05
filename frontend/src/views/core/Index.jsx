@@ -70,12 +70,6 @@ function FrontPage() {
   </header>
 </section>
 
-<<<<<<< HEAD
-      <section id="About" className="section about-section" ref={aboutSectionRef}>
-        <div className="content">
-          <h2>About Us</h2>
-          <p>Beefit is dedicated to empowering fitness starters. We help you discover the joy of fitness with easy-to-follow plans and a supportive community.</p>
-=======
       {/* Loading Overlay */}
       {loading && (
         <div className="loading-overlay">
@@ -108,7 +102,6 @@ function FrontPage() {
             <li>✔ Weight Loss Classes</li>
           </ul>
           <button className="join-now-cta" onClick={handleJoinNowClick}>JOIN NOW</button>
->>>>>>> 2512d12794a0950081126b35a68378f2036b59f7
         </div>
       </div>
       
