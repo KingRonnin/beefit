@@ -17,33 +17,45 @@ import Payment from "./views/routes/Payment.jsx";
 import Test from "./views/routes/test.jsx";
 import PaymentPageFinal from "./views/routes/PaymentPage.jsx";
 import Success from "./views/routes/Success.jsx";
+import PrivateRoute from './layouts/PrivateRoute.jsx';
 
 // const stripePromise = loadStripe('pk_test_51QFzYyHH43Q0yRB555Wz4VOQnfH1JdDeazmNBOOfG9s53j6NOuIC9RTreaFe2lGGh31C7opLoYomj8du5EFbqr7B00zQZR4LS1');
 function App() {
   return (
-    <Router>
-      <MainWrapper>
-        {/* <Elements stripe={stripePromise}> */}
-        <Routes>
-          <Route path="/" element={<PlanFrontPage />} />
-          <Route path="/myplan" element={<MyPlan />} />
-          <Route path="/logfitness" element={<LogFitness />} />
-          <Route path="/Calender" element={<Calender />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/About" element={<About />} />
-          <Route path="/WorkoutLog" element={<WorkoutLog />} />
-          <Route path="/CoursesPage" element={<CoursesPage />} />
-          <Route path="/HabitChallenges" element={<HabitChallenges />} />
-          <Route path="/Payment" element={<Payment amount={"500"} name={"Test Object"} />} />
-          <Route path="/test" element={<Test />} />
-          <Route path="/PaymentPage" element={<PaymentPageFinal />} />
-          <Route path="/Success" element={<Success  />} />
-        </Routes>
-        {/* </Elements> */}
-      </MainWrapper>
-    </Router>
-
+    <>
+      <Router>
+        <MainWrapper>
+              <Routes>
+                <Route path="/" element={<PlanFrontPage />} />
+                <Route path="/myplan" element={
+                  <PrivateRoute>
+                    <MyPlan />
+                  </PrivateRoute>
+                } />
+                <Route path="/logfitness" element={
+                  <PrivateRoute>
+                    <LogFitness />
+                  </PrivateRoute>
+                } />
+                <Route path="/Calender" element={<Calender />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/About" element={<About />} />
+                <Route path="/WorkoutLog" element={
+                  <PrivateRoute>
+                    <WorkoutLog />
+                  </PrivateRoute>
+                  } />
+                <Route path="/CoursesPage" element={<CoursesPage />} />
+                <Route path="/HabitChallenges" element={<HabitChallenges />} />
+                <Route path="/Payment" element={<Payment amount={"500"} name={"Test Object"} />} />
+                <Route path="/test" element={<Test />} />
+                <Route path="/PaymentPage" element={<PaymentPageFinal />} />
+                <Route path="/Success" element={<Success  />} />
+              </Routes>
+        </MainWrapper>
+      </Router>
+    </>
   );
 }
 

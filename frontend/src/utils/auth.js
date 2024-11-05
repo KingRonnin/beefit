@@ -126,3 +126,73 @@ export const isAccessTokenExpired = (accessToken) => {
         return true;
     }
 };
+
+export const setStrengthExercise = async (sets, reps, weight, date) => {
+    try {
+        const { data } = await axios.post("post/exercise/strength", {
+            sets,
+            reps,
+            weight,
+            date,
+        });
+
+        Toast.fire({
+            icon: "success",
+            title: "Logged Workout",
+        });
+
+        return { date, error : null };
+    } catch (error) {
+        return {
+            data: null,
+            error: "Something went wrong"
+        };
+    }
+};
+
+// export const setCardioExercise = async (steps, time, date) => {
+//     try {
+//         const { data } = await axios.post("post/exercise/cardio", {
+//             steps,
+//             time,
+//             date,
+//         });
+
+//         Toast.fire({
+//             icon: "success",
+//             title: "Logged Workout",
+//         });
+
+//         return { date, error : null };
+//     } catch (error) {
+//         return {
+//             data: null,
+//             error: "Something went wrong"
+//         };
+//     }
+// };
+
+
+// export const register = async (email, password, password2) => {
+//     try {
+//         const { data } = await axios.post("user/register/", {
+//             email,
+//             password,
+//             password2,
+//         });
+
+//         await login(email, password);
+
+//         Toast.fire({
+//             icon: "success",
+//             title: "Signed Up Successfully",
+//         });
+
+//         return { data, error: null };
+//     } catch (error) {
+//         return {
+//             data: null,
+//             error: "Something went wrong",
+//         };
+//     }
+// };

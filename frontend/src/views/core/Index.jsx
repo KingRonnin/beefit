@@ -29,11 +29,9 @@ function FrontPage() {
   };
 
   const handleGetStartedClick = () => {
-    setLoading(true);
     setTimeout(() => {
-      setLoading(false);
       navigate("/LogFitness");
-    }, 2000);
+    });
   };
 
   const handleCheckOurPlansClick = () => {
