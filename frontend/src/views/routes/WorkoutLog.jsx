@@ -15,10 +15,10 @@ const WorkoutLog = () => {
         <div className="workout-log-container">
             
             {/* Form for logging workouts */}
-            <WorkoutLogForm onSubmit={handleWorkoutSubmit} />
+            <WorkoutLogForm />
 
             {/* Analysis section that uses the logged workouts */}
-            <WorkoutAnalysis data={workoutData} />
+            <WorkoutAnalysis />
         </div>
     );
 };

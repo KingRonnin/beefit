@@ -7,11 +7,11 @@ const CheckoutForm = ({ course }) => {
   const [clientSecret, setClientSecret] = useState('');
 
   useEffect(() => {
-    // Fetch the client secret from your backend
+    // Fetch the client secret from the backend
     fetch('http://127.0.0.1:8000/api/create-payment-intent/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ amount: course.price }),
+      body: JSON.stringify({ amount: parseFloat(course.price.replace('$', '')) * 100 }), // convert to cents
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.client_secret));
@@ -27,7 +27,7 @@ const CheckoutForm = ({ course }) => {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: 'http://localhost:3000/payment-success',
+        return_url: 'http://localhost:3000/payment-success', // Update as needed
       },
     });
 
