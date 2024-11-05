@@ -51,6 +51,10 @@ INSTALLED_APPS = [
     
 ]
 
+STRIPE_SECRET_KEY = 'sk_test_51QFzYyHH43Q0yRB5xize8IyB4kBr1GC5GZjAHlhGm2IW4p7Jdt9obxWl8p92PB5DCJx5y80kVMG7SrUUEnSj7KYW00VtuuYUT9'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51QFzYyHH43Q0yRB555Wz4VOQnfH1JdDeazmNBOOfG9s53j6NOuIC9RTreaFe2lGGh31C7opLoYomj8du5EFbqr7B00zQZR4LS1'
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -112,6 +116,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',  # React development server
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/

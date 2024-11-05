@@ -65,52 +65,84 @@ function FrontPage() {
     <div className="overlay">
       <h1 className="hero-main-text">TRAIN THE</h1>
       <h1 className="hero-main-text">FIGHTER IN YOU</h1>
-      <p className="sub-text">WELCOME TO BEEFIT</p> 
       <button className="cta-button" onClick={handleGetStartedClick}>Get Started</button>
     </div>
   </header>
 </section>
 
+<<<<<<< HEAD
       <section id="About" className="section about-section" ref={aboutSectionRef}>
         <div className="content">
           <h2>About Us</h2>
           <p>Beefit is dedicated to empowering fitness starters. We help you discover the joy of fitness with easy-to-follow plans and a supportive community.</p>
+=======
+      {/* Loading Overlay */}
+      {loading && (
+        <div className="loading-overlay">
+          <img src={loadingGif} alt="Loading..." className="loading-spinner" />
+          <p>Loading...</p>
         </div>
-      </section>
-
-     
-      <section id="courses" className="section courses-section" ref={coursesSectionRef}>
-        <h2>Courses We Offer</h2>
-        <p>Explore our range of fitness courses, from beginner to advanced, designed to suit all fitness levels and help you reach your personal goals.</p>
-      </section>
-
-      
-      <section id="services" className="section services-section" ref={servicesSectionRef}>
-        <div className="content">
-          <h2>Our Services</h2>
-          <p>Explore personalized workout plans, nutritional guidance, and a range of classes designed to keep you motivated and on track.</p>
-        </div>
-      </section>
-
-   
-      {showPricing && (
-        <section id="pricing" className="section pricing-section" ref={pricingSectionRef}>
-          <h2>Our Pricing Plans</h2>
-          <div className="pricing-plan">
-            <div className="plan-details">
-              <h3>6 MONTH</h3>
-              <p className="price">$30/M <span>(SINGLE CLASS)</span></p>
-              <ul>
-                <li>✔ Free Riding</li>
-                <li>✔ Unlimited Equipment</li>
-                <li>✔ Personal Trainer</li>
-                <li>✔ Weight Loss Classes</li>
-              </ul>
-              <button className="join-now-cta" onClick={handleJoinNowClick}>JOIN NOW</button>
-            </div>
-          </div>
-        </section>
       )}
+
+      {/* Success Message */}
+      {successMessage && (
+        <div className="success-message">
+          <p>{successMessage}</p>
+        </div>
+      )}
+
+
+
+{showPricing && (
+  <section id="pricing" className="section pricing-section" ref={pricingSectionRef}>
+    <h2>Our Pricing Plans</h2>
+    <div className="pricing-plans-container">
+      <div className="pricing-plan">
+        <div className="plan-details">
+          <h3>6 MONTH</h3>
+          <p className="price">$30/M <span>(SINGLE CLASS)</span></p>
+          <ul>
+            <li>✔ Free Riding</li>
+            <li>✔ Unlimited Equipment</li>
+            <li>✔ Personal Trainer</li>
+            <li>✔ Weight Loss Classes</li>
+          </ul>
+          <button className="join-now-cta" onClick={handleJoinNowClick}>JOIN NOW</button>
+>>>>>>> 2512d12794a0950081126b35a68378f2036b59f7
+        </div>
+      </div>
+      
+      <div className="pricing-plan">
+        <div className="plan-details">
+          <h3>12 MONTH</h3>
+          <p className="price">$50/M <span>(BEST VALUE)</span></p>
+          <ul>
+            <li>✔ Free Riding</li>
+            <li>✔ Unlimited Equipment</li>
+            <li>✔ Personal Trainer</li>
+            <li>✔ Weight Loss Classes</li>
+            <li>✔ Nutrition Guide</li>
+          </ul>
+          <button className="join-now-cta" onClick={handleJoinNowClick}>JOIN NOW</button>
+        </div>
+      </div>
+
+      <div className="pricing-plan">
+        <div className="plan-details">
+          <h3>1 MONTH</h3>
+          <p className="price">$40/M <span>(BASIC CLASS)</span></p>
+          <ul>
+            <li>✔ Free Riding</li>
+            <li>✔ Unlimited Equipment</li>
+            <li>✔ Personal Trainer</li>
+          </ul>
+          <button className="join-now-cta" onClick={handleJoinNowClick}>JOIN NOW</button>
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
 
  ]
       <section id="offers" className="section offers-section" ref={offersSectionRef}>

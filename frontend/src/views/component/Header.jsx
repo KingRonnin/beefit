@@ -18,20 +18,21 @@ const Header = () => {
             <Link to="/" className="nav-link">Home</Link>
           </li>
           <li>
-            <Link to="/About" className="nav-link">About</Link>
+            <Link to="/About" className="nav-link">Services</Link>
           </li>
           <li>
             <Link to="/CoursesPage" className="nav-link">Courses</Link>
           </li>
           <li>
-            <Link to="/services" className="nav-link">Services</Link>
+            <Link to="/Blog" className="nav-link">Blog</Link>
           </li>
           <li> 
             <Link to="/WorkoutLog" className="nav-link">Workout Log</Link>
           </li>
           <li>
-            <Link to="/LogFitness" className="nav-link">Log Fitness</Link> {/* Link to Log Fitness */}
+            <Link to="/LogFitness" className="nav-link">Tracking Fitness</Link> {/* Link to Log Fitness */}
           </li>
+          <Link to="/HabitChallenges" className="nav-link">HabitChallenges</Link>
         </ul>
           {isLoggedIn() ? (
           <>

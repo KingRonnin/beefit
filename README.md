@@ -17,7 +17,7 @@ Health & Fitness Starters who want minimal design
 ReactJS
 
 ## Back-End
-Python
+Python (python3 manage.py runserver)
 
 ## Database
-SQLite
+SQLite 
