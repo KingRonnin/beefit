@@ -17,7 +17,6 @@ from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
-import stripe
 
 import json
 import random
@@ -25,7 +24,7 @@ import random
 from api import serializers as api_serializers
 from api import models as api_models
 
-stripe.api_key = settings.STRIPE_SECRET_KEY
+
 
 
 # Create your views here.

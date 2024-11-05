@@ -3,13 +3,17 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
 import './HabitChallenges.css';
 
+
+
 const HabitChallenges = () => {
+  
   const [challenges, setChallenges] = useState([
     {
       id: 1,
       name: "Daily Stretch Challenge",
       description: "Stretch for at least 10 minutes every day.",
       days: 7,
+
       completed: 1,
       completionDates: [""],
       joined: false,
@@ -36,6 +40,7 @@ const HabitChallenges = () => {
       streak: 0,
     },
   ]);
+  
 
   const [recommendations, setRecommendations] = useState([]);
   const [showJoinModal, setShowJoinModal] = useState(false);
@@ -46,6 +51,51 @@ const HabitChallenges = () => {
   const [timer, setTimer] = useState(3);
   const [isTimerActive, setIsTimerActive] = useState(false);
   const exerciseSectionRef = useRef(null);
+  const [showHydrationFeatures, setShowHydrationFeatures] = useState(false);
+
+  const aiDrivenRecommendations = () => {
+    const newRecommendations = [];
+    const highStreakChallenges = challenges.filter(challenge => challenge.streak >= 5);
+
+    highStreakChallenges.forEach(challenge => {
+      if (challenge.id === 1) {
+        newRecommendations.push({
+          id: 4,
+          name: "Advanced Stretch Challenge",
+          description: "Push your flexibility to new levels for 2 weeks.",
+          reason: "Based on your consistent progress in stretching.",
+        });
+      } else if (challenge.id === 2) {
+        newRecommendations.push({
+          id: 5,
+          name: "Enhanced Hydration Challenge",
+          description: "Boost hydration with a higher daily goal.",
+          reason: "Since you've been consistent with hydration.",
+        });
+      } else if (challenge.id === 3) {
+        newRecommendations.push({
+          id: 6,
+          name: "Mindful Living Challenge",
+          description: "Increase mindfulness to 15 minutes daily.",
+          reason: "Building on your meditation consistency.",
+        });
+      }
+    });
+
+    setRecommendations(newRecommendations);
+  };
+
+  // Fetch saved data from local storage
+  useEffect(() => {0
+    const savedChallenges = JSON.parse(localStorage.getItem('challenges'));
+    if (savedChallenges) setChallenges(savedChallenges);
+    aiDrivenRecommendations();  // Trigger AI-driven recommendations on component load
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('challenges', JSON.stringify(challenges));
+    aiDrivenRecommendations();  // Trigger AI-driven recommendations when challenges update
+  }, [challenges]);
 
   const dailyStretchExercises = [
     { name: "Neck Rolls", image: "https://i.pinimg.com/originals/0d/ea/83/0dea83ceff79824c7eb23a9834dab4fb.gif" },
@@ -83,16 +133,19 @@ const HabitChallenges = () => {
         position: "top-center",
         style: { fontSize: '1.5rem' },
       });
+      
     }
   }, [isTimerActive, timer]);
 
   const joinChallenge = (id) => {
     const ongoingChallenge = challenges.find((challenge) => challenge.joined && challenge.completed < challenge.days);
     if (ongoingChallenge) {
-      toast.error(`❌ Finish the "${ongoingChallenge.name}" challenge before joining another one!`, {
+      toast.error(`❌ Finish the "${ongoingChallenge.name}"  before joining a new challenge!`, {
         position: "top-center",
-        style: { fontSize: '1.5rem' },
+        style: { fontSize: '1rem' }, // Adjust the font size to be slimmer
+        className: 'custom-toast' // Add custom class for styling
       });
+      
     } else {
       setCurrentChallengeId(id);
       setShowJoinModal(true);
@@ -105,6 +158,10 @@ const HabitChallenges = () => {
         challenge.id === currentChallengeId ? { ...challenge, joined: true } : challenge
       )
     );
+    if (currentChallengeId === 2) { // Assuming 2 is the ID for the Hydration Challenge
+      setShowHydrationFeatures(true);
+    }
+
 
     recommendChallenges();
     setShowJoinModal(false);
@@ -148,7 +205,9 @@ const HabitChallenges = () => {
         style: { fontSize: '1.5rem' },
       });
     }
+    
   };
+  
   
 
   const handleCompletionDateChange = (challengeId) => {
@@ -209,6 +268,7 @@ const HabitChallenges = () => {
       alert("Copy this link to share: " + window.location.href);
     }
   };
+  
 
   return (
     
@@ -248,6 +308,20 @@ const HabitChallenges = () => {
           </div>
         ))}
       </div>
+      {showHydrationFeatures && (
+  <div className="hydration-features">
+    <h2>Hydration Challenge </h2>
+    <p>Stay hydrated and unlock your full potential!</p>
+    <ul>
+      <li>💧 Track your daily water intake with ease.</li>
+      <li>🌟 Set personalized hydration goals based on your activity level.</li>
+      <li>📅 Daily reminders to keep you on track.</li>
+      <li>🏆 Join the community for support, challenges, and motivation!</li>
+      <li>📊 Monitor your progress with our tracking tool and visual graphs!</li>
+    </ul>
+  </div>
+)}
+      
 
       <div className="recommendations-section">
         <h2>Recommended Challenges</h2>
