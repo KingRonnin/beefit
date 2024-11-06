@@ -58,6 +58,7 @@ function App() {
                 <Route path="/test" element={<Test />} />
                 <Route path="/PaymentPage" element={<PaymentPageFinal />} />
                 <Route path="/Success" element={<Success  />} />
+                <Route path="/Payment/:paymentInfo" element={<Payment />} />
               </Routes>
         </MainWrapper>
       </Router>

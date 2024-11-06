@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation, redirect } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
+import { useParams } from "react-router-dom";
 import {
   Elements,
   useStripe,
@@ -79,11 +80,15 @@ function PaymentForm({amount, name}) {
   );
 }
 
-function Payment({amount, name}) {
+function Payment() {
+  const{ paymentInfo } = useParams();
+
+  const paymentFinal = JSON.parse(decodeURIComponent(paymentInfo))
+
   return (
     <Elements stripe={stripePromise}>
       <div className="page">
-        <PaymentForm amount={amount} name={name} />
+        <PaymentForm amount={paymentFinal.amount} name={paymentFinal.title} />
       </div>
     </Elements>
   );
