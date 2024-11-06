@@ -86,7 +86,6 @@ const LogFitness: React.FC = () => {
     };
 
     const handleBack = () => {
-        
         setSavedGoal(null);
         setGoal('');
         setWeight('');
@@ -120,7 +119,6 @@ const LogFitness: React.FC = () => {
 
                 {!loading && (
                     <>
-                       
                         {savedGoal && showFormContent && (
                             <div className="form-group">
                                 <h2>Your Saved Goal: {savedGoal}</h2>

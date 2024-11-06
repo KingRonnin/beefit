@@ -158,12 +158,12 @@ return (
                         <label htmlFor="date" className='form-label'>Date</label>
                         <input type="date" name="date" id="date" className='form-control' value={strength.date} onChange={handleStrengthChange} />
                         <label htmlFor="set" className='form-label'>Sets:</label>
-                        <input type="number" id="set" name="set" className='form-control' value={strength.set} onChange={handleStrengthChange} />
+                        <input type="number" id="set" name="set" className='form-control' min={0} value={strength.set} onChange={handleStrengthChange} />
                         <label htmlFor="rept" className='form-label'>Reps</label>
-                        <input type="number" name="rep" id="rep" className='form-control' value={strength.rep} onChange={handleStrengthChange} />
+                        <input type="number" name="rep" id="rep" className='form-control' min={0} value={strength.rep} onChange={handleStrengthChange} />
                         <label htmlFor="weight" className='form-label'>Max Weight (If Applicable)</label>
-                        <input type="number" name="weight" id="weight" className='form-control' value={strength.weight} onChange={handleStrengthChange} />
-                        <button type="submit">Log Workout</button>
+                        <input type="number" name="weight" id="weight" className='form-control' min={0} value={strength.weight} onChange={handleStrengthChange} />
+                        <button type="submit" className='log-button'>Add Workout</button>
                     </form>
                     )}
                     {selectedExercise.type === 'Cardiovascular' && (
@@ -171,10 +171,10 @@ return (
                         <label htmlFor="date" className='form-label'>Date:</label>
                         <input type="date" name="date" id="date" className='form-control' value={cardiovascular.date} onChange={handleCardioChange}/>
                         <label htmlFor="step" className='form-label'>Steps:</label>
-                        <input type="number" id="step" name="step" className='form-control' value={cardiovascular.step} onChange={handleCardioChange} />
+                        <input type="number" id="step" name="step" className='form-control' min={0} value={cardiovascular.step} onChange={handleCardioChange} />
                         <label htmlFor="time" className='form-label'>Duration</label>
-                        <input type="number" name="time" id="time"className='form-control' value={cardiovascular.time} onChange={handleCardioChange} />
-                        <button type="submit">Log Workout</button>
+                        <input type="number" name="time" id="time"className='form-control' min={0} value={cardiovascular.time} onChange={handleCardioChange} />
+                        <button type="submit" className='log-button'>Add Workout</button>
                     </form>
                     )}
                 </>
