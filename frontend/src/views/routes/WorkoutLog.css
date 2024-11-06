@@ -1,148 +1,53 @@
-/* Main container */
-body {
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-        url('../../images/hbd.jpg') no-repeat center center fixed;
-    background-size: cover;
-    font-family: 'Arial', sans-serif;
-    color: white;
-    margin: 0;
-    padding: 0;
-    transition: background-color 0.5s ease; /* Smooth background transition */
+/* workout-log-container.css */
+.workout-log-page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .workout-log-container {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    border-radius: 10px;
-    animation: fadeIn 0.8s; /* Fade-in animation for the container */
-}
-
-/* Form Card */
-.form-card {
-    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    transition: transform 0.3s; /* Smooth hover transition */
-}
-
-.form-card:hover {
-    transform: translateY(-5px); /* Lift effect on hover */
-}
-
-.form-card h2 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-    animation: slideIn 0.5s; /* Slide-in effect for the heading */
-}
-
-.workout-form {
+    width: 100%;
+    height: 100%;
+    position: absolute;
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Labels and Inputs */
-label {
-    font-weight: bold;
-    color: #555;
-    margin-bottom: 5px;
-    text-align: left;
-    transition: color 0.3s; /* Smooth label color transition */
-}
-
-input, select {
-    padding: 10px;
+.form-card {
+    border: 1px solid #ccc;
+    padding: 20px;
     border-radius: 5px;
-    border: 1px solid #ddd;
-    font-size: 16px;
-    color: #333;
-    transition: border-color 0.3s; /* Smooth border color transition */
 }
 
-input:focus, select:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add shadow on focus */
+.form-group {
+    margin-bottom: 10px;
 }
 
-/* Button Styling */
-.add-exercise-button {
-    padding: 12px;
-    font-size: 16px;
-    color: #ffffff;
-    background-color: #28a745;
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.form-conditioner {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.form-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s; /* Added transform transition */
-}
-
-.add-exercise-button:hover {
-    background-color: #218838;
-    transform: scale(1.05); /* Slightly enlarge button on hover */
-}
-
-/* Analysis Section */
-.workout-analysis {
-    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 0.8s; /* Fade-in effect for the analysis section */
-}
-
-.workout-analysis h2 {
-    font-size: 22px;
-    color: #333;
-    margin-bottom: 15px;
-    animation: slideIn 0.5s; /* Slide-in effect for analysis heading */
-}
-
-.chart-container {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s; /* Smooth chart transition */
-}
-
-.chart-container:hover {
-    transform: scale(1.02); /* Slightly enlarge chart on hover */
-}
-
-/* Keyframes for Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateY(-10px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-/* Responsive Styles */
-@media (max-width: 600px) {
-    .workout-log-container {
-        padding: 15px;
-    }
-
-    .form-card {
-        padding: 15px;
-    }
 }

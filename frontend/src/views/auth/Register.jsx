@@ -42,10 +42,10 @@ function Register() {
     };
 
     return (
-        <section className="container">
-            <div className="box">
-                <div className="header-section">
-                    <h1>Registration</h1>
+        <section className="register-container">
+            <div className="register-box">
+                <div className="register-header-section">
+                    <h2>Registration</h2>
                 </div>
                 <div className="redirect-signin">
                     <span>
@@ -53,7 +53,7 @@ function Register() {
                         <Link to='/login/'>Sign In</Link>
                     </span>
                 </div>
-                <div className="form">
+                <div className="register-form">
                     <form className='needs-validation' onSubmit={handleRegister} noValidate>
                         <label htmlFor='email' className='form-label'>Email Address</label>
                         <input type="email" onChange={handleBioDataChange} value={bioData.email} id='email' className='form-control' name='email' placeholder='johndoe@gmail.com' required />
@@ -61,7 +61,7 @@ function Register() {
                         <input type="password" onChange={handleBioDataChange} value={bioData.password} className='form-control' name='password' placeholder='********' required />
                         <label htmlFor="password2" className='form-label'>Confirm Password</label>
                         <input type="password" onChange={handleBioDataChange} value={bioData.password2} className='form-control' name='password2' placeholder='********' required />
-                        <button type='submit' disabled={isLoading}>
+                        <button className='register-button' type='submit' disabled={isLoading}>
                             {isLoading ? (
                                 <>
                                     <span>Processing...</span>
@@ -76,15 +76,9 @@ function Register() {
                         </button>
                     </form>
                 </div>
-                <div className="forgot-password">
-                    <span>
-                        <Link to='/forgot-password/'>Forgot Password?</Link>
-                    </span>
-                </div>
             </div>
         </section>
     );
-    
 
 }
 

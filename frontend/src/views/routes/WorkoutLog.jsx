@@ -12,13 +12,8 @@ const WorkoutLog = () => {
     };
 
     return (
-        <div className="workout-log-container">
-            
-            {/* Form for logging workouts */}
+        <div>
             <WorkoutLogForm />
-
-            {/* Analysis section that uses the logged workouts */}
-            <WorkoutAnalysis />
         </div>
     );
 };

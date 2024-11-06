@@ -37,41 +37,41 @@ const WorkoutLogPage = () => {
 
     return (
         <>
-        <div className="workout-analysis">
-            <h2>Workout Analysis</h2>
-            <div>
-                <h3>Sets</h3>
-                <ResponsiveContainer width='100%' height={300}>
-                    <AreaChart data={strengthData} margin={{top: 10, right: 30, left: 0, bottom: 0,}} >
-                    <defs>
-                        <linearGradient id='color' x1='0' y1='0' x2='0' y2='1'>
-                            <stop offset='5%' stopColor='#8884d8' stopOpacity={0.8} />
-                            <stop offset='95%' stopColor='#8884d8' stopOpacity={0} />
-                        </linearGradient>
-                    </defs>
-                        <Area type='natural' dataKey='sets' stroke='#8884d8' fill='url(#color)' />
-                        <XAxis dataKey='date' axisLine={false} tickFormatter={str => {const date = parseISO(str); if (date.getDate() % 1 === 0) { return format(date, 'MMM d'); } return ""; }} />
-                        <YAxis dataKey='sets' axisLine={false} tickLine={false} />
-                        <Tooltip/>
-                        <CartesianGrid opacity={0.5} vertical={false} />
-                    </AreaChart>
-                    <AreaChart data={strengthData}>
-                        <Area dataKey='reps' />
-                    </AreaChart>
-                    <AreaChart data={strengthData}>
-                        <Area dataKey='weight' />
-                    </AreaChart>
-                </ResponsiveContainer>
+            <div className="workout-analysis">
+                <h2>Workout Analysis</h2>
+                <div>
+                    <h3>Sets</h3>
+                    <ResponsiveContainer width='100%' height={300}>
+                        <AreaChart data={strengthData} margin={{top: 10, right: 30, left: 0, bottom: 0,}} >
+                        <defs>
+                            <linearGradient id='color' x1='0' y1='0' x2='0' y2='1'>
+                                <stop offset='5%' stopColor='#8884d8' stopOpacity={0.8} />
+                                <stop offset='95%' stopColor='#8884d8' stopOpacity={0} />
+                            </linearGradient>
+                        </defs>
+                            <Area type='natural' dataKey='sets' stroke='#8884d8' fill='url(#color)' />
+                            <XAxis dataKey='date' axisLine={false} tickFormatter={str => {const date = parseISO(str); if (date.getDate() % 1 === 0) { return format(date, 'MMM d'); } return ""; }} />
+                            <YAxis dataKey='sets' axisLine={false} tickLine={false} />
+                            <Tooltip/>
+                            <CartesianGrid opacity={0.5} vertical={false} />
+                        </AreaChart>
+                        <AreaChart data={strengthData}>
+                            <Area dataKey='reps' />
+                        </AreaChart>
+                        <AreaChart data={strengthData}>
+                            <Area dataKey='weight' />
+                        </AreaChart>
+                    </ResponsiveContainer>
+                </div>
+                {/* <div className="cardio-box">
+                    <h3>Cardio Exercise</h3>
+                    <ResponsiveContainer width='100%' height={400}>
+                        <AreaChart data={cardioData}>
+                            <Area dataKey='steps' />
+                        </AreaChart>
+                    </ResponsiveContainer>
+                </div> */}
             </div>
-            {/* <div className="cardio-box">
-                <h3>Cardio Exercise</h3>
-                <ResponsiveContainer width='100%' height={400}>
-                    <AreaChart data={cardioData}>
-                        <Area dataKey='steps' />
-                    </AreaChart>
-                </ResponsiveContainer>
-            </div> */}
-        </div>
         </>
     )
 }

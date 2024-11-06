@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import './WorkoutLog.css';
-import '../../images/hbd.jpg';
 
 import apiInstance from '../../utils/axios';
 import useUserData from '../../plugin/useUserData';
 import Toast from '../../plugin/Toast.js'
 import Swal from 'sweetalert2';
+
+import Header from '../component/Header.jsx';
 
 const WorkoutLogPage = () => {
     const [strength, setStrength] = useState({set: 0, rep : 0, weight : 0, date : ""});
@@ -136,50 +136,51 @@ const WorkoutLogPage = () => {
 
 return (
     <>
-        <div className="workout-log-container">
-            <div className="form-card">
-                <h2>Log Your Workout</h2>
-                <div className="form-group">
-                    <label htmlFor="exercise-selector" className='form-label'>Exercise</label>
-                    <select name="exercise-selector" id="exercise-selector" className='form-conditioner' onChange={handleExerciseChange}>
-                        <option value="">Select Exercise</option>
-                        {exerciseList.map(exercise => (
-                            <option key={exercise.id} value={`${exercise.id}-${exercise.type}-${exercise.exercise}`}>
-                                {exercise.exercise} ({exercise.type})
-                            </option>
-                        ))}
-                    </select>
-                </div>
-                {selectedExercise && (
-                    <>
-                        {selectedExercise.type === 'Strength' && (
-                        <form onSubmit={handleAddStrengthWorkout}>
-                            <label htmlFor="date" className='form-label'>Date</label>
-                            <input type="date" name="date" id="date" className='form-control' value={strength.date} onChange={handleStrengthChange} />
-                            <label htmlFor="set" className='form-label'>Sets:</label>
-                            <input type="number" id="set" name="set" className='form-control' value={strength.set} onChange={handleStrengthChange} />
-                            <label htmlFor="rept" className='form-label'>Reps</label>
-                            <input type="number" name="rep" id="rep" value={strength.rep} onChange={handleStrengthChange} />
-                            <label htmlFor="weight" className='form-label'>Max Weight (If Applicable)</label>
-                            <input type="number" name="weight" id="weight" className='form-control' value={strength.weight} onChange={handleStrengthChange} />
-                            <button type="submit">Log Workout</button>
-                        </form>
-                        )}
-                        {selectedExercise.type === 'Cardiovascular' && (
-                        <form onSubmit={handleAddCardioWorkout}>
-                            <label htmlFor="date" className='form-label'>Date:</label>
-                            <input type="date" name="date" id="date" className='form-control' value={cardiovascular.date} onChange={handleCardioChange}/>
-                            <label htmlFor="step" className='form-label'>Steps:</label>
-                            <input type="number" id="step" name="step" className='form-control' value={cardiovascular.step} onChange={handleCardioChange} />
-                            <label htmlFor="time" className='form-label'>Duration</label>
-                            <input type="number" name="time" id="time"className='form-control' value={cardiovascular.time} onChange={handleCardioChange} />
-                            <button type="submit">Log Workout</button>
-                        </form>
-                        )}
-                    </>
-                )}
+    <Header />
+    <div className="workout-log-container">
+        <div className="form-card">
+            <h2>Log Your Workout</h2>
+            <div className="form-group">
+                <label htmlFor="exercise-selector" className='form-label'>Exercise</label>
+                <select name="exercise-selector" id="exercise-selector" className='form-conditioner' onChange={handleExerciseChange}>
+                    <option value="">Select Exercise</option>
+                    {exerciseList.map(exercise => (
+                        <option key={exercise.id} value={`${exercise.id}-${exercise.type}-${exercise.exercise}`}>
+                            {exercise.exercise} ({exercise.type})
+                        </option>
+                    ))}
+                </select>
             </div>
+            {selectedExercise && (
+                <>
+                    {selectedExercise.type === 'Strength' && (
+                    <form onSubmit={handleAddStrengthWorkout}>
+                        <label htmlFor="date" className='form-label'>Date</label>
+                        <input type="date" name="date" id="date" className='form-control' value={strength.date} onChange={handleStrengthChange} />
+                        <label htmlFor="set" className='form-label'>Sets:</label>
+                        <input type="number" id="set" name="set" className='form-control' value={strength.set} onChange={handleStrengthChange} />
+                        <label htmlFor="rept" className='form-label'>Reps</label>
+                        <input type="number" name="rep" id="rep" className='form-control' value={strength.rep} onChange={handleStrengthChange} />
+                        <label htmlFor="weight" className='form-label'>Max Weight (If Applicable)</label>
+                        <input type="number" name="weight" id="weight" className='form-control' value={strength.weight} onChange={handleStrengthChange} />
+                        <button type="submit">Log Workout</button>
+                    </form>
+                    )}
+                    {selectedExercise.type === 'Cardiovascular' && (
+                    <form onSubmit={handleAddCardioWorkout}>
+                        <label htmlFor="date" className='form-label'>Date:</label>
+                        <input type="date" name="date" id="date" className='form-control' value={cardiovascular.date} onChange={handleCardioChange}/>
+                        <label htmlFor="step" className='form-label'>Steps:</label>
+                        <input type="number" id="step" name="step" className='form-control' value={cardiovascular.step} onChange={handleCardioChange} />
+                        <label htmlFor="time" className='form-label'>Duration</label>
+                        <input type="number" name="time" id="time"className='form-control' value={cardiovascular.time} onChange={handleCardioChange} />
+                        <button type="submit">Log Workout</button>
+                    </form>
+                    )}
+                </>
+            )}
         </div>
+    </div>
     </>
     );
 };

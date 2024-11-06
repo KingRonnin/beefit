@@ -42,14 +42,14 @@ function Login() {
 
     return (
         <>
-            <section className="container">
-                <div className="box">
-                    <div className="box-inner">
-                        <div className="header-section">
-                            <h1>Welcome to Beefit</h1>
+            <section className="login-container">
+                <div className="login-box">
+                    <div className="login-box-inner">
+                        <div className="login-header-section">
+                            <h2>Welcome to Beefit</h2>
                             <p>Sign In to Get Started</p>
                         </div>
-                        <div className="form">
+                        <div className="login-form">
                             <form className='needs-validation' onSubmit={handleLogin} noValidate>
                                 {/* username */}
                                 <label htmlFor="email" className='form-label'>
@@ -64,7 +64,7 @@ function Login() {
                                 <div>
                                     {/* Forgot Password */}
                                 </div>
-                                <button type='submit' disabled={isLoading}>
+                                <button className='login-button' type='submit' disabled={isLoading}>
                                     {isLoading ? (
                                         <>
                                             <span>Processing...</span>
@@ -81,11 +81,8 @@ function Login() {
                                 </button>
                             </form>
                         </div>
-                        <span>
-                            Don't have an account? {' '}
-                            <Link to='/register/'>
-                                Sign Up
-                            </Link>
+                        <span className='redirect-registration'>
+                            Don't have an account? {' '} <Link to='/register/'>Sign Up</Link>
                         </span>
                     </div>
                 </div>
