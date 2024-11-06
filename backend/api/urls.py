@@ -17,4 +17,7 @@ urlpatterns = [
     path('dashboard/exercise/<user_id>/', api_views.UserExerciseView.as_view()),
     path('dashboard/strength/<user_id>/', api_views.UserStrengthExerciseView.as_view()),
     path('dashboard/cardio/<user_id>/', api_views.UserCardiovascularExerciseView.as_view()),
+    
+    path('create-payment-intent/', api_views.create_payment_intent, name='create_payment_intent'),
+    path('create-checkout-session/', api_views.create_checkout_session, name='create-checkout-session'),
 ]
