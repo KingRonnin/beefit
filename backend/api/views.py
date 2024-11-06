@@ -34,26 +34,25 @@ class RegisterView(generics.CreateAPIView):
     permission_classes = [AllowAny]
     serializer_class = api_serializers.RegisterSerializer
     
-class IsOwnerOrReadOnly(BasePermission):
-    def has_permission(self, request, view):
-        if request.method == 'GET':
-            return True
-        
-        if not request.user.is_authenticated:
-            return False
+# class IsOwnerOrReadOnly(BasePermission):
+#     def has_permission(self, request, view):
+#         if request.method == 'GET':
+#             return True
+#         if not request.user.is_authenticated:
+#             return False
 
-        if request.method in ('PUT', 'PATCH', 'DELETE'):
-            exercise_id = view.kwargs.get('pk')
-            try:
-                exercise = api_models.Exercise.objects.get(pk=exercise_id)
-                return exercise.user == request.user
-            except api_models.Exercise.DoesNotExist:
-                return False
-        return False
+#         if request.method in ('PUT', 'PATCH', 'DELETE'):
+#             exercise_id = view.kwargs.get('pk')
+#             try:
+#                 exercise = api_models.Exercise.objects.get(pk=exercise_id)
+#                 return exercise.user == request.user
+#             except api_models.Exercise.DoesNotExist:
+#                 return False
+#         return False
 
 class ExerciseListAPIView(generics.ListAPIView):
     serializer_class = api_serializers.ExerciseSerializer
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [AllowAny]
 
     def get_queryset(self):
         return api_models.Exercise.objects.all()
@@ -112,7 +111,7 @@ class UserStrengthExerciseView(generics.ListAPIView):
         user = api_models.User.objects.get(id=user_id)
 
         return (
-            api_models.Strength.objects.filter(exercise__user=user) \
+            api_models.Strength.objects.filter(user=user) \
             .values('date') \
             .annotate(
                 total_sets=Sum("set"),
@@ -186,15 +185,18 @@ class LogStrengthView(generics.CreateAPIView):
     def create(self, request, *args, **kwargs):
         print(request.data)
         exercise_id = request.data.get('exercise_id')
+        user_id = request.data.get('user_id')
         set = request.data.get('set')
         rep = request.data.get('rep')
         weight = request.data.get('weight')
         date = request.data.get('date')
         
         exercise = api_models.Exercise.objects.get(id=exercise_id)
+        user = api_models.User.objects.get(id=user_id)
         
         strength_exercise = api_models.Strength.objects.create(
             exercise=exercise,
+            user=user,
             set=set,
             rep=rep,
             weight=weight,

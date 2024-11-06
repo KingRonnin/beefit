@@ -61,6 +61,7 @@ const WorkoutLogPage = () => {
 
         const JSON = {
             exercise_id: selectedExercise.id,
+            user_id: userId,
             set: strength.set,
             rep: strength.rep,
             weight: strength.weight,
@@ -70,6 +71,7 @@ const WorkoutLogPage = () => {
         const formData = new FormData();
         
         formData.append("exercise_id", selectedExercise.id);
+        formData.append("user_id", userId);
         formData.append("set", strength.set);
         formData.append("rep", strength.rep);
         formData.append("weight", strength.weight);
