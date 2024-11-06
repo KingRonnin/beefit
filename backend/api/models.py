@@ -29,7 +29,7 @@ class Exercise(models.Model):
         ('Cardiovascular', 'Cardiovascular')
     )
     
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     exercise = models.CharField(max_length=255)
     type = models.CharField(max_length=255, choices=TYPE, default='Strength')
     

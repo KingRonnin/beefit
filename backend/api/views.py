@@ -11,7 +11,7 @@ from rest_framework.decorators import api_view, permission_classes, APIView
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import generics
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny, BasePermission, IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
@@ -34,10 +34,27 @@ class RegisterView(generics.CreateAPIView):
     permission_classes = [AllowAny]
     serializer_class = api_serializers.RegisterSerializer
     
+class IsOwnerOrReadOnly(BasePermission):
+    def has_permission(self, request, view):
+        if request.method == 'GET':
+            return True
+        
+        if not request.user.is_authenticated:
+            return False
+
+        if request.method in ('PUT', 'PATCH', 'DELETE'):
+            exercise_id = view.kwargs.get('pk')
+            try:
+                exercise = api_models.Exercise.objects.get(pk=exercise_id)
+                return exercise.user == request.user
+            except api_models.Exercise.DoesNotExist:
+                return False
+        return False
+
 class ExerciseListAPIView(generics.ListAPIView):
     serializer_class = api_serializers.ExerciseSerializer
-    permission_classes = [AllowAny]
-    
+    permission_classes = [IsOwnerOrReadOnly]
+
     def get_queryset(self):
         return api_models.Exercise.objects.all()
 
