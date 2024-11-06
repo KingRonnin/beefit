@@ -104,6 +104,7 @@ const WorkoutLogPage = () => {
 
         const JSON = {
             exercise_id: selectedExercise.id,
+            user_id: userId,
             step: cardiovascular.step,
             time: cardiovascular.time,
             date: cardiovascular.date,
@@ -111,7 +112,8 @@ const WorkoutLogPage = () => {
 
         const formData = new FormData();
 
-        formData.append("exercise_id", selectedExercise.id)
+        formData.append("exercise_id", selectedExercise.id);
+        formData.append("user_id", userId);
         formData.append("step", cardiovascular.step);
         formData.append("time", cardiovascular.time);
         formData.append("date", cardiovascular.date);

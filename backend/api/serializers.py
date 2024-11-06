@@ -51,10 +51,6 @@ class ExerciseSerializer(serializers.ModelSerializer):
     class Meta:
         model = api_models.Exercise
         fields = "__all__"
-        
-    # def create(self, validated_data):
-    #     user = self.context['request'].user
-    #     return api_models.Exercise.objects.create(**validated_data, user=user)
 
 class StrengthSerializer(serializers.ModelSerializer):
     class Meta:
