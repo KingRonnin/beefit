@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { AreaChart, Area, BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, CartesianGrid } from 'recharts';
 import { format, parseISO } from 'date-fns';
 
+import Header from '../component/Header.jsx';
+
 import apiInstance from '../../utils/axios';
 import useUserData from '../../plugin/useUserData';
 import Toast from '../../plugin/Toast.js'
@@ -10,7 +12,7 @@ import './WorkoutAnalysis.css';
 
 const colors = ["#8884d8", "#82ca9d", "#ffc658"]; // Colors for the pie chart
 
-const WorkoutLogPage = () => {
+const WorkoutAnalysis = () => {
     const [strengthData, setStrengthData] = useState([]);
     const [cardioData, setCardioData] = useState([]);
 
@@ -37,6 +39,7 @@ const WorkoutLogPage = () => {
 
     return (
         <>
+            <Header />
             <div className="workout-analysis">
                 <h2>Workout Analysis</h2>
                 <div>
@@ -76,4 +79,4 @@ const WorkoutLogPage = () => {
     )
 }
 
-export default WorkoutLogPage;
+export default WorkoutAnalysis;

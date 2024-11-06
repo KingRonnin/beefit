@@ -12,6 +12,8 @@ const Header = () => {
 
   const username = useUserData()?.username;
 
+  const capitalizedUsername = username?.charAt(0).toUpperCase() + username?.slice(1);
+
   const handleMouseEnter = () => {
     setIsDropdownOpen(true);
   };
@@ -39,25 +41,22 @@ const Header = () => {
               </li>
               <li>
                 <div className='dropdown' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                  <Link to="/WorkoutLog" className="dropdown-link">Exercise <i className='fa fa-caret-down'></i></Link>
+                  <Link to="/WorkoutLog" className="dropdown-link">Progress <i className='fa fa-caret-down'></i></Link>
                   {isDropdownOpen && (
                     <ul className="dropdown-menu">
                       <li className="dropdown-item">
-                        <Link className='dropdown-item-link' to="/LogFitness">Analytics</Link>
+                        <Link className='dropdown-item-link' to="/WorkoutAnalysis">Analytics</Link>
                       </li>
                     </ul>
                   )}
                 </div>
-              </li>
-              <li>
-                <Link to="/LogFitness" className="nav-link">Tracking Fitness</Link> {/* Link to Log Fitness */}
               </li>
               <Link to="/HabitChallenges" className="nav-link">Challenges</Link>
             </ul>
               {isLoggedIn() ? (
               <>
                 <div className="navbar-right">
-                  <p className='user-info'>Welcome {username}!</p>
+                  <div className="user-welcome"><span>Welcome {capitalizedUsername}!</span></div>
                   <Link to="/" className='nav-link logout-link' onClick={logout}>Logout</Link>
                 </div>
               </>) : (
