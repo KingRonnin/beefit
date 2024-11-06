@@ -70,6 +70,7 @@ function FrontPage() {
   </header>
 </section>
 
+
       {/* Loading Overlay */}
       {loading && (
         <div className="loading-overlay">

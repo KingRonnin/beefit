@@ -8,7 +8,7 @@ body {
 
 /* Background Image */
 .myplan-container {
-  background-image: url(../../images/hbd.jpg); /* Replace with your image URL */
+  background-image: url('../../images/hbd.jpg'); /* Replace with your image URL */
   background-size: cover;
   background-position: center;
   height: 150vh; /* Full height for immersive experience */

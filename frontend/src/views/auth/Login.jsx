@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import './Login.css';
 
 import apiInstance from '../../utils/axios.js';
+import useUserData from '../../plugin/useUserData.js';
 import { useAuthStore } from '../../store/auth.js';
 import { login } from '../../utils/auth.js';
+
+import Header from '../component/Header.jsx';
 
 function Login() {
     const [bioData, setBioData] = useState({ email: "", password: "" });
@@ -12,6 +15,17 @@ function Login() {
     const [errorMessage, setErrorMessage] = useState('');
     const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
     const navigate = useNavigate();
+
+    const userId = useUserData()?.user_id;
+
+    useEffect(() => {
+        const handleLoginStatus = async () => {
+            if(userId > 0) {
+                navigate('/')
+            }
+        };
+        handleLoginStatus();
+    }, [userId, navigate]);
 
     const handleBioDataChange = (event) => {
         setBioData({
@@ -42,14 +56,15 @@ function Login() {
 
     return (
         <>
-            <section className="container">
-                <div className="box">
-                    <div className="box-inner">
-                        <div className="header-section">
-                            <h1>Welcome to Beefit</h1>
+            <Header />
+            <section className="login-container">
+                <div className="login-box">
+                    <div className="login-box-inner">
+                        <div className="login-header-section">
+                            <h2>Welcome to Beefit</h2>
                             <p>Sign In to Get Started</p>
                         </div>
-                        <div className="form">
+                        <div className="login-form">
                             <form className='needs-validation' onSubmit={handleLogin} noValidate>
                                 {/* username */}
                                 <label htmlFor="email" className='form-label'>
@@ -64,7 +79,7 @@ function Login() {
                                 <div>
                                     {/* Forgot Password */}
                                 </div>
-                                <button type='submit' disabled={isLoading}>
+                                <button className='login-button' type='submit' disabled={isLoading}>
                                     {isLoading ? (
                                         <>
                                             <span>Processing...</span>
@@ -81,11 +96,8 @@ function Login() {
                                 </button>
                             </form>
                         </div>
-                        <span>
-                            Don't have an account? {' '}
-                            <Link to='/register/'>
-                                Sign Up
-                            </Link>
+                        <span className='redirect-registration'>
+                            Don't have an account? {' '} <Link to='/register/'>Sign Up</Link>
                         </span>
                     </div>
                 </div>
