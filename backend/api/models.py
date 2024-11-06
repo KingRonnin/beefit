@@ -29,7 +29,6 @@ class Exercise(models.Model):
         ('Cardiovascular', 'Cardiovascular')
     )
     
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     exercise = models.CharField(max_length=255)
     type = models.CharField(max_length=255, choices=TYPE, default='Strength')
     
@@ -44,6 +43,7 @@ class Exercise(models.Model):
     
 class Strength(models.Model):
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE, null=True, related_name='strength_exercise')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     set = models.PositiveIntegerField(default=0)
     rep = models.PositiveIntegerField(default=0)
     weight = models.PositiveIntegerField(default=0)
@@ -54,6 +54,7 @@ class Strength(models.Model):
     
 class Cardiovascular(models.Model):
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE, null=True, related_name='cardiovascular_exercise')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1, null=True)
     step = models.PositiveIntegerField(default=0)
     time = models.PositiveIntegerField(default=0)
     date = models.DateField(blank=True, null=True)

@@ -48,11 +48,6 @@ class UserSerializer(serializers.ModelSerializer):
         fields = "__all__"
         
 class ExerciseSerializer(serializers.ModelSerializer):
-    def get_strength_exercise_count(self, exercise):
-        return exercise.strengths.count()
-    def get_cardio_exercise_count(self, exercise):
-        return exercise.cardios.count()
-    
     class Meta:
         model = api_models.Exercise
         fields = "__all__"

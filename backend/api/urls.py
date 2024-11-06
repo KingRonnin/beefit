@@ -16,5 +16,5 @@ urlpatterns = [
     
     path('dashboard/exercise/<user_id>/', api_views.UserExerciseView.as_view()),
     path('dashboard/strength/<user_id>/', api_views.UserStrengthExerciseView.as_view()),
-    path('dashboard/cardio/<user_id>/', api_views.UserCardiovascularView.as_view()),
+    path('dashboard/cardio/<user_id>/', api_views.UserCardiovascularExerciseView.as_view()),
 ]

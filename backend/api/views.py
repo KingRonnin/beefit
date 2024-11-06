@@ -11,7 +11,7 @@ from rest_framework.decorators import api_view, permission_classes, APIView
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import generics
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny, BasePermission, IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
@@ -34,10 +34,26 @@ class RegisterView(generics.CreateAPIView):
     permission_classes = [AllowAny]
     serializer_class = api_serializers.RegisterSerializer
     
+# class IsOwnerOrReadOnly(BasePermission):
+#     def has_permission(self, request, view):
+#         if request.method == 'GET':
+#             return True
+#         if not request.user.is_authenticated:
+#             return False
+
+#         if request.method in ('PUT', 'PATCH', 'DELETE'):
+#             exercise_id = view.kwargs.get('pk')
+#             try:
+#                 exercise = api_models.Exercise.objects.get(pk=exercise_id)
+#                 return exercise.user == request.user
+#             except api_models.Exercise.DoesNotExist:
+#                 return False
+#         return False
+
 class ExerciseListAPIView(generics.ListAPIView):
     serializer_class = api_serializers.ExerciseSerializer
     permission_classes = [AllowAny]
-    
+
     def get_queryset(self):
         return api_models.Exercise.objects.all()
 
@@ -95,7 +111,7 @@ class UserStrengthExerciseView(generics.ListAPIView):
         user = api_models.User.objects.get(id=user_id)
 
         return (
-            api_models.Strength.objects.filter(exercise__user=user) \
+            api_models.Strength.objects.filter(user=user) \
             .values('date') \
             .annotate(
                 total_sets=Sum("set"),
@@ -134,32 +150,48 @@ class UserStrengthExerciseView(generics.ListAPIView):
         serializer = self.serializer_class(incremented_data, many = True)
         return Response(serializer.data)
     
-class UserCardiovascularView(generics.ListAPIView):
+class UserCardiovascularExerciseView(generics.ListAPIView):
     serializer_class = api_serializers.UserCardiovascularSerializer
     permission_classes = [AllowAny]
     
     def get_queryset(self):
         user_id = self.kwargs['user_id']
         user = api_models.User.objects.get(id=user_id)
-
-        queryset = api_models.Cardiovascular.objects.filter(exercise__user=user) \
-            .annotate(total_steps=Sum("step"), total_duration=Sum("time")) \
-            .order_by('-date')
-
-        data = [
-            {
-                "steps": item.total_steps,
-                "time": item.total_duration,
-                "date": item.date.strftime('%Y-%m-%d')
-            }
-            for item in queryset
-        ]
-
-        return data
         
+        return (
+            api_models.Cardiovascular.objects.filter(user=user) \
+            .values('date') \
+            .annotate(
+                total_steps=Sum('step'),
+                duration=Sum('time'),
+            ) \
+            .order_by('date')
+        )
+    
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
-        serializer = self.serializer_class(queryset, many = True)
+        
+        cumulative_values = {}
+        
+        for item in queryset:
+            date = item['date']
+            if date not in cumulative_values:
+                cumulative_values[date] = {
+                    'steps': 0,
+                    'time': 0,
+                }
+            cumulative_values[date]['steps'] += item['total_steps']
+            cumulative_values[date]['time'] += item['duration']
+        
+        incremented_data = [
+            {
+                'date': date,
+                'steps': values['steps'],
+                'time': values['time'],
+            }
+            for date, values, in cumulative_values.items()
+        ]
+        serializer = self.serializer_class(incremented_data, many = True)
         return Response(serializer.data)
 
 class LogStrengthView(generics.CreateAPIView):
@@ -169,15 +201,18 @@ class LogStrengthView(generics.CreateAPIView):
     def create(self, request, *args, **kwargs):
         print(request.data)
         exercise_id = request.data.get('exercise_id')
+        user_id = request.data.get('user_id')
         set = request.data.get('set')
         rep = request.data.get('rep')
         weight = request.data.get('weight')
         date = request.data.get('date')
         
         exercise = api_models.Exercise.objects.get(id=exercise_id)
+        user = api_models.User.objects.get(id=user_id)
         
         strength_exercise = api_models.Strength.objects.create(
             exercise=exercise,
+            user=user,
             set=set,
             rep=rep,
             weight=weight,
@@ -193,6 +228,7 @@ class LogCardioView(generics.CreateAPIView):
     def create(self, request, *args, **kwargs):
         print(request.data)
         exercise_id = request.data.get('exercise_id')
+        user_id = request.data.get('user_id')
         step = request.data.get('step')
         time = request.data.get('time')
         date = request.data.get('date')
@@ -203,9 +239,11 @@ class LogCardioView(generics.CreateAPIView):
         print(date)
         
         exercise = api_models.Exercise.objects.get(id=exercise_id)
+        user = api_models.User.objects.get(id=user_id)
         
         strength_exercise = api_models.Cardiovascular.objects.create(
             exercise=exercise,
+            user=user,
             step=step,
             time=time,
             date=date

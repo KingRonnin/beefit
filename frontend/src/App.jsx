@@ -18,6 +18,7 @@ import Test from "./views/routes/test.jsx";
 import PaymentPageFinal from "./views/routes/PaymentPage.jsx";
 import Success from "./views/routes/Success.jsx";
 import PrivateRoute from './layouts/PrivateRoute.jsx';
+import WorkoutAnalysis from "./views/routes/WorkoutAnalysis.jsx";
 
 // const stripePromise = loadStripe('pk_test_51QFzYyHH43Q0yRB555Wz4VOQnfH1JdDeazmNBOOfG9s53j6NOuIC9RTreaFe2lGGh31C7opLoYomj8du5EFbqr7B00zQZR4LS1');
 function App() {
@@ -46,6 +47,11 @@ function App() {
                     <WorkoutLog />
                   </PrivateRoute>
                   } />
+                <Route path='/WorkoutAnalysis' element={
+                  <PrivateRoute>
+                    <WorkoutAnalysis />
+                  </PrivateRoute>
+                } />
                 <Route path="/CoursesPage" element={<CoursesPage />} />
                 <Route path="/HabitChallenges" element={<HabitChallenges />} />
                 <Route path="/Payment" element={<Payment amount={"500"} name={"Test Object"} />} />
