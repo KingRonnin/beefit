@@ -40,7 +40,7 @@ const Header = () => {
                   {isDropdownOpen && (
                     <ul className="dropdown-menu">
                       <li className="dropdown-item">
-                        <Link className='dropdown-item-link' to="/LogFitness">Tracking Fitness</Link>
+                        <Link className='dropdown-item-link' to="/LogFitness">Analytics</Link>
                       </li>
                     </ul>
                   )}

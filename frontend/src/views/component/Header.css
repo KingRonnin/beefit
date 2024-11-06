@@ -10,7 +10,7 @@
 
 .navbar {
   display: flex;
-  overflow: hidden;
+  overflow: visible;
   justify-content: space-between;
   align-items: center;
   width: 100%;
