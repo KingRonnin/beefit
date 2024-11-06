@@ -41,8 +41,7 @@ const PaymentPage = () => {
     } finally {
       setIsProcessing(false);
     }
-  }; 
-  // #hello
+  };
   return (
     <div className="container">
       <h2 className="heading">Payment Portal</h2>
