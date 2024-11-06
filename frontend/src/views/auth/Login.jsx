@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import './Login.css';
 
 import apiInstance from '../../utils/axios.js';
+import useUserData from '../../plugin/useUserData.js';
 import { useAuthStore } from '../../store/auth.js';
 import { login } from '../../utils/auth.js';
+
+import Header from '../component/Header.jsx';
 
 function Login() {
     const [bioData, setBioData] = useState({ email: "", password: "" });
@@ -12,6 +15,17 @@ function Login() {
     const [errorMessage, setErrorMessage] = useState('');
     const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
     const navigate = useNavigate();
+
+    const userId = useUserData()?.user_id;
+
+    useEffect(() => {
+        const handleLoginStatus = async () => {
+            if(userId > 0) {
+                navigate('/')
+            }
+        };
+        handleLoginStatus();
+    }, [userId, navigate]);
 
     const handleBioDataChange = (event) => {
         setBioData({
@@ -42,6 +56,7 @@ function Login() {
 
     return (
         <>
+            <Header />
             <section className="login-container">
                 <div className="login-box">
                     <div className="login-box-inner">
