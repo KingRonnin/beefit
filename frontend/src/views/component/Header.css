@@ -29,14 +29,6 @@
   text-decoration: none;
 }
 
-.navbar-right Link {
-  font-size: 32px;
-  padding-left: 20px;
-  font-weight: bold;
-  color: rgb(255, 255, 255); /* Maintain contrast with the background */
-  text-decoration: none;
-}
-
 .nav-menu {
   display: flex;
   list-style: none;
@@ -51,7 +43,7 @@
   font-size: 20px;
   text-decoration: none;
   padding: 10px 15px;
-  transition: color 0.3s ease,
+  transition: color 0.3s ease;
 }
 
 .nav-link:hover {
@@ -68,7 +60,12 @@
   margin-right: 20px;
 }
 
-.logout-link {
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.user-info {
   color: white;
   padding: 10px 20px;
   background-color: rgb(0, 110, 255);
@@ -76,6 +73,16 @@
   transition: color 0.3s, background-color 0.3s;
   font-size: 20px;
   margin-right: 20px;
+}
+
+.logout-link {
+    color: white;
+    padding: 10px 20px;
+    background-color: rgb(0, 110, 255);
+    border-radius: 5px;
+    transition: color 0.3s, background-color 0.3s;
+    font-size: 20px;
+    margin-right: 20px;
 }
 
 .login-link:hover {
@@ -109,7 +116,6 @@
 
 .dropdown-menu {
   list-style: none;
-  padding: 10px;
 }
 
 .dropdown-link {
@@ -137,6 +143,7 @@
   left: 0;
   z-index: 2; /* Ensures dropdown appears on top of other content */
   top: 100%; /* Ensure it appears just below the parent link */
+  padding-top: 4px;
 }
 
 .dropdown-item-link {
@@ -153,10 +160,6 @@
 .dropdown-item:hover {
   background: #f0f0f0;
   cursor: pointer;
-}
-
-.dropdown:hover .dropdown-menu {
-  display: block;
 }
 
 .dropdown {

@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 
+import useUserData from '../../plugin/useUserData.js';
 import { useAuthStore } from '../../store/auth.js'
 import { logout } from '../../utils/auth.js';
 
 const Header = () => {
   const[isLoggedIn, user] = useAuthStore((state) => [state.isLoggedIn, state.user]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const username = useUserData()?.username;
 
   const handleMouseEnter = () => {
     setIsDropdownOpen(true);
@@ -54,6 +57,7 @@ const Header = () => {
               {isLoggedIn() ? (
               <>
                 <div className="navbar-right">
+                  <p className='user-info'>Welcome {username}!</p>
                   <Link to="/" className='nav-link logout-link' onClick={logout}>Logout</Link>
                 </div>
               </>) : (
