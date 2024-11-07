@@ -7,17 +7,16 @@ import Header from '../component/Header.jsx';
 import apiInstance from '../../utils/axios';
 import useUserData from '../../plugin/useUserData';
 import Toast from '../../plugin/Toast.js'
-import Swal from 'sweetalert2';
 import './WorkoutAnalysis.css';
 
-const colors = ["#8884d8", "#82ca9d", "#ffc658"]; // Colors for the pie chart
+
 
 const WorkoutAnalysis = () => {
     const [strengthData, setStrengthData] = useState([]);
     const [cardioData, setCardioData] = useState([]);
 
     const userId = useUserData()?.user_id;
-
+//retrieves the current user's ID to personalize data requests.
     const fetchDashboardData = async () => {
         try {
             const strengthData_resp = await apiInstance.get(`dashboard/strength/${userId}/`);
