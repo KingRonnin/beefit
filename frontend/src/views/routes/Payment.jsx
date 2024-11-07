@@ -13,7 +13,7 @@ import "./Payment.css";
 const stripePromise = loadStripe(
   "pk_test_51QFzYyHH43Q0yRB555Wz4VOQnfH1JdDeazmNBOOfG9s53j6NOuIC9RTreaFe2lGGh31C7opLoYomj8du5EFbqr7B00zQZR4LS1"
 );
-
+//wrapping PaymentForm and managing payment states.
 function PaymentForm({amount, name}) {
 
   // const {amount, name, email} = {params}
