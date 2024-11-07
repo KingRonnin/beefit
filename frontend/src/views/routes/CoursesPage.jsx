@@ -432,16 +432,13 @@ const courses = [
   },
 ];
 const CoursesPage = () => {
-//   const stripe = useStripe();
-//   const elements = useElements();
-//   const [loading, setLoading] = useState(false);
 
-    const navigate = useNavigate()
 
-  const [cart, setCart] = useState([]); // State for cart items
+  const navigate = useNavigate()
+
+  const [cart, setCart] = useState([]); 
 
   const handleAddToCart = async (course) => {
-    // setCart((prevCart) => [...prevCart, course]);// Add selected course to cart
     navigate(`/Payment/${encodeURIComponent(JSON.stringify({title: course.title, amount: course.price.substr(1)}))}`)
 
   };
@@ -649,7 +646,6 @@ const CoursesPage = () => {
             ))}
           </ul>
           <CheckoutForm cartItems={cart} />{" "}
-          {/* Adjust to StripeCheckout if needed */}
         </section>
       )}
     </div>
