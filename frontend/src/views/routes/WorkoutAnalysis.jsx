@@ -16,7 +16,7 @@ const WorkoutAnalysis = () => {
     const [cardioData, setCardioData] = useState([]);
 
     const userId = useUserData()?.user_id;
-//retrieves the current user's ID to personalize data requests.
+    //Fetches workout data specific to the user.
     const fetchDashboardData = async () => {
         try {
             const strengthData_resp = await apiInstance.get(`dashboard/strength/${userId}/`);
