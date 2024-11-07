@@ -40,22 +40,34 @@ const WorkoutAnalysis = () => {
     }, []);
 
     const maxVolumeLoad = Math.max(...strengthData.map(item => item.total_volume_load));
+    const maxAverageWorkload = Math.max(...strengthData.map(item => item.average_workload_per_rep));
 
-    let divisor = 1;
-    let suffix = '';
-    if (maxVolumeLoad => 10000000) {
-        divisor = 10000000;
-    } else if (maxVolumeLoad => 1000000) {
-        divisor = 1000000;
-    } else if (maxVolumeLoad => 100000) {
-        divisor = 100000;
-    } else if (maxVolumeLoad => 1000) {
-        divisor = 1000;
+    let volume_divisor = 1;
+    let workload_divisor = 1;
+
+    if (maxVolumeLoad >= 10000000) {
+        volume_divisor = 10000000;
+    } else if (maxVolumeLoad >= 1000000) {
+        volume_divisor = 1000000;
+    } else if (maxVolumeLoad >= 100000) {
+        volume_divisor = 100000;
+    } else if (maxVolumeLoad >=  1000) {
+        volume_divisor = 1000;
     } else {
-        divisor = 1;
+        volume_divisor = 1;
     }
 
-
+    if (maxAverageWorkload >= 10000000) {
+        workload_divisor = 10000000;
+    } else if (maxAverageWorkload >= 1000000) {
+        workload_divisor = 1000000;
+    } else if (maxAverageWorkload >= 100000) {
+        workload_divisor = 100000;
+    } else if (maxAverageWorkload >= 1000) {
+        workload_divisor = 1000;
+    } else {
+        workload_divisor = 1;
+    }
 
     const CustomTooltip = ({active, payload, label}) => {
         if (active) {
@@ -74,48 +86,52 @@ const WorkoutAnalysis = () => {
 
     return (
         <>
-            <Header />
-            <div className="workout-analysis">
-                <Card className='total_volume_chart'>
-                    <CardHeader title='Total Volume Over Time' subheader={`Sets * Reps * Weight = Volume, * ${divisor.toLocaleString('en-US')}`} />
-                    <CardContent>
-                        <ResponsiveContainer width='100%' height={400}>
-                            <AreaChart data={strengthData} margin={{top: 10, right: 30, left: 0, bottom: 0,}} >
-                            <defs>
-                                <linearGradient id='color' x1='0' y1='0' x2='0' y2='1'>
-                                    <stop offset='5%' stopColor='#8884d8' stopOpacity={0.8} />
-                                    <stop offset='95%' stopColor='#8884d8' stopOpacity={0} />
-                                </linearGradient>
-                            </defs>
-                                <Area type='step' dataKey='total_volume_load' stroke='#8884d8' fill='url(#color)' />
-                                <XAxis type='category' dataKey='date' axisLine={false} tickFormatter={str => {const date = parseISO(str); if (date.getDate() % 1 === 0) { return format(date, 'MMM d'); }; }} padding={{ left: 25 }} domain={['auto', 'auto']} />
-                                <YAxis dataKey='total_volume_load' label={{ value: 'Total Volume', position: 'insideLeft', angle: -90 }} tickFormatter={number => `${(number / divisor)}`} axisLine={false} tickLine={false} />
-                                <Tooltip content={CustomTooltip}/>
-                                <CartesianGrid opacity={0.5} vertical={false} />
-                            </AreaChart>
-                        </ResponsiveContainer>
-                    </CardContent>
-                </Card>
-                <Card className='average_workload_per_rep_chart'>
-                    <CardHeader title='Total Volume Over Time' subheader={`${divisor.toLocaleString('en-US')}`} />
-                    <CardContent>
-                        <ResponsiveContainer width='100%' height={400}>
-                            <AreaChart data={strengthData} margin={{top: 10, right: 30, left: 0, bottom: 0,}} >
-                            <defs>
-                                <linearGradient id='color' x1='0' y1='0' x2='0' y2='1'>
-                                    <stop offset='5%' stopColor='#8884d8' stopOpacity={0.8} />
-                                    <stop offset='95%' stopColor='#8884d8' stopOpacity={0} />
-                                </linearGradient>
-                            </defs>
-                                <Area type='step' dataKey='total_volume_load' stroke='#8884d8' fill='url(#color)' />
-                                <XAxis type='category' dataKey='date' axisLine={false} tickFormatter={str => {const date = parseISO(str); if (date.getDate() % 1 === 0) { return format(date, 'MMM d'); }; }} padding={{ left: 25 }} domain={['auto', 'auto']} />
-                                <YAxis dataKey='total_volume_load' label={{ value: 'Total Volume', position: 'insideLeft', angle: -90 }} tickFormatter={number => `${(number / divisor)}`} axisLine={false} tickLine={false} />
-                                <Tooltip content={CustomTooltip}/>
-                                <CartesianGrid opacity={0.5} vertical={false} />
-                            </AreaChart>
-                        </ResponsiveContainer>
-                    </CardContent>
-                </Card>
+            <div className="cover-in-transparent-white">
+                <Header />
+                    <div className="workout-analysis">
+                        <div className="chart-container">
+                            <Card className='total_volume_chart'>
+                                <CardHeader title='Total Volume Over Time' subheader={`Sets * Reps * Weight = Volume, * ${volume_divisor.toLocaleString('en-US')}`} />
+                                <CardContent>
+                                    <ResponsiveContainer width='100%' height={400}>
+                                        <AreaChart data={strengthData} margin={{top: 10, right: 30, left: 0, bottom: 0,}} >
+                                        <defs>
+                                            <linearGradient id='color' x1='0' y1='0' x2='0' y2='1'>
+                                                <stop offset='5%' stopColor='#8884d8' stopOpacity={0.8} />
+                                                <stop offset='95%' stopColor='#8884d8' stopOpacity={0} />
+                                            </linearGradient>
+                                        </defs>
+                                            <Area type='step' dataKey='total_volume_load' stroke='#8884d8' fill='url(#color)' />
+                                            <XAxis type='category' dataKey='date' axisLine={false} tickFormatter={str => {const date = parseISO(str); if (date.getDate() % 1 === 0) { return format(date, 'MMM d'); }; }} padding={{ left: 25 }} domain={['auto', 'auto']} />
+                                            <YAxis dataKey='total_volume_load' label={{ value: 'Total Volume', position: 'insideLeft', angle: -90, style: { fontSize: 12 } }} tickFormatter={number => `${(number / volume_divisor)}`} axisLine={false} tickLine={false} />
+                                            <Tooltip content={CustomTooltip}/>
+                                            <CartesianGrid opacity={0.5} vertical={false} />
+                                        </AreaChart>
+                                    </ResponsiveContainer>
+                                </CardContent>
+                            </Card>
+                            <Card className='average_workload_per_rep_chart'>
+                                <CardHeader title='Average Workload per Rep Over Time' subheader={`Total Volume / Rep = Average Workload per Rep * ${maxAverageWorkload.toLocaleString('en-US')}`} />
+                                <CardContent>
+                                    <ResponsiveContainer width='100%' height={400}>
+                                        <AreaChart data={strengthData} margin={{top: 10, right: 30, left: 0, bottom: 0,}} >
+                                        <defs>
+                                            <linearGradient id='color' x1='0' y1='0' x2='0' y2='1'>
+                                                <stop offset='5%' stopColor='#8884d8' stopOpacity={0.8} />
+                                                <stop offset='95%' stopColor='#8884d8' stopOpacity={0} />
+                                            </linearGradient>
+                                        </defs>
+                                            <Area type='step' dataKey='average_workload_per_rep' stroke='#8884d8' fill='url(#color)' />
+                                            <XAxis type='category' dataKey='date' axisLine={false} tickFormatter={str => {const date = parseISO(str); if (date.getDate() % 1 === 0) { return format(date, 'MMM d'); }; }} padding={{ left: 25 }} domain={['auto', 'auto']} />
+                                            <YAxis dataKey='average_workload_per_rep' label={{ value: 'Average Workload', position: 'insideLeft', angle: -90, style: { fontSize: 12 } }} tickFormatter={number => `${(number / 100000)}`} axisLine={false} tickLine={false} />
+                                            <Tooltip content={CustomTooltip}/>
+                                            <CartesianGrid opacity={0.5} vertical={false} />
+                                        </AreaChart>
+                                    </ResponsiveContainer>
+                                </CardContent>
+                            </Card>
+                        </div>
+                    </div>
             </div>
         </>
     )
