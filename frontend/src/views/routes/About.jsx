@@ -20,7 +20,7 @@ const About = () => {
             <li>Weekly progress checks with data-driven insights</li>
           </ul>
           <p><strong>Testimonials:</strong> "Thanks to Beefit, I've achieved more in three months than I have in years on my own!" – <em>James P.</em></p>
-          <button className="join-now-button"onClick={() => navigate('/Login')}>Join Now</button>
+          <button className="join-now-button"onClick={() => navigate('/PaymentPage')}>Join Now</button>
         </>
       ),
     },
