@@ -13,10 +13,8 @@ import "./Payment.css";
 const stripePromise = loadStripe(
   "pk_test_51QFzYyHH43Q0yRB555Wz4VOQnfH1JdDeazmNBOOfG9s53j6NOuIC9RTreaFe2lGGh31C7opLoYomj8du5EFbqr7B00zQZR4LS1"
 );
-//wrapping PaymentForm and managing payment states.
-function PaymentForm({amount, name}) {
 
-  // const {amount, name, email} = {params}
+function PaymentForm({amount, name}) {
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -28,9 +26,12 @@ function PaymentForm({amount, name}) {
     console.log(data)
   },[])
 
+
+
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
+
 
   const handleSubmit = async (event) => {
     console.log("Hello Payment")
@@ -64,14 +65,11 @@ function PaymentForm({amount, name}) {
   return (
     <form onSubmit={handleSubmit} className="form">
       <h2 className="heading">Complete Your Payment</h2>
-      {/* <p className="description">Please enter your payment details below.</p> */}
+
       <button type="button" onClick={()=>navigate("/")}>
         Go to Home
       </button>
 
-      {/* <div className="cardElementWrapper">
-        <CardElement options={{ style: cardElementStyles }} />
-      </div> */}
 
       <button className="button" disabled={!stripe || loading} type="submit">
         {loading ? "Processing…" : "Pay Now"}
