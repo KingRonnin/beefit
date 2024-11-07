@@ -48,6 +48,14 @@
     text-align: center;
 }
 
+<<<<<<< HEAD
+/* ================= Container Styles for Form - Compact & Centered ================= */
+.form {
+    display: flex;
+    flex-direction: column; /* Stack inputs vertically */
+    max-width: 360px; /* Slimmer max width for the form */
+    margin: 0 auto; /* Center-align form */
+=======
 /* Form styles */
 .register-box {
     margin-bottom: 15px;
@@ -61,9 +69,26 @@
     text-align: left;
     display: flex;
     flex-direction: column;
+>>>>>>> e0cd826254a72a9a8362904ee7b005409a8c6e0e
 }
 
+.form-container {
+    max-width: 380px; /* Slimmer max width for the box */
+    margin: 2rem auto; /* Centered alignment with top margin */
+    padding: 2rem; /* Padding around content */
+    background-color: #fff; /* White background for the box */
+    border-radius: 8px; /* Rounded corners for a modern look */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* ================= Form Label Styling - Professional & Subtle ================= */
 .form-label {
+<<<<<<< HEAD
+    margin-bottom: 0.3rem; /* Reduced space below labels */
+    font-weight: 600; /* Medium bold labels */
+    font-size: 0.9rem; /* Slightly smaller font */
+    color: #333; /* Darker color for better readability */
+=======
     display: block;
     margin-bottom: 5px;
     font-size: 14px;
@@ -71,9 +96,21 @@
     color: #2C3E50;
     width: 100%;
     line-height: 20px;
+>>>>>>> e0cd826254a72a9a8362904ee7b005409a8c6e0e
 }
 
+/* ================= Form Control Styling - Slim & Professional ================= */
 .form-control {
+<<<<<<< HEAD
+    padding: 0.5rem 0.75rem; /* Slimmer padding for compact look */
+    margin-bottom: 0.75rem; /* Reduced space below inputs */
+    border: 1px solid #ddd; /* Light border color */
+    border-radius: 4px; /* Rounded corners for smooth look */
+    font-size: 0.95rem; /* Subtle font size */
+    background-color: #f9f9f9; /* Light gray background for input */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    box-sizing: border-box; /* Ensures padding doesn’t affect width */
+=======
     width: 100%;
     padding: 12px 4px 15px;
     border: 1px solid #ccc;
@@ -82,12 +119,48 @@
     background-color: #f9f9f9;
     transition: border-color 0.3s;
     margin-bottom: 15px;
+>>>>>>> e0cd826254a72a9a8362904ee7b005409a8c6e0e
 }
 
+/* Focus Effect for Form Controls */
 .form-control:focus {
-    border-color: #007bff; /* Change border color on focus */
+    border-color: #0077cc; /* Light blue border on focus */
+    box-shadow: 0 0 6px rgba(0, 119, 204, 0.15); /* Subtle shadow on focus */
     outline: none; /* Remove default outline */
 }
+
+/* Placeholder Styling for a Subtle Look */
+.form-control::placeholder {
+    color: #aaa; /* Light gray placeholder text */
+    font-style: italic; /* Italicized for a subtle hint */
+}
+
+/* ================= Button Styling - Slim & Professional ================= */
+button {
+    background-color: #0077cc; /* Primary blue color */
+    color: #fff; /* White text color */
+    border: none; /* No border */
+    padding: 0.6rem; /* Slim padding for compact look */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 0.95rem; /* Professional font size */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s ease; /* Smooth transition */
+    width: 100%; /* Full-width button */
+}
+
+button:hover {
+    background-color: #005fa3; /* Darker shade on hover */
+}
+
+/* ================= Link & Additional Text Styling ================= */
+span {
+    text-align: center; /* Center align */
+    display: block; /* Block for better spacing */
+    margin-top: 1rem; /* Space above */
+    font-size: 0.9rem; /* Smaller font size for subtlety */
+    color: #555; /* Medium-dark gray color */
+}
+
 
 /* Button styles */
 .register-button {

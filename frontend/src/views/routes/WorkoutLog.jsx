@@ -162,7 +162,7 @@ return (
                         <input type="number" id="set" name="set" className='form-control' min={0} value={strength.set} onChange={handleStrengthChange} />
                         <label htmlFor="rept" className='form-label'>Reps</label>
                         <input type="number" name="rep" id="rep" className='form-control' min={0} value={strength.rep} onChange={handleStrengthChange} />
-                        <label htmlFor="weight" className='form-label'>Max Weight (If Applicable)</label>
+                        <label htmlFor="weight" className='form-label'>Weight (If Applicable)</label>
                         <input type="number" name="weight" id="weight" className='form-control' min={0} value={strength.weight} onChange={handleStrengthChange} />
                         <button type="submit" className='log-button'>Add Workout</button>
                     </form>

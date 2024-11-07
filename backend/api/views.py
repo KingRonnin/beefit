@@ -5,7 +5,7 @@ from django.conf import settings
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
-from django.db.models import Sum, Max
+from django.db.models import Sum, Max, F
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes, APIView
 from rest_framework.response import Response
@@ -97,13 +97,16 @@ class UserStrengthExerciseView(generics.ListAPIView):
     def get_queryset(self):
         user_id = self.kwargs['user_id']
         user = api_models.User.objects.get(id=user_id)
+        
+        total_volume = Sum(F("set") * F('rep') * F("weight"))
+        total_rep = Sum('rep')
 
         return (
             api_models.Strength.objects.filter(user=user) \
             .values('date') \
             .annotate(
-                total_sets=Sum("set"),
-                total_reps=Sum("rep"),
+                total_volume_load=Sum("set") * Sum("rep") * Sum("weight"),
+                average_workload_per_rep=total_volume / total_rep,
                 max_weight=Max("weight"),
             ) \
             .order_by('date')
@@ -118,26 +121,26 @@ class UserStrengthExerciseView(generics.ListAPIView):
             date = item['date']
             if date not in cumulative_values:
                 cumulative_values[date] = {
-                    'sets': 0,
-                    'reps': 0,
-                    'weight': 0,
+                    'total_volume_load': 0,
+                    'average_workload_per_rep': 0,
+                    'max_weight': 0,
                 }
-            cumulative_values[date]['sets'] += item['total_sets']
-            cumulative_values[date]['reps'] += item['total_reps']
-            cumulative_values[date]['weight'] += item['max_weight']
+            cumulative_values[date]['total_volume_load'] += item['total_volume_load']
+            cumulative_values[date]['average_workload_per_rep'] += item['average_workload_per_rep']
+            cumulative_values[date]['max_weight'] += item['max_weight']
 
         incremented_data = [
             {
                 'date': date,
-                'sets': values['sets'],
-                'reps': values['reps'],
-                'weight': values['weight'],
+                'total_volume_load': values['total_volume_load'],
+                'average_workload_per_rep': values['average_workload_per_rep'],
+                'max_weight': values['max_weight'],
             }
             for date, values in cumulative_values.items()
         ]
         serializer = self.serializer_class(incremented_data, many = True)
         return Response(serializer.data)
-    
+
 class UserCardiovascularExerciseView(generics.ListAPIView):
     serializer_class = api_serializers.UserCardiovascularSerializer
     permission_classes = [AllowAny]
@@ -150,8 +153,8 @@ class UserCardiovascularExerciseView(generics.ListAPIView):
             api_models.Cardiovascular.objects.filter(user=user) \
             .values('date') \
             .annotate(
-                total_steps=Sum('step'),
-                duration=Sum('time'),
+                total_steps=Sum('step', default=0),
+                duration=Sum('time', default=0),
             ) \
             .order_by('date')
         )

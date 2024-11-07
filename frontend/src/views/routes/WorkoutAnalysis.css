@@ -1,118 +1,44 @@
-/* Main container */
+
+
 body {
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-        url('../../images/hbd.jpg') no-repeat center center fixed;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('../../images/hbd.jpg');
     background-size: cover;
     font-family: 'Arial', sans-serif;
-    color: white;
     margin: 0;
     padding: 0;
-    transition: background-color 0.5s ease; /* Smooth background transition */
 }
 
-.workout-analysis {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    border-radius: 10px;
-    animation: fadeIn 0.8s; /* Fade-in animation for the container */
-}
-
-/* Form Card */
-.form-card {
-    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    transition: transform 0.3s; /* Smooth hover transition */
-}
-
-.form-card:hover {
-    transform: translateY(-5px); /* Lift effect on hover */
-}
-
-.form-card h2 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-    animation: slideIn 0.5s; /* Slide-in effect for the heading */
-}
-
-.workout-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-/* Labels and Inputs */
-label {
-    font-weight: bold;
-    color: #555;
-    margin-bottom: 5px;
-    text-align: left;
-    transition: color 0.3s; /* Smooth label color transition */
-}
-
-input, select {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    font-size: 16px;
-    color: #333;
-    transition: border-color 0.3s; /* Smooth border color transition */
-}
-
-input:focus, select:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add shadow on focus */
-}
-
-/* Button Styling */
-.add-exercise-button {
-    padding: 12px;
-    font-size: 16px;
-    color: #ffffff;
-    background-color: #28a745;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s; /* Added transform transition */
-}
-
-.add-exercise-button:hover {
-    background-color: #218838;
-    transform: scale(1.05); /* Slightly enlarge button on hover */
+.cover-in-transparent-white {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    height: 100%;
+    width: 100%;
 }
 
 /* Analysis Section */
 .workout-analysis {
-    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
-    padding: 20px;
     border-radius: 10px;
+    padding: 20px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 0.8s; /* Fade-in effect for the analysis section */
-}
-
-.workout-analysis h2 {
-    font-size: 22px;
-    color: #333;
-    margin-bottom: 15px;
-    animation: slideIn 0.5s; /* Slide-in effect for analysis heading */
+    animation: fadeIn 0.8s;
+    display: flex;
+    flex-direction: column;
 }
 
 .chart-container {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s; /* Smooth chart transition */
+    margin-top: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
-.chart-container:hover {
-    transform: scale(1.02); /* Slightly enlarge chart on hover */
+.total_volume_chart {
+    width: 800px;
+}
+
+.average_workload_per_rep_chart {
+    width: 800px;
 }
 
 /* Keyframes for Animations */
