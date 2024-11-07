@@ -136,21 +136,35 @@ const HabitChallenges = () => {
       
     }
   }, [isTimerActive, timer]);
-
+  const isChallengeComplete = (challengeId) => {
+    if (challengeId === 1 ,
+      challengeId === 2 ,
+      challengeId === 3
+    ) {
+      return currentChallengeId === 1 && currentExerciseIndex >= exercises.length;
+    } else if (challengeId === 2 || challengeId === 3) {
+      return challenges.find(challenge => challenge.id === challengeId)?.completed >= challenges.find(challenge => challenge.id === challengeId)?.days;
+    }
+    return false;
+  };
+  
   const joinChallenge = (id) => {
     const ongoingChallenge = challenges.find((challenge) => challenge.joined && challenge.completed < challenge.days);
-    if (ongoingChallenge) {
-      toast.error(`❌ Finish the "${ongoingChallenge.name}"  before joining a new challenge!`, {
+  
+    if (ongoingChallenge && !isChallengeComplete(ongoingChallenge.id)) {
+      toast.error(`❌ Finish the "${ongoingChallenge.name}" before joining a new challenge!`, {
         position: "top-center",
-        style: { fontSize: '1rem' }, // Adjust the font size to be slimmer
-        className: 'custom-toast' // Add custom class for styling
+        style: { fontSize: '1rem' },
+        className: 'custom-toast'
       });
-      
     } else {
       setCurrentChallengeId(id);
       setShowJoinModal(true);
     }
   };
+  
+  
+  
 
   const confirmJoinChallenge = () => {
     setChallenges((prevChallenges) =>
