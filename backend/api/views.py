@@ -5,27 +5,31 @@ from django.conf import settings
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
-from django.db.models import Sum, Max
+from django.db.models import Sum, Max, F
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes, APIView
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import generics
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny, BasePermission, IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
 
+import stripe
 import json
 import random
 
 from api import serializers as api_serializers
 from api import models as api_models
 
+# Keys
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 # Create your views here.
+
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = api_serializers.MyTokenObtainPairSerializer
     
@@ -33,11 +37,11 @@ class RegisterView(generics.CreateAPIView):
     queryset = api_models.User.objects.all()
     permission_classes = [AllowAny]
     serializer_class = api_serializers.RegisterSerializer
-    
+
 class ExerciseListAPIView(generics.ListAPIView):
     serializer_class = api_serializers.ExerciseSerializer
     permission_classes = [AllowAny]
-    
+
     def get_queryset(self):
         return api_models.Exercise.objects.all()
 
@@ -93,13 +97,16 @@ class UserStrengthExerciseView(generics.ListAPIView):
     def get_queryset(self):
         user_id = self.kwargs['user_id']
         user = api_models.User.objects.get(id=user_id)
+        
+        total_volume = Sum(F("set") * F('rep') * F("weight"))
+        total_rep = Sum('rep')
 
         return (
-            api_models.Strength.objects.filter(exercise__user=user) \
+            api_models.Strength.objects.filter(user=user) \
             .values('date') \
             .annotate(
-                total_sets=Sum("set"),
-                total_reps=Sum("rep"),
+                total_volume_load=Sum("set") * Sum("rep") * Sum("weight"),
+                average_workload_per_rep=total_volume / total_rep,
                 max_weight=Max("weight"),
             ) \
             .order_by('date')
@@ -114,52 +121,68 @@ class UserStrengthExerciseView(generics.ListAPIView):
             date = item['date']
             if date not in cumulative_values:
                 cumulative_values[date] = {
-                    'sets': 0,
-                    'reps': 0,
-                    'weight': 0,
+                    'total_volume_load': 0,
+                    'average_workload_per_rep': 0,
+                    'max_weight': 0,
                 }
-            cumulative_values[date]['sets'] += item['total_sets']
-            cumulative_values[date]['reps'] += item['total_reps']
-            cumulative_values[date]['weight'] += item['max_weight']
+            cumulative_values[date]['total_volume_load'] += item['total_volume_load']
+            cumulative_values[date]['average_workload_per_rep'] += item['average_workload_per_rep']
+            cumulative_values[date]['max_weight'] += item['max_weight']
 
         incremented_data = [
             {
                 'date': date,
-                'sets': values['sets'],
-                'reps': values['reps'],
-                'weight': values['weight'],
+                'total_volume_load': values['total_volume_load'],
+                'average_workload_per_rep': values['average_workload_per_rep'],
+                'max_weight': values['max_weight'],
             }
             for date, values in cumulative_values.items()
         ]
         serializer = self.serializer_class(incremented_data, many = True)
         return Response(serializer.data)
-    
-class UserCardiovascularView(generics.ListAPIView):
+
+class UserCardiovascularExerciseView(generics.ListAPIView):
     serializer_class = api_serializers.UserCardiovascularSerializer
     permission_classes = [AllowAny]
     
     def get_queryset(self):
         user_id = self.kwargs['user_id']
         user = api_models.User.objects.get(id=user_id)
-
-        queryset = api_models.Cardiovascular.objects.filter(exercise__user=user) \
-            .annotate(total_steps=Sum("step"), total_duration=Sum("time")) \
-            .order_by('-date')
-
-        data = [
-            {
-                "steps": item.total_steps,
-                "time": item.total_duration,
-                "date": item.date.strftime('%Y-%m-%d')
-            }
-            for item in queryset
-        ]
-
-        return data
         
+        return (
+            api_models.Cardiovascular.objects.filter(user=user) \
+            .values('date') \
+            .annotate(
+                total_steps=Sum('step', default=0),
+                duration=Sum('time', default=0),
+            ) \
+            .order_by('date')
+        )
+    
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
-        serializer = self.serializer_class(queryset, many = True)
+        
+        cumulative_values = {}
+        
+        for item in queryset:
+            date = item['date']
+            if date not in cumulative_values:
+                cumulative_values[date] = {
+                    'steps': 0,
+                    'time': 0,
+                }
+            cumulative_values[date]['steps'] += item['total_steps']
+            cumulative_values[date]['time'] += item['duration']
+        
+        incremented_data = [
+            {
+                'date': date,
+                'steps': values['steps'],
+                'time': values['time'],
+            }
+            for date, values, in cumulative_values.items()
+        ]
+        serializer = self.serializer_class(incremented_data, many = True)
         return Response(serializer.data)
 
 class LogStrengthView(generics.CreateAPIView):
@@ -169,15 +192,18 @@ class LogStrengthView(generics.CreateAPIView):
     def create(self, request, *args, **kwargs):
         print(request.data)
         exercise_id = request.data.get('exercise_id')
+        user_id = request.data.get('user_id')
         set = request.data.get('set')
         rep = request.data.get('rep')
         weight = request.data.get('weight')
         date = request.data.get('date')
         
         exercise = api_models.Exercise.objects.get(id=exercise_id)
+        user = api_models.User.objects.get(id=user_id)
         
         strength_exercise = api_models.Strength.objects.create(
             exercise=exercise,
+            user=user,
             set=set,
             rep=rep,
             weight=weight,
@@ -193,6 +219,7 @@ class LogCardioView(generics.CreateAPIView):
     def create(self, request, *args, **kwargs):
         print(request.data)
         exercise_id = request.data.get('exercise_id')
+        user_id = request.data.get('user_id')
         step = request.data.get('step')
         time = request.data.get('time')
         date = request.data.get('date')
@@ -203,12 +230,53 @@ class LogCardioView(generics.CreateAPIView):
         print(date)
         
         exercise = api_models.Exercise.objects.get(id=exercise_id)
+        user = api_models.User.objects.get(id=user_id)
         
         strength_exercise = api_models.Cardiovascular.objects.create(
             exercise=exercise,
+            user=user,
             step=step,
             time=time,
             date=date
         )
         
         return Response({"message":"Workout Logged"}, status=status.HTTP_201_CREATED)
+    
+@csrf_exempt
+def create_payment_intent(request):
+    if request.method != 'POST':
+        return JsonResponse({'error': 'Invalid request method.'}, status=400)
+    try:
+        data = json.loads(request.body)
+        amount = int(float(data['amount']) * 100)  # Convert dollars to cents
+        intent = stripe.PaymentIntent.create(
+            amount=amount,
+            currency='usd',
+            automatic_payment_methods={
+                'enabled': True,
+            },
+        )
+        return JsonResponse({'client_secret': intent.client_secret})
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=400)
+    
+@csrf_exempt
+def create_checkout_session(req):
+    data = json.loads(req.body)
+    session = stripe.checkout.Session.create(
+        payment_method_types=['card'],
+        line_items=[{
+                'price_data': {
+                'currency': 'cad',
+                'product_data': {
+                    'name': data['name'],
+                },
+                'unit_amount': int(float(data['amount']) * 100),  # Amount in cents
+            },
+            'quantity': 1,
+        }],
+        mode='payment',
+        success_url='http://localhost:5173/success',
+        cancel_url='http://localhost:5173/',
+    )
+    return JsonResponse({'id': session.id})

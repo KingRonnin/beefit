@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* ================= General Styles ================= */
 body {
     background-color: #f4f4f4; /* Light background for contrast */
@@ -8,6 +9,15 @@ body {
 
 /* ================= Container Styles ================= */
 .container {
+=======
+
+
+.login-container {
+    background-image: url('../../images/hbd.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+>>>>>>> e0cd826254a72a9a8362904ee7b005409a8c6e0e
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,6 +28,7 @@ body {
     font-family: 'Arial', sans-serif;
 }
 
+<<<<<<< HEAD
 /* ================= Box Styles ================= */
 .box {
     background-color: white; /* White background for the box */
@@ -38,17 +49,53 @@ body {
 .header-section {
     margin-bottom: 1.5rem; /* Space below the header */
     text-align: center; /* Center align */
+=======
+.login-box {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 350px;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+    background: linear-gradient(to bottom, #f4f4f9, #fff);
 }
 
-.header-section h1 {
-    font-size: 1.5rem; /* Header font size */
-    color: #333; /* Darker color for text */
+/* Inner box for content separation */
+.login-box-inner {
+    position: relative;
+    width: 100%;
+    height: auto;
+    transition: transform 0.6s ease-in-out;
+    transform-style: preserve-3d;
 }
 
-.header-section p {
-    color: #666; /* Grey color for subtitle */
+/* Header styles */
+.login-header-section {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #2C3E50;
+>>>>>>> e0cd826254a72a9a8362904ee7b005409a8c6e0e
 }
 
+.login-header-section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #2C3E50;
+    text-align: center;
+}
+
+.login-header-section p {
+    font-size: 1rem;
+    color: #34495E;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+<<<<<<< HEAD
 /* ================= Form Styles ================= */
 /* ================= Form Styles - Professional & Slim ================= */
 .form {
@@ -76,6 +123,42 @@ body {
     box-sizing: border-box; /* Ensures padding doesn’t affect width */
     transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth focus effects */
     background-color: #fafafa; /* Light background for a cleaner look */
+=======
+/* Form styles */
+.login-box {
+    margin-bottom: 15px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form{
+    margin-bottom: 15px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #2C3E50;
+    width: 100%;
+    line-height: 20px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 4px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s;
+    margin-bottom: 15px;
+>>>>>>> e0cd826254a72a9a8362904ee7b005409a8c6e0e
 }
 
 .form-control:focus {
@@ -84,6 +167,7 @@ body {
     outline: none; /* Remove default outline */
 }
 
+<<<<<<< HEAD
 /* Placeholder Text Styling for a Minimalist Look */
 .form-control::placeholder {
     color: #aaa; /* Lighter color for placeholder */
@@ -128,5 +212,32 @@ span {
     to {
         opacity: 1; /* Fully visible */
         transform: translateY(0); /* Move back to original position */
+=======
+/* Button styles */
+.login-button {
+    display: block;
+    width: 100%;
+    padding: 15px 25px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s ease-in-out, box-shadow 0.3s;
+
+    &:hover {
+        background-color: #007bff;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+>>>>>>> e0cd826254a72a9a8362904ee7b005409a8c6e0e
     }
+}
+
+.redirect-registration {
+    width: 100;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    color: #333;
 }

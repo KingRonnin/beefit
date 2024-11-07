@@ -1,148 +1,103 @@
-/* Main container */
-body {
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-        url('../../images/hbd.jpg') no-repeat center center fixed;
-    background-size: cover;
-    font-family: 'Arial', sans-serif;
-    color: white;
-    margin: 0;
-    padding: 0;
-    transition: background-color 0.5s ease; /* Smooth background transition */
+/* workout-log-container.css */
+.workout-log-page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .workout-log-container {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    border-radius: 10px;
-    animation: fadeIn 0.8s; /* Fade-in animation for the container */
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.8s;
 }
 
-/* Form Card */
 .form-card {
-    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 350px;
     text-align: center;
-    transition: transform 0.3s; /* Smooth hover transition */
-}
-
-.form-card:hover {
-    transform: translateY(-5px); /* Lift effect on hover */
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+    background: linear-gradient(to bottom, #f4f4f9, #fff);
 }
 
 .form-card h2 {
     font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-    animation: slideIn 0.5s; /* Slide-in effect for the heading */
+    margin-bottom: 25px;
+    color: #2C3E50;
+    text-align: center;
 }
 
-.workout-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-/* Labels and Inputs */
-label {
-    font-weight: bold;
-    color: #555;
-    margin-bottom: 5px;
+.form-label {
+    display: block;
     text-align: left;
-    transition: color 0.3s; /* Smooth label color transition */
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #2C3E50;
+    width: 100%;
+    line-height: 20px;
 }
 
-input, select {
-    padding: 10px;
+.form-control {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
     border-radius: 5px;
-    border: 1px solid #ddd;
-    font-size: 16px;
-    color: #333;
-    transition: border-color 0.3s; /* Smooth border color transition */
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    margin-bottom: 15px;
 }
 
-input:focus, select:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add shadow on focus */
+.form-control:focus {
+    border-color: #007bff; /* Change border color on focus */
+    outline: none; /* Remove default outline */
 }
 
-/* Button Styling */
-.add-exercise-button {
-    padding: 12px;
-    font-size: 16px;
-    color: #ffffff;
-    background-color: #28a745;
+.form-group {
+    width: 100%;
+    padding: 5px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    margin-bottom: 5px;
+}
+
+.form-conditioner {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    margin-bottom: 6px;
+}
+
+.log-button {
+    display: block;
+    width: 100%;
+    padding: 15px 25px;
+    background-color: #007bff;
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s; /* Added transform transition */
-}
+    transition: background-color 0.3s, transform 0.2s ease-in-out, box-shadow 0.3s;
 
-.add-exercise-button:hover {
-    background-color: #218838;
-    transform: scale(1.05); /* Slightly enlarge button on hover */
-}
-
-/* Analysis Section */
-.workout-analysis {
-    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 0.8s; /* Fade-in effect for the analysis section */
-}
-
-.workout-analysis h2 {
-    font-size: 22px;
-    color: #333;
-    margin-bottom: 15px;
-    animation: slideIn 0.5s; /* Slide-in effect for analysis heading */
-}
-
-.chart-container {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s; /* Smooth chart transition */
-}
-
-.chart-container:hover {
-    transform: scale(1.02); /* Slightly enlarge chart on hover */
-}
-
-/* Keyframes for Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateY(-10px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-/* Responsive Styles */
-@media (max-width: 600px) {
-    .workout-log-container {
-        padding: 15px;
-    }
-
-    .form-card {
-        padding: 15px;
+    &:hover {
+        background-color: #007bff;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     }
 }

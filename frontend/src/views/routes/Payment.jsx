@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation, redirect } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
+import { useParams } from "react-router-dom";
 import {
   Elements,
   useStripe,
@@ -15,8 +16,6 @@ const stripePromise = loadStripe(
 
 function PaymentForm({amount, name}) {
 
-  // const {amount, name, email} = {params}
-
   const navigate = useNavigate();
   const location = useLocation();
   const user = location.state?.user || {};
@@ -27,9 +26,12 @@ function PaymentForm({amount, name}) {
     console.log(data)
   },[])
 
+
+
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
+
 
   const handleSubmit = async (event) => {
     console.log("Hello Payment")
@@ -63,14 +65,11 @@ function PaymentForm({amount, name}) {
   return (
     <form onSubmit={handleSubmit} className="form">
       <h2 className="heading">Complete Your Payment</h2>
-      {/* <p className="description">Please enter your payment details below.</p> */}
+
       <button type="button" onClick={()=>navigate("/")}>
         Go to Home
       </button>
 
-      {/* <div className="cardElementWrapper">
-        <CardElement options={{ style: cardElementStyles }} />
-      </div> */}
 
       <button className="button" disabled={!stripe || loading} type="submit">
         {loading ? "Processing…" : "Pay Now"}
@@ -79,11 +78,15 @@ function PaymentForm({amount, name}) {
   );
 }
 
-function Payment({amount, name}) {
+function Payment() {
+  const{ paymentInfo } = useParams();
+
+  const paymentFinal = JSON.parse(decodeURIComponent(paymentInfo))
+
   return (
     <Elements stripe={stripePromise}>
       <div className="page">
-        <PaymentForm amount={amount} name={name} />
+        <PaymentForm amount={paymentFinal.amount} name={paymentFinal.title} />
       </div>
     </Elements>
   );

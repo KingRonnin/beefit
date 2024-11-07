@@ -3,7 +3,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
 import './HabitChallenges.css';
 
-
+import Header from '../component/Header.jsx';
 
 const HabitChallenges = () => {
   
@@ -285,7 +285,8 @@ const HabitChallenges = () => {
   
 
   return (
-    
+    <>
+    <Header />
     <div className="habit-challenges">
       <h2>Habit-Building Challenges</h2>
 
@@ -379,6 +380,7 @@ const HabitChallenges = () => {
 
       <ToastContainer />
     </div>
+    </>
   );
 };
 

@@ -1,7 +1,74 @@
-.dashboard-container {
-    display: flex;
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
+
+
+body {
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('../../images/hbd.jpg');
+    background-size: cover;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.cover-in-transparent-white {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    height: 100%;
+    width: 100%;
+}
+
+/* Analysis Section */
+.workout-analysis {
     border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.8s;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-container {
+    margin-top: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.total_volume_chart {
+    width: 800px;
+}
+
+.average_workload_per_rep_chart {
+    width: 800px;
+}
+
+/* Keyframes for Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    .workout-log-container {
+        padding: 15px;
+    }
+
+    .form-card {
+        padding: 15px;
+    }
 }
