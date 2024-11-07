@@ -8,11 +8,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 50vh;
-    background-color: #f4f4f9; /* Light background color */
-    background-size: cover;
-    background-position: center;
     font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
 }
 
 .login-box {
@@ -96,8 +93,7 @@
 }
 
 .form-control:focus {
-    border-color: #0077cc; /* Light blue border on focus */
-    box-shadow: 0 0 5px rgba(0, 119, 204, 0.2); /* Soft focus shadow */
+    border-color: #007bff; /* Change border color on focus */
     outline: none; /* Remove default outline */
 }
 

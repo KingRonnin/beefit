@@ -63,16 +63,6 @@
     flex-direction: column;
 }
 
-.form-container {
-    max-width: 380px; /* Slimmer max width for the box */
-    margin: 2rem auto; /* Centered alignment with top margin */
-    padding: 2rem; /* Padding around content */
-    background-color: #fff; /* White background for the box */
-    border-radius: 8px; /* Rounded corners for a modern look */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-}
-
-/* ================= Form Label Styling - Professional & Subtle ================= */
 .form-label {
     display: block;
     margin-bottom: 5px;
@@ -83,7 +73,6 @@
     line-height: 20px;
 }
 
-/* ================= Form Control Styling - Slim & Professional ================= */
 .form-control {
     width: 100%;
     padding: 12px 4px 15px;
@@ -95,45 +84,10 @@
     margin-bottom: 15px;
 }
 
-/* Focus Effect for Form Controls */
 .form-control:focus {
-    border-color: #0077cc; /* Light blue border on focus */
-    box-shadow: 0 0 6px rgba(0, 119, 204, 0.15); /* Subtle shadow on focus */
+    border-color: #007bff; /* Change border color on focus */
     outline: none; /* Remove default outline */
 }
-
-/* Placeholder Styling for a Subtle Look */
-.form-control::placeholder {
-    color: #aaa; /* Light gray placeholder text */
-    font-style: italic; /* Italicized for a subtle hint */
-}
-
-/* ================= Button Styling - Slim & Professional ================= */
-button {
-    background-color: #0077cc; /* Primary blue color */
-    color: #fff; /* White text color */
-    border: none; /* No border */
-    padding: 0.6rem; /* Slim padding for compact look */
-    border-radius: 4px; /* Rounded corners */
-    font-size: 0.95rem; /* Professional font size */
-    cursor: pointer; /* Pointer cursor */
-    transition: background-color 0.3s ease; /* Smooth transition */
-    width: 100%; /* Full-width button */
-}
-
-button:hover {
-    background-color: #005fa3; /* Darker shade on hover */
-}
-
-/* ================= Link & Additional Text Styling ================= */
-span {
-    text-align: center; /* Center align */
-    display: block; /* Block for better spacing */
-    margin-top: 1rem; /* Space above */
-    font-size: 0.9rem; /* Smaller font size for subtlety */
-    color: #555; /* Medium-dark gray color */
-}
-
 
 /* Button styles */
 .register-button {
