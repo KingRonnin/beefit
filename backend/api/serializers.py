@@ -86,16 +86,16 @@ class UserExerciseSerializer(serializers.Serializer):
 
 class UserStrengthSerializer(serializers.Serializer):
     # Strength
-    sets = serializers.IntegerField(default=0)
-    reps = serializers.IntegerField(default=0)
-    weight = serializers.IntegerField(default=0)
+    total_volume_load = serializers.IntegerField()
+    average_workload_per_rep = serializers.FloatField()
+    max_weight = serializers.IntegerField(default=0)
     
     # Date
     date = serializers.DateField(format='%Y-%m-%d')
     
     class Meta:
         model = None
-        fields = ('sets', 'reps', 'weight', 'date')
+        fields = ('total_volume_load', 'average_workload_per_rep', 'max_weight', 'date')
 
 class UserCardiovascularSerializer(serializers.Serializer):
     # Cardiovascular
