@@ -17,6 +17,7 @@ from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
+from .models import ContactMessage
 
 import stripe
 import json
