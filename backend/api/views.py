@@ -20,6 +20,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 import stripe
 import json
+import resend
 import random
 
 from api import serializers as api_serializers
@@ -27,6 +28,8 @@ from api import models as api_models
 
 # Keys
 stripe.api_key = settings.STRIPE_SECRET_KEY
+resend.api_key = settings.RESEND
+
 
 # Create your views here.
 
@@ -280,3 +283,29 @@ def create_checkout_session(req):
         cancel_url='http://localhost:5173/',
     )
     return JsonResponse({'id': session.id})
+
+
+@csrf_exempt
+def contact(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            name = data.get('name')
+            email = data.get('email')
+            message = data.get('message')
+
+
+            subject = f"Message from {name} ({email})"
+            body = f"Message:\n{message}"
+
+            r = resend.Emails.send({
+                "from": "onboarding@resend.dev",
+                "to": "kaurrajinder17082004@gmail.com",
+                "subject": subject,
+                "html": f"<p>{message}!</p>"
+            })
+
+            return JsonResponse({'success': True, 'message': 'Email sent successfully'})
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)}, status=500)
+    return JsonResponse({'error': 'Invalid request'}, status=400)

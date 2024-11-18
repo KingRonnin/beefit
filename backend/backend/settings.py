@@ -23,6 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-5h3z5j*x^$3!e79!t!zcj&0^$-a-k@vz3p$_=r^3r@*+wz=xhd'
+RESEND = 're_LTnM6KmY_2vipXUgoXG99FskUvSGgpzHV'
+
+STRIPE_SECRET_KEY = 'sk_test_51QFzYyHH43Q0yRB5xize8IyB4kBr1GC5GZjAHlhGm2IW4p7Jdt9obxWl8p92PB5DCJx5y80kVMG7SrUUEnSj7KYW00VtuuYUT9'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51QFzYyHH43Q0yRB555Wz4VOQnfH1JdDeazmNBOOfG9s53j6NOuIC9RTreaFe2lGGh31C7opLoYomj8du5EFbqr7B00zQZR4LS1'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -51,10 +56,6 @@ INSTALLED_APPS = [
     
 ]
 
-STRIPE_SECRET_KEY = 'sk_test_51QFzYyHH43Q0yRB5xize8IyB4kBr1GC5GZjAHlhGm2IW4p7Jdt9obxWl8p92PB5DCJx5y80kVMG7SrUUEnSj7KYW00VtuuYUT9'
-STRIPE_PUBLISHABLE_KEY = 'pk_test_51QFzYyHH43Q0yRB555Wz4VOQnfH1JdDeazmNBOOfG9s53j6NOuIC9RTreaFe2lGGh31C7opLoYomj8du5EFbqr7B00zQZR4LS1'
-
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -67,6 +68,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'backend.urls'
+
 
 TEMPLATES = [
     {

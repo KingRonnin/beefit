@@ -20,4 +20,5 @@ urlpatterns = [
     
     path('create-payment-intent/', api_views.create_payment_intent, name='create_payment_intent'),
     path('create-checkout-session/', api_views.create_checkout_session, name='create-checkout-session'),
+    path('contact/', api_views.contact, name='contact'),
 ]
