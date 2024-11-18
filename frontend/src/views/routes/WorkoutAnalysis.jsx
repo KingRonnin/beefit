@@ -16,7 +16,8 @@ const WorkoutAnalysis = () => {
     const [strengthData, setStrengthData] = useState([]);
     const [cardioData, setCardioData] = useState([]);
 
-    const userId = useUserData()?.user_id;
+    const userId = useUserData()?.user_id; 
+    //optional chaining operator to avoid error if user_id is undefined
     //Fetches workout data specific to the user.
     const fetchDashboardData = async () => {
         try {
