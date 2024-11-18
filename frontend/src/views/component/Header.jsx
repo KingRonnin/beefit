@@ -6,6 +6,7 @@ import useUserData from '../../plugin/useUserData.js';
 import { useAuthStore } from '../../store/auth.js'
 import { logout } from '../../utils/auth.js';
 
+
 const Header = () => {
   const[isLoggedIn, user] = useAuthStore((state) => [state.isLoggedIn, state.user]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -52,6 +53,8 @@ const Header = () => {
                 </div>
               </li>
               <Link to="/HabitChallenges" className="nav-link">Challenges</Link>
+
+              <Link to="/EquipmentPage" className="nav-link">Equipment</Link>
             </ul>
               {isLoggedIn() ? (
               <>
