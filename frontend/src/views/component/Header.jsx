@@ -54,7 +54,7 @@ const Header = () => {
               </li>
               <Link to="/HabitChallenges" className="nav-link">Challenges</Link>
 
-              <Link to="/EquipmentPage" className="nav-link">Equipment</Link>
+              <Link to="/EquipmentPage" className="nav-link">Equipments</Link>
             </ul>
               {isLoggedIn() ? (
               <>

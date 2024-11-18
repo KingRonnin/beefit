@@ -1,47 +1,80 @@
 import React from 'react';
+import './Equipment.css'; // Create a CSS file for styling
 
 const EquipmentPage = () => {
-    // Sample list of equipment
+    // Sample equipment data
     const equipmentList = [
         {
             id: 1,
-            name: 'Dumbbells',
-            description: 'High-quality adjustable dumbbells to suit any strength level.',
-            image: '/images/dumbbells.jpg', // Replace with the correct image path
+            name: 'Nordictrack X16 Treadmill',
+            description: 'Treadmill Exercise Equipment',
+            price: '$4,799.00',
+            image: '/images/treadmill.jpg', // Replace with the correct image path
+            rating: 5,
         },
         {
             id: 2,
-            name: 'Treadmill',
-            description: 'A modern treadmill for intense cardio workouts.',
-            image: '/images/treadmill.jpg', // Replace with the correct image path
+            name: 'Nordictrack R35 Bike',
+            description: 'Exercise Bike',
+            price: '$1,949.00',
+            image: '/images/bike.jpg', // Replace with the correct image path
+            rating: 4,
         },
         {
             id: 3,
-            name: 'Kettlebell Set',
-            description: 'Durable kettlebells for strength and conditioning.',
-            image: '/images/kettlebells.jpg', // Replace with the correct image path
+            name: 'Nordictrack RW600 Rower',
+            description: 'Rower Equipment',
+            price: '$1,399.00',
+            image: '/images/rower.jpg', // Replace with the correct image path
+            rating: 4.5,
         },
-        // Add more equipment items as needed
+        // Add more equipment items here
     ];
 
     return (
         <div className="equipment-page">
-            <h1 className="equipment-title">Our Equipment</h1>
+            <div className="filters">
+                <h3>Filters</h3>
+                <div>
+                    <h4>Price</h4>
+                    <ul>
+                        <li>Up to $60</li>
+                        <li>$60 - $140</li>
+                        <li>$140 - $350</li>
+                        <li>$350 - $1,300</li>
+                        <li>Over $1,300</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Material</h4>
+                    <ul>
+                        <li>Steel</li>
+                        <li>Metal</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Seller</h4>
+                    <ul>
+                        <li>NordicTrack Canada</li>
+                        <li>The Treadmill Factory</li>
+                        <li>Amazon CA</li>
+                    </ul>
+                </div>
+            </div>
             <div className="equipment-grid">
-                {equipmentList.map((equipment) => (
-                    <div key={equipment.id} className="equipment-card">
+                {equipmentList.map((item) => (
+                    <div key={item.id} className="equipment-card">
                         <img
-                            src={equipment.image}
-                            alt={equipment.name}
+                            src={item.image}
+                            alt={item.name}
                             className="equipment-image"
                         />
-                        <h2 className="equipment-name">{equipment.name}</h2>
-                        <p className="equipment-description">
-                            {equipment.description}
-                        </p>
-                        <button className="equipment-button">
-                            Add to Wishlist
-                        </button>
+                        <div className="equipment-info">
+                            <h3>{item.name}</h3>
+                            <p>{item.description}</p>
+                            <p className="price">{item.price}</p>
+                            <button className="add-to-cart-button">Add to Cart</button>
+                        </div>
                     </div>
                 ))}
             </div>
