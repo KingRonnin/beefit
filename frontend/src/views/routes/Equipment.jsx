@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Equipment.css'; // Create a CSS file for styling
 
+import Header from '../component/Header.jsx';
+
 const EquipmentPage = () => {
     // Sample equipment data
     const equipmentList = [
@@ -73,6 +75,8 @@ const EquipmentPage = () => {
     };
 
     return (
+        <>
+        <Header />
         <div className="equipment-page">
             <div className="filters">
                 <h3>Filters</h3>
@@ -131,6 +135,7 @@ const EquipmentPage = () => {
                 )}
             </div>
         </div>
+        </>
     );
 };
 

@@ -1,7 +1,11 @@
 .equipment-page {
+    position: relative;
     display: flex;
     padding: 20px;
     background-color: #f9f9f9;
+    min-height: 10;
+    margin: 40px auto;
+    padding: 40px;
 }
 
 .filters {
@@ -69,9 +73,11 @@
     border: 1px solid #ddd;
     border-radius: 5px;
     text-align: center;
-    padding: 15px;
+    padding-top: 20px;
+    padding-bottom: 40px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
+    margin-bottom: auto;
 }
 
 .equipment-card:hover {
