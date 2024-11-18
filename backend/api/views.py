@@ -18,6 +18,7 @@ from drf_yasg.utils import swagger_auto_schema
 from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
 
+import resend
 import stripe
 import json
 import random
@@ -280,3 +281,34 @@ def create_checkout_session(req):
         cancel_url='http://localhost:5173/',
     )
     return JsonResponse({'id': session.id})
+
+@csrf_exempt
+def contact(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            name = data.get('name')
+            email = data.get('email')
+            message = data.get('message')
+
+
+            subject = f"Message from {name} ({email})"
+            body = f"Message:\n{message}"
+
+            r = resend.Emails.send({
+                "from": "onboarding@resend.dev",
+                "to": "kaurrajinder17082004@gmail.com",
+                "subject": subject,
+                "html": f"<p>{message}!</p>"
+            })
+
+            # send_mail(
+            #     subject,
+            #     body,
+            #     settings.EMAIL_HOST_USER,
+            #     [email],  # To email
+            # )
+            return JsonResponse({'success': True, 'message': 'Email sent successfully'})
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)}, status=500)
+    return JsonResponse({'error': 'Invalid request'}, status=400)

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Index.css';
 import loadingGif from '../../images/loading-gif.gif';
 import { FaInstagram, FaTwitter, FaEnvelope } from 'react-icons/fa';  // Importing Font Awesome icons
@@ -152,9 +152,7 @@ function FrontPage() {
         <div className="content">
           <h2>Contact Us</h2>
           <p>Get in touch for any inquiries or support. We’re here to help you succeed in your fitness journey.</p>
-          <button className="contact-button">Contact Us</button>
-          
-         
+          <Link to="/contact" className="cta-button">Contact Us</Link>
           <div className="social-media-icons">
             <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
               <FaInstagram className="social-icon instagram-icon" />
