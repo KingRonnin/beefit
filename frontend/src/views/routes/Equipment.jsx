@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './EquipmentPage.css'; // Create a CSS file for styling
+import './Equipment.css'; // Create a CSS file for styling
 
 const EquipmentPage = () => {
     // Sample equipment data

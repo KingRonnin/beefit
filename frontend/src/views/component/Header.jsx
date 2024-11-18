@@ -53,8 +53,7 @@ const Header = () => {
                 </div>
               </li>
               <Link to="/HabitChallenges" className="nav-link">Challenges</Link>
-
-              <Link to="/EquipmentPage" className="nav-link">Equipments</Link>
+              <Link to="/Equipment" className="nav-link">Equipments</Link>
             </ul>
               {isLoggedIn() ? (
               <>
