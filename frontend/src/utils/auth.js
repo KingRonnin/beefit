@@ -35,6 +35,11 @@ export const login = async (email, password) => {
                 data: null,
                 error: "Invalid email or password",
             };
+        } else {
+            return {
+                data: null,
+                error: "Please enter email and password"
+            }
         }
     }
 };
@@ -58,7 +63,7 @@ export const register = async (email, password, password2) => {
     } catch (error) {
         return {
             data: null,
-            error: "Something went wrong",
+            error: "Please enter email, password, and re-entry of password",
         };
     }
 };
