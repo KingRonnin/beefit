@@ -186,58 +186,109 @@ const WorkoutAnalysis = () => {
                         </Grid2>
                         {/* charts */}
                         <Grid2 container spacing={2} sx={{ marginTop: "30px" }}>
-                            <Grid2 size={6.99}>
-                                <Card className='total_volume_chart'>
-                                    <CardHeader title='Total Volume Over Time' subheader={`Sets * Reps * Weight = Volume`} />
-                                    <CardContent>
-                                        <ResponsiveContainer width='100%' height={400}>
-                                            <AreaChart data={passedTimeSeriesData} margin={{top: 10, right: 30, left: 0, bottom: 0,}} >
-                                            <defs>
-                                                <linearGradient id='color1' x1='0' y1='0' x2='0' y2='1'>
-                                                    <stop offset='5%' stopColor='#8884d8' stopOpacity={1} />
-                                                    <stop offset='95%' stopColor='#84aad8' stopOpacity={0.5} />
-                                                </linearGradient>
-                                            </defs>
-                                                <Area type='step' dataKey='total_volume_load' stroke='#8884d8' fill='url(#color1)' />
-                                                <XAxis type='category' dataKey='date' axisLine={false} tickFormatter={str => {const date = parseISO(str); if (date.getDate() % 1 === 0) { return format(date, 'MMM d'); }; }} padding={{ left: 25 }} domain={['auto', 'auto']} />
-                                                <YAxis dataKey='total_volume_load' label={{ value: 'Total Volume', position: 'insideLeft', angle: -90, style: { fontSize: 12 } }} tickFormatter={number => `${(number / volume_divisor)}`} axisLine={false} tickLine={false} />
-                                                <Tooltip content={CustomTooltip}/>
-                                                <CartesianGrid stroke='#666666' opacity={0.5} vertical={false} />
-                                            </AreaChart>
-                                        </ResponsiveContainer>
-                                    </CardContent>
-                                </Card>
-                            </Grid2>
-                            <Grid2 size={4.99}>
-                                <Card className='average_workload_per_rep_chart'>
-                                    <CardHeader title='Average Workload per Rep Over Time' subheader={`Total Volume / Rep = Average Workload per Rep`} />
-                                    <CardContent>
-                                        <ResponsiveContainer width='100%' height={400}>
-                                            <AreaChart data={passedTimeSeriesData} margin={{top: 10, right: 30, left: 0, bottom: 0,}} >
-                                            <defs>
-                                                <linearGradient id='color2' x1='0' y1='0' x2='0' y2='1'>
-                                                    <stop offset='5%' stopColor='#b284d8' stopOpacity={1} />
-                                                    <stop offset='95%' stopColor='#8884d8' stopOpacity={0.5} />
-                                                </linearGradient>
-                                            </defs>
-                                                <Area type='step' dataKey='average_workload_per_rep' stroke='#b284d8' fill='url(#color2)' />
-                                                <XAxis type='category' dataKey='date' axisLine={false} tickFormatter={str => {const date = parseISO(str); if (date.getDate() % 1 === 0) { return format(date, 'MMM d'); }; }} padding={{ left: 25 }} domain={['auto', 'auto']} />
-                                                <YAxis dataKey='average_workload_per_rep' label={{ value: 'Average Workload', position: 'insideLeft', angle: -90, style: { fontSize: 12 } }} tickFormatter={number => `${(number / 100000)}`} axisLine={false} tickLine={false} />
-                                                <Tooltip content={CustomTooltip}/>
-                                                <CartesianGrid stroke='#666666' opacity={0.3} vertical={false} />
-                                            </AreaChart>
-                                        </ResponsiveContainer>
-                                    </CardContent>
-                                </Card>
-                            </Grid2>
+                            {show ? (
+                                <>
+                                    <Grid2 size={6.99}>
+                                        <Card className='total_volume_chart'>
+                                            <CardHeader title='Total Volume | Over Time' subheader={`Sets * Reps * Weight = Volume`} />
+                                            <CardContent>
+                                                <ResponsiveContainer width='100%' height={400}>
+                                                    <AreaChart data={passedTimeSeriesData} margin={{top: 10, right: 30, left: 0, bottom: 0,}} >
+                                                    <defs>
+                                                        <linearGradient id='color1' x1='0' y1='0' x2='0' y2='1'>
+                                                            <stop offset='5%' stopColor='#504ac6' stopOpacity={1} />
+                                                            <stop offset='95%' stopColor='#c0c64a' stopOpacity={0.5} />
+                                                        </linearGradient>
+                                                    </defs>
+                                                        <Area type='step' dataKey='total_volume_load' stroke='#504ac6' fill='url(#color1)' />
+                                                        <XAxis type='category' dataKey='date' axisLine={false} tickFormatter={str => {const date = parseISO(str); if (date.getDate() % 1 === 0) { return format(date, 'MMM d'); }; }} padding={{ left: 25 }} domain={['auto', 'auto']} />
+                                                        <YAxis dataKey='total_volume_load' label={{ value: 'Total Volume', position: 'insideLeft', angle: -90, style: { fontSize: 12 } }} tickFormatter={number => `${(number / volume_divisor)}`} axisLine={false} tickLine={false} />
+                                                        <Tooltip content={CustomTooltip}/>
+                                                        <CartesianGrid stroke='#666666' opacity={0.3} vertical={false} />
+                                                    </AreaChart>
+                                                </ResponsiveContainer>
+                                            </CardContent>
+                                        </Card>
+                                    </Grid2>
+                                    <Grid2 size={4.99}>
+                                        <Card className='average_workload_per_rep_chart'>
+                                            <CardHeader title='Workload per Rep | Over Time' subheader={`Total Volume / Rep = Average Workload per Rep`} />
+                                            <CardContent>
+                                                <ResponsiveContainer width='100%' height={400}>
+                                                    <AreaChart data={passedTimeSeriesData} margin={{top: 10, right: 30, left: 0, bottom: 0,}} >
+                                                    <defs>
+                                                        <linearGradient id='color2' x1='0' y1='0' x2='0' y2='1'>
+                                                            <stop offset='5%' stopColor='#c6504a' stopOpacity={1} />
+                                                            <stop offset='95%' stopColor='#4ac0c6' stopOpacity={0.5} />
+                                                        </linearGradient>
+                                                    </defs>
+                                                        <Area type='step' dataKey='average_workload_per_rep' stroke='#c6504a' fill='url(#color2)' />
+                                                        <XAxis type='category' dataKey='date' axisLine={false} tickFormatter={str => {const date = parseISO(str); if (date.getDate() % 1 === 0) { return format(date, 'MMM d'); }; }} padding={{ left: 25 }} domain={['auto', 'auto']} />
+                                                        <YAxis dataKey='average_workload_per_rep' label={{ value: 'Workload per Rep', position: 'insideLeft', angle: -90, style: { fontSize: 12 } }} tickFormatter={number => `${(number / 100000)}`} axisLine={false} tickLine={false} />
+                                                        <Tooltip content={CustomTooltip}/>
+                                                        <CartesianGrid stroke='#666666' opacity={0.3} vertical={false} />
+                                                    </AreaChart>
+                                                </ResponsiveContainer>
+                                            </CardContent>
+                                        </Card>
+                                    </Grid2>
+                                </>
+                            ) : (
+                                <>
+                                    <Grid2 size={6.99}>
+                                        <Card className='total_steps_chart'>
+                                            <CardHeader title='Total Steps | Over Time' sx={{ marginBottom: "24px" }} />
+                                            <CardContent>
+                                                <ResponsiveContainer width='100%' height={400}>
+                                                    <AreaChart data={passedTimeSeriesData} margin={{top: 10, right: 30, left: 0, bottom: 0,}} >
+                                                    <defs>
+                                                        <linearGradient id='color1' x1='0' y1='0' x2='0' y2='1'>
+                                                            <stop offset='5%' stopColor='#c6504a' stopOpacity={1} />
+                                                            <stop offset='95%' stopColor='#4ac0c6' stopOpacity={0.5} />
+                                                        </linearGradient>
+                                                    </defs>
+                                                        <Area type='step' dataKey='total_steps' stroke='#c6504a' fill='url(#color1)' />
+                                                        <XAxis type='category' dataKey='date' axisLine={false} tickFormatter={str => {const date = parseISO(str); if (date.getDate() % 1 === 0) { return format(date, 'MMM d'); }; }} padding={{ left: 25 }} domain={['auto', 'auto']} />
+                                                        <YAxis dataKey='total_steps' label={{ value: 'Total Steps', position: 'insideLeft', angle: -90, style: { fontSize: 12 } }} axisLine={false} tickLine={false} />
+                                                        <Tooltip content={CustomTooltip}/>
+                                                        <CartesianGrid stroke='#666666' opacity={0.3} vertical={false} />
+                                                    </AreaChart>
+                                                </ResponsiveContainer>
+                                            </CardContent>
+                                        </Card>
+                                    </Grid2>
+                                    <Grid2 size={4.99}>
+                                        <Card className='average_steps_per_minute_chart'>
+                                            <CardHeader title='Steps per Minute | Over Time' subheader={`Total Steps / Minute = Average Steps per Minute`} />
+                                            <CardContent>
+                                                <ResponsiveContainer width='100%' height={400}>
+                                                    <AreaChart data={passedTimeSeriesData} margin={{top: 10, right: 30, left: 0, bottom: 0,}} >
+                                                    <defs>
+                                                        <linearGradient id='color2' x1='0' y1='0' x2='0' y2='1'>
+                                                            <stop offset='5%' stopColor='#c68e4a' stopOpacity={1} />
+                                                            <stop offset='95%' stopColor='#4a82c6' stopOpacity={0.5} />
+                                                        </linearGradient>
+                                                    </defs>
+                                                        <Area type='step' dataKey='steps_per_minute' stroke='#c68e4a' fill='url(#color2)' />
+                                                        <XAxis type='category' dataKey='date' axisLine={false} tickFormatter={str => {const date = parseISO(str); if (date.getDate() % 1 === 0) { return format(date, 'MMM d'); }; }} padding={{ left: 25 }} domain={['auto', 'auto']} />
+                                                        <YAxis dataKey='steps_per_minute' label={{ value: 'Steps per Minute', position: 'insideLeft', angle: -90, style: { fontSize: 12 } }} axisLine={false} tickLine={false} />
+                                                        <Tooltip content={CustomTooltip}/>
+                                                        <CartesianGrid stroke='#666666' opacity={0.3} vertical={false} />
+                                                    </AreaChart>
+                                                </ResponsiveContainer>
+                                            </CardContent>
+                                        </Card>
+                                    </Grid2>
+                                </>
+                            )}
                         </Grid2>
                         <Card sx={{ marginTop: "30px" }}>
                             <CardContent>
                                 <Typography variant='body2' gutterBottom margin={{ top: 20}}>
-                                    <b>Total Volume (Load)</b> refers to the overall amount of work performed during a workout or exercise program.
+                                    <b>Steps per Minute (SPM)</b> refers to the number of steps taken by an individual in a minute, primarily for quantifying physical activities that require the lower part of the body to move around. Useful for tracking and evaluating the intensity and duration of various activities, such as walking, jogging, running, climbing, and jumping.
                                 </Typography>
-                                <Typography variant='body2' gutterBottom>
-                                    <b>Average Workload per Rep</b> refers to the overall intensity or difficulty of an exercise. Primary focused on the number of reps (volume) or weight lifted (intensity). In the case of the dashboard in-front, we are using volume, which is calculated from the multipliers of the numbers; sets, reps, and weight lifted.
+                                <Typography variant='body2' gutterBottom margin={{ top: 20}}>
+                                    <b>Total Steps (SPM)</b> refers to the cumulative number of steps taken during a workout or a day, regardless of the intensity or type of exercise.
                                 </Typography>
                             </CardContent>
                         </Card>
