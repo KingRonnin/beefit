@@ -33,15 +33,6 @@ body {
     grid-template-columns: 1fr 1fr;
 }
 
-.total_volume_chart {
-    max-width: 800px;
-}
-
-.average_workload_per_rep_chart {
-    max-width: 400px;
-    height: fit-content;
-}
-
 /* Keyframes for Animations */
 @keyframes fadeIn {
     from {
