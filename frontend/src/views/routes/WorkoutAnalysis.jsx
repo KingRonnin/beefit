@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Card, CardContent, CardHeader } from "@mui/material";
+import { Card, CardContent, CardHeader, Typography } from "@mui/material";
 import { AreaChart, Area, BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, CartesianGrid } from 'recharts';
 import { format, parseISO } from 'date-fns';
 
@@ -16,8 +16,15 @@ const WorkoutAnalysis = () => {
     const [strengthData, setStrengthData] = useState([]);
     const [cardioData, setCardioData] = useState([]);
 
-    const userId = useUserData()?.user_id; 
+    const userId = useUserData()?.user_id;
     //optional chaining operator to avoid error if user_id is undefined
+
+    const getLatestData = (data) => {
+        return data.reduce(
+            (latest, current) => new Date(latest.date) > new Date(current.date) ? latest : current
+        );
+    };
+
     //Fetches workout data specific to the user.
     const fetchDashboardData = async () => {
         try {
@@ -32,13 +39,17 @@ const WorkoutAnalysis = () => {
             Toast("error", "Error fetching dashboard data");
             console.error(error);
         };
-
-
-    }
+    };
 
     useEffect(() => {
         fetchDashboardData();
     }, []);
+
+    useEffect(() => {
+        if (strengthData.length > 0) {
+            const latestStrengthData = getLatestData(strengthData);
+        }
+    }, [strengthData]);
 
     const maxVolumeLoad = Math.max(...strengthData.map(item => item.total_volume_load));
     const maxAverageWorkload = Math.max(...strengthData.map(item => item.average_workload_per_rep));
@@ -56,7 +67,7 @@ const WorkoutAnalysis = () => {
         volume_divisor = 1000;
     } else {
         volume_divisor = 1;
-    }
+    };
 
     if (maxAverageWorkload >= 10000000) {
         workload_divisor = 10000000;
@@ -68,7 +79,7 @@ const WorkoutAnalysis = () => {
         workload_divisor = 1000;
     } else {
         workload_divisor = 1;
-    }
+    };
 
     const CustomTooltip = ({active, payload, label}) => {
         if (active) {
@@ -82,14 +93,34 @@ const WorkoutAnalysis = () => {
                     </div>
                 </>
             )
-        }
+        };
     };
+
+    const latestStrengthData = getLatestData(strengthData);
 
     return (
         <>
             <div className="cover-in-transparent-white">
                 <Header />
                     <div className="workout-analysis">
+                        <div className="kpi-container">
+                            <Card>
+                                <CardHeader title='Total Volume (Load)' />
+                                <CardContent>
+                                    <Typography>
+                                        {latestStrengthData.total_volume_load} lb
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                            <Card>
+                                <CardHeader title='Max Weight Lifted' />
+                                <CardContent>
+                                    <Typography>
+                                        {latestStrengthData.max_weight} lb
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </div>
                         <div className="chart-container">
                             <Card className='total_volume_chart'>
                                 <CardHeader title='Total Volume Over Time' subheader={`Sets * Reps * Weight = Volume, * ${volume_divisor.toLocaleString('en-US')}`} />
@@ -114,7 +145,7 @@ const WorkoutAnalysis = () => {
                             <Card className='average_workload_per_rep_chart'>
                                 <CardHeader title='Average Workload per Rep Over Time' subheader={`Total Volume / Rep = Average Workload per Rep * ${maxAverageWorkload.toLocaleString('en-US')}`} />
                                 <CardContent>
-                                    <ResponsiveContainer width='100%' height={400}>
+                                    <ResponsiveContainer width='100%' height={180}>
                                         <AreaChart data={strengthData} margin={{top: 10, right: 30, left: 0, bottom: 0,}} >
                                         <defs>
                                             <linearGradient id='color' x1='0' y1='0' x2='0' y2='1'>

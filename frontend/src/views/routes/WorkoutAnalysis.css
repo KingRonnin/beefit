@@ -34,11 +34,12 @@ body {
 }
 
 .total_volume_chart {
-    width: 800px;
+    max-width: 800px;
 }
 
 .average_workload_per_rep_chart {
-    width: 800px;
+    max-width: 400px;
+    height: fit-content;
 }
 
 /* Keyframes for Animations */
