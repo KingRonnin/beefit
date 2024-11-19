@@ -150,11 +150,15 @@ class UserCardiovascularExerciseView(generics.ListAPIView):
         user_id = self.kwargs['user_id']
         user = api_models.User.objects.get(id=user_id)
         
+        total_steps = Sum('step')
+        duration = Sum('time')
+        
         return (
             api_models.Cardiovascular.objects.filter(user=user) \
             .values('date') \
             .annotate(
                 total_steps=Sum('step', default=0),
+                steps_per_minute=total_steps / duration,
                 duration=Sum('time', default=0),
             ) \
             .order_by('date')
@@ -169,17 +173,20 @@ class UserCardiovascularExerciseView(generics.ListAPIView):
             date = item['date']
             if date not in cumulative_values:
                 cumulative_values[date] = {
-                    'steps': 0,
-                    'time': 0,
+                    'total_steps': 0,
+                    'steps_per_minute': 0,
+                    'duration': 0,
                 }
-            cumulative_values[date]['steps'] += item['total_steps']
-            cumulative_values[date]['time'] += item['duration']
+            cumulative_values[date]['total_steps'] += item['total_steps']
+            cumulative_values[date]['steps_per_minute'] += item['steps_per_minute']
+            cumulative_values[date]['duration'] += item['duration']
         
         incremented_data = [
             {
                 'date': date,
-                'steps': values['steps'],
-                'time': values['time'],
+                'total_steps': values['total_steps'],
+                'steps_per_minute': values['steps_per_minute'],
+                'duration': values['duration'],
             }
             for date, values, in cumulative_values.items()
         ]
