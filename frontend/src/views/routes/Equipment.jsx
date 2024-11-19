@@ -36,6 +36,96 @@ const EquipmentPage = () => {
             image: '/images/rower.jpg',
             rating: 4.5,
         },
+        {
+            id: 4,
+            name: 'ProForm X10 Treadmill',
+            description: 'High-performance treadmill',
+            price: 3299,
+            material: 'Alloy Steel',
+            seller: 'ProForm Canada',
+            image: '/images/treadmill.jpg',
+            rating: 4.8,
+        },
+        {
+            id: 5,
+            name: 'Peloton Inspire Spin Bike',
+            description: 'Interactive stationary bike',
+            price: 2599,
+            material: 'Carbon Steel',
+            seller: 'Peloton Online',
+            image: '/images/bike.jpg',
+            rating: 4,
+        },
+        {
+            id: 6,
+            name: 'Concept2 Model D Rower',
+            description: 'Ergonomic rower',
+            price: 1299,
+            material: 'Aluminum',
+            seller: 'Fitness Depot',
+            image: '/images/rower.jpg',
+            rating: 4.5,
+        },
+        {
+            id: 7,
+            name: 'NordicTrack 7.8AT Treadmill',
+            description: 'High-speed treadmill',
+            price: 3299,
+            material: 'Carbon Steel',
+            seller: 'NordicTrack Canada',
+            image: '/images/treadmill_new1.jpg',
+            rating: 4.6,
+        },
+        {
+            id: 8,
+            name: 'Echelon Smart Connect EX5 Bike',
+            description: 'Compact exercise bike',
+            price: 1499,
+            material: 'Metal',
+            seller: 'Amazon CA',
+            image: '/images/bike_new1.jpg',
+            rating: 4.2,
+        },
+        {
+            id: 9,
+            name: 'WaterRower Natural Rower',
+            description: 'Stylish oak rower',
+            price: 1249,
+            material: 'Aluminum',
+            seller: 'The Treadmill Factory',
+            image: '/images/rower_new1.jpg',
+            rating: 4.8,
+        },
+        {
+            id: 10,
+            name: 'NordicTrack T618 Treadmill',
+            description: 'Feature-rich treadmill',
+            price: 1799,
+            material: 'Carbon Steel',
+            seller: 'NordicTrack Canada',
+            image: '/images/treadmill_new2.jpg',
+            rating: 4.4,
+        },
+        {
+            id: 11,
+            name: 'Peloton SF-B1805 Bike',
+            description: 'Sturdy spin bike',
+            price: 899,
+            material: 'Metal',
+            seller: 'Peloton Online',
+            image: '/images/bike_new2.jpg',
+            rating: 4.0,
+        },
+        {
+            id: 12,
+            name: 'Stamina BodyTrac Glider 1050',
+            description: 'Compact rowing machine',
+            price: 549,
+            material: 'Aluminum Steel',
+            seller: 'The Treadmill Factory',
+            image: '/images/rower_new2.jpg',
+            rating: 3.8,
+        },
         // Add more equipment here
     ];
 
@@ -45,15 +135,15 @@ const EquipmentPage = () => {
     const filterByPrice = (range) => {
         let filtered = [];
         if (range === 'low') {
-            filtered = equipmentList.filter((item) => item.price <= 60);
+            filtered = equipmentList.filter((item) => item.price <= 1000);
         } else if (range === 'medium') {
-            filtered = equipmentList.filter((item) => item.price > 60 && item.price <= 140);
+            filtered = equipmentList.filter((item) => item.price > 1000 && item.price <= 1300);
         } else if (range === 'high') {
-            filtered = equipmentList.filter((item) => item.price > 140 && item.price <= 350);
+            filtered = equipmentList.filter((item) => item.price > 1300 && item.price <= 1700);
         } else if (range === 'premium') {
-            filtered = equipmentList.filter((item) => item.price > 350 && item.price <= 1300);
+            filtered = equipmentList.filter((item) => item.price > 1700 && item.price <= 2000);
         } else if (range === 'luxury') {
-            filtered = equipmentList.filter((item) => item.price > 1300);
+            filtered = equipmentList.filter((item) => item.price > 2000);
         }
         setFilteredEquipment(filtered);
     };
@@ -86,11 +176,11 @@ const EquipmentPage = () => {
                 <div>
                     <h4>Price</h4>
                     <ul>
-                        <li onClick={() => filterByPrice('low')}>Up to $60</li>
-                        <li onClick={() => filterByPrice('medium')}>$60 - $140</li>
-                        <li onClick={() => filterByPrice('high')}>$140 - $350</li>
-                        <li onClick={() => filterByPrice('premium')}>$350 - $1,300</li>
-                        <li onClick={() => filterByPrice('luxury')}>Over $1,300</li>
+                        <li onClick={() => filterByPrice('low')}>Up to $1,000</li>
+                        <li onClick={() => filterByPrice('medium')}>$1,000 - $1,300</li>
+                        <li onClick={() => filterByPrice('high')}>$1,300 - $1,700</li>
+                        <li onClick={() => filterByPrice('premium')}>$1,700 - $2,000</li>
+                        <li onClick={() => filterByPrice('luxury')}>Over $2,000</li>
                     </ul>
                 </div>
                 <div>
@@ -98,6 +188,15 @@ const EquipmentPage = () => {
                     <ul>
                         <li onClick={() => filterByMaterial('Steel')}>Steel</li>
                         <li onClick={() => filterByMaterial('Metal')}>Metal</li>
+                        <li onClick={() => filterByMaterial('Aluminum')}>
+                            Aluminum
+                        </li>
+                        <li onClick={() => filterByMaterial('Carbon Steel')}>
+                            Carbon Steel
+                        </li>
+                        <li onClick={() => filterByMaterial('Alloy Steel')}>
+                            Alloy Steel
+                        </li>
                     </ul>
                 </div>
                 <div>
@@ -110,6 +209,15 @@ const EquipmentPage = () => {
                             The Treadmill Factory
                         </li>
                         <li onClick={() => filterBySeller('Amazon CA')}>Amazon CA</li>
+                        <li onClick={() => filterBySeller('Fitness Depot')}>
+                            Fitness Depot
+                        </li>
+                        <li onClick={() => filterBySeller('Peloton Online')}>
+                            Peloton Online
+                        </li>
+                        <li onClick={() => filterBySeller('ProForm Canada')}>
+                            ProForm Canada
+                        </li>
                     </ul>
                 </div>
             </div>
