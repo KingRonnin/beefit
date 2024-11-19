@@ -6,6 +6,9 @@ urlpatterns = [
     path('user/token/', api_views.MyTokenObtainPairView.as_view()),
     path('user/token/refresh/', TokenRefreshView.as_view()),
     path('user/register/', api_views.RegisterView.as_view()),
+    path("user/courses/", api_views.user_courses),
+    path("user/purchase/", api_views.purchase_course, name="purchase_course"),
+    path("user/confirm-purchase/", api_views.confirm_purchase, name="confirm_purchase"),
     
     path('get/exercise/list/', api_views.ExerciseListAPIView.as_view()),
     path('get/exercise/strength/', api_views.StrengthListAPIView.as_view()),

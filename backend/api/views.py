@@ -17,11 +17,14 @@ from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
+# from .models import Course
 
 import stripe
 import json
 import resend
 import random
+
+from .models import Course
 
 from api import serializers as api_serializers
 from api import models as api_models
@@ -279,7 +282,7 @@ def create_checkout_session(req):
             'quantity': 1,
         }],
         mode='payment',
-        success_url='http://localhost:5173/success',
+        success_url=f"http://localhost:5173/success?course_id={data['course_id']}",
         cancel_url='http://localhost:5173/',
     )
     return JsonResponse({'id': session.id})
@@ -309,3 +312,63 @@ def contact(request):
         except Exception as e:
             return JsonResponse({'success': False, 'error': str(e)}, status=500)
     return JsonResponse({'error': 'Invalid request'}, status=400)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def user_courses(request):
+    print("Well Here")
+    user = request.user
+    courses = user.purchased_courses.all()
+    data = [
+        {
+            "id": course.id,
+            "title": course.title,
+            "description": course.description,
+            "duration": course.duration,
+            "price": course.price,
+        }
+        for course in courses
+    ]
+    return JsonResponse(data, safe=False)
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def purchase_course(request):
+    try:
+        user = request.user
+        course_id = request.data.get("course_id")
+        course = Course.objects.get(id=course_id)
+
+        # Add the course to the user's purchased courses
+        course.users.add(user)
+        course.save()
+
+        return JsonResponse({"message": f"Course '{course.title}' purchased successfully!"}, status=200)
+    except Course.DoesNotExist:
+        return JsonResponse({"error": "Course not found."}, status=404)
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
+    
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def confirm_purchase(request):
+    print(request.headers.get('Authorization'))
+    print(request.user)
+    try:
+        user = request.user
+        course_id = request.data.get("course_id")
+
+        # Ensure the course exists
+        course = Course.objects.get(id=course_id)
+
+        # Add the course to the user's purchased courses
+        course.users.add(user)
+        course.save()
+
+        return JsonResponse({"message": f"Course '{course.title}' purchased successfully!"}, status=200)
+    except Course.DoesNotExist:
+        return JsonResponse({"error": "Course not found."}, status=404)
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
