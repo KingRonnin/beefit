@@ -85,19 +85,48 @@ const WorkoutAnalysis = () => {
         workload_divisor = 1;
     };
 
-    const CustomTooltip = ({active, payload, label}) => {
-        if (active) {
+    const PrimaryCustomTooltip = ({active, payload, label}) => {
+        if (active && payload && payload.length) {
+            const data = payload[0].payload;
             return (
-                <>
-                    <div className='tooltip'>
-                        <h4>{format(parseISO(label), "eee, MMM d, yyyy")}</h4>
-                        <p>
-                            {payload[0].value.toLocaleString('en-US')}
-                        </p>
-                    </div>
-                </>
-            )
-        };
+                <div className='tooltip'>
+                    <h4>{format(parseISO(label), "eee, MMM d, yyyy")}</h4>
+                    <p>
+                        {data.total_volume_load
+                            ? `Total Volume: ${data.total_volume_load.toLocaleString('en-US')}`
+                            : data.average_workload_per_rep
+                            ? `Avg Workload per Rep: ${data.average_workload_per_rep.toLocaleString('en-US')}`
+                            : data.total_steps
+                            ? `Total Steps: ${data.total_steps.toLocaleString('en-US')}`
+                            : data.steps_per_minute
+                            ? `Steps per Minute: ${data.steps_per_minute.toLocaleString('en-US')}`
+                            : 'No data available'
+                    }
+                    </p>
+                </div>
+            );
+        }
+        return null;
+    };
+
+    const SecondaryCustomTooltip = ({active, payload, label}) => {
+        if (active && payload && payload.length) {
+            const data = payload[0].payload;
+            return (
+                <div className='tooltip'>
+                    <h4>{format(parseISO(label), "eee, MMM d, yyyy")}</h4>
+                    <p>
+                        {data.average_workload_per_rep
+                            ? `Avg Workload per Rep: ${data.average_workload_per_rep.toLocaleString('en-US')}`
+                            : data.steps_per_minute
+                            ? `Steps per Minute: ${data.steps_per_minute.toLocaleString('en-US')}`
+                            : 'No data available'
+                    }
+                    </p>
+                </div>
+            );
+        }
+        return null;
     };
 
     return (
@@ -203,7 +232,7 @@ const WorkoutAnalysis = () => {
                                                         <Area type='step' dataKey='total_volume_load' stroke='#504ac6' fill='url(#color1)' />
                                                         <XAxis type='category' dataKey='date' axisLine={false} tickFormatter={str => {const date = parseISO(str); if (date.getDate() % 1 === 0) { return format(date, 'MMM d'); }; }} padding={{ left: 25 }} domain={['auto', 'auto']} />
                                                         <YAxis dataKey='total_volume_load' label={{ value: 'Total Volume', position: 'insideLeft', angle: -90, style: { fontSize: 12 } }} tickFormatter={number => `${(number / volume_divisor)}`} axisLine={false} tickLine={false} />
-                                                        <Tooltip content={CustomTooltip}/>
+                                                        <Tooltip content={PrimaryCustomTooltip}/>
                                                         <CartesianGrid stroke='#666666' opacity={0.3} vertical={false} />
                                                     </AreaChart>
                                                 </ResponsiveContainer>
@@ -225,7 +254,7 @@ const WorkoutAnalysis = () => {
                                                         <Area type='step' dataKey='average_workload_per_rep' stroke='#c6504a' fill='url(#color2)' />
                                                         <XAxis type='category' dataKey='date' axisLine={false} tickFormatter={str => {const date = parseISO(str); if (date.getDate() % 1 === 0) { return format(date, 'MMM d'); }; }} padding={{ left: 25 }} domain={['auto', 'auto']} />
                                                         <YAxis dataKey='average_workload_per_rep' label={{ value: 'Workload per Rep', position: 'insideLeft', angle: -90, style: { fontSize: 12 } }} tickFormatter={number => `${(number / 100000)}`} axisLine={false} tickLine={false} />
-                                                        <Tooltip content={CustomTooltip}/>
+                                                        <Tooltip content={SecondaryCustomTooltip}/>
                                                         <CartesianGrid stroke='#666666' opacity={0.3} vertical={false} />
                                                     </AreaChart>
                                                 </ResponsiveContainer>
@@ -250,7 +279,7 @@ const WorkoutAnalysis = () => {
                                                         <Area type='step' dataKey='total_steps' stroke='#c6504a' fill='url(#color1)' />
                                                         <XAxis type='category' dataKey='date' axisLine={false} tickFormatter={str => {const date = parseISO(str); if (date.getDate() % 1 === 0) { return format(date, 'MMM d'); }; }} padding={{ left: 25 }} domain={['auto', 'auto']} />
                                                         <YAxis dataKey='total_steps' label={{ value: 'Total Steps', position: 'insideLeft', angle: -90, style: { fontSize: 12 } }} axisLine={false} tickLine={false} />
-                                                        <Tooltip content={CustomTooltip}/>
+                                                        <Tooltip content={PrimaryCustomTooltip}/>
                                                         <CartesianGrid stroke='#666666' opacity={0.3} vertical={false} />
                                                     </AreaChart>
                                                 </ResponsiveContainer>
@@ -272,7 +301,7 @@ const WorkoutAnalysis = () => {
                                                         <Area type='step' dataKey='steps_per_minute' stroke='#c68e4a' fill='url(#color2)' />
                                                         <XAxis type='category' dataKey='date' axisLine={false} tickFormatter={str => {const date = parseISO(str); if (date.getDate() % 1 === 0) { return format(date, 'MMM d'); }; }} padding={{ left: 25 }} domain={['auto', 'auto']} />
                                                         <YAxis dataKey='steps_per_minute' label={{ value: 'Steps per Minute', position: 'insideLeft', angle: -90, style: { fontSize: 12 } }} axisLine={false} tickLine={false} />
-                                                        <Tooltip content={CustomTooltip}/>
+                                                        <Tooltip content={SecondaryCustomTooltip}/>
                                                         <CartesianGrid stroke='#666666' opacity={0.3} vertical={false} />
                                                     </AreaChart>
                                                 </ResponsiveContainer>

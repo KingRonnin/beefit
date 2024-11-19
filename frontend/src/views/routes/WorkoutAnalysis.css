@@ -33,6 +33,14 @@ body {
     grid-template-columns: 1fr 1fr;
 }
 
+.tooltip {
+    border-radius: 0.25rem;
+    background: #fff;
+    color: #26313c;
+    padding: 1rem;
+    box-shadow: 15px 30px 40px 5px rgba(0, 0, 0, 0.5);
+}
+
 /* Keyframes for Animations */
 @keyframes fadeIn {
     from {
