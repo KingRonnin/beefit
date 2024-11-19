@@ -1,23 +1,47 @@
 # Beefit
 Capstone Project: Techno Necromancers
 
-## Description
-Health and Fitness App/Website
-This app will track the end-user’s progress throughout their fitness journey. The app/website will provide an analytics dashboard to get a quick lookup of their progress (and get an option to export the charts to do their own analytics on raw data). The app/website will offer writing tools where they can record or type in whatever they desire; person blogs, shower thoughts, or diary. The app/website will also provide a weekly calendar so that the end-user will know what is going on in the up-coming days (These will be personally imputed by the end-user).
+### Group Members
+Ronaldo Chua III
+Rajinder Kaur
+Jagpreet Singh
 
-## Main Features
-Analytics Dashboard
+### Instructor
+Anwar Alabbas
+
+### Studying Institution
+Southern Alberta Tech. of Institution
+
+### Course
+Fall 2024 | Capstone Project (PROJ-309-SDC)
+
+## Project Description
+Beefit is a web-based fitness platform that focuses on essential features for beginners wwhile maintaining a clean, and minimalist interface.
+
+Beefit tracks the end-user’s logged progress throughout their fitness journey. Beefit provide an analytics dashboard to get a quick lookup of their progress separated by the type of exercise; strength, cardio. Beefit offera equipment and courses to purchase for the end-users that are committed on their journey, and provide them with challenges so that the end-users can buildup habits great for long-term pain relief which will be tracked aswell by streaks.
+
+## Features
+Log Workout
+Analytics Dashboard - Strength & Cardio
+Shop - Courses & Equipment
+Challenges
 Weekly Calendar
-Writing Tool
+Authorization & Authentication
+Backend Admin Dashboard
+RESTful API
 
 ## Audience
-Health & Fitness Starters who want minimal design
+Primary: Fitness Beginners who are intimidated by complex fitness steps
+Secondary: Casual exercisers seeking minimal interfac
 
 ## Front-End
-ReactJS
+React
+Typescript
+Javascript
 
 ## Back-End
-Python (python3 manage.py runserver)
+Python
 
 ## Database
 SQLite 
+
