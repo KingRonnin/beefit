@@ -152,31 +152,31 @@ const WorkoutAnalysis = () => {
                             ) : (
                                 <>
                                     <Grid2 xs={12} md={4}>
-                                        <Card className='total_volume_kpi'>
-                                            <CardHeader title='Total Volume (Load)' />
+                                        <Card className='total_steps_kpi'>
+                                            <CardHeader title='Total Steps' />
                                             <CardContent>
                                                 <Typography variant='h4' display="flex" justifyContent='center'>
-                                                    {passedKPIData?.total_volume_load}
+                                                    {passedKPIData?.total_steps}
                                                 </Typography>
                                             </CardContent>
                                         </Card>
                                     </Grid2>
                                     <Grid2 xs={12} md={4}>
-                                        <Card className='average_workload_per_rep_kpi'>
-                                            <CardHeader title='Average Workload per Rep' />
+                                        <Card className='average_steps_per_minute_kpi'>
+                                            <CardHeader title='Average Steps per Minute' />
                                             <CardContent>
                                                 <Typography variant='h4' display="flex" justifyContent='center'>
-                                                    {passedKPIData?.average_workload_per_rep}
+                                                    {passedKPIData?.steps_per_minute}
                                                 </Typography>
                                             </CardContent>
                                         </Card>
                                     </Grid2>
                                     <Grid2 xs={12} md={4}>
-                                        <Card className='max_weight_kpi'>
-                                            <CardHeader title='Max Weight' />
+                                        <Card className='duration_kpi'>
+                                            <CardHeader title='Duration' />
                                             <CardContent>
                                                 <Typography variant='h4' display="flex" justifyContent='center'>
-                                                    {passedKPIData?.max_weight} lb
+                                                    {passedKPIData?.duration} min
                                                 </Typography>
                                             </CardContent>
                                         </Card>
@@ -191,7 +191,7 @@ const WorkoutAnalysis = () => {
                                     <CardHeader title='Total Volume Over Time' subheader={`Sets * Reps * Weight = Volume`} />
                                     <CardContent>
                                         <ResponsiveContainer width='100%' height={400}>
-                                            <AreaChart data={strengthData} margin={{top: 10, right: 30, left: 0, bottom: 0,}} >
+                                            <AreaChart data={passedTimeSeriesData} margin={{top: 10, right: 30, left: 0, bottom: 0,}} >
                                             <defs>
                                                 <linearGradient id='color1' x1='0' y1='0' x2='0' y2='1'>
                                                     <stop offset='5%' stopColor='#8884d8' stopOpacity={1} />
@@ -213,7 +213,7 @@ const WorkoutAnalysis = () => {
                                     <CardHeader title='Average Workload per Rep Over Time' subheader={`Total Volume / Rep = Average Workload per Rep`} />
                                     <CardContent>
                                         <ResponsiveContainer width='100%' height={400}>
-                                            <AreaChart data={strengthData} margin={{top: 10, right: 30, left: 0, bottom: 0,}} >
+                                            <AreaChart data={passedTimeSeriesData} margin={{top: 10, right: 30, left: 0, bottom: 0,}} >
                                             <defs>
                                                 <linearGradient id='color2' x1='0' y1='0' x2='0' y2='1'>
                                                     <stop offset='5%' stopColor='#b284d8' stopOpacity={1} />
