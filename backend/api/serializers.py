@@ -99,12 +99,13 @@ class UserStrengthSerializer(serializers.Serializer):
 
 class UserCardiovascularSerializer(serializers.Serializer):
     # Cardiovascular
-    steps = serializers.IntegerField(default=0)
-    time = serializers.IntegerField(default=0)
+    total_steps = serializers.IntegerField(default=0)
+    steps_per_minute = serializers.FloatField()
+    duration = serializers.IntegerField(default=0)
     
     # Date
     date = serializers.DateField(format='%Y-%m-%d')
     
     class Meta:
         model = None
-        fields = ('steps', 'time', 'date')
+        fields = ('total_steps', 'steps_per_minute', 'duration', 'date')

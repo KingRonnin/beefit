@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Card, CardContent, CardHeader, Typography, Grid2, Box } from "@mui/material";
+import { Card, CardContent, CardHeader, Typography, Grid2, Box, Button } from "@mui/material";
 import { AreaChart, Area, BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, CartesianGrid } from 'recharts';
 import { format, parseISO } from 'date-fns';
 
@@ -11,14 +11,13 @@ import Toast from '../../plugin/Toast.js'
 import './WorkoutAnalysis.css';
 
 
-
 const WorkoutAnalysis = () => {
     const [strengthData, setStrengthData] = useState([]);
     const [cardioData, setCardioData] = useState([]);
+    const [show, setShow] = useState(true);
 
     const userId = useUserData()?.user_id;
     //optional chaining operator to avoid error if user_id is undefined
-
     //Fetches workout data specific to the user.
     const fetchDashboardData = async () => {
         try {
@@ -53,7 +52,8 @@ const WorkoutAnalysis = () => {
         return latest;
     };
 
-    const latestStrengthData = getLatestData(strengthData);
+    const passedKPIData = show ? getLatestData(strengthData) : getLatestData(cardioData);
+    const passedTimeSeriesData = show ? strengthData : cardioData;
 
     const maxVolumeLoad = Math.max(...strengthData.map(item => item.total_volume_load));
     const maxAverageWorkload = Math.max(...strengthData.map(item => item.average_workload_per_rep));
@@ -106,41 +106,85 @@ const WorkoutAnalysis = () => {
                 <Header />
                 <div className="workout-analysis">
                     <Box sx={{ marginTop: "64px", padding: "20px", backgroundColor: "#f5f5f5", minHeight: "100vh" }}>
-                        <Typography variant='h4' gutterBottom>
-                            Workout Performance Dashboard
-                        </Typography>
+                        <Box display="flex" justifyContent="space-between" alignItems="center">
+                            <Typography variant='h4' gutterBottom>
+                                Workout Performance Dashboard
+                            </Typography>
+                            <Button variant="contained" color="primary" onClick={() => setShow(!show)}>
+                                Switch to { show ? 'Cardio' : 'Strength'}
+                            </Button>
+                        </Box>
+                        {/* kpis */}
                         <Grid2 container spacing={3}>
-                            <Grid2 xs={12} md={4}>
-                                <Card className='total_volume_kpi'>
-                                    <CardHeader title='Total Volume (Load)' />
-                                    <CardContent>
-                                        <Typography variant='h4' display="flex" justifyContent='center'>
-                                            {latestStrengthData?.total_volume_load}
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
-                            </Grid2>
-                            <Grid2 xs={12} md={4}>
-                                <Card className='average_workload_per_rep_kpi'>
-                                    <CardHeader title='Average Workload per Rep' />
-                                    <CardContent>
-                                        <Typography variant='h4' display="flex" justifyContent='center'>
-                                            {latestStrengthData?.average_workload_per_rep}
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
-                            </Grid2>
-                            <Grid2 xs={12} md={4}>
-                                <Card className='max_weight_kpi'>
-                                    <CardHeader title='Max Weight' />
-                                    <CardContent>
-                                        <Typography variant='h4' display="flex" justifyContent='center'>
-                                            {latestStrengthData?.max_weight} lb
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
-                            </Grid2>
+                            {show ? (
+                                <>
+                                    <Grid2 xs={12} md={4}>
+                                        <Card className='total_volume_kpi'>
+                                            <CardHeader title='Total Volume (Load)' />
+                                            <CardContent>
+                                                <Typography variant='h4' display="flex" justifyContent='center'>
+                                                    {passedKPIData?.total_volume_load}
+                                                </Typography>
+                                            </CardContent>
+                                        </Card>
+                                    </Grid2>
+                                    <Grid2 xs={12} md={4}>
+                                        <Card className='average_workload_per_rep_kpi'>
+                                            <CardHeader title='Average Workload per Rep' />
+                                            <CardContent>
+                                                <Typography variant='h4' display="flex" justifyContent='center'>
+                                                    {passedKPIData?.average_workload_per_rep}
+                                                </Typography>
+                                            </CardContent>
+                                        </Card>
+                                    </Grid2>
+                                    <Grid2 xs={12} md={4}>
+                                        <Card className='max_weight_kpi'>
+                                            <CardHeader title='Max Weight' />
+                                            <CardContent>
+                                                <Typography variant='h4' display="flex" justifyContent='center'>
+                                                    {passedKPIData?.max_weight} lb
+                                                </Typography>
+                                            </CardContent>
+                                        </Card>
+                                    </Grid2>
+                                </>
+                            ) : (
+                                <>
+                                    <Grid2 xs={12} md={4}>
+                                        <Card className='total_volume_kpi'>
+                                            <CardHeader title='Total Volume (Load)' />
+                                            <CardContent>
+                                                <Typography variant='h4' display="flex" justifyContent='center'>
+                                                    {passedKPIData?.total_volume_load}
+                                                </Typography>
+                                            </CardContent>
+                                        </Card>
+                                    </Grid2>
+                                    <Grid2 xs={12} md={4}>
+                                        <Card className='average_workload_per_rep_kpi'>
+                                            <CardHeader title='Average Workload per Rep' />
+                                            <CardContent>
+                                                <Typography variant='h4' display="flex" justifyContent='center'>
+                                                    {passedKPIData?.average_workload_per_rep}
+                                                </Typography>
+                                            </CardContent>
+                                        </Card>
+                                    </Grid2>
+                                    <Grid2 xs={12} md={4}>
+                                        <Card className='max_weight_kpi'>
+                                            <CardHeader title='Max Weight' />
+                                            <CardContent>
+                                                <Typography variant='h4' display="flex" justifyContent='center'>
+                                                    {passedKPIData?.max_weight} lb
+                                                </Typography>
+                                            </CardContent>
+                                        </Card>
+                                    </Grid2>
+                                </>
+                            )}
                         </Grid2>
+                        {/* charts */}
                         <Grid2 container spacing={2} sx={{ marginTop: "30px" }}>
                             <Grid2 size={6.99}>
                                 <Card className='total_volume_chart'>
