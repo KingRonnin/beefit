@@ -18,6 +18,7 @@ from drf_yasg.utils import swagger_auto_schema
 from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
 
+import resend
 import stripe
 import json
 import random
@@ -149,11 +150,15 @@ class UserCardiovascularExerciseView(generics.ListAPIView):
         user_id = self.kwargs['user_id']
         user = api_models.User.objects.get(id=user_id)
         
+        total_steps = Sum('step')
+        duration = Sum('time')
+        
         return (
             api_models.Cardiovascular.objects.filter(user=user) \
             .values('date') \
             .annotate(
                 total_steps=Sum('step', default=0),
+                steps_per_minute=total_steps / duration,
                 duration=Sum('time', default=0),
             ) \
             .order_by('date')
@@ -168,17 +173,20 @@ class UserCardiovascularExerciseView(generics.ListAPIView):
             date = item['date']
             if date not in cumulative_values:
                 cumulative_values[date] = {
-                    'steps': 0,
-                    'time': 0,
+                    'total_steps': 0,
+                    'steps_per_minute': 0,
+                    'duration': 0,
                 }
-            cumulative_values[date]['steps'] += item['total_steps']
-            cumulative_values[date]['time'] += item['duration']
+            cumulative_values[date]['total_steps'] += item['total_steps']
+            cumulative_values[date]['steps_per_minute'] += item['steps_per_minute']
+            cumulative_values[date]['duration'] += item['duration']
         
         incremented_data = [
             {
                 'date': date,
-                'steps': values['steps'],
-                'time': values['time'],
+                'total_steps': values['total_steps'],
+                'steps_per_minute': values['steps_per_minute'],
+                'duration': values['duration'],
             }
             for date, values, in cumulative_values.items()
         ]
@@ -280,3 +288,34 @@ def create_checkout_session(req):
         cancel_url='http://localhost:5173/',
     )
     return JsonResponse({'id': session.id})
+
+@csrf_exempt
+def contact(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            name = data.get('name')
+            email = data.get('email')
+            message = data.get('message')
+
+
+            subject = f"Message from {name} ({email})"
+            body = f"Message:\n{message}"
+
+            r = resend.Emails.send({
+                "from": "onboarding@resend.dev",
+                "to": "kaurrajinder17082004@gmail.com",
+                "subject": subject,
+                "html": f"<p>{message}!</p>"
+            })
+
+            # send_mail(
+            #     subject,
+            #     body,
+            #     settings.EMAIL_HOST_USER,
+            #     [email],  # To email
+            # )
+            return JsonResponse({'success': True, 'message': 'Email sent successfully'})
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)}, status=500)
+    return JsonResponse({'error': 'Invalid request'}, status=400)

@@ -81,6 +81,8 @@ body {
 
 .cta-button:hover {
   background-color: #f4f4f4;
+  transform: translateY(-5px);
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
 }
 
 .hero-main-text {

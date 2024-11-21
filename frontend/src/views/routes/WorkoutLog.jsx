@@ -147,7 +147,7 @@ return (
                     <option value="">Select Exercise</option>
                     {exerciseList.map(exercise => (
                         <option key={exercise.id} value={`${exercise.id}-${exercise.type}-${exercise.exercise}`}>
-                            {exercise.exercise} ({exercise.type})
+                            {exercise.exercise}
                         </option>
                     ))}
                 </select>
