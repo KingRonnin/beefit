@@ -38,8 +38,8 @@ class Exercise(models.Model):
 class Gym(models.Model):
     address = models.CharField(max_length=255, unique=True)
     facility = models.CharField(max_length=255)
-    longitude = models.DecimalField(max_digits=9, decimal_places=6)
-    latitude = models.DecimalField(max_digits=9, decimal_places=6)
+    longitude = models.FloatField()
+    latitude = models.FloatField()
     
     def __str__(self):
         return self.address
