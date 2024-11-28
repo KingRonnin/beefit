@@ -52,6 +52,11 @@ class ExerciseSerializer(serializers.ModelSerializer):
         model = api_models.Exercise
         fields = "__all__"
 
+class GymSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = api_models.Gym
+        fields = "__all__"
+
 class StrengthSerializer(serializers.ModelSerializer):
     class Meta:
         model = api_models.Strength

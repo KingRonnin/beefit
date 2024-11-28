@@ -13,6 +13,7 @@ urlpatterns = [
     path('get/exercise/list/', api_views.ExerciseListAPIView.as_view()),
     path('get/exercise/strength/', api_views.StrengthListAPIView.as_view()),
     path('get/exercise/cardio/', api_views.CardiovascularListAPIView.as_view()),
+    path('get/gym/list/', api_views.GymListAPIView.as_view()),
     
     path('post/log/strength/', api_views.LogStrengthView.as_view()),
     path('post/log/cardiovascular/', api_views.LogCardioView.as_view()),

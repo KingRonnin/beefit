@@ -46,6 +46,13 @@ class ExerciseListAPIView(generics.ListAPIView):
     def get_queryset(self):
         return api_models.Exercise.objects.all()
 
+class GymListAPIView(generics.ListAPIView):
+    serializer_class = api_serializers.GymSerializer
+    permission_classes = [AllowAny]
+    
+    def get_queryset(self):
+        return api_models.Gym.objects.all()
+
 class StrengthListAPIView(generics.ListAPIView):
     serializer_class = api_serializers.StrengthSerializer
     permission_classes = [AllowAny]
