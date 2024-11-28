@@ -21,6 +21,7 @@ import PrivateRoute from './layouts/PrivateRoute.jsx';
 import WorkoutAnalysis from "./views/routes/WorkoutAnalysis.jsx";
 import EquipmentPage from "./views/routes/Equipment.jsx";
 import ContactForm from "./views/routes/ContactForm.jsx";
+import GymLocations from "./views/routes/GymLocations.jsx";
 
 // const stripePromise = loadStripe('pk_test_51QFzYyHH43Q0yRB555Wz4VOQnfH1JdDeazmNBOOfG9s53j6NOuIC9RTreaFe2lGGh31C7opLoYomj8du5EFbqr7B00zQZR4LS1');
 function App() {
@@ -63,6 +64,7 @@ function App() {
                 <Route path="/Payment/:paymentInfo" element={<Payment />} />
                 <Route path="/Equipment" element={<EquipmentPage />} />
                 <Route path="/Contact" element={<ContactForm />} />
+                <Route path='/GymLocation' element={<GymLocations />} />
               </Routes>
         </MainWrapper>
       </Router>
