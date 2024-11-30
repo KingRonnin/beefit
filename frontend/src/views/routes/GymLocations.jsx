@@ -15,6 +15,31 @@ import 'leaflet/dist/leaflet.css';
 
 import markerIcon from '../../images/marker.png';
 
+const CustomPopup = ({ data }) => {
+    return (
+        <Box>
+            <Typography variant="h6" component="div">
+                <b>{data.facility}</b>
+            </Typography>
+            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                {data.address}
+            </Typography>
+            <Box display='flex' justifyContent='flex-end'>
+                <Button
+                    size="small"
+                    href={data.linksAttached}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant="contained"
+                    color="white"
+                >
+                    Google Maps
+                </Button>
+            </Box>
+        </Box>
+    );
+};
+
 const GymLocations = () => {
     const [gymLocationData, setGymLocationData] = useState([]);
     const [position, setPosition] = useState(null);
@@ -48,7 +73,7 @@ const GymLocations = () => {
                     <Box sx={{ marginTop: "64px", padding: "20px", backgroundColor: "#f5f5f5", minHeight: "88vh" }}>
                         <Box display="flex" justifyContent="space-between" alignItems="center">
                             <Typography variant='h4' gutterBottom>
-                                Nearby Gyms
+                                Gyms in Calgary
                             </Typography>
                         </Box>
                         <Grid2 container spacing={2}>
@@ -64,12 +89,24 @@ const GymLocations = () => {
                                             {gymLocationData.map((item) => (
                                                 <Marker key={item.id} position={[item.latitude, item.longitude]} icon={marker}>
                                                     <Popup>
-                                                        <b> {item.facility} </b>
-                                                        <a href={`${item.linksAttached}`}> {item.address} </a>
+                                                        <CustomPopup data={item} />
                                                     </Popup>
                                                 </Marker>
                                             ))}
                                         </MapContainer>
+                                    </CardContent>
+                                </Card>
+                            </Grid2>
+                            <Grid2 xs={12} md={4}>
+                                <Card>
+                                    <CardHeader title="Enhance Your Experience" />
+                                    <CardContent>
+                                        <Typography variant="body1" gutterBottom>
+                                            Use the interactive map to explore gym locations. Click on any marker to view more details about the gym.
+                                        </Typography>
+                                        <Typography variant="body2" color="textSecondary" gutterBottom>
+                                            For the best experience, allow location access to find gyms near you.
+                                        </Typography>
                                     </CardContent>
                                 </Card>
                             </Grid2>

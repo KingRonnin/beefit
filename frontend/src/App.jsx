@@ -64,7 +64,7 @@ function App() {
                 <Route path="/Payment/:paymentInfo" element={<Payment />} />
                 <Route path="/Equipment" element={<EquipmentPage />} />
                 <Route path="/Contact" element={<ContactForm />} />
-                <Route path='/GymLocation' element={<GymLocations />} />
+                <Route path='/GymLocations' element={<GymLocations />} />
               </Routes>
         </MainWrapper>
       </Router>
