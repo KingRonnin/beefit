@@ -1,9 +1,6 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.contrib.auth.models import AbstractUser
-from django.db.models.signals import post_save
-from django.utils.text import slugify
-from shortuuid.django_fields import ShortUUIDField
-import shortuuid
 
 # Create your models here.
 class User(AbstractUser):
@@ -38,8 +35,18 @@ class Exercise(models.Model):
 class Gym(models.Model):
     address = models.CharField(max_length=255, unique=True)
     facility = models.CharField(max_length=255)
-    longitude = models.FloatField()
-    latitude = models.FloatField()
+    longitude = models.FloatField(
+        validators=[
+            MinValueValidator(-180),
+            MaxValueValidator(180)
+        ]
+    )
+    latitude = models.FloatField(
+        validators=[
+            MinValueValidator(-90),
+            MaxValueValidator(90)
+        ]
+    )
     linksAttached = models.CharField(max_length=255, default='')
     
     def __str__(self):
