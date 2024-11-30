@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Marker, useMapEvents, useMap, MapContainer, TileLayer, Popup } from 'react-leaflet';
+import { Icon } from 'leaflet';
 import { Box, Button, Card, CardHeader, CardContent, Typography, Grid2 } from '@mui/material';
 
 import Header from '../component/Header.jsx';
@@ -10,11 +11,19 @@ import useUserData from '../../plugin/useUserData';
 import Toast from '../../plugin/Toast.js';
 
 import './GymLocations.css';
-import 'leaflet/dist/leaflet.css'
+import 'leaflet/dist/leaflet.css';
+
+import markerIcon from '../../images/marker.png';
 
 const GymLocations = () => {
     const [gymLocationData, setGymLocationData] = useState([]);
     const [position, setPosition] = useState(null);
+    const marker = new Icon ({
+        iconUrl: markerIcon,
+        iconSize: [60, 60], // Size of the icon
+        iconAnchor: [30, 60], // Center-bottom of the icon
+        popupAnchor: [0, -50], // Adjust popup position
+    })
 
     const fetchDashboardData = async () => {
         try {
@@ -53,7 +62,7 @@ const GymLocations = () => {
                                             />
                                             <LocationMarker />
                                             {gymLocationData.map((item) => (
-                                                <Marker key={item.id} position={[item.latitude, item.longitude]}>
+                                                <Marker key={item.id} position={[item.latitude, item.longitude]} icon={marker}>
                                                     <Popup>
                                                         <b> {item.facility} </b>
                                                         <a href={`${item.linksAttached}`}> {item.address} </a>
