@@ -1,9 +1,6 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.contrib.auth.models import AbstractUser
-from django.db.models.signals import post_save
-from django.utils.text import slugify
-from shortuuid.django_fields import ShortUUIDField
-import shortuuid
 
 # Create your models here.
 class User(AbstractUser):
@@ -29,17 +26,31 @@ class Exercise(models.Model):
         ('Cardiovascular', 'Cardiovascular')
     )
     
-    exercise = models.CharField(max_length=255)
+    exercise = models.CharField(max_length=255, unique=True)
     type = models.CharField(max_length=255, choices=TYPE, default='Strength')
     
     def __str__(self):
         return self.exercise
     
-    def strength_exercise_count(self):
-        return Strength.objects.filter(exercise=self).count()
+class Gym(models.Model):
+    address = models.CharField(max_length=255, unique=True)
+    facility = models.CharField(max_length=255)
+    longitude = models.FloatField(
+        validators=[
+            MinValueValidator(-180),
+            MaxValueValidator(180)
+        ]
+    )
+    latitude = models.FloatField(
+        validators=[
+            MinValueValidator(-90),
+            MaxValueValidator(90)
+        ]
+    )
+    linksAttached = models.CharField(max_length=255, default='')
     
-    def cardio_exercise_count(self):
-        return Cardiovascular.objects.filter(exercise=self).count()
+    def __str__(self):
+        return self.address
     
 class Strength(models.Model):
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE, null=True, related_name='strength_exercise')
