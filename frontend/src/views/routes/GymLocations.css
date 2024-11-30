@@ -1,4 +1,30 @@
+body {
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('../../images/hbd.jpg');
+    background-size: cover;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.cover-in-transparent-white {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    height: 100%;
+    width: 100%;
+}
+
+.gym-location {
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.8s;
+    display: flex;
+    flex-direction: column;
+}
+
 .leaflet-container {
-    width: 100vw;
-    height: 100vh;
+    width: 50vw;
+    height: 80vh;
 }

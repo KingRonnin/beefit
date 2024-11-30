@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Marker, useMapEvents, useMap, MapContainer, TileLayer, Popup } from 'react-leaflet';
+import React, { useState, useEffect } from 'react';
+import { Marker, useMap, Popup } from 'react-leaflet';
 
 const LocationMarker = () => {
     const [position, setPosition] = useState(null);
@@ -15,7 +15,7 @@ const LocationMarker = () => {
 
     return position === null ? null : (
         <Marker position={position}>
-            <Popup>You are here</Popup>
+            <Popup >You are here</Popup>
         </Marker>
     );
 }

@@ -40,6 +40,7 @@ class Gym(models.Model):
     facility = models.CharField(max_length=255)
     longitude = models.FloatField()
     latitude = models.FloatField()
+    linksAttached = models.CharField(max_length=255, default='')
     
     def __str__(self):
         return self.address
