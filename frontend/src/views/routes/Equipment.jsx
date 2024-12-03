@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import './Equipment.css'; // Create a CSS file for styling
 
 import Header from '../component/Header.jsx';
@@ -15,6 +17,8 @@ import rowing_3 from '../../images/rower_3.jpg';
 import treadmill_4 from '../../images/treadmill_4.jpg';
 import bike_4 from '../../images/bike_4.jpg';
 import rowing_4 from '../../images/rowing_4.jpg';
+
+import CheckoutForm from "./CheckoutForm";
 
 const EquipmentPage = () => {
     // Sample equipment data
@@ -142,6 +146,8 @@ const EquipmentPage = () => {
         // Add more equipment here
     ];
 
+    const navigate = useNavigate();
+
     const [filteredEquipment, setFilteredEquipment] = useState(equipmentList);
 
     // Filter handlers
@@ -176,6 +182,10 @@ const EquipmentPage = () => {
     const resetFilters = () => {
         setFilteredEquipment(equipmentList);
     };
+
+    const handleAddToCart = async (item) => {
+        navigate(`/Payment/${encodeURIComponent(JSON.stringify({title: item.name, amount: item.price.substr(1)}))}`)
+    }
 
     return (
         <>
@@ -247,7 +257,7 @@ const EquipmentPage = () => {
                                 <h3>{item.name}</h3>
                                 <p>{item.description}</p>
                                 <p className="price">${item.price}</p>
-                                <button className="add-to-cart-button">Add to Cart</button>
+                                <button className="add-to-cart-button" onClick={() => handleAddToCart(item)}>Add to Cart</button>
                             </div>
                         </div>
                     ))
