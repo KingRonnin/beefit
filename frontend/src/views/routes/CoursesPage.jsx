@@ -3,6 +3,8 @@ import "./CoursesPage.css";
 import CheckoutForm from "./CheckoutForm";
 import { useNavigate } from "react-router-dom";
 
+import Header from "../component/Header";
+
 const courses = [
   {
     id: 1,
@@ -440,7 +442,6 @@ const CoursesPage = () => {
 
   const handleAddToCart = async (course) => {
     navigate(`/Payment/${encodeURIComponent(JSON.stringify({title: course.title, amount: course.price.substr(1)}))}`)
-
   };
 
   const [activeFilter, setActiveFilter] = useState({
@@ -471,6 +472,9 @@ const CoursesPage = () => {
   });
 
   return (
+    <>
+    <Header />
+
     <div className="courses-page">
       {/* Sidebar Filters */}
       <aside className="filter-sidebar">
@@ -649,6 +653,7 @@ const CoursesPage = () => {
         </section>
       )}
     </div>
+    </>
   );
 };
 

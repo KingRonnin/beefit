@@ -4,9 +4,11 @@
     padding: 20px;
     padding-top: 50px;
     background-color: #f9f9f9;
+    flex-wrap: wrap;
 }
 
 .filters {
+    flex: 1;
     width: 20%;
     padding: 15px;
     background-color: #fff;
@@ -93,7 +95,7 @@
 
 .equipment-image {
     width: 100%;
-    height: 200px;
+    height: 300px;
     object-fit: cover;
     margin-bottom: 10px;
     border-radius: 6px;

@@ -1,7 +1,24 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import './Equipment.css'; // Create a CSS file for styling
 
 import Header from '../component/Header.jsx';
+
+import treadmill_1 from '../../images/treadmill_1.jpg';
+import bike_1 from '../../images/bike_1.png';
+import rowing_1 from '../../images/rower_1.jpg';
+import treadmill_2 from '../../images/treadmill_2.jpg';
+import bike_2 from '../../images/bike_2.jpg';
+import rowing_2 from '../../images/rower_2.jpg';
+import treadmill_3 from '../../images/treadmill_3.jpg'
+import bike_3 from '../../images/bike_3.jpg';
+import rowing_3 from '../../images/rower_3.jpg';
+import treadmill_4 from '../../images/treadmill_4.jpg';
+import bike_4 from '../../images/bike_4.jpg';
+import rowing_4 from '../../images/rowing_4.jpg';
+
+import CheckoutForm from "./CheckoutForm";
 
 const EquipmentPage = () => {
     // Sample equipment data
@@ -13,7 +30,7 @@ const EquipmentPage = () => {
             price: 4799,
             material: 'Metal',
             seller: 'NordicTrack Canada',
-            image: '/images/treadmill.jpg',
+            image: treadmill_1,
             rating: 5,
         },
         {
@@ -23,7 +40,7 @@ const EquipmentPage = () => {
             price: 1949,
             material: 'Metal',
             seller: 'Amazon CA',
-            image: '/images/bike.jpg',
+            image: bike_1,
             rating: 4,
         },
         {
@@ -33,7 +50,7 @@ const EquipmentPage = () => {
             price: 1399,
             material: 'Steel',
             seller: 'The Treadmill Factory',
-            image: '/images/rower.jpg',
+            image: rowing_1,
             rating: 4.5,
         },
         {
@@ -43,7 +60,7 @@ const EquipmentPage = () => {
             price: 3299,
             material: 'Alloy Steel',
             seller: 'ProForm Canada',
-            image: '/images/treadmill.jpg',
+            image: treadmill_2,
             rating: 4.8,
         },
         {
@@ -53,7 +70,7 @@ const EquipmentPage = () => {
             price: 2599,
             material: 'Carbon Steel',
             seller: 'Peloton Online',
-            image: '/images/bike.jpg',
+            image: bike_2,
             rating: 4,
         },
         {
@@ -63,7 +80,7 @@ const EquipmentPage = () => {
             price: 1299,
             material: 'Aluminum',
             seller: 'Fitness Depot',
-            image: '/images/rower.jpg',
+            image: rowing_2,
             rating: 4.5,
         },
         {
@@ -73,7 +90,7 @@ const EquipmentPage = () => {
             price: 3299,
             material: 'Carbon Steel',
             seller: 'NordicTrack Canada',
-            image: '/images/treadmill_new1.jpg',
+            image: treadmill_3,
             rating: 4.6,
         },
         {
@@ -83,7 +100,7 @@ const EquipmentPage = () => {
             price: 1499,
             material: 'Metal',
             seller: 'Amazon CA',
-            image: '/images/bike_new1.jpg',
+            image: bike_3,
             rating: 4.2,
         },
         {
@@ -93,7 +110,7 @@ const EquipmentPage = () => {
             price: 1249,
             material: 'Aluminum',
             seller: 'The Treadmill Factory',
-            image: '/images/rower_new1.jpg',
+            image: rowing_3,
             rating: 4.8,
         },
         {
@@ -103,7 +120,7 @@ const EquipmentPage = () => {
             price: 1799,
             material: 'Carbon Steel',
             seller: 'NordicTrack Canada',
-            image: '/images/treadmill_new2.jpg',
+            image: treadmill_4,
             rating: 4.4,
         },
         {
@@ -113,7 +130,7 @@ const EquipmentPage = () => {
             price: 899,
             material: 'Metal',
             seller: 'Peloton Online',
-            image: '/images/bike_new2.jpg',
+            image: bike_4,
             rating: 4.0,
         },
         {
@@ -123,11 +140,13 @@ const EquipmentPage = () => {
             price: 549,
             material: 'Aluminum Steel',
             seller: 'The Treadmill Factory',
-            image: '/images/rower_new2.jpg',
+            image: rowing_4,
             rating: 3.8,
         },
         // Add more equipment here
     ];
+
+    const navigate = useNavigate();
 
     const [filteredEquipment, setFilteredEquipment] = useState(equipmentList);
 
@@ -163,6 +182,10 @@ const EquipmentPage = () => {
     const resetFilters = () => {
         setFilteredEquipment(equipmentList);
     };
+
+    const handleAddToCart = async (item) => {
+        navigate(`/Payment/${encodeURIComponent(JSON.stringify({title: item.name, amount: item.price.substr(1)}))}`)
+    }
 
     return (
         <>
@@ -234,7 +257,7 @@ const EquipmentPage = () => {
                                 <h3>{item.name}</h3>
                                 <p>{item.description}</p>
                                 <p className="price">${item.price}</p>
-                                <button className="add-to-cart-button">Add to Cart</button>
+                                <button className="add-to-cart-button" onClick={() => handleAddToCart(item)}>Add to Cart</button>
                             </div>
                         </div>
                     ))
