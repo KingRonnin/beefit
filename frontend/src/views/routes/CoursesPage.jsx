@@ -438,7 +438,7 @@ const CoursesPage = () => {
 
   const navigate = useNavigate()
 
-  const [cart, setCart] = useState([]); 
+  const [cart, setCart] = useState([]);
 
   const handleAddToCart = async (course) => {
     navigate(`/Payment/${encodeURIComponent(JSON.stringify({title: course.title, amount: course.price.substr(1)}))}`)

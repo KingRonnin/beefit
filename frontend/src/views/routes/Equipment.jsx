@@ -18,8 +18,6 @@ import treadmill_4 from '../../images/treadmill_4.jpg';
 import bike_4 from '../../images/bike_4.jpg';
 import rowing_4 from '../../images/rowing_4.jpg';
 
-import CheckoutForm from "./CheckoutForm";
-
 const EquipmentPage = () => {
     // Sample equipment data
     const equipmentList = [
@@ -184,7 +182,7 @@ const EquipmentPage = () => {
     };
 
     const handleAddToCart = async (item) => {
-        navigate(`/Payment/${encodeURIComponent(JSON.stringify({title: item.name, amount: item.price.substr(1)}))}`)
+        navigate(`/Payment/${encodeURIComponent(JSON.stringify({ title: item.name, amount: item.price }))}`)
     }
 
     return (
